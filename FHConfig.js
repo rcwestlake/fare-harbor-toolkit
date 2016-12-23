@@ -1,19 +1,19 @@
 var FHConfig = {
   toolType: 'Modal',
-  api: 'http://www.graham.com',
+  shortname: 'bodyglove',
   text: {
     fontPrimary: '',
-    headerText: '',
+    headerText: 'Book Tickets Now',
     inputFieldPlaceholder: '',
     mainActionButton: 'Book Now',
     textAlign: '',
   },
   colors: {
-    headerColor: 'red',
+    headerColor: 'green',
     mainButtonColor: '',
     mainButtonTextColor: '',
   },
-  structure: {
+  structure: { // consider adding the itemID so we can pass it to the api call
     cards: {
       numberOfCards: null,
       cardText: {
