@@ -1,12 +1,15 @@
 var config = window.FHConfig ? window.FHConfig : null;
 var FHModal = window.FHModal ? window.FHModal : null;
-console.log('config in toolCreator', config);
-console.log('Modal in toolCreator', FHModal);
 
 var toolCreator = (function() {
   function create(config) {
-    if(config.toolType === 'Modal') {
-      return FHModal({api: config.api, buttonText: config.mainActionButton});
+    switch (config.toolType) {
+      case 'Modal':
+        return FHModal({api: config.api, buttonText: config.text.mainActionButton});
+      case 'SearchInput':
+        return FHSearchInput(config)
+      default:
+        console.error('No toolType specified in FHConfig.js');
     }
   }
 
