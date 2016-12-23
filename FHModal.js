@@ -1,7 +1,8 @@
-var FHModal = (function() {
-  return {
-    test() {
-      console.log('log in test in modal.js');
-    }
+var FHModal = function(obj) {
+  function create(obj) {
+    console.log('in create in modal');
+    console.log(obj.api);
   }
-})();
+
+  return create(obj)
+};

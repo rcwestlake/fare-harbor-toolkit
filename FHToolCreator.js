@@ -1,5 +1,6 @@
 var config = window.FHConfig ? window.FHConfig : null;
 var FHModal = window.FHModal ? window.FHModal : null;
+console.log('config in toolCreator', config);
 console.log('Modal in toolCreator', FHModal);
 
 var toolCreator = (function() {
@@ -11,5 +12,3 @@ var toolCreator = (function() {
 
   return create(config)
 })();
-
-FHModal.test();
