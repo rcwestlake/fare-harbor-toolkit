@@ -1,5 +1,5 @@
 var FHConfig = {
-  toolType: 'Modal',
+  toolType: 'SearchInput',
   shortname: 'bodyglove',
   text: {
     fontPrimary: '',
