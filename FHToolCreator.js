@@ -22,6 +22,7 @@ var toolCreator = (function() {
             inputFieldText: config.structure.inputFields.inputFieldText,
             inputFieldHeightAndWidth: config.structure.inputFields.inputFieldHeightAndWidth,
             inputFieldIcons: config.structure.inputFields.inputFieldIcons,
+            inputFieldBorders: config.structure.inputFields.inputFieldBorders,
         }
       );
       default:

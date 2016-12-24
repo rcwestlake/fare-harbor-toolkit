@@ -27,7 +27,8 @@ function buildHTML(obj) {
     background: 'url("' +  leftmostFieldBackgroundIcon + '") no-repeat',
     backgroundPosition: obj.inputFieldIcons.leftmostFieldIconPosition || '10px 1px',
     backgroundSize: obj.inputFieldIcons.leftmostFieldIconSize || '28px 39px',
-    border: '1px solid #979797',
+    // border: '1px solid #979797',
+    borderBottomWidth: obj.inputFieldBorders.leftmostFieldBorderBottomWidth || '1px',
     color: '#A09C9C',
     fontFamily: 'Palatino-Roman, serif',
     fontSize: '22px',
@@ -44,7 +45,7 @@ function buildHTML(obj) {
   leftFieldInput.style.background = leftFieldInputStyles.background;
   leftFieldInput.style.backgroundPosition = leftFieldInputStyles.backgroundPosition;
   leftFieldInput.style.backgroundSize = leftFieldInputStyles.backgroundSize;
-  leftFieldInput.style.border = leftFieldInputStyles.border;
+  leftFieldInput.style.borderBottomWidth = leftFieldInputStyles.borderBottomWidth;
   leftFieldInput.style.color = leftFieldInputStyles.color;
   leftFieldInput.style.fontFamily = leftFieldInputStyles.fontFamily;
   leftFieldInput.style.fontSize = leftFieldInputStyles.fontSize;
