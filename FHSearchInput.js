@@ -1,8 +1,6 @@
 var FHSearchInput = function(obj) {
   function create(obj) {
     buildHTML(obj)
-    // console.log(obj.colors);
-    // console.log(obj.cards);
   }
 
   return create(obj)
@@ -12,7 +10,7 @@ function buildHTML(obj) {
 
 /* Create elements for tool */
   var whereToInputStyles = {
-    background: 'url("images/location-icon.png") no-repeat',
+    background: 'url("images/location.png") no-repeat',
     backgroundPosition: '10px 1px',
     backgroundSize: '28px 39px',
     border: '1px solid #979797',
