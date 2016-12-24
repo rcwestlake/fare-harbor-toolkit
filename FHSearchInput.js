@@ -8,15 +8,22 @@ var FHSearchInput = function(obj) {
 }
 
 function buildHTML(obj) {
-  var backgroundIcon;
+  var leftmostFieldBackgroundIcon;
   if (obj.inputFieldIcons.leftmostFieldIconSource) {
-    backgroundIcon = obj.inputFieldIcons.leftmostFieldIconSource;
+    leftmostFieldBackgroundIcon = obj.inputFieldIcons.leftmostFieldIconSource;
   } else {
-    backgroundIcon = 'images/location.png';
+    leftmostFieldBackgroundIcon = 'images/location.png';
+  }
+
+  var secondFieldFromLeftBackgroundIcon;
+  if (obj.inputFieldIcons.secondFieldFromLeftIconSource) {
+    secondFieldFromLeftBackgroundIcon = obj.inputFieldIcons.secondFieldFromLeftIconSource;
+  } else {
+    secondFieldFromLeftBackgroundIcon = 'images/calendar.png';
   }
 
   var whereToInputStyles = {
-    background: 'url("' +  backgroundIcon + '") no-repeat',
+    background: 'url("' +  leftmostFieldBackgroundIcon + '") no-repeat',
     backgroundPosition: '10px 1px',
     backgroundSize: '28px 39px',
     border: '1px solid #979797',
@@ -46,7 +53,7 @@ function buildHTML(obj) {
   whereToInput.style.width = whereToInputStyles.width;
 
   var whenInputStyles = {
-    background: obj.inputFieldIcons.secondFieldFromLeftIconSource || 'url("images/calendar.png") no-repeat',
+    background: 'url("' +  secondFieldFromLeftBackgroundIcon + '") no-repeat',
     backgroundPosition: '10px 5px',
     backgroundSize: '32px 32px',
     border: '1px solid #979797',
