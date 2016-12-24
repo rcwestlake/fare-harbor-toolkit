@@ -1,6 +1,7 @@
 var FHSearchInput = function(obj) {
   function create(obj) {
     buildHTML(obj)
+    // console.log(obj);
   }
 
   return create(obj)
@@ -8,7 +9,6 @@ var FHSearchInput = function(obj) {
 
 function buildHTML(obj) {
 
-/* Create elements for tool */
   var whereToInputStyles = {
     background: 'url("images/location.png") no-repeat',
     backgroundPosition: '10px 1px',
@@ -26,7 +26,7 @@ function buildHTML(obj) {
   var whereToInput = document.createElement('INPUT');
   document.body.appendChild(whereToInput);
   whereToInput.classList.add('where-to-input');
-  whereToInput.placeholder = 'Where To?';
+  whereToInput.placeholder = obj.inputFieldText.leftmostField || 'Where To?';
   whereToInput.style.background = whereToInputStyles.background;
   whereToInput.style.backgroundPosition = whereToInputStyles.backgroundPosition;
   whereToInput.style.backgroundSize = whereToInputStyles.backgroundSize;
@@ -56,7 +56,7 @@ function buildHTML(obj) {
   var whenInput = document.createElement('INPUT');
   document.body.appendChild(whenInput);
   whenInput.classList.add('when-input');
-  whenInput.placeholder = obj.text.headerText;
+  whenInput.placeholder = 'When?';
   whenInput.style.background = whenInputStyles.background;
   whenInput.style.backgroundPosition = whenInputStyles.backgroundPosition;
   whenInput.style.backgroundSize = whenInputStyles.backgroundSize;

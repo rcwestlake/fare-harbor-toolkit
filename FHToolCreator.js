@@ -19,12 +19,7 @@ var toolCreator = (function() {
       case 'SearchInput':
         return FHSearchInput(
           {
-            api: config.api,
-            text: config.text,
-            colors: config.colors,
-            cards: config.structure.cards.cardText,
-            numberOfCards: config.structure.cards.numberOfCards,
-            marginsAndPadding: config.structure.cards.marginsAndPadding.global,
+            inputFieldText: config.structure.inputFields.inputFieldText,
         }
       );
       default:

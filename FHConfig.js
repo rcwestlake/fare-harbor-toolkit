@@ -3,7 +3,7 @@ var FHConfig = {
   shortname: 'bodyglove',
   text: {
     fontPrimary: '',
-    headerText: 'When?',
+    headerText: 'Book Tickets Now',
     inputFieldPlaceholder: '',
     mainActionButton: 'Book Now',
     textAlign: '',
@@ -33,6 +33,12 @@ var FHConfig = {
           paddingTop: '',
           paddingBottom: '',
         },
+      },
+    },
+    inputFields: {
+      numberOfInputFields: null,
+      inputFieldText: {
+        leftmostField: '',
       },
     },
   },
