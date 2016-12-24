@@ -1,7 +1,7 @@
 var FHSearchInput = function(obj) {
   function create(obj) {
     buildHTML(obj)
-    // console.log(obj);
+
   }
 
   return create(obj)
@@ -17,16 +17,16 @@ function buildHTML(obj) {
     color: '#A09C9C',
     fontFamily: 'Palatino-Roman, serif',
     fontSize: '22px',
-    height: '39px',
+    height: obj.inputFieldHeightAndWidth.leftmostFieldHeight || '39px',
     margin: '0px 5px',
     textAlign: 'center',
-    width: '200px',
+    width: obj.inputFieldHeightAndWidth.leftmostFieldWidth || '200px',
   }
 
   var whereToInput = document.createElement('INPUT');
   document.body.appendChild(whereToInput);
   whereToInput.classList.add('where-to-input');
-  whereToInput.placeholder = obj.inputFieldText.leftmostField || 'Where To?';
+  whereToInput.placeholder = obj.inputFieldText.leftmostFieldText || 'Where To?';
   whereToInput.style.background = whereToInputStyles.background;
   whereToInput.style.backgroundPosition = whereToInputStyles.backgroundPosition;
   whereToInput.style.backgroundSize = whereToInputStyles.backgroundSize;
@@ -47,16 +47,16 @@ function buildHTML(obj) {
     color: '#A09C9C',
     fontFamily: 'Palatino-Roman, serif',
     fontSize: '22px',
-    height: '39px',
+    height: obj.inputFieldHeightAndWidth.secondFieldFromLeftHeight || '39px',
     margin: '0px 5px',
     textAlign: 'center',
-    width: '200px',
+    width: obj.inputFieldHeightAndWidth.secondFieldFromLeftWidth ||'200px',
   }
 
   var whenInput = document.createElement('INPUT');
   document.body.appendChild(whenInput);
   whenInput.classList.add('when-input');
-  whenInput.placeholder = 'When?';
+  whenInput.placeholder = obj.inputFieldText.secondFieldFromLeftText || 'When?';
   whenInput.style.background = whenInputStyles.background;
   whenInput.style.backgroundPosition = whenInputStyles.backgroundPosition;
   whenInput.style.backgroundSize = whenInputStyles.backgroundSize;

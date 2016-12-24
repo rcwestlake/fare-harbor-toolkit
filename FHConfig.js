@@ -4,7 +4,6 @@ var FHConfig = {
   text: {
     fontPrimary: '',
     headerText: 'Book Tickets Now',
-    inputFieldPlaceholder: '',
     mainActionButton: 'Book Now',
     textAlign: '',
   },
@@ -21,6 +20,7 @@ var FHConfig = {
         secondCardDown: '',
         thirdCardDown: '',
         bottomCard: '',
+        //RW: we should change this to fourthCardDown to avoid confusion
       },
       marginsAndPadding: {
         global: {
@@ -38,7 +38,17 @@ var FHConfig = {
     inputFields: {
       numberOfInputFields: null,
       inputFieldText: {
-        leftmostField: '',
+        leftmostFieldText: '',
+        secondFieldFromLeftText: '',
+        thirdFieldFromLeftText: '',
+      },
+      inputFieldHeightAndWidth: {
+        leftmostFieldHeight: '',
+        leftmostFieldWidth: '',
+        secondFieldFromLeftHeight: '',
+        secondFieldFromLeftWidth: '',
+        thirdFieldFromLeftHeight: '',
+        thirdFieldFromLeftWidth: '',
       },
     },
   },

@@ -20,6 +20,7 @@ var toolCreator = (function() {
         return FHSearchInput(
           {
             inputFieldText: config.structure.inputFields.inputFieldText,
+            inputFieldHeightAndWidth: config.structure.inputFields.inputFieldHeightAndWidth,
         }
       );
       default:
