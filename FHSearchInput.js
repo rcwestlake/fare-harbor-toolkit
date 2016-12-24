@@ -8,6 +8,7 @@ var FHSearchInput = function(obj) {
 }
 
 function buildHTML(obj) {
+
   var leftmostFieldBackgroundIcon;
   if (obj.inputFieldIcons.leftmostFieldIconSource) {
     leftmostFieldBackgroundIcon = obj.inputFieldIcons.leftmostFieldIconSource;
@@ -22,9 +23,9 @@ function buildHTML(obj) {
     secondFieldFromLeftBackgroundIcon = 'images/calendar.png';
   }
 
-  var whereToInputStyles = {
+  var leftFieldInputStyles = {
     background: 'url("' +  leftmostFieldBackgroundIcon + '") no-repeat',
-    backgroundPosition: '10px 1px',
+    backgroundPosition: obj.inputFieldIcons.leftmostFieldIconPosition || '10px 1px',
     backgroundSize: '28px 39px',
     border: '1px solid #979797',
     color: '#A09C9C',
@@ -36,25 +37,25 @@ function buildHTML(obj) {
     width: obj.inputFieldHeightAndWidth.leftmostFieldWidth || '200px',
   }
 
-  var whereToInput = document.createElement('INPUT');
-  document.body.appendChild(whereToInput);
-  whereToInput.classList.add('where-to-input');
-  whereToInput.placeholder = obj.inputFieldText.leftmostFieldText || 'Where To?';
-  whereToInput.style.background = whereToInputStyles.background;
-  whereToInput.style.backgroundPosition = whereToInputStyles.backgroundPosition;
-  whereToInput.style.backgroundSize = whereToInputStyles.backgroundSize;
-  whereToInput.style.border = whereToInputStyles.border;
-  whereToInput.style.color = whereToInputStyles.color;
-  whereToInput.style.fontFamily = whereToInputStyles.fontFamily;
-  whereToInput.style.fontSize = whereToInputStyles.fontSize;
-  whereToInput.style.height = whereToInputStyles.height;
-  whereToInput.style.margin = whereToInputStyles.margin;
-  whereToInput.style.textAlign = whereToInputStyles.textAlign;
-  whereToInput.style.width = whereToInputStyles.width;
+  var leftFieldInput = document.createElement('INPUT');
+  document.body.appendChild(leftFieldInput);
+  leftFieldInput.classList.add('where-to-input');
+  leftFieldInput.placeholder = obj.inputFieldText.leftmostFieldText || 'Where To?';
+  leftFieldInput.style.background = leftFieldInputStyles.background;
+  leftFieldInput.style.backgroundPosition = leftFieldInputStyles.backgroundPosition;
+  leftFieldInput.style.backgroundSize = leftFieldInputStyles.backgroundSize;
+  leftFieldInput.style.border = leftFieldInputStyles.border;
+  leftFieldInput.style.color = leftFieldInputStyles.color;
+  leftFieldInput.style.fontFamily = leftFieldInputStyles.fontFamily;
+  leftFieldInput.style.fontSize = leftFieldInputStyles.fontSize;
+  leftFieldInput.style.height = leftFieldInputStyles.height;
+  leftFieldInput.style.margin = leftFieldInputStyles.margin;
+  leftFieldInput.style.textAlign = leftFieldInputStyles.textAlign;
+  leftFieldInput.style.width = leftFieldInputStyles.width;
 
-  var whenInputStyles = {
+  var rightFieldInputStyles = {
     background: 'url("' +  secondFieldFromLeftBackgroundIcon + '") no-repeat',
-    backgroundPosition: '10px 5px',
+    backgroundPosition: obj.inputFieldIcons.secondFieldFromLeftIconPosition || '10px 5px',
     backgroundSize: '32px 32px',
     border: '1px solid #979797',
     color: '#A09C9C',
@@ -66,21 +67,21 @@ function buildHTML(obj) {
     width: obj.inputFieldHeightAndWidth.secondFieldFromLeftWidth ||'200px',
   }
 
-  var whenInput = document.createElement('INPUT');
-  document.body.appendChild(whenInput);
-  whenInput.classList.add('when-input');
-  whenInput.placeholder = obj.inputFieldText.secondFieldFromLeftText || 'When?';
-  whenInput.style.background = whenInputStyles.background;
-  whenInput.style.backgroundPosition = whenInputStyles.backgroundPosition;
-  whenInput.style.backgroundSize = whenInputStyles.backgroundSize;
-  whenInput.style.border = whenInputStyles.border;
-  whenInput.style.color = whenInputStyles.color;
-  whenInput.style.fontFamily = whenInputStyles.fontFamily;
-  whenInput.style.fontSize = whenInputStyles.fontSize;
-  whenInput.style.height = whenInputStyles.height;
-  whenInput.style.margin = whenInputStyles.margin;
-  whenInput.style.textAlign = whenInputStyles.textAlign;
-  whenInput.style.width = whenInputStyles.width;
+  var rightFieldInput = document.createElement('INPUT');
+  document.body.appendChild(rightFieldInput);
+  rightFieldInput.classList.add('when-input');
+  rightFieldInput.placeholder = obj.inputFieldText.secondFieldFromLeftText || 'When?';
+  rightFieldInput.style.background = rightFieldInputStyles.background;
+  rightFieldInput.style.backgroundPosition = rightFieldInputStyles.backgroundPosition;
+  rightFieldInput.style.backgroundSize = rightFieldInputStyles.backgroundSize;
+  rightFieldInput.style.border = rightFieldInputStyles.border;
+  rightFieldInput.style.color = rightFieldInputStyles.color;
+  rightFieldInput.style.fontFamily = rightFieldInputStyles.fontFamily;
+  rightFieldInput.style.fontSize = rightFieldInputStyles.fontSize;
+  rightFieldInput.style.height = rightFieldInputStyles.height;
+  rightFieldInput.style.margin = rightFieldInputStyles.margin;
+  rightFieldInput.style.textAlign = rightFieldInputStyles.textAlign;
+  rightFieldInput.style.width = rightFieldInputStyles.width;
 
   var goButtonStyles = {
     background: '#3D89DF',
