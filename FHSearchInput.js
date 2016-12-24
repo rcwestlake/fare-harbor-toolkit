@@ -32,6 +32,10 @@ function buildHTML(obj) {
     borderTopWidth: obj.inputFieldBorders.leftmostFieldBorderTopWidth || '1px',
     borderRightWidth: obj.inputFieldBorders.leftmostFieldBorderRightWidth || '1px',
     borderLeftWidth: obj.inputFieldBorders.leftmostFieldBorderLeftWidth || '1px',
+    borderBottomStyle: obj.inputFieldBorders.leftmostFieldBorderBottomStyle || 'solid',
+    borderTopStyle: obj.inputFieldBorders.leftmostFieldBorderTopStyle || 'solid',
+    borderRightStyle: obj.inputFieldBorders.leftmostFieldBorderRightStyle || 'solid',
+    borderLeftStyle: obj.inputFieldBorders.leftmostFieldBorderLeftStyle || 'solid',
     color: '#A09C9C',
     fontFamily: 'Palatino-Roman, serif',
     fontSize: '22px',
@@ -52,6 +56,10 @@ function buildHTML(obj) {
   leftFieldInput.style.borderTopWidth = leftFieldInputStyles.borderTopWidth;
   leftFieldInput.style.borderRightWidth = leftFieldInputStyles.borderRightWidth;
   leftFieldInput.style.borderLeftWidth = leftFieldInputStyles.borderLeftWidth;
+  leftFieldInput.style.borderBottomStyle = leftFieldInputStyles.borderBottomStyle;
+  leftFieldInput.style.borderTopStyle = leftFieldInputStyles.borderTopStyle;
+  leftFieldInput.style.borderRightStyle = leftFieldInputStyles.borderRightStyle;
+  leftFieldInput.style.borderLeftStyle = leftFieldInputStyles.borderLeftStyle;
   leftFieldInput.style.color = leftFieldInputStyles.color;
   leftFieldInput.style.fontFamily = leftFieldInputStyles.fontFamily;
   leftFieldInput.style.fontSize = leftFieldInputStyles.fontSize;

@@ -55,6 +55,10 @@ var FHConfig = {
         leftmostFieldBorderTopWidth: '',
         leftmostFieldBorderRightWidth: '',
         leftmostFieldBorderLeftWidth: '',
+        leftmostFieldBorderBottomStyle: '',
+        leftmostFieldBorderTopStyle: '',
+        leftmostFieldBorderRightStyle: '',
+        leftmostFieldBorderLeftStyle: '',
       },
       inputFieldIcons: {
         leftmostFieldIconSource: '',
