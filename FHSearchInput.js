@@ -79,7 +79,18 @@ function buildHTML(obj) {
     background: 'url("' +  secondFieldFromLeftBackgroundIcon + '") no-repeat',
     backgroundPosition: obj.inputFieldIcons.secondFieldFromLeftIconPosition || '10px 5px',
     backgroundSize: obj.inputFieldIcons.secondFieldFromLeftIconSize || '32px 32px',
-    border: '1px solid #979797',
+    borderBottomWidth: obj.inputFieldBorders.secondFieldFromLeftBorderBottomWidth || '1px',
+    borderTopWidth: obj.inputFieldBorders.secondFieldFromLeftBorderTopWidth || '1px',
+    borderRightWidth: obj.inputFieldBorders.secondFieldFromLeftBorderRightWidth || '1px',
+    borderLeftWidth: obj.inputFieldBorders.secondFieldFromLeftBorderLeftWidth || '1px',
+    borderBottomStyle: obj.inputFieldBorders.secondFieldFromLeftBorderBottomStyle || 'solid',
+    borderTopStyle: obj.inputFieldBorders.secondFieldFromLeftBorderTopStyle || 'solid',
+    borderRightStyle: obj.inputFieldBorders.secondFieldFromLeftBorderRightStyle || 'solid',
+    borderLeftStyle: obj.inputFieldBorders.secondFieldFromLeftBorderLeftStyle || 'solid',
+    borderBottomColor: obj.inputFieldBorders.secondFieldFromLeftBorderBottomColor || '#979797',
+    borderTopColor: obj.inputFieldBorders.secondFieldFromLeftBorderTopColor || '#979797',
+    borderRightColor: obj.inputFieldBorders.secondFieldFromLeftBorderRightColor || '#979797',
+    borderLeftColor: obj.inputFieldBorders.secondFieldFromLeftBorderLeftColor || '#979797',
     color: '#A09C9C',
     fontFamily: 'Palatino-Roman, serif',
     fontSize: '22px',
@@ -96,7 +107,18 @@ function buildHTML(obj) {
   rightFieldInput.style.background = rightFieldInputStyles.background;
   rightFieldInput.style.backgroundPosition = rightFieldInputStyles.backgroundPosition;
   rightFieldInput.style.backgroundSize = rightFieldInputStyles.backgroundSize;
-  rightFieldInput.style.border = rightFieldInputStyles.border;
+  rightFieldInput.style.borderBottomWidth = rightFieldInputStyles.borderBottomWidth;
+  rightFieldInput.style.borderTopWidth = rightFieldInputStyles.borderTopWidth;
+  rightFieldInput.style.borderRightWidth = rightFieldInputStyles.borderRightWidth;
+  rightFieldInput.style.borderLeftWidth = rightFieldInputStyles.borderLeftWidth;
+  rightFieldInput.style.borderBottomStyle = rightFieldInputStyles.borderBottomStyle;
+  rightFieldInput.style.borderTopStyle = rightFieldInputStyles.borderTopStyle;
+  rightFieldInput.style.borderRightStyle = rightFieldInputStyles.borderRightStyle;
+  rightFieldInput.style.borderLeftStyle = rightFieldInputStyles.borderLeftStyle;
+  rightFieldInput.style.borderBottomColor = rightFieldInputStyles.borderBottomColor;
+  rightFieldInput.style.borderTopColor = rightFieldInputStyles.borderTopColor;
+  rightFieldInput.style.borderRightColor = rightFieldInputStyles.borderRightColor;
+  rightFieldInput.style.borderLeftColor = leftFieldInputStyles.borderLeftColor;
   rightFieldInput.style.color = rightFieldInputStyles.color;
   rightFieldInput.style.fontFamily = rightFieldInputStyles.fontFamily;
   rightFieldInput.style.fontSize = rightFieldInputStyles.fontSize;
