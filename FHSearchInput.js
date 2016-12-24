@@ -26,7 +26,7 @@ function buildHTML(obj) {
   var leftFieldInputStyles = {
     background: 'url("' +  leftmostFieldBackgroundIcon + '") no-repeat',
     backgroundPosition: obj.inputFieldIcons.leftmostFieldIconPosition || '10px 1px',
-    backgroundSize: '28px 39px',
+    backgroundSize: obj.inputFieldIcons.leftmostFieldIconSize || '28px 39px',
     border: '1px solid #979797',
     color: '#A09C9C',
     fontFamily: 'Palatino-Roman, serif',
@@ -56,7 +56,7 @@ function buildHTML(obj) {
   var rightFieldInputStyles = {
     background: 'url("' +  secondFieldFromLeftBackgroundIcon + '") no-repeat',
     backgroundPosition: obj.inputFieldIcons.secondFieldFromLeftIconPosition || '10px 5px',
-    backgroundSize: '32px 32px',
+    backgroundSize: obj.inputFieldIcons.secondFieldFromLeftIconSize || '32px 32px',
     border: '1px solid #979797',
     color: '#A09C9C',
     fontFamily: 'Palatino-Roman, serif',
