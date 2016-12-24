@@ -50,6 +50,11 @@ var FHConfig = {
         thirdFieldFromLeftHeight: '',
         thirdFieldFromLeftWidth: '',
       },
+      inputFieldIcons: {
+        leftmostFieldIconSource: '',
+        secondFieldFromLeftIconSource: '',
+        thirdFieldFromLeftIconSource: '',
+      },
     },
   },
 }

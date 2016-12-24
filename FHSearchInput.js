@@ -8,9 +8,15 @@ var FHSearchInput = function(obj) {
 }
 
 function buildHTML(obj) {
+  var backgroundIcon;
+  if (obj.inputFieldIcons.leftmostFieldIconSource) {
+    backgroundIcon = obj.inputFieldIcons.leftmostFieldIconSource;
+  } else {
+    backgroundIcon = 'images/location.png';
+  }
 
   var whereToInputStyles = {
-    background: 'url("images/location.png") no-repeat',
+    background: 'url("' +  backgroundIcon + '") no-repeat',
     backgroundPosition: '10px 1px',
     backgroundSize: '28px 39px',
     border: '1px solid #979797',
@@ -40,7 +46,7 @@ function buildHTML(obj) {
   whereToInput.style.width = whereToInputStyles.width;
 
   var whenInputStyles = {
-    background: 'url("images/calendar.png") no-repeat',
+    background: obj.inputFieldIcons.secondFieldFromLeftIconSource || 'url("images/calendar.png") no-repeat',
     backgroundPosition: '10px 5px',
     backgroundSize: '32px 32px',
     border: '1px solid #979797',
