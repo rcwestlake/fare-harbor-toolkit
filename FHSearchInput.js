@@ -27,7 +27,6 @@ function buildHTML(obj) {
     background: 'url("' +  leftmostFieldBackgroundIcon + '") no-repeat',
     backgroundPosition: obj.inputFieldIcons.leftmostFieldIconPosition || '10px 1px',
     backgroundSize: obj.inputFieldIcons.leftmostFieldIconSize || '28px 39px',
-    // border: '1px solid #979797',
     borderBottomWidth: obj.inputFieldBorders.leftmostFieldBorderBottomWidth || '1px',
     borderTopWidth: obj.inputFieldBorders.leftmostFieldBorderTopWidth || '1px',
     borderRightWidth: obj.inputFieldBorders.leftmostFieldBorderRightWidth || '1px',
@@ -36,6 +35,10 @@ function buildHTML(obj) {
     borderTopStyle: obj.inputFieldBorders.leftmostFieldBorderTopStyle || 'solid',
     borderRightStyle: obj.inputFieldBorders.leftmostFieldBorderRightStyle || 'solid',
     borderLeftStyle: obj.inputFieldBorders.leftmostFieldBorderLeftStyle || 'solid',
+    borderBottomColor: obj.inputFieldBorders.leftmostFieldBorderBottomColor || '#979797',
+    borderTopColor: obj.inputFieldBorders.leftmostFieldBorderTopColor || '#979797',
+    borderRightColor: obj.inputFieldBorders.leftmostFieldBorderRightColor || '#979797',
+    borderLeftColor: obj.inputFieldBorders.leftmostFieldBorderLeftColor || '#979797',
     color: '#A09C9C',
     fontFamily: 'Palatino-Roman, serif',
     fontSize: '22px',
@@ -60,6 +63,10 @@ function buildHTML(obj) {
   leftFieldInput.style.borderTopStyle = leftFieldInputStyles.borderTopStyle;
   leftFieldInput.style.borderRightStyle = leftFieldInputStyles.borderRightStyle;
   leftFieldInput.style.borderLeftStyle = leftFieldInputStyles.borderLeftStyle;
+  leftFieldInput.style.borderBottomColor = leftFieldInputStyles.borderBottomColor;
+  leftFieldInput.style.borderTopColor = leftFieldInputStyles.borderTopColor;
+  leftFieldInput.style.borderRightColor = leftFieldInputStyles.borderRightColor;
+  leftFieldInput.style.borderLeftColor = leftFieldInputStyles.borderLeftColor;
   leftFieldInput.style.color = leftFieldInputStyles.color;
   leftFieldInput.style.fontFamily = leftFieldInputStyles.fontFamily;
   leftFieldInput.style.fontSize = leftFieldInputStyles.fontSize;
