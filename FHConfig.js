@@ -52,7 +52,9 @@ var FHConfig = {
       },
       inputFieldBorders: {
         leftmostFieldBorderBottomWidth: '',
-        
+        leftmostFieldBorderTopWidth: '',
+        leftmostFieldBorderRightWidth: '',
+        leftmostFieldBorderLeftWidth: '',
       },
       inputFieldIcons: {
         leftmostFieldIconSource: '',

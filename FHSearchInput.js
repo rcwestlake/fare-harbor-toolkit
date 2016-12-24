@@ -29,6 +29,9 @@ function buildHTML(obj) {
     backgroundSize: obj.inputFieldIcons.leftmostFieldIconSize || '28px 39px',
     // border: '1px solid #979797',
     borderBottomWidth: obj.inputFieldBorders.leftmostFieldBorderBottomWidth || '1px',
+    borderTopWidth: obj.inputFieldBorders.leftmostFieldBorderTopWidth || '1px',
+    borderRightWidth: obj.inputFieldBorders.leftmostFieldBorderRightWidth || '1px',
+    borderLeftWidth: obj.inputFieldBorders.leftmostFieldBorderLeftWidth || '1px',
     color: '#A09C9C',
     fontFamily: 'Palatino-Roman, serif',
     fontSize: '22px',
@@ -46,6 +49,9 @@ function buildHTML(obj) {
   leftFieldInput.style.backgroundPosition = leftFieldInputStyles.backgroundPosition;
   leftFieldInput.style.backgroundSize = leftFieldInputStyles.backgroundSize;
   leftFieldInput.style.borderBottomWidth = leftFieldInputStyles.borderBottomWidth;
+  leftFieldInput.style.borderTopWidth = leftFieldInputStyles.borderTopWidth;
+  leftFieldInput.style.borderRightWidth = leftFieldInputStyles.borderRightWidth;
+  leftFieldInput.style.borderLeftWidth = leftFieldInputStyles.borderLeftWidth;
   leftFieldInput.style.color = leftFieldInputStyles.color;
   leftFieldInput.style.fontFamily = leftFieldInputStyles.fontFamily;
   leftFieldInput.style.fontSize = leftFieldInputStyles.fontSize;
