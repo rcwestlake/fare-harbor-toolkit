@@ -39,7 +39,7 @@ function buildHTML(obj) {
     borderTopColor: obj.inputFieldBorders.leftmostFieldBorderTopColor || '#979797',
     borderRightColor: obj.inputFieldBorders.leftmostFieldBorderRightColor || '#979797',
     borderLeftColor: obj.inputFieldBorders.leftmostFieldBorderLeftColor || '#979797',
-    color: '#A09C9C',
+    color: obj.inputFieldText.leftmostFieldTextColor || '#A09C9C',
     fontFamily: 'Palatino-Roman, serif',
     fontSize: '22px',
     height: obj.inputFieldHeightAndWidth.leftmostFieldHeight || '39px',
@@ -47,11 +47,11 @@ function buildHTML(obj) {
     textAlign: 'center',
     width: obj.inputFieldHeightAndWidth.leftmostFieldWidth || '200px',
   }
+  //need to add text via node and then bring it in from the object with default 'Where To?'
 
   var leftFieldInput = document.createElement('INPUT');
   document.body.appendChild(leftFieldInput);
   leftFieldInput.classList.add('where-to-input');
-  leftFieldInput.placeholder = obj.inputFieldText.leftmostFieldText || 'Where To?';
   leftFieldInput.style.background = leftFieldInputStyles.background;
   leftFieldInput.style.backgroundPosition = leftFieldInputStyles.backgroundPosition;
   leftFieldInput.style.backgroundSize = leftFieldInputStyles.backgroundSize;
@@ -91,7 +91,7 @@ function buildHTML(obj) {
     borderTopColor: obj.inputFieldBorders.secondFieldFromLeftBorderTopColor || '#979797',
     borderRightColor: obj.inputFieldBorders.secondFieldFromLeftBorderRightColor || '#979797',
     borderLeftColor: obj.inputFieldBorders.secondFieldFromLeftBorderLeftColor || '#979797',
-    color: '#A09C9C',
+    color: obj.inputFieldText.secondFieldFromLeftTextColor || '#A09C9C',
     fontFamily: 'Palatino-Roman, serif',
     fontSize: '22px',
     height: obj.inputFieldHeightAndWidth.secondFieldFromLeftHeight || '39px',
@@ -99,6 +99,7 @@ function buildHTML(obj) {
     textAlign: 'center',
     width: obj.inputFieldHeightAndWidth.secondFieldFromLeftWidth ||'200px',
   }
+  //need to add in text node as indicated above for this field too
 
   var rightFieldInput = document.createElement('INPUT');
   document.body.appendChild(rightFieldInput);
