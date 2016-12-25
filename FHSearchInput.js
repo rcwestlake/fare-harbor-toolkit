@@ -52,6 +52,7 @@ function buildHTML(obj) {
   var leftFieldInput = document.createElement('INPUT');
   document.body.appendChild(leftFieldInput);
   leftFieldInput.classList.add('where-to-input');
+  leftFieldInput.value = obj.inputFieldText.leftmostFieldTextContent || 'Where To?';
   leftFieldInput.style.background = leftFieldInputStyles.background;
   leftFieldInput.style.backgroundPosition = leftFieldInputStyles.backgroundPosition;
   leftFieldInput.style.backgroundSize = leftFieldInputStyles.backgroundSize;
@@ -104,7 +105,7 @@ function buildHTML(obj) {
   var rightFieldInput = document.createElement('INPUT');
   document.body.appendChild(rightFieldInput);
   rightFieldInput.classList.add('when-input');
-  rightFieldInput.placeholder = obj.inputFieldText.secondFieldFromLeftText || 'When?';
+  rightFieldInput.value = obj.inputFieldText.secondFieldFromLeftTextContent || 'When?';
   rightFieldInput.style.background = rightFieldInputStyles.background;
   rightFieldInput.style.backgroundPosition = rightFieldInputStyles.backgroundPosition;
   rightFieldInput.style.backgroundSize = rightFieldInputStyles.backgroundSize;

@@ -38,12 +38,12 @@ var FHConfig = {
     inputFields: {
       numberOfInputFields: null,
       inputFieldText: {
-        leftmostFieldText: '',
-        secondFieldFromLeftText: '',
-        thirdFieldFromLeftText: '',
-        leftmostFieldTextColor: 'red',
-        secondFieldFromLeftTextColor: 'red',
-        thirdFieldFromLeftTextColor: 'red',
+        leftmostFieldTextContent: '',
+        secondFieldFromLeftTextContent: '',
+        thirdFieldFromLeftTextContent: '',
+        leftmostFieldTextColor: '',
+        secondFieldFromLeftTextColor: '',
+        thirdFieldFromLeftTextColor: '',
       },
       inputFieldHeightAndWidth: {
         leftmostFieldHeight: '',
