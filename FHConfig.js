@@ -1,30 +1,52 @@
 var shortname = 'bodyglove';
 var FHConfig = {
-  toolType: 'Footer',
+  toolType: 'Modal',
   shortname: 'bodyglove',
   text: {
     fontPrimary: '',
-    headerText: 'Book Tickets Now',
+    headerText: 'Ticket Info',
     mainActionButton: 'Book Now',
-    textAlign: '',
+    globalTextAlign: '',
   },
   colors: {
-    headerColor: 'green',
+    headerColor: '',
+    headerTextColor: '',
     mainButtonColor: '',
     mainButtonTextColor: '',
   },
-  structure: { // consider adding the itemID so we can pass it to the api call
-    cards: {
-      numberOfCards: null,
-      cardText: {
-        topCard: 'Reserve Now',
-        secondCardDown: '',
-        thirdCardDown: '',
-        bottomCard: '',
-        //RW: we should change this to fourthCardDown to avoid confusion
-      },
-      marginsAndPadding: {
-        global: {
+  toolDetails: { // consider adding the itemID so we can pass it to the api call
+    modal: {
+      modalType: 'Simple', //simple or showActivites
+      showFullItems: true,
+      cards: {
+        numberOfCards: null,
+        cardDetail: [ //specify true/false if you want to include cardDetail, itemID
+          {
+            doesItExist: true,
+            text: 'See activities and tickets',
+            itemID: '',
+            linkTo: 'https://demo.fareharbor.com/embeds/book/bodyglove/items/?full-items=yes',
+          },
+          {
+            doesItExist: true,
+            text: 'View online calendar',
+            itemID: '',
+            linkTo: 'https://demo.fareharbor.com/embeds/book/bodyglove/items/calendar/',
+          },
+          {
+            doesItExist: true,
+            text: 'Tickets by phone',
+            itemID: '',
+            linkTo: '',
+          },
+          {
+            doesItExist: false,
+            text: '',
+            itemID: '',
+            linkTo: '',
+          },
+        ],
+        marginsAndPadding: {
           marginLeft: '',
           marginRight: '',
           marginTop: '',
