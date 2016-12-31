@@ -9,6 +9,7 @@ var FHConfig = {
   text: {
     fontPrimary: '',
     headerText: 'Ticket Info',
+    headerTextSize: '',
     mainActionButton: 'Book Now',
     globalTextAlign: '',
   },

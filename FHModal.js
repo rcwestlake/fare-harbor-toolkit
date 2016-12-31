@@ -35,6 +35,7 @@ function buildModalHTML(props) {
   modalContainer.style.backgroundColor = props.colors.headerColor || '#2EA1D9';
   modalContainer.style.textAlign = props.text.globalTextAlign || 'center';
   modalContainer.style.color = props.colors.headerTextColor || 'white';
+  modalContainer.style.fontFamily = props.text.fontPrimary || 'Tahoma, Geneva, sans-serif';
   modalContainer.style.borderRadius = '10px 10px 10px 10px';
   modalContainer.style.boxShadow = '0 3px 5px rgba(0,0,0,.2)';
 
@@ -42,6 +43,7 @@ function buildModalHTML(props) {
   var reservationTitle = document.createElement('div');
   reservationTitle.style.height = '15%';
   reservationTitle.textContent = props.text.headerText;
+  reservationTitle.style.fontSize = props.text.headerTextSize || '30px';
 
   modalContainer.appendChild(reservationTitle);
   body.appendChild(modalContainer);
