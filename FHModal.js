@@ -62,17 +62,8 @@ function addOptions(props) { //remove breaks after returning from case statement
         return card.doesItExist === true
       });
 
-      var cardHeight = Math.floor(100 / cards.length);
-
       for(var i = 0; i < cards.length; i++) {
-        var card = document.createElement('div');
-
-        card.style.height = '' + cardHeight + '%';
-        if(i < cards.length - 1) {
-          card.style.borderBottom = props.colors.headerColor ?
-                                      '' + '1px solid ' + props.colors.headerColor :
-                                      '1px solid #2EA1D9';
-        }
+        var card = addCardToContainer(props, cards, i);
 
         card.appendChild(addTextToCard(cards, i));
         optionsContainer.appendChild(card);
@@ -85,6 +76,20 @@ function addOptions(props) { //remove breaks after returning from case statement
     default:
       console.log('Incorrect modalType specified in FHModal.js');
   }
+}
+
+function addCardToContainer(props, cards, i) {
+  var cardHeight = Math.floor(100 / cards.length);
+
+  var card = document.createElement('div');
+
+  card.style.height = '' + cardHeight + '%';
+  if(i < cards.length - 1) {
+    card.style.borderBottom = props.colors.headerColor ?
+                                '' + '1px solid ' + props.colors.headerColor :
+                                '1px solid #2EA1D9';
+  }
+  return card
 }
 
 function addTextToCard(cards, index) {
