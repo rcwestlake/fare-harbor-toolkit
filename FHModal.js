@@ -4,13 +4,13 @@ var optionsContainer;
 
 var FHModal = function(props) {
   function create(props) {
-    buildHTML(props)
+    buildModalHTML(props)
   }
 
   return create(props)
 }
 
-function buildHTML(props) {
+function buildModalHTML(props) {
   var button = document.createElement('button');
   button.classList.add('FH-reservation-button');
   button.style.position = 'fixed';

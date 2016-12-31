@@ -1,13 +1,13 @@
 var FHSearchInput = function(obj) {
   function create(obj) {
-    buildHTML(obj)
+    buildSearchInputHTML(obj)
 
   }
 
   return create(obj)
 }
 
-function buildHTML(obj) {
+function buildSearchInputHTML(obj) {
 
   var eventInputField;
   var dateInputField;
