@@ -9,12 +9,14 @@ var toolCreator = (function() {
       case 'Modal':
         return FHModal(
           {
-            api: config.api,
+            shortname: config.shortname,
+            modalType: config.toolDetails.modal.modalType,
+            showFullItems: config.toolDetails.modal.showFullItems,
             text: config.text,
             colors: config.colors,
-            cards: config.structure.cards.cardText,
-            numberOfCards: config.structure.cards.numberOfCards,
-            marginsAndPadding: config.structure.cards.marginsAndPadding.global,
+            cards: config.toolDetails.modal.cards,
+            numberOfCards: config.toolDetails.modal.cards.numberOfCards,
+            marginsAndPadding: config.toolDetails.modal.cards.marginsAndPadding.global,
           }
       );
       case 'Footer':

@@ -1,61 +1,126 @@
 var body = document.body;
-var reservationContainer;
+var modalContainer;
+var optionsContainer;
 
-var FHModal = function(obj) {
-  function create(obj) {
-    buildHTML(obj)
-    console.log(obj.colors);
-    console.log(obj.cards);
+var FHModal = function(props) {
+  function create(props) {
+    buildHTML(props)
   }
 
-  return create(obj)
+  return create(props)
 }
 
-function buildHTML(obj) {
-
-/* Create elements for tool */
+function buildHTML(props) {
   var button = document.createElement('button');
-  button.classList.add('FH-reservation-button')
+  button.classList.add('FH-reservation-button');
   button.style.position = 'fixed';
   button.style.width = '130px';
   button.style.height = '30px';
   button.style.right = '20px';
   button.style.bottom = '20px';
+  button.style.border = 'none';
+  button.style.boxShadow = '0 1px 6px rgba(0,0,0,.06), 0 2px 32px rgba(0,0,0,.16)';
 
-  button.textContent = obj.text.mainActionButton;
+  button.textContent = props.text.mainActionButton;
   body.appendChild(button);
 
-  reservationContainer = document.createElement('div');
-  reservationContainer.style.position = 'fixed';
-  reservationContainer.style.bottom = '80px';
-  reservationContainer.style.right = '20px';
-  reservationContainer.style.backgroundColor = obj.colors.headerColor;
-  reservationContainer.style.display = 'none';
-  reservationContainer.style.height = '550px';
-  reservationContainer.style.width = '350px';
+  modalContainer = document.createElement('div');
+  modalContainer.style.position = 'fixed';
+  modalContainer.style.display = 'none';
+  modalContainer.style.bottom = '80px';
+  modalContainer.style.right = '20px';
+  modalContainer.style.height = '550px';
+  modalContainer.style.width = '350px';
+  modalContainer.style.boxSizing = 'border-box';
+  modalContainer.style.backgroundColor = props.colors.headerColor || '#2EA1D9';
+  modalContainer.style.textAlign = props.text.globalTextAlign || 'center';
+  modalContainer.style.color = props.colors.headerTextColor || 'white';
+  modalContainer.style.borderRadius = '10px 10px 10px 10px';
+  modalContainer.style.boxShadow = '0 3px 5px rgba(0,0,0,.2)';
+
 
   var reservationTitle = document.createElement('div');
   reservationTitle.style.height = '15%';
-  reservationTitle.textContent = obj.text.headerText;
+  reservationTitle.textContent = props.text.headerText;
 
-  reservationContainer.appendChild(reservationTitle);
-  body.appendChild(reservationContainer);
+  modalContainer.appendChild(reservationTitle);
+  body.appendChild(modalContainer);
 
 
-  var detailContainer = document.createElement('section');
-  detailContainer.style.height = '85%';
-  detailContainer.style.backgroundColor = 'yellow';
+  optionsContainer = document.createElement('section');
+  optionsContainer.style.height = '85%';
+  optionsContainer.style.backgroundColor = 'white';
 
-  reservationContainer.appendChild(detailContainer)
+  modalContainer.appendChild(optionsContainer);
+  addCards(props)
+}
+
+function addCards(props) { //remove breaks after returning from case statements
+  switch (props.modalType.toLowerCase()) {
+    case 'simple':
+      var cards = props.cards.cardDetail.filter(function(card) {
+        return card.doesItExist === true
+      });
+
+      for(var i = 0; i < cards.length; i++) {
+        var card = addCardToContainer(props, cards, i);
+        var text = addTextToCard(cards, i);
+
+        card.appendChild(text[0]);
+        text[1] ? card.appendChild(text[1]) : null
+        optionsContainer.appendChild(card);
+      }
+
+      break;
+    case 'showactivities':
+      console.log('in showactivities case statement');
+      break;
+    default:
+      console.log('Incorrect modalType specified in FHModal.js');
+  }
+}
+
+function addCardToContainer(props, cards, i) {
+  var cardHeight = Math.floor(100 / cards.length);
+
+  var card = document.createElement('div');
+
+  card.style.height = '' + cardHeight + '%';
+  if(i < cards.length - 1) {
+    card.style.borderBottom = props.colors.headerColor ?
+                                '' + '1px solid ' + props.colors.headerColor :
+                                '1px solid #2EA1D9';
+  }
+  return card
+}
+
+function addTextToCard(cards, index) {
+  var extraText;
+  var text = cards[index].linkTo ?
+              document.createElement('a') :
+              document.createElement('p');
+
+  if(cards[index].extraText) {
+    extraText = document.createElement('p')
+    extraText.textContent = cards[index].extraText;
+    extraText.style.color = 'red';
+  }
+
+  text.textContent = cards[index].text;
+  text.style.color = 'red';
+  text.href = cards[index].linkTo;
+
+  return [text, extraText]
 }
 
 document.addEventListener('click', function(e) {
   if(e.target.className === 'FH-reservation-button') {
-    if (reservationContainer.style.display === 'none') {
-      return reservationContainer.style.display = 'block'
+    if (modalContainer.style.display === 'none') {
+      return modalContainer.style.display = 'block'
     }
-    if (reservationContainer.style.display === 'block') {
-      return reservationContainer.style.display = 'none'
+
+    if (modalContainer.style.display === 'block') {
+      return modalContainer.style.display = 'none'
     }
   }
 })

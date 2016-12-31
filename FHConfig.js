@@ -1,30 +1,60 @@
 var shortname = 'bodyglove';
+var date = new Date();
+var year = date.getFullYear();
+var month = date.getMonth() + 1;
+
 var FHConfig = {
-  toolType: 'Footer',
+  toolType: 'Modal',
   shortname: 'bodyglove',
   text: {
     fontPrimary: '',
-    headerText: 'Book Tickets Now',
+    headerText: 'Ticket Info',
     mainActionButton: 'Book Now',
-    textAlign: '',
+    globalTextAlign: '',
   },
   colors: {
-    headerColor: 'green',
+    headerColor: '',
+    headerTextColor: '',
     mainButtonColor: '',
     mainButtonTextColor: '',
   },
-  structure: { // consider adding the itemID so we can pass it to the api call
-    cards: {
-      numberOfCards: null,
-      cardText: {
-        topCard: 'Reserve Now',
-        secondCardDown: '',
-        thirdCardDown: '',
-        bottomCard: '',
-        //RW: we should change this to fourthCardDown to avoid confusion
-      },
-      marginsAndPadding: {
-        global: {
+  toolDetails: {
+    modal: {
+      modalType: 'Simple',
+      showFullItems: true,
+      cards: {
+        numberOfCards: null,
+        cardDetail: [
+          {
+            doesItExist: true,
+            text: 'See activities and tickets',
+            extraText: '',
+            itemID: '',
+            linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/?full-items=yes',
+          },
+          {
+            doesItExist: true,
+            text: 'View online calendar',
+            extraText: '',
+            itemID: '',
+            linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/',
+          },
+          {
+            doesItExist: true,
+            text: 'Tickets by phone',
+            extraText: '555-555-5555',
+            itemID: '',
+            linkTo: '',
+          },
+          {
+            doesItExist: false,
+            text: '',
+            extraText: '',
+            itemID: '',
+            linkTo: '',
+          },
+        ],
+        marginsAndPadding: {
           marginLeft: '',
           marginRight: '',
           marginTop: '',
