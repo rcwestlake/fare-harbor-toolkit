@@ -1,6 +1,6 @@
 var shortname = 'bodyglove';
 var FHConfig = {
-  toolType: 'Footer',
+  toolType: 'SearchInput',
   shortname: 'bodyglove',
   text: {
     fontPrimary: '',
