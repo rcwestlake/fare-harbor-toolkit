@@ -1,4 +1,8 @@
 var shortname = 'bodyglove';
+var date = new Date();
+var year = date.getFullYear();
+var month = date.getMonth() + 1;
+
 var FHConfig = {
   toolType: 'Modal',
   shortname: 'bodyglove',
@@ -16,31 +20,35 @@ var FHConfig = {
   },
   toolDetails: { // consider adding the itemID so we can pass it to the api call
     modal: {
-      modalType: 'Simple', //simple or showActivites
+      modalType: 'Simple',
       showFullItems: true,
       cards: {
         numberOfCards: null,
-        cardDetail: [ //specify true/false if you want to include cardDetail, itemID
+        cardDetail: [
           {
             doesItExist: true,
             text: 'See activities and tickets',
+            extraText: '',
             itemID: '',
             linkTo: 'https://demo.fareharbor.com/embeds/book/bodyglove/items/?full-items=yes',
           },
           {
             doesItExist: true,
             text: 'View online calendar',
+            extraText: '',
             itemID: '',
-            linkTo: 'https://demo.fareharbor.com/embeds/book/bodyglove/items/calendar/',
+            linkTo: 'https://demo.fareharbor.com/embeds/book/bodyglove/items/calendar/' + year + '/' + month + '/',
           },
           {
             doesItExist: true,
             text: 'Tickets by phone',
+            extraText: '555-555-5555',
             itemID: '',
             linkTo: '',
           },
           {
             doesItExist: false,
+            extraText: '',
             text: '',
             itemID: '',
             linkTo: '',

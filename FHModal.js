@@ -12,7 +12,7 @@ var FHModal = function(props) {
 
 function buildHTML(props) {
   var button = document.createElement('button');
-  button.classList.add('FH-reservation-button')
+  button.classList.add('FH-reservation-button');
   button.style.position = 'fixed';
   button.style.width = '130px';
   button.style.height = '30px';
@@ -62,19 +62,24 @@ function addOptions(props) { //remove breaks after returning from case statement
         return card.doesItExist === true
       });
 
-      var optionHeight = Math.floor(100 / cards.length);
+      var cardHeight = Math.floor(100 / cards.length);
 
       for(var i = 0; i < cards.length; i++) {
         var option = document.createElement('div');
 
-        var text = cards[i].linkTo ? document.createElement('a') : document.createElement('p')
+        var text = cards[i].linkTo ?
+                    document.createElement('a') :
+                    document.createElement('p');
+
         text.textContent = cards[i].text;
         text.style.color = 'red';
         text.href = cards[i].linkTo;
 
-        option.style.height = '' + optionHeight + '%';
+        option.style.height = '' + cardHeight + '%';
         if(i < cards.length - 1) {
-          option.style.borderBottom = props.colors.headerColor ? '' + '1px solid ' + props.colors.headerColor : '1px solid #2EA1D9';
+          option.style.borderBottom = props.colors.headerColor ?
+                                      '' + '1px solid ' + props.colors.headerColor :
+                                      '1px solid #2EA1D9';
         }
 
         option.appendChild(text);
