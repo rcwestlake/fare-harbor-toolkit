@@ -1,18 +1,41 @@
 var body = document.body;
+var button;
 var modalContainer;
-var optionsContainer;
+var cardsContainer;
+var reservationTitleContainer;
+var reservationTitle;
+var extraTitleText;
 
 var FHModal = function(props) {
   function create(props) {
     buildModalHTML(props)
   }
-
   return create(props)
 }
 
 function buildModalHTML(props) {
-  var button = document.createElement('button');
+  buildFHButton(props);
+  body.appendChild(button);
+
+  buildModalContainer(props);
+  buildHeaderContainer(props);
+  buildHeaderTitle(props);
+  buildExtraText(props);
+  buildCardsContainer(props);
+
+  reservationTitleContainer.appendChild(reservationTitle)
+  reservationTitleContainer.appendChild(extraTitleText)
+  modalContainer.appendChild(reservationTitleContainer);
+  body.appendChild(modalContainer);
+  modalContainer.appendChild(cardsContainer);
+
+  addCards(props)
+}
+
+function buildFHButton(props) {
+  button = document.createElement('button');
   button.classList.add('FH-reservation-button');
+  button.textContent = props.text.mainActionButton;
   button.style.position = 'fixed';
   button.style.width = '130px';
   button.style.height = '30px';
@@ -20,10 +43,12 @@ function buildModalHTML(props) {
   button.style.bottom = '20px';
   button.style.border = 'none';
   button.style.boxShadow = '0 1px 6px rgba(0,0,0,.06), 0 2px 32px rgba(0,0,0,.16)';
+  button.style.cursor = 'pointer';
 
-  button.textContent = props.text.mainActionButton;
-  body.appendChild(button);
+  return button;
+}
 
+function buildModalContainer(props) {
   modalContainer = document.createElement('div');
   modalContainer.style.position = 'fixed';
   modalContainer.style.display = 'none';
@@ -39,16 +64,22 @@ function buildModalHTML(props) {
   modalContainer.style.borderRadius = '10px 10px 10px 10px';
   modalContainer.style.boxShadow = '0 3px 5px rgba(0,0,0,.2)';
 
-  var reservationTitleContainer = document.createElement('div');
-  var reservationTitle = document.createElement('p');
-  var extraTitleText = document.createElement('a');
+  return modalContainer;
+}
 
+function buildHeaderContainer(props) {
+  reservationTitleContainer = document.createElement('div');
   reservationTitleContainer.style.height = '15%';
   reservationTitleContainer.style.boxSizing = 'border-box';
   reservationTitleContainer.style.paddingTop = '0px';
   reservationTitleContainer.style.backgroundColor = props.colors.headerColor || '#2EA1D9';
   reservationTitleContainer.style.borderRadius = '10px 10px 0px 0px';
 
+  return reservationTitleContainer;
+}
+
+function buildHeaderTitle(props) {
+  reservationTitle = document.createElement('p');
   reservationTitle.textContent = props.text.headerText;
   reservationTitle.style.fontSize = props.text.headerTextSize || '30px';
   reservationTitle.style.fontSize = props.text.headerTextSize || '30px';
@@ -57,24 +88,26 @@ function buildModalHTML(props) {
   reservationTitle.style.marginBottom = props.marginsAndPadding.headerTextMarginBottom || '0px';
   reservationTitle.style.verticalAlign = 'middle';
 
+  return reservationTitle;
+}
+
+function buildExtraText(props) {
+  extraTitleText = document.createElement('a');
   extraTitleText.textContent = props.text.headerExtraText;
   extraTitleText.style.fontSize = '10px';
   extraTitleText.style.margin = '0px';
   extraTitleText.href = 'http://www.fareharbor.com';
   extraTitleText.target = '_blank';
 
-  reservationTitleContainer.appendChild(reservationTitle)
-  reservationTitleContainer.appendChild(extraTitleText)
-  modalContainer.appendChild(reservationTitleContainer);
-  body.appendChild(modalContainer);
+  return extraTitleText;
+}
 
+function buildCardsContainer(props) {
+  cardsContainer = document.createElement('section');
+  cardsContainer.style.height = '85%';
+  cardsContainer.style.backgroundColor = 'white';
 
-  optionsContainer = document.createElement('section');
-  optionsContainer.style.height = '85%';
-  optionsContainer.style.backgroundColor = 'white';
-
-  modalContainer.appendChild(optionsContainer);
-  addCards(props)
+  return cardsContainer;
 }
 
 function addCards(props) { //remove breaks after returning from case statements
@@ -90,7 +123,7 @@ function addCards(props) { //remove breaks after returning from case statements
 
         card.appendChild(text[0]);
         text[1] ? card.appendChild(text[1]) : null
-        optionsContainer.appendChild(card);
+        cardsContainer.appendChild(card);
       }
 
       break;
