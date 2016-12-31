@@ -98,8 +98,10 @@ function buildHTML(obj) {
   leftFieldInput.style.textAlign = leftFieldInputStyles.textAlign;
   leftFieldInput.style.width = leftFieldInputStyles.width;
 
+  var eventInputField;
+
   if (leftFieldFunction === 'eventPicker') {
-    
+    eventInputField = leftFieldInput;
   }
 
   var rightFieldInputStyles = {
@@ -332,12 +334,12 @@ function buildHTML(obj) {
           var items = JSONObj["items"];
           if (leftFieldType === 'SELECT') {
             var opt0 = document.createElement('OPTION');
-            leftFieldInput.appendChild(opt0);
+            eventInputField.appendChild(opt0);
             var text0 = document.createTextNode(obj.inputFieldText.leftmostFieldTextContent || 'Where To?');
             opt0.appendChild(text0);
             for (var i = 0; i < items.length; i++) {
               var opt = document.createElement('OPTION');
-              leftFieldInput.appendChild(opt);
+              eventInputField.appendChild(opt);
               var text1 = document.createTextNode(items[i]["name"]);
               var text2 = items[i]["name"];
               opt.appendChild(text1);
@@ -347,7 +349,7 @@ function buildHTML(obj) {
               });
               document.addEventListener('change', function () {
                 if (event.target.className.toLowerCase() === 'left-field-input') {
-                    eventName = leftFieldInput.value;
+                    eventName = eventInputField.value;
                     var target = itemsArray.filter(function(item){
                         return item.name === eventName
                       });
