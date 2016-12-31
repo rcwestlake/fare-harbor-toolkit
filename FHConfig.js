@@ -11,6 +11,7 @@ var FHConfig = {
     headerText: 'Ticket Info',
     headerTextSize: '',
     headerExtraText: 'Powered by FareHarbor',
+    headerExtraTextLink: 'http://www.fareharbor.com',
     headerExtraTextSize: '',
     mainActionButton: 'Book Now',
     globalTextAlign: '',

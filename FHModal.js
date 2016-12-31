@@ -23,8 +23,8 @@ function buildModalHTML(props) {
   buildExtraText(props);
   buildCardsContainer(props);
 
-  reservationTitleContainer.appendChild(reservationTitle)
-  reservationTitleContainer.appendChild(extraTitleText)
+  reservationTitleContainer.appendChild(reservationTitle);
+  extraTitleText ? reservationTitleContainer.appendChild(extraTitleText) : null;
   modalContainer.appendChild(reservationTitleContainer);
   body.appendChild(modalContainer);
   modalContainer.appendChild(cardsContainer);
@@ -92,14 +92,23 @@ function buildHeaderTitle(props) {
 }
 
 function buildExtraText(props) {
-  extraTitleText = document.createElement('a');
-  extraTitleText.textContent = props.text.headerExtraText;
-  extraTitleText.style.fontSize = '10px';
-  extraTitleText.style.margin = '0px';
-  extraTitleText.href = 'http://www.fareharbor.com';
-  extraTitleText.target = '_blank';
+  if(props.text.headerExtraTextLink) {
+    extraTitleText = document.createElement('a');
+    extraTitleText.textContent = props.text.headerExtraText;
+    extraTitleText.style.fontSize = '10px';
+    extraTitleText.style.margin = '0px';
+    extraTitleText.href = props.text.headerExtraTextLink;
+    extraTitleText.target = '_blank';
 
-  return extraTitleText;
+    return extraTitleText;
+  } else if(props.text.headerExtraText) {
+    extraTitleText = document.createElement('p');
+    extraTitleText.textContent = props.text.headerExtraText;
+    extraTitleText.style.fontSize = '10px';
+    extraTitleText.style.margin = '0px';
+
+    return extraTitleText
+  }
 }
 
 function buildCardsContainer(props) {
