@@ -1,13 +1,13 @@
 var FHFooter = function(obj) {
   function create(obj) {
-    buildHTML(obj)
+    buildFooterHTML(obj)
 
   }
 
   return create(obj)
 }
 
-function buildHTML(obj) {
+function buildFooterHTML(obj) {
 
   var footerStyles = {
     backgroundColor: obj.footer.footerBackgroundColor || '#88BCF8',
