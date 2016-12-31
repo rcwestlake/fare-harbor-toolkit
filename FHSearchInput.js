@@ -10,9 +10,13 @@ var FHSearchInput = function(obj) {
 function buildSearchInputHTML(obj) {
 
   var eventInputField;
-  var dateInputField;
   var eventInputFieldHTMLType;
   var eventInputFieldTextContent;
+  var eventInputClass;
+  var dateInputField;
+  var dateInputFieldHTMLType;
+  var dateInputFieldTextContent;
+  var dateInputClass;
 
   var leftmostFieldBackgroundIcon;
   if (obj.inputFieldTypes.leftmostFieldType === '' || obj.inputFieldTypes.leftmostFieldType === 'SELECT') {
@@ -71,7 +75,7 @@ function buildSearchInputHTML(obj) {
   var leftFieldInput = document.createElement(leftFieldHTMLType);
   document.body.appendChild(leftFieldInput);
   leftFieldInput.classList.add('left-field-input');
-  leftFieldInput.value = obj.inputFieldText.leftmostFieldTextContent || 'Where To?';
+  // leftFieldInput.value = obj.inputFieldText.leftmostFieldTextContent || 'Where To?';
   leftFieldInput.style.background = leftFieldInputStyles.background;
   leftFieldInput.style.backgroundColor = leftFieldInputStyles.backgroundColor;
   leftFieldInput.style.backgroundPosition = leftFieldInputStyles.backgroundPosition;
@@ -106,9 +110,13 @@ function buildSearchInputHTML(obj) {
   if (leftFieldFunction === 'eventPicker') {
     eventInputField = leftFieldInput;
     eventInputFieldHTMLType = leftFieldHTMLType;
-    eventInputFieldTextContent = obj.inputFieldText.leftmostFieldTextContent;
+    eventInputFieldTextContent = obj.inputFieldText.leftmostFieldTextContent || 'Where To?';
+    eventInputClass = 'left-field-input';
   } else if (leftFieldFunction === 'datePicker') {
     dateInputField = leftFieldInput;
+    dateInputFieldHTMLType = leftFieldHTMLType;
+    dateInputFieldTextContent = obj.inputFieldText.leftmostFieldTextContent || 'When?';
+    dateInputClass = 'left-field-input';
   }
 
   var rightFieldInputStyles = {
@@ -144,85 +152,13 @@ function buildSearchInputHTML(obj) {
     width: obj.inputFieldHeightAndWidth.secondFieldFromLeftWidth ||'200px',
   }
 
-  var rightFieldType = obj.inputFieldTypes.secondFieldFromLeftType || 'SELECT';
+  var rightFieldHTMLType = obj.inputFieldTypes.rightmostFieldHTMLType || 'SELECT';
+  var rightFieldFunction = obj.inputFieldTypes.secondFieldFromLeftFunction || 'datePicker';
 
-  var rightFieldInput = document.createElement(rightFieldType);
+  var rightFieldInput = document.createElement(rightFieldHTMLType);
   document.body.appendChild(rightFieldInput);
   rightFieldInput.classList.add('right-field-input');
-  rightFieldInput.value = obj.inputFieldText.secondFieldFromLeftTextContent || 'When?';
-  if (rightFieldType === 'SELECT') {
-    var allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    var currMonth = allMonths[new Date().getMonth()];
-    var nextMonth = {
-      'January': 'February',
-      'February': 'March',
-      'March': 'April',
-      'April': 'May',
-      'May': 'June',
-      'June': 'July',
-      'July': 'August',
-      'August': 'September',
-      'September': 'October',
-      'October': 'November',
-      'November': 'December',
-      'December': 'January',
-    };
-    var currMonthPlusOne = nextMonth[currMonth];
-    var currMonthPlusTwo = nextMonth[currMonthPlusOne];
-    var currMonthPlusThree = nextMonth[currMonthPlusTwo];
-    var currMonthPlusFour = nextMonth[currMonthPlusThree];
-    var currYear = new Date().getFullYear();
-    var yearOne;
-    var yearTwo;
-    var yearThree;
-    var yearFour;
-    if (currMonthPlusOne === 'January') {
-      yearOne = new Date().getFullYear() + 1;
-    } else {
-      yearOne = currYear;
-    }
-    if (currMonthPlusTwo === 'January') {
-      yearTwo = new Date().getFullYear() + 1;
-    } else {
-      yearTwo = yearOne;
-    }
-    if (currMonthPlusThree === 'January') {
-      yearThree = new Date().getFullYear() + 1;
-    } else {
-      yearThree = yearTwo;
-    }
-    if (currMonthPlusFour === 'January') {
-      yearFour = new Date().getFullYear() + 1;
-    } else {
-      yearFour = yearThree;
-    }
-
-    var opt0 = document.createElement('OPTION');
-    rightFieldInput.appendChild(opt0);
-    var text0 = document.createTextNode(obj.inputFieldText.secondFieldFromLeftTextContent || 'When?');
-    opt0.appendChild(text0);
-    var opt1 = document.createElement('OPTION');
-    rightFieldInput.appendChild(opt1);
-    var text1 = document.createTextNode(currMonth + ' ' + currYear);
-    opt1.appendChild(text1);
-    var opt2 = document.createElement('OPTION');
-    rightFieldInput.appendChild(opt2);
-    var text2 = document.createTextNode(currMonthPlusOne + ' ' + yearOne);
-    opt2.appendChild(text2);
-    var opt3 = document.createElement('OPTION');
-    rightFieldInput.appendChild(opt3);
-    var text3 = document.createTextNode(currMonthPlusTwo + ' ' + yearTwo);
-    opt3.appendChild(text3);
-    var opt4 = document.createElement('OPTION');
-    rightFieldInput.appendChild(opt4);
-    var text4 = document.createTextNode(currMonthPlusThree + ' ' + yearThree);
-    opt4.appendChild(text4);
-    var opt5 = document.createElement('OPTION');
-    rightFieldInput.appendChild(opt5);
-    var text5 = document.createTextNode(currMonthPlusFour + ' ' + yearFour);
-    opt5.appendChild(text5);
-  }
-
+  // rightFieldInput.value = obj.inputFieldText.secondFieldFromLeftTextContent || 'When?';
   rightFieldInput.style.background = rightFieldInputStyles.background;
   rightFieldInput.style.backgroundColor = rightFieldInputStyles.backgroundColor;
   rightFieldInput.style.backgroundPosition = rightFieldInputStyles.backgroundPosition;
@@ -253,6 +189,18 @@ function buildSearchInputHTML(obj) {
   rightFieldInput.style.paddingLeft = rightFieldInputStyles.paddingLeft;
   rightFieldInput.style.textAlign = rightFieldInputStyles.textAlign;
   rightFieldInput.style.width = rightFieldInputStyles.width;
+
+  if (rightFieldFunction === 'eventPicker') {
+    eventInputField = rightFieldInput;
+    eventInputFieldHTMLType = rightFieldHTMLType;
+    eventInputFieldTextContent = obj.inputFieldText.secondFieldFromLeftTextContent || 'Where To?';
+    eventInputClass = 'right-field-input';
+  } else if (rightFieldFunction === 'datePicker') {
+    dateInputField = rightFieldInput;
+    dateInputFieldHTMLType = rightFieldHTMLType;
+    dateInputFieldTextContent = obj.inputFieldText.secondFieldFromLeftTextContent || 'When?';
+    dateInputClass = 'right-field-input';
+  }
 
   var goButtonStyles = {
     backgroundColor: obj.buttonsBackgroundColor.leftmostButtonBackgroundColor || '#3D89DF',
@@ -328,6 +276,7 @@ function buildSearchInputHTML(obj) {
   var month;
   var year;
 
+  //functionality for eventPicker
   window.addEventListener('load', function () {
     var hitAPI = new XMLHttpRequest();
     var url = 'https://demo.fareharbor.com/api/external/v1/companies/' + companyName + '/items/?api-app=5fa25381-5ec6-4e86-8b4e-a95735beffa4&api-user=1be378f8-8a6f-4788-b7f0-c2c9b02ca009';
@@ -341,7 +290,7 @@ function buildSearchInputHTML(obj) {
           if (eventInputFieldHTMLType === 'SELECT') {
             var opt0 = document.createElement('OPTION');
             eventInputField.appendChild(opt0);
-            var text0 = document.createTextNode(eventInputFieldTextContent || 'Where To?');
+            var text0 = document.createTextNode(eventInputFieldTextContent);
             opt0.appendChild(text0);
             for (var i = 0; i < items.length; i++) {
               var opt = document.createElement('OPTION');
@@ -354,7 +303,7 @@ function buildSearchInputHTML(obj) {
                 id: items[i]["pk"]
               });
               document.addEventListener('change', function () {
-                if (event.target.className.toLowerCase() === 'left-field-input') {
+                if (event.target.className.toLowerCase() === eventInputClass) {
                     eventName = eventInputField.value;
                     var target = itemsArray.filter(function(item){
                         return item.name === eventName
@@ -371,6 +320,80 @@ function buildSearchInputHTML(obj) {
     }
     });
 
+//functionality for datePicker
+    if (dateInputFieldHTMLType === 'SELECT') {
+      var allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+      var currMonth = allMonths[new Date().getMonth()];
+      var nextMonth = {
+        'January': 'February',
+        'February': 'March',
+        'March': 'April',
+        'April': 'May',
+        'May': 'June',
+        'June': 'July',
+        'July': 'August',
+        'August': 'September',
+        'September': 'October',
+        'October': 'November',
+        'November': 'December',
+        'December': 'January',
+      };
+      var currMonthPlusOne = nextMonth[currMonth];
+      var currMonthPlusTwo = nextMonth[currMonthPlusOne];
+      var currMonthPlusThree = nextMonth[currMonthPlusTwo];
+      var currMonthPlusFour = nextMonth[currMonthPlusThree];
+      var currYear = new Date().getFullYear();
+      var yearOne;
+      var yearTwo;
+      var yearThree;
+      var yearFour;
+      if (currMonthPlusOne === 'January') {
+        yearOne = new Date().getFullYear() + 1;
+      } else {
+        yearOne = currYear;
+      }
+      if (currMonthPlusTwo === 'January') {
+        yearTwo = new Date().getFullYear() + 1;
+      } else {
+        yearTwo = yearOne;
+      }
+      if (currMonthPlusThree === 'January') {
+        yearThree = new Date().getFullYear() + 1;
+      } else {
+        yearThree = yearTwo;
+      }
+      if (currMonthPlusFour === 'January') {
+        yearFour = new Date().getFullYear() + 1;
+      } else {
+        yearFour = yearThree;
+      }
+
+      var opt0 = document.createElement('OPTION');
+      dateInputField.appendChild(opt0);
+      var text0 = document.createTextNode(dateInputFieldTextContent);
+      opt0.appendChild(text0);
+      var opt1 = document.createElement('OPTION');
+      dateInputField.appendChild(opt1);
+      var text1 = document.createTextNode(currMonth + ' ' + currYear);
+      opt1.appendChild(text1);
+      var opt2 = document.createElement('OPTION');
+      dateInputField.appendChild(opt2);
+      var text2 = document.createTextNode(currMonthPlusOne + ' ' + yearOne);
+      opt2.appendChild(text2);
+      var opt3 = document.createElement('OPTION');
+      dateInputField.appendChild(opt3);
+      var text3 = document.createTextNode(currMonthPlusTwo + ' ' + yearTwo);
+      opt3.appendChild(text3);
+      var opt4 = document.createElement('OPTION');
+      dateInputField.appendChild(opt4);
+      var text4 = document.createTextNode(currMonthPlusThree + ' ' + yearThree);
+      opt4.appendChild(text4);
+      var opt5 = document.createElement('OPTION');
+      dateInputField.appendChild(opt5);
+      var text5 = document.createTextNode(currMonthPlusFour + ' ' + yearFour);
+      opt5.appendChild(text5);
+    }
+
   document.addEventListener('click', function(event) {
     if (event.target.className.toLowerCase() === 'left-field-input' && obj.inputFieldText.clearLeftmostFieldTextOnClick) {
       document.querySelector('.left-field-input').value = '';
@@ -384,8 +407,8 @@ function buildSearchInputHTML(obj) {
   });
 
   document.addEventListener('change', function () {
-  if (event.target.className.toLowerCase() === 'right-field-input') {
-    var target = document.querySelector('.right-field-input').value;
+  if (event.target.className.toLowerCase() === dateInputClass) {
+    var target = document.querySelector('.' + dateInputClass).value;
     var Jan = /Jan?/;
     var Feb = /Feb?/;
     var Mar = /Mar?/;
