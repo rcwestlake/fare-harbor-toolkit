@@ -9,6 +9,11 @@ var FHSearchInput = function(obj) {
 
 function buildHTML(obj) {
 
+  var eventInputField;
+  var dateInputField;
+  var eventInputFieldHTMLType;
+  var eventInputFieldTextContent;
+
   var leftmostFieldBackgroundIcon;
   if (obj.inputFieldTypes.leftmostFieldType === '' || obj.inputFieldTypes.leftmostFieldType === 'SELECT') {
     leftmostFieldBackgroundIcon === '';
@@ -60,10 +65,10 @@ function buildHTML(obj) {
     width: obj.inputFieldHeightAndWidth.leftmostFieldWidth || '200px',
   }
 
-  var leftFieldType = obj.inputFieldTypes.leftmostFieldHTMLType || 'SELECT';
+  var leftFieldHTMLType = obj.inputFieldTypes.leftmostFieldHTMLType || 'SELECT';
   var leftFieldFunction = obj.inputFieldTypes.leftmostFieldFunction || 'eventPicker';
 
-  var leftFieldInput = document.createElement(leftFieldType);
+  var leftFieldInput = document.createElement(leftFieldHTMLType);
   document.body.appendChild(leftFieldInput);
   leftFieldInput.classList.add('left-field-input');
   leftFieldInput.value = obj.inputFieldText.leftmostFieldTextContent || 'Where To?';
@@ -98,10 +103,12 @@ function buildHTML(obj) {
   leftFieldInput.style.textAlign = leftFieldInputStyles.textAlign;
   leftFieldInput.style.width = leftFieldInputStyles.width;
 
-  var eventInputField;
-
   if (leftFieldFunction === 'eventPicker') {
     eventInputField = leftFieldInput;
+    eventInputFieldHTMLType = leftFieldHTMLType;
+    eventInputFieldTextContent = obj.inputFieldText.leftmostFieldTextContent;
+  } else if (leftFieldFunction === 'datePicker') {
+    dateInputField = leftFieldInput;
   }
 
   var rightFieldInputStyles = {
@@ -321,7 +328,6 @@ function buildHTML(obj) {
   var month;
   var year;
 
-  //the dropdown
   window.addEventListener('load', function () {
     var hitAPI = new XMLHttpRequest();
     var url = 'https://demo.fareharbor.com/api/external/v1/companies/' + companyName + '/items/?api-app=5fa25381-5ec6-4e86-8b4e-a95735beffa4&api-user=1be378f8-8a6f-4788-b7f0-c2c9b02ca009';
@@ -332,10 +338,10 @@ function buildHTML(obj) {
         if (hitAPI.status === 200) {
           var JSONObj = JSON.parse(hitAPI.responseText);
           var items = JSONObj["items"];
-          if (leftFieldType === 'SELECT') {
+          if (eventInputFieldHTMLType === 'SELECT') {
             var opt0 = document.createElement('OPTION');
             eventInputField.appendChild(opt0);
-            var text0 = document.createTextNode(obj.inputFieldText.leftmostFieldTextContent || 'Where To?');
+            var text0 = document.createTextNode(eventInputFieldTextContent || 'Where To?');
             opt0.appendChild(text0);
             for (var i = 0; i < items.length; i++) {
               var opt = document.createElement('OPTION');
