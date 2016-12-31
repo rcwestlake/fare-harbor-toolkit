@@ -394,18 +394,6 @@ function buildSearchInputHTML(obj) {
       opt5.appendChild(text5);
     }
 
-  document.addEventListener('click', function(event) {
-    if (event.target.className.toLowerCase() === 'left-field-input' && obj.inputFieldText.clearLeftmostFieldTextOnClick) {
-      document.querySelector('.left-field-input').value = '';
-    }
-  });
-
-  document.addEventListener('click', function(event) {
-    if (event.target.className.toLowerCase() === 'right-field-input' && obj.inputFieldText.clearSecondFieldFromLeftOnClick) {
-      document.querySelector('.right-field-input').value = '';
-    }
-  });
-
   document.addEventListener('change', function () {
   if (event.target.className.toLowerCase() === dateInputClass) {
     var target = document.querySelector('.' + dateInputClass).value;
