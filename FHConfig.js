@@ -18,7 +18,7 @@ var FHConfig = {
     mainButtonColor: '',
     mainButtonTextColor: '',
   },
-  toolDetails: { // consider adding the itemID so we can pass it to the api call
+  toolDetails: {
     modal: {
       modalType: 'Simple',
       showFullItems: true,
@@ -30,7 +30,7 @@ var FHConfig = {
             text: 'See activities and tickets',
             extraText: '',
             itemID: '',
-            linkTo: 'https://demo.fareharbor.com/embeds/book/bodyglove/items/?full-items=yes',
+            linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/?full-items=yes',
           },
           {
             doesItExist: true,
@@ -48,8 +48,8 @@ var FHConfig = {
           },
           {
             doesItExist: false,
-            extraText: '',
             text: '',
+            extraText: '',
             itemID: '',
             linkTo: '',
           },

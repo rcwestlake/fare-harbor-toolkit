@@ -52,10 +52,10 @@ function buildHTML(props) {
   optionsContainer.style.backgroundColor = 'white';
 
   modalContainer.appendChild(optionsContainer);
-  addOptions(props)
+  addCards(props)
 }
 
-function addOptions(props) { //remove breaks after returning from case statements
+function addCards(props) { //remove breaks after returning from case statements
   switch (props.modalType.toLowerCase()) {
     case 'simple':
       var cards = props.cards.cardDetail.filter(function(card) {
@@ -64,8 +64,10 @@ function addOptions(props) { //remove breaks after returning from case statement
 
       for(var i = 0; i < cards.length; i++) {
         var card = addCardToContainer(props, cards, i);
+        var text = addTextToCard(cards, i);
 
-        card.appendChild(addTextToCard(cards, i));
+        card.appendChild(text[0]);
+        text[1] ? card.appendChild(text[1]) : null
         optionsContainer.appendChild(card);
       }
 
@@ -93,15 +95,22 @@ function addCardToContainer(props, cards, i) {
 }
 
 function addTextToCard(cards, index) {
+  var extraText;
   var text = cards[index].linkTo ?
               document.createElement('a') :
               document.createElement('p');
+
+  if(cards[index].extraText) {
+    extraText = document.createElement('p')
+    extraText.textContent = cards[index].extraText;
+    extraText.style.color = 'red';
+  }
 
   text.textContent = cards[index].text;
   text.style.color = 'red';
   text.href = cards[index].linkTo;
 
-  return text
+  return [text, extraText]
 }
 
 document.addEventListener('click', function(e) {
