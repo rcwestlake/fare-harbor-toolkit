@@ -32,20 +32,40 @@ function buildModalHTML(props) {
   modalContainer.style.height = '550px';
   modalContainer.style.width = '350px';
   modalContainer.style.boxSizing = 'border-box';
-  modalContainer.style.backgroundColor = props.colors.headerColor || '#2EA1D9';
+  modalContainer.style.backgroundColor = '#ffffff';
   modalContainer.style.textAlign = props.text.globalTextAlign || 'center';
   modalContainer.style.color = props.colors.headerTextColor || 'white';
   modalContainer.style.fontFamily = props.text.fontPrimary || 'Tahoma, Geneva, sans-serif';
   modalContainer.style.borderRadius = '10px 10px 10px 10px';
   modalContainer.style.boxShadow = '0 3px 5px rgba(0,0,0,.2)';
 
+  var reservationTitleContainer = document.createElement('div');
+  var reservationTitle = document.createElement('p');
+  var extraTitleText = document.createElement('a');
 
-  var reservationTitle = document.createElement('div');
-  reservationTitle.style.height = '15%';
+  reservationTitleContainer.style.height = '15%';
+  reservationTitleContainer.style.boxSizing = 'border-box';
+  reservationTitleContainer.style.paddingTop = '0px';
+  reservationTitleContainer.style.backgroundColor = props.colors.headerColor || '#2EA1D9';
+  reservationTitleContainer.style.borderRadius = '10px 10px 0px 0px';
+
   reservationTitle.textContent = props.text.headerText;
   reservationTitle.style.fontSize = props.text.headerTextSize || '30px';
+  reservationTitle.style.fontSize = props.text.headerTextSize || '30px';
+  reservationTitle.style.marginTop = '0px';
+  reservationTitle.style.paddingTop = '3%';
+  reservationTitle.style.marginBottom = props.marginsAndPadding.headerTextMarginBottom || '0px';
+  reservationTitle.style.verticalAlign = 'middle';
 
-  modalContainer.appendChild(reservationTitle);
+  extraTitleText.textContent = props.text.headerExtraText;
+  extraTitleText.style.fontSize = '10px';
+  extraTitleText.style.margin = '0px';
+  extraTitleText.href = 'http://www.fareharbor.com';
+  extraTitleText.target = '_blank';
+
+  reservationTitleContainer.appendChild(reservationTitle)
+  reservationTitleContainer.appendChild(extraTitleText)
+  modalContainer.appendChild(reservationTitleContainer);
   body.appendChild(modalContainer);
 
 
