@@ -37,7 +37,7 @@ var FHConfig = {
             text: 'View online calendar',
             extraText: '',
             itemID: '',
-            linkTo: 'https://demo.fareharbor.com/embeds/book/bodyglove/items/calendar/' + year + '/' + month + '/',
+            linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/',
           },
           {
             doesItExist: true,

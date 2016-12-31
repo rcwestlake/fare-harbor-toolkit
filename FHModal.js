@@ -65,25 +65,17 @@ function addOptions(props) { //remove breaks after returning from case statement
       var cardHeight = Math.floor(100 / cards.length);
 
       for(var i = 0; i < cards.length; i++) {
-        var option = document.createElement('div');
+        var card = document.createElement('div');
 
-        var text = cards[i].linkTo ?
-                    document.createElement('a') :
-                    document.createElement('p');
-
-        text.textContent = cards[i].text;
-        text.style.color = 'red';
-        text.href = cards[i].linkTo;
-
-        option.style.height = '' + cardHeight + '%';
+        card.style.height = '' + cardHeight + '%';
         if(i < cards.length - 1) {
-          option.style.borderBottom = props.colors.headerColor ?
+          card.style.borderBottom = props.colors.headerColor ?
                                       '' + '1px solid ' + props.colors.headerColor :
                                       '1px solid #2EA1D9';
         }
 
-        option.appendChild(text);
-        optionsContainer.appendChild(option);
+        card.appendChild(addTextToCard(cards, i));
+        optionsContainer.appendChild(card);
       }
 
       break;
@@ -93,6 +85,18 @@ function addOptions(props) { //remove breaks after returning from case statement
     default:
       console.log('Incorrect modalType specified in FHModal.js');
   }
+}
+
+function addTextToCard(cards, index) {
+  var text = cards[index].linkTo ?
+              document.createElement('a') :
+              document.createElement('p');
+
+  text.textContent = cards[index].text;
+  text.style.color = 'red';
+  text.href = cards[index].linkTo;
+
+  return text
 }
 
 document.addEventListener('click', function(e) {
