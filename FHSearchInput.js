@@ -18,26 +18,7 @@ function buildSearchInputHTML(obj) {
   var dateInputFieldTextContent;
   var dateInputClass;
 
-  var leftmostFieldBackgroundIcon;
-  if (obj.inputFieldTypes.leftmostFieldType === '' || obj.inputFieldTypes.leftmostFieldType === 'SELECT') {
-    leftmostFieldBackgroundIcon === '';
-  } else if (obj.inputFieldIcons.leftmostFieldIconSource) {
-    leftmostFieldBackgroundIcon = obj.inputFieldIcons.leftmostFieldIconSource;
-  } else {
-    leftmostFieldBackgroundIcon = 'images/location.png';
-  }
-
-  var secondFieldFromLeftBackgroundIcon;
-  if (obj.inputFieldTypes.secondFieldFromLeftType === '' || obj.inputFieldTypes.secondFieldFromLeftType === 'SELECT') {
-    secondFieldFromLeftBackgroundIcon === '';
-  } else if (obj.inputFieldIcons.secondFieldFromLeftIconSource) {
-    secondFieldFromLeftBackgroundIcon = obj.inputFieldIcons.secondFieldFromLeftIconSource;
-  } else {
-    secondFieldFromLeftBackgroundIcon = 'images/calendar.png';
-  }
-
   var leftFieldInputStyles = {
-    // background: 'url("' +  leftmostFieldBackgroundIcon + '") no-repeat' || null,
     backgroundColor: obj.inputFieldBackgroundColor.leftmostFieldBackgroundColor || '#ffffff',
     backgroundPosition: obj.inputFieldIcons.leftmostFieldIconPosition || '10px 1px',
     backgroundSize: obj.inputFieldIcons.leftmostFieldIconSize || '28px 39px',
@@ -75,7 +56,6 @@ function buildSearchInputHTML(obj) {
   var leftFieldInput = document.createElement(leftFieldHTMLType);
   document.body.appendChild(leftFieldInput);
   leftFieldInput.classList.add('left-field-input');
-  // leftFieldInput.value = obj.inputFieldText.leftmostFieldTextContent || 'Where To?';
   leftFieldInput.style.background = leftFieldInputStyles.background;
   leftFieldInput.style.backgroundColor = leftFieldInputStyles.backgroundColor;
   leftFieldInput.style.backgroundPosition = leftFieldInputStyles.backgroundPosition;
@@ -110,7 +90,7 @@ function buildSearchInputHTML(obj) {
   if (leftFieldFunction === 'eventPicker') {
     eventInputField = leftFieldInput;
     eventInputFieldHTMLType = leftFieldHTMLType;
-    eventInputFieldTextContent = obj.inputFieldText.leftmostFieldTextContent || 'Where To?';
+    eventInputFieldTextContent = obj.inputFieldText.leftmostFieldTextContent || 'Which Event?';
     eventInputClass = 'left-field-input';
   } else if (leftFieldFunction === 'datePicker') {
     dateInputField = leftFieldInput;
@@ -120,7 +100,6 @@ function buildSearchInputHTML(obj) {
   }
 
   var rightFieldInputStyles = {
-    background: 'url("' +  secondFieldFromLeftBackgroundIcon + '") no-repeat' || null,
     backgroundColor: obj.inputFieldBackgroundColor.secondFieldFromLeftBackgroundColor || '#ffffff',
     backgroundPosition: obj.inputFieldIcons.secondFieldFromLeftIconPosition || '10px 5px',
     backgroundSize: obj.inputFieldIcons.secondFieldFromLeftIconSize || '32px 32px',
@@ -158,7 +137,6 @@ function buildSearchInputHTML(obj) {
   var rightFieldInput = document.createElement(rightFieldHTMLType);
   document.body.appendChild(rightFieldInput);
   rightFieldInput.classList.add('right-field-input');
-  // rightFieldInput.value = obj.inputFieldText.secondFieldFromLeftTextContent || 'When?';
   rightFieldInput.style.background = rightFieldInputStyles.background;
   rightFieldInput.style.backgroundColor = rightFieldInputStyles.backgroundColor;
   rightFieldInput.style.backgroundPosition = rightFieldInputStyles.backgroundPosition;
@@ -193,7 +171,7 @@ function buildSearchInputHTML(obj) {
   if (rightFieldFunction === 'eventPicker') {
     eventInputField = rightFieldInput;
     eventInputFieldHTMLType = rightFieldHTMLType;
-    eventInputFieldTextContent = obj.inputFieldText.secondFieldFromLeftTextContent || 'Where To?';
+    eventInputFieldTextContent = obj.inputFieldText.secondFieldFromLeftTextContent || 'Which Event?';
     eventInputClass = 'right-field-input';
   } else if (rightFieldFunction === 'datePicker') {
     dateInputField = rightFieldInput;
@@ -276,7 +254,7 @@ function buildSearchInputHTML(obj) {
   var month;
   var year;
 
-  //functionality for eventPicker
+  //eventPicker
   window.addEventListener('load', function () {
     var hitAPI = new XMLHttpRequest();
     var url = 'https://demo.fareharbor.com/api/external/v1/companies/' + companyName + '/items/?api-app=5fa25381-5ec6-4e86-8b4e-a95735beffa4&api-user=1be378f8-8a6f-4788-b7f0-c2c9b02ca009';
@@ -320,7 +298,7 @@ function buildSearchInputHTML(obj) {
     }
     });
 
-//functionality for datePicker
+//datePicker
     if (dateInputFieldHTMLType === 'SELECT') {
       var allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       var currMonth = allMonths[new Date().getMonth()];
