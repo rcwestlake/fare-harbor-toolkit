@@ -22,29 +22,29 @@ var toolCreator = (function() {
       case 'Footer':
         return FHFooter(
           {
-            footer: config.structure.footer,
-            footerBorders: config.structure.footer.footerBorders,
-            elements: config.structure.footer.elements,
-            footerHideShowTextFont: config.structure.footer.footerHideShowTextFont,
+            footer: config.toolDetails.footer,
+            footerBorders: config.toolDetails.footer.footerBorders,
+            elements: config.toolDetails.footer.elements,
+            footerHideShowTextFont: config.toolDetails.footer.footerHideShowTextFont,
             shortname: config.shortname,
           }
       );
       case 'SearchInput':
         return FHSearchInput(
           {
-            inputFieldText: config.structure.inputFields.inputFieldText,
-            inputFieldTypes: config.structure.inputFields.inputFieldTypes,
-            inputFieldHeightAndWidth: config.structure.inputFields.inputFieldHeightAndWidth,
-            inputFieldIcons: config.structure.inputFields.inputFieldIcons,
-            inputFieldBorders: config.structure.inputFields.inputFieldBorders,
-            inputFieldMarginsAndPadding: config.structure.inputFields.inputFieldMarginsAndPadding,
-            inputFieldBackgroundColor: config.structure.inputFields.inputFieldBackgroundColor,
-            buttonsBackgroundColor: config.structure.buttons.buttonsBackgroundColor,
-            buttonsText: config.structure.buttons.buttonsText,
-            buttonsBorders: config.structure.buttons.buttonsBorders,
-            buttonsBellsAndWhistles: config.structure.buttons.buttonsBellsAndWhistles,
-            buttonsHeightAndWidth: config.structure.buttons.buttonsHeightAndWidth,
-            buttonsMarginsAndPadding: config.structure.buttons.buttonsMarginsAndPadding,
+            inputFieldText: config.toolDetails.inputFields.inputFieldText,
+            inputFieldTypes: config.toolDetails.inputFields.inputFieldTypes,
+            inputFieldHeightAndWidth: config.toolDetails.inputFields.inputFieldHeightAndWidth,
+            inputFieldIcons: config.toolDetails.inputFields.inputFieldIcons,
+            inputFieldBorders: config.toolDetails.inputFields.inputFieldBorders,
+            inputFieldMarginsAndPadding: config.toolDetails.inputFields.inputFieldMarginsAndPadding,
+            inputFieldBackgroundColor: config.toolDetails.inputFields.inputFieldBackgroundColor,
+            buttonsBackgroundColor: config.toolDetails.buttons.buttonsBackgroundColor,
+            buttonsText: config.toolDetails.buttons.buttonsText,
+            buttonsBorders: config.toolDetails.buttons.buttonsBorders,
+            buttonsBellsAndWhistles: config.toolDetails.buttons.buttonsBellsAndWhistles,
+            buttonsHeightAndWidth: config.toolDetails.buttons.buttonsHeightAndWidth,
+            buttonsMarginsAndPadding: config.toolDetails.buttons.buttonsMarginsAndPadding,
             shortname: config.shortname,
         }
       );
