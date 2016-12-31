@@ -4,7 +4,7 @@ var year = date.getFullYear();
 var month = date.getMonth() + 1;
 
 var FHConfig = {
-  toolType: 'Modal',
+  toolType: 'SearchInput',
   shortname: 'bodyglove',
   text: {
     fontPrimary: '',
@@ -69,8 +69,10 @@ var FHConfig = {
     inputFields: {
       numberOfInputFields: null,
       inputFieldTypes: {
-        leftmostFieldType: '',
-        secondFieldFromLeftType: '',
+        leftmostFieldHTMLType: '',
+        secondFieldFromLeftHTMLType: '',
+        leftmostFieldFunction: '',
+        secondFieldFromLeftFunction: '',
       },
       inputFieldBackgroundColor: {
         leftmostFieldBackgroundColor: '',
