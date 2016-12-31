@@ -28,7 +28,7 @@ function buildHTML(obj) {
   }
 
   var leftFieldInputStyles = {
-    background: 'url("' +  leftmostFieldBackgroundIcon + '") no-repeat' || null,
+    // background: 'url("' +  leftmostFieldBackgroundIcon + '") no-repeat' || null,
     backgroundColor: obj.inputFieldBackgroundColor.leftmostFieldBackgroundColor || '#ffffff',
     backgroundPosition: obj.inputFieldIcons.leftmostFieldIconPosition || '10px 1px',
     backgroundSize: obj.inputFieldIcons.leftmostFieldIconSize || '28px 39px',
@@ -60,7 +60,8 @@ function buildHTML(obj) {
     width: obj.inputFieldHeightAndWidth.leftmostFieldWidth || '200px',
   }
 
-  var leftFieldType = obj.inputFieldTypes.leftmostFieldType || 'SELECT';
+  var leftFieldType = obj.inputFieldTypes.leftmostFieldHTMLType || 'SELECT';
+  var leftFieldFunction = obj.inputFieldTypes.leftmostFieldFunction || 'eventPicker';
 
   var leftFieldInput = document.createElement(leftFieldType);
   document.body.appendChild(leftFieldInput);
@@ -96,6 +97,10 @@ function buildHTML(obj) {
   leftFieldInput.style.paddingLeft = leftFieldInputStyles.paddingLeft;
   leftFieldInput.style.textAlign = leftFieldInputStyles.textAlign;
   leftFieldInput.style.width = leftFieldInputStyles.width;
+
+  if (leftFieldFunction === 'eventPicker') {
+    
+  }
 
   var rightFieldInputStyles = {
     background: 'url("' +  secondFieldFromLeftBackgroundIcon + '") no-repeat' || null,

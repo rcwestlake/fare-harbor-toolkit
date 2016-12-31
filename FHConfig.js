@@ -69,8 +69,10 @@ var FHConfig = {
     inputFields: {
       numberOfInputFields: null,
       inputFieldTypes: {
-        leftmostFieldType: '',
-        secondFieldFromLeftType: '',
+        leftmostFieldHTMLType: '',
+        secondFieldFromLeftHTMLType: '',
+        leftmostFieldFunction: '',
+        secondFieldFromLeftFunction: '',
       },
       inputFieldBackgroundColor: {
         leftmostFieldBackgroundColor: '',
