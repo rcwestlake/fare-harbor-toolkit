@@ -17,6 +17,30 @@ function buildSearchInputHTML(obj) {
   var dateInputFieldHTMLType;
   var dateInputFieldTextContent;
   var dateInputClass;
+  var companyName = obj.shortname;
+  var eventName;
+  var targetID;
+  var itemsArray = [];
+  var month;
+  var year;
+
+  var containerStyles = {
+    border: obj.container.borderDebug ? '1px dotted red' : '',
+    marginTop: obj.container.marginTop || '40vh',
+    marginRight: obj.container.marginRight || 'auto',
+    marginBottom: obj.container.marginBottom || '40vh',
+    marginLeft: obj.container.marginLeft || 'auto',
+  }
+
+  var container = document.createElement('DIV');
+  document.body.appendChild(container);
+  container.classList.add('container');
+  container.style.border = containerStyles.border;
+  container.style.marginTop = containerStyles.marginTop;
+  container.style.marginRight = containerStyles.marginRight;
+  container.style.marginBottom = containerStyles.marginBottom;
+  container.style.marginLeft = containerStyles.marginLeft;
+  container.style.textAlign = 'center';
 
   var leftFieldInputStyles = {
     backgroundColor: obj.inputFieldBackgroundColor.leftInputFieldBackgroundColor || '#ffffff',
@@ -54,7 +78,7 @@ function buildSearchInputHTML(obj) {
   var leftFieldFunction = obj.inputFieldTypes.leftInputFieldFunction || 'eventPicker';
 
   var leftFieldInput = document.createElement(leftFieldHTMLType);
-  document.body.appendChild(leftFieldInput);
+  container.appendChild(leftFieldInput);
   leftFieldInput.classList.add('left-field-input');
   leftFieldInput.style.background = leftFieldInputStyles.background;
   leftFieldInput.style.backgroundColor = leftFieldInputStyles.backgroundColor;
@@ -135,7 +159,7 @@ function buildSearchInputHTML(obj) {
   var rightFieldFunction = obj.inputFieldTypes.rightInputFieldFunction || 'datePicker';
 
   var rightFieldInput = document.createElement(rightFieldHTMLType);
-  document.body.appendChild(rightFieldInput);
+  container.appendChild(rightFieldInput);
   rightFieldInput.classList.add('right-field-input');
   rightFieldInput.style.background = rightFieldInputStyles.background;
   rightFieldInput.style.backgroundColor = rightFieldInputStyles.backgroundColor;
@@ -216,7 +240,7 @@ function buildSearchInputHTML(obj) {
   var goButton = document.createElement('BUTTON');
   var goButtonText = document.createTextNode(goButtonContent);
   goButton.appendChild(goButtonText);
-  document.body.appendChild(goButton);
+  container.appendChild(goButton);
   goButton.classList.add('go-button');
   goButton.style.backgroundColor = goButtonStyles.backgroundColor;
   goButton.style.borderBottomWidth = goButtonStyles.borderBottomWidth;
@@ -284,9 +308,10 @@ function buildSearchInputHTML(obj) {
     var detailsButton = document.createElement('BUTTON');
     var detailsButtonText = document.createTextNode(detailsButtonContent);
     detailsButton.appendChild(detailsButtonText);
-    document.body.appendChild(detailsButton);
+    container.appendChild(detailsButton);
     detailsButton.classList.add('details-button');
     detailsButton.style.display = 'block';
+    detailsButton.disabled = true;
     detailsButton.style.backgroundColor = detailsButtonStyles.backgroundColor;
     detailsButton.style.borderBottomWidth = detailsButtonStyles.borderBottomWidth;
     detailsButton.style.borderTopWidth = detailsButtonStyles.borderTopWidth;
@@ -316,13 +341,6 @@ function buildSearchInputHTML(obj) {
     detailsButton.style.paddingLeft = detailsButtonStyles.paddingLeft;
     detailsButton.style.width = detailsButtonStyles.width;
   }
-
-  var companyName = obj.shortname;
-  var eventName;
-  var targetID;
-  var itemsArray = [];
-  var month;
-  var year;
 
   //eventPicker
   window.addEventListener('load', function () {
@@ -501,6 +519,13 @@ function buildSearchInputHTML(obj) {
   }
     });
 
+  //need to refactor to combine below two functions
+  document.addEventListener('mouseout', function(event) {
+    if (event.target.className.toLowerCase() === 'details-button') {
+      event.target.style.backgroundColor = obj.buttonsBackgroundColor.detailsButtonBackgroundColor || '#3D89DF';
+    }
+  });
+
   document.addEventListener('mouseout', function(event) {
     if (event.target.className.toLowerCase() === 'go-button') {
       event.target.style.backgroundColor = obj.buttonsBackgroundColor.goButtonBackgroundColor || '#3D89DF';
@@ -572,5 +597,13 @@ function buildSearchInputHTML(obj) {
       }
     }
     });
+
+    document.addEventListener('change', function () {
+        if (document.querySelector('.' + eventInputClass).value === 'Which Event?') {
+          detailsButton.disabled = true;
+        } else {
+          detailsButton.disabled = false;
+        }
+      });
 
 }

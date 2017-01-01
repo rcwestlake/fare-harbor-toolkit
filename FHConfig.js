@@ -66,6 +66,13 @@ var FHConfig = {
         },
       },
     },
+    container: {
+      borderDebug: false,
+      marginTop: '',
+      marginRight: '',
+      marginBottom: '',
+      marginLeft: '',
+    },
     inputFields: {
       inputFieldTypes: {
         leftInputFieldHTMLType: '',
