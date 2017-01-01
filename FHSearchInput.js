@@ -316,6 +316,10 @@ function buildSearchInputHTML(obj) {
     detailsInputField.style.paddingLeft = detailsInputFieldStyles.paddingLeft;
     detailsInputField.style.textAlign = detailsInputFieldStyles.textAlign;
     detailsInputField.style.width = detailsInputFieldStyles.width;
+
+    document.addEventListener('click', function () {
+      
+      });
   }
 
   var companyName = obj.shortname;
