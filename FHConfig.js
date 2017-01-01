@@ -149,7 +149,7 @@ var FHConfig = {
       },
     },
     buttons: {
-      numberOfButtons: null,
+      doesDetailsButtonExist: true,
       buttonsBackgroundColor: {
         goButtonBackgroundColor: '',
         detailsButtonBackgroundColor: '',

@@ -247,72 +247,75 @@ function buildSearchInputHTML(obj) {
   goButton.style.paddingLeft = goButtonStyles.paddingLeft;
   goButton.style.width = goButtonStyles.width;
 
-  var detailsButtonStyles = {
-    backgroundColor: obj.buttonsBackgroundColor.detailsButtonBackgroundColor || '#3D89DF',
-    borderBottomWidth: obj.buttonsBorders.detailsButtonBorderBottomWidth || '1px',
-    borderTopWidth: obj.buttonsBorders.detailsButtonBorderTopWidth || '1px',
-    borderRightWidth: obj.buttonsBorders.detailsButtonBorderRightWidth || '1px',
-    borderLeftWidth: obj.buttonsBorders.detailsButtonBorderLeftWidth || '1px',
-    borderBottomStyle: obj.buttonsBorders.detailsButtonBorderBottomStyle || 'solid',
-    borderTopStyle: obj.buttonsBorders.detailsButtonBorderTopStyle || 'solid',
-    borderRightStyle: obj.buttonsBorders.detailsButtonBorderRightStyle || 'solid',
-    borderLeftStyle: obj.buttonsBorders.detailsButtonBorderLeftStyle || 'solid',
-    borderBottomColor: obj.buttonsBorders.detailsButtonBorderBottomColor || '#8CC0FB',
-    borderTopColor: obj.buttonsBorders.detailsButtonBorderTopColor || '#8CC0FB',
-    borderRightColor: obj.buttonsBorders.detailsButtonBorderRightColor || '#8CC0FB',
-    borderLeftColor: obj.buttonsBorders.detailsButtonBorderLeftColor || '#8CC0FB',
-    borderRadius: obj.buttonsBorders.detailsButtonBorderRadius || '8px',
-    boxShadow: obj.buttonsBellsAndWhistles.detailsButtonBoxShadow || '0 3px 3px 0 rgba(0,0,0,0.50)',
-    color: obj.buttonsText.detailsButtonTextColor || '#000000',
-    fontFamily: obj.buttonsText.detailsButtonTextFontName || 'Palatino-Bold, serif',
-    fontSize: obj.buttonsText.detailsButtonTextFontSize || '25px',
-    height: obj.buttonsHeightAndWidth.detailsButtonHeight || '39px',
-    marginTop: obj.buttonsMarginsAndPadding.detailsButtonMarginTop || '0px',
-    marginRight: obj.buttonsMarginsAndPadding.detailsButtonMarginRight || '10px',
-    marginBottom: obj.buttonsMarginsAndPadding.detailsButtonMarginBottom || '0px',
-    marginLeft: obj.buttonsMarginsAndPadding.detailsButtonMarginLeft || '10px',
-    paddingTop: obj.buttonsMarginsAndPadding.detailsButtonPaddingTop || '0px',
-    paddingRight: obj.buttonsMarginsAndPadding.detailsButtonPaddingRight || '0px',
-    paddingBottom: obj.buttonsMarginsAndPadding.detailsButtonPaddingBottom || '0px',
-    paddingLeft: obj.buttonsMarginsAndPadding.detailsButtonPaddingLeft || '0px',
-    width: obj.buttonsHeightAndWidth.detailsButtonWidth || '105px',
+  if (obj.doesDetailsButtonExist) {
+    var detailsButtonStyles = {
+      backgroundColor: obj.buttonsBackgroundColor.detailsButtonBackgroundColor || '#3D89DF',
+      borderBottomWidth: obj.buttonsBorders.detailsButtonBorderBottomWidth || '1px',
+      borderTopWidth: obj.buttonsBorders.detailsButtonBorderTopWidth || '1px',
+      borderRightWidth: obj.buttonsBorders.detailsButtonBorderRightWidth || '1px',
+      borderLeftWidth: obj.buttonsBorders.detailsButtonBorderLeftWidth || '1px',
+      borderBottomStyle: obj.buttonsBorders.detailsButtonBorderBottomStyle || 'solid',
+      borderTopStyle: obj.buttonsBorders.detailsButtonBorderTopStyle || 'solid',
+      borderRightStyle: obj.buttonsBorders.detailsButtonBorderRightStyle || 'solid',
+      borderLeftStyle: obj.buttonsBorders.detailsButtonBorderLeftStyle || 'solid',
+      borderBottomColor: obj.buttonsBorders.detailsButtonBorderBottomColor || '#8CC0FB',
+      borderTopColor: obj.buttonsBorders.detailsButtonBorderTopColor || '#8CC0FB',
+      borderRightColor: obj.buttonsBorders.detailsButtonBorderRightColor || '#8CC0FB',
+      borderLeftColor: obj.buttonsBorders.detailsButtonBorderLeftColor || '#8CC0FB',
+      borderRadius: obj.buttonsBorders.detailsButtonBorderRadius || '8px',
+      boxShadow: obj.buttonsBellsAndWhistles.detailsButtonBoxShadow || '0 3px 3px 0 rgba(0,0,0,0.50)',
+      color: obj.buttonsText.detailsButtonTextColor || '#000000',
+      fontFamily: obj.buttonsText.detailsButtonTextFontName || 'Palatino-Bold, serif',
+      fontSize: obj.buttonsText.detailsButtonTextFontSize || '25px',
+      height: obj.buttonsHeightAndWidth.detailsButtonHeight || '39px',
+      marginTop: obj.buttonsMarginsAndPadding.detailsButtonMarginTop || '0px',
+      marginRight: obj.buttonsMarginsAndPadding.detailsButtonMarginRight || '10px',
+      marginBottom: obj.buttonsMarginsAndPadding.detailsButtonMarginBottom || '0px',
+      marginLeft: obj.buttonsMarginsAndPadding.detailsButtonMarginLeft || '10px',
+      paddingTop: obj.buttonsMarginsAndPadding.detailsButtonPaddingTop || '0px',
+      paddingRight: obj.buttonsMarginsAndPadding.detailsButtonPaddingRight || '0px',
+      paddingBottom: obj.buttonsMarginsAndPadding.detailsButtonPaddingBottom || '0px',
+      paddingLeft: obj.buttonsMarginsAndPadding.detailsButtonPaddingLeft || '0px',
+      width: obj.buttonsHeightAndWidth.detailsButtonWidth || '105px',
+    }
+
+    var detailsButtonContent = obj.buttonsText.detailsButtonTextContent || 'Go!';
+
+    var detailsButton = document.createElement('BUTTON');
+    var detailsButtonText = document.createTextNode(detailsButtonContent);
+    detailsButton.appendChild(detailsButtonText);
+    document.body.appendChild(detailsButton);
+    detailsButton.classList.add('go-button');
+    detailsButton.style.backgroundColor = detailsButtonStyles.backgroundColor;
+    detailsButton.style.borderBottomWidth = detailsButtonStyles.borderBottomWidth;
+    detailsButton.style.borderTopWidth = detailsButtonStyles.borderTopWidth;
+    detailsButton.style.borderRightWidth = detailsButtonStyles.borderRightWidth;
+    detailsButton.style.borderLeftWidth = detailsButtonStyles.borderLeftWidth;
+    detailsButton.style.borderBottomStyle = detailsButtonStyles.borderBottomStyle;
+    detailsButton.style.borderTopStyle = detailsButtonStyles.borderTopStyle;
+    detailsButton.style.borderRightStyle = detailsButtonStyles.borderRightStyle;
+    detailsButton.style.borderLeftStyle = detailsButtonStyles.borderLeftStyle;
+    detailsButton.style.borderBottomColor = detailsButtonStyles.borderBottomColor;
+    detailsButton.style.borderTopColor = detailsButtonStyles.borderTopColor;
+    detailsButton.style.borderRightColor = detailsButtonStyles.borderRightColor;
+    detailsButton.style.borderLeftColor = detailsButtonStyles.borderLeftColor;
+    detailsButton.style.borderRadius = detailsButtonStyles.borderRadius;
+    detailsButton.style.boxShadow = detailsButtonStyles.boxShadow;
+    detailsButton.style.color = detailsButtonStyles.color;
+    detailsButton.style.fontFamily = detailsButtonStyles.fontFamily;
+    detailsButton.style.fontSize = detailsButtonStyles.fontSize;
+    detailsButton.style.height = detailsButtonStyles.height;
+    detailsButton.style.marginTop = detailsButtonStyles.marginTop;
+    detailsButton.style.marginRight = detailsButtonStyles.marginRight;
+    detailsButton.style.marginBottom = detailsButtonStyles.marginBottom;
+    detailsButton.style.marginLeft = detailsButtonStyles.marginLeft;
+    detailsButton.style.paddingTop = detailsButtonStyles.paddingTop;
+    detailsButton.style.paddingRight = detailsButtonStyles.paddingRight;
+    detailsButton.style.paddingBottom = detailsButtonStyles.paddingBottom;
+    detailsButton.style.paddingLeft = detailsButtonStyles.paddingLeft;
+    detailsButton.style.width = detailsButtonStyles.width;
+
   }
-
-  var detailsButtonContent = obj.buttonsText.detailsButtonTextContent || 'Go!';
-
-  var detailsButton = document.createElement('BUTTON');
-  var detailsButtonText = document.createTextNode(detailsButtonContent);
-  detailsButton.appendChild(detailsButtonText);
-  document.body.appendChild(detailsButton);
-  detailsButton.classList.add('go-button');
-  detailsButton.style.backgroundColor = detailsButtonStyles.backgroundColor;
-  detailsButton.style.borderBottomWidth = detailsButtonStyles.borderBottomWidth;
-  detailsButton.style.borderTopWidth = detailsButtonStyles.borderTopWidth;
-  detailsButton.style.borderRightWidth = detailsButtonStyles.borderRightWidth;
-  detailsButton.style.borderLeftWidth = detailsButtonStyles.borderLeftWidth;
-  detailsButton.style.borderBottomStyle = detailsButtonStyles.borderBottomStyle;
-  detailsButton.style.borderTopStyle = detailsButtonStyles.borderTopStyle;
-  detailsButton.style.borderRightStyle = detailsButtonStyles.borderRightStyle;
-  detailsButton.style.borderLeftStyle = detailsButtonStyles.borderLeftStyle;
-  detailsButton.style.borderBottomColor = detailsButtonStyles.borderBottomColor;
-  detailsButton.style.borderTopColor = detailsButtonStyles.borderTopColor;
-  detailsButton.style.borderRightColor = detailsButtonStyles.borderRightColor;
-  detailsButton.style.borderLeftColor = detailsButtonStyles.borderLeftColor;
-  detailsButton.style.borderRadius = detailsButtonStyles.borderRadius;
-  detailsButton.style.boxShadow = detailsButtonStyles.boxShadow;
-  detailsButton.style.color = detailsButtonStyles.color;
-  detailsButton.style.fontFamily = detailsButtonStyles.fontFamily;
-  detailsButton.style.fontSize = detailsButtonStyles.fontSize;
-  detailsButton.style.height = detailsButtonStyles.height;
-  detailsButton.style.marginTop = detailsButtonStyles.marginTop;
-  detailsButton.style.marginRight = detailsButtonStyles.marginRight;
-  detailsButton.style.marginBottom = detailsButtonStyles.marginBottom;
-  detailsButton.style.marginLeft = detailsButtonStyles.marginLeft;
-  detailsButton.style.paddingTop = detailsButtonStyles.paddingTop;
-  detailsButton.style.paddingRight = detailsButtonStyles.paddingRight;
-  detailsButton.style.paddingBottom = detailsButtonStyles.paddingBottom;
-  detailsButton.style.paddingLeft = detailsButtonStyles.paddingLeft;
-  detailsButton.style.width = detailsButtonStyles.width;
 
   var companyName = obj.shortname;
   var eventName;
