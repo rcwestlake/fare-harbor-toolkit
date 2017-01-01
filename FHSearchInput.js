@@ -507,9 +507,17 @@ function buildSearchInputHTML(obj) {
     }
   });
 
+  //need to refactor to combine below two functions
   document.addEventListener('mouseover', function(event) {
     if (event.target.className.toLowerCase() === 'go-button') {
       event.target.style.backgroundColor = obj.buttonsBackgroundColor.goButtonBackgroundColorHover || '#88BCF8';
+      event.target.style.cursor = 'pointer';
+    }
+  });
+
+  document.addEventListener('mouseover', function(event) {
+    if (event.target.className.toLowerCase() === 'details-button') {
+      event.target.style.backgroundColor = obj.buttonsBackgroundColor.detailsButtonBackgroundColorHover || '#88BCF8';
       event.target.style.cursor = 'pointer';
     }
   });
