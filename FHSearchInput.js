@@ -181,37 +181,37 @@ function buildSearchInputHTML(obj) {
   }
 
   var goButtonStyles = {
-    backgroundColor: obj.buttonsBackgroundColor.leftmostButtonBackgroundColor || '#3D89DF',
-    borderBottomWidth: obj.buttonsBorders.leftmostButtonBorderBottomWidth || '1px',
-    borderTopWidth: obj.buttonsBorders.leftmostButtonBorderTopWidth || '1px',
-    borderRightWidth: obj.buttonsBorders.leftmostButtonBorderRightWidth || '1px',
-    borderLeftWidth: obj.buttonsBorders.leftmostButtonBorderLeftWidth || '1px',
-    borderBottomStyle: obj.buttonsBorders.leftmostButtonBorderBottomStyle || 'solid',
-    borderTopStyle: obj.buttonsBorders.leftmostButtonBorderTopStyle || 'solid',
-    borderRightStyle: obj.buttonsBorders.leftmostButtonBorderRightStyle || 'solid',
-    borderLeftStyle: obj.buttonsBorders.leftmostButtonBorderLeftStyle || 'solid',
-    borderBottomColor: obj.buttonsBorders.leftmostButtonBorderBottomColor || '#8CC0FB',
-    borderTopColor: obj.buttonsBorders.leftmostButtonBorderTopColor || '#8CC0FB',
-    borderRightColor: obj.buttonsBorders.leftmostButtonBorderRightColor || '#8CC0FB',
-    borderLeftColor: obj.buttonsBorders.leftmostButtonBorderLeftColor || '#8CC0FB',
-    borderRadius: obj.buttonsBorders.leftmostButtonBorderRadius || '8px',
-    boxShadow: obj.buttonsBellsAndWhistles.leftmostButtonBoxShadow || '0 3px 3px 0 rgba(0,0,0,0.50)',
-    color: obj.buttonsText.leftmostButtonTextColor || '#000000',
-    fontFamily: obj.buttonsText.leftmostButtonTextFontName || 'Palatino-Bold, serif',
-    fontSize: obj.buttonsText.leftmostButtonTextFontSize || '25px',
-    height: obj.buttonsHeightAndWidth.leftmostButtonHeight || '39px',
-    marginTop: obj.buttonsMarginsAndPadding.leftmostButtonMarginTop || '0px',
-    marginRight: obj.buttonsMarginsAndPadding.leftmostButtonMarginRight || '10px',
-    marginBottom: obj.buttonsMarginsAndPadding.leftmostButtonMarginBottom || '0px',
-    marginLeft: obj.buttonsMarginsAndPadding.leftmostButtonMarginLeft || '10px',
-    paddingTop: obj.buttonsMarginsAndPadding.leftmostButtonPaddingTop || '0px',
-    paddingRight: obj.buttonsMarginsAndPadding.leftmostButtonPaddingRight || '0px',
-    paddingBottom: obj.buttonsMarginsAndPadding.leftmostButtonPaddingBottom || '0px',
-    paddingLeft: obj.buttonsMarginsAndPadding.leftmostButtonPaddingLeft || '0px',
-    width: obj.buttonsHeightAndWidth.leftmostButtonWidth || '105px',
+    backgroundColor: obj.buttonsBackgroundColor.goButtonBackgroundColor || '#3D89DF',
+    borderBottomWidth: obj.buttonsBorders.goButtonBorderBottomWidth || '1px',
+    borderTopWidth: obj.buttonsBorders.goButtonBorderTopWidth || '1px',
+    borderRightWidth: obj.buttonsBorders.goButtonBorderRightWidth || '1px',
+    borderLeftWidth: obj.buttonsBorders.goButtonBorderLeftWidth || '1px',
+    borderBottomStyle: obj.buttonsBorders.goButtonBorderBottomStyle || 'solid',
+    borderTopStyle: obj.buttonsBorders.goButtonBorderTopStyle || 'solid',
+    borderRightStyle: obj.buttonsBorders.goButtonBorderRightStyle || 'solid',
+    borderLeftStyle: obj.buttonsBorders.goButtonBorderLeftStyle || 'solid',
+    borderBottomColor: obj.buttonsBorders.goButtonBorderBottomColor || '#8CC0FB',
+    borderTopColor: obj.buttonsBorders.goButtonBorderTopColor || '#8CC0FB',
+    borderRightColor: obj.buttonsBorders.goButtonBorderRightColor || '#8CC0FB',
+    borderLeftColor: obj.buttonsBorders.goButtonBorderLeftColor || '#8CC0FB',
+    borderRadius: obj.buttonsBorders.goButtonBorderRadius || '8px',
+    boxShadow: obj.buttonsBellsAndWhistles.goButtonBoxShadow || '0 3px 3px 0 rgba(0,0,0,0.50)',
+    color: obj.buttonsText.goButtonTextColor || '#000000',
+    fontFamily: obj.buttonsText.goButtonTextFontName || 'Palatino-Bold, serif',
+    fontSize: obj.buttonsText.goButtonTextFontSize || '25px',
+    height: obj.buttonsHeightAndWidth.goButtonHeight || '39px',
+    marginTop: obj.buttonsMarginsAndPadding.goButtonMarginTop || '0px',
+    marginRight: obj.buttonsMarginsAndPadding.goButtonMarginRight || '10px',
+    marginBottom: obj.buttonsMarginsAndPadding.goButtonMarginBottom || '0px',
+    marginLeft: obj.buttonsMarginsAndPadding.goButtonMarginLeft || '10px',
+    paddingTop: obj.buttonsMarginsAndPadding.goButtonPaddingTop || '0px',
+    paddingRight: obj.buttonsMarginsAndPadding.goButtonPaddingRight || '0px',
+    paddingBottom: obj.buttonsMarginsAndPadding.goButtonPaddingBottom || '0px',
+    paddingLeft: obj.buttonsMarginsAndPadding.goButtonPaddingLeft || '0px',
+    width: obj.buttonsHeightAndWidth.goButtonWidth || '105px',
   }
 
-  var goButtonContent = obj.buttonsText.leftmostButtonTextContent || 'Go!';
+  var goButtonContent = obj.buttonsText.goButtonTextContent || 'Go!';
 
   var goButton = document.createElement('BUTTON');
   var goButtonText = document.createTextNode(goButtonContent);
@@ -246,6 +246,73 @@ function buildSearchInputHTML(obj) {
   goButton.style.paddingBottom = goButtonStyles.paddingBottom;
   goButton.style.paddingLeft = goButtonStyles.paddingLeft;
   goButton.style.width = goButtonStyles.width;
+
+  var detailsButtonStyles = {
+    backgroundColor: obj.buttonsBackgroundColor.detailsButtonBackgroundColor || '#3D89DF',
+    borderBottomWidth: obj.buttonsBorders.detailsButtonBorderBottomWidth || '1px',
+    borderTopWidth: obj.buttonsBorders.detailsButtonBorderTopWidth || '1px',
+    borderRightWidth: obj.buttonsBorders.detailsButtonBorderRightWidth || '1px',
+    borderLeftWidth: obj.buttonsBorders.detailsButtonBorderLeftWidth || '1px',
+    borderBottomStyle: obj.buttonsBorders.detailsButtonBorderBottomStyle || 'solid',
+    borderTopStyle: obj.buttonsBorders.detailsButtonBorderTopStyle || 'solid',
+    borderRightStyle: obj.buttonsBorders.detailsButtonBorderRightStyle || 'solid',
+    borderLeftStyle: obj.buttonsBorders.detailsButtonBorderLeftStyle || 'solid',
+    borderBottomColor: obj.buttonsBorders.detailsButtonBorderBottomColor || '#8CC0FB',
+    borderTopColor: obj.buttonsBorders.detailsButtonBorderTopColor || '#8CC0FB',
+    borderRightColor: obj.buttonsBorders.detailsButtonBorderRightColor || '#8CC0FB',
+    borderLeftColor: obj.buttonsBorders.detailsButtonBorderLeftColor || '#8CC0FB',
+    borderRadius: obj.buttonsBorders.detailsButtonBorderRadius || '8px',
+    boxShadow: obj.buttonsBellsAndWhistles.detailsButtonBoxShadow || '0 3px 3px 0 rgba(0,0,0,0.50)',
+    color: obj.buttonsText.detailsButtonTextColor || '#000000',
+    fontFamily: obj.buttonsText.detailsButtonTextFontName || 'Palatino-Bold, serif',
+    fontSize: obj.buttonsText.detailsButtonTextFontSize || '25px',
+    height: obj.buttonsHeightAndWidth.detailsButtonHeight || '39px',
+    marginTop: obj.buttonsMarginsAndPadding.detailsButtonMarginTop || '0px',
+    marginRight: obj.buttonsMarginsAndPadding.detailsButtonMarginRight || '10px',
+    marginBottom: obj.buttonsMarginsAndPadding.detailsButtonMarginBottom || '0px',
+    marginLeft: obj.buttonsMarginsAndPadding.detailsButtonMarginLeft || '10px',
+    paddingTop: obj.buttonsMarginsAndPadding.detailsButtonPaddingTop || '0px',
+    paddingRight: obj.buttonsMarginsAndPadding.detailsButtonPaddingRight || '0px',
+    paddingBottom: obj.buttonsMarginsAndPadding.detailsButtonPaddingBottom || '0px',
+    paddingLeft: obj.buttonsMarginsAndPadding.detailsButtonPaddingLeft || '0px',
+    width: obj.buttonsHeightAndWidth.detailsButtonWidth || '105px',
+  }
+
+  var detailsButtonContent = obj.buttonsText.detailsButtonTextContent || 'Go!';
+
+  var detailsButton = document.createElement('BUTTON');
+  var detailsButtonText = document.createTextNode(detailsButtonContent);
+  detailsButton.appendChild(detailsButtonText);
+  document.body.appendChild(detailsButton);
+  detailsButton.classList.add('go-button');
+  detailsButton.style.backgroundColor = detailsButtonStyles.backgroundColor;
+  detailsButton.style.borderBottomWidth = detailsButtonStyles.borderBottomWidth;
+  detailsButton.style.borderTopWidth = detailsButtonStyles.borderTopWidth;
+  detailsButton.style.borderRightWidth = detailsButtonStyles.borderRightWidth;
+  detailsButton.style.borderLeftWidth = detailsButtonStyles.borderLeftWidth;
+  detailsButton.style.borderBottomStyle = detailsButtonStyles.borderBottomStyle;
+  detailsButton.style.borderTopStyle = detailsButtonStyles.borderTopStyle;
+  detailsButton.style.borderRightStyle = detailsButtonStyles.borderRightStyle;
+  detailsButton.style.borderLeftStyle = detailsButtonStyles.borderLeftStyle;
+  detailsButton.style.borderBottomColor = detailsButtonStyles.borderBottomColor;
+  detailsButton.style.borderTopColor = detailsButtonStyles.borderTopColor;
+  detailsButton.style.borderRightColor = detailsButtonStyles.borderRightColor;
+  detailsButton.style.borderLeftColor = detailsButtonStyles.borderLeftColor;
+  detailsButton.style.borderRadius = detailsButtonStyles.borderRadius;
+  detailsButton.style.boxShadow = detailsButtonStyles.boxShadow;
+  detailsButton.style.color = detailsButtonStyles.color;
+  detailsButton.style.fontFamily = detailsButtonStyles.fontFamily;
+  detailsButton.style.fontSize = detailsButtonStyles.fontSize;
+  detailsButton.style.height = detailsButtonStyles.height;
+  detailsButton.style.marginTop = detailsButtonStyles.marginTop;
+  detailsButton.style.marginRight = detailsButtonStyles.marginRight;
+  detailsButton.style.marginBottom = detailsButtonStyles.marginBottom;
+  detailsButton.style.marginLeft = detailsButtonStyles.marginLeft;
+  detailsButton.style.paddingTop = detailsButtonStyles.paddingTop;
+  detailsButton.style.paddingRight = detailsButtonStyles.paddingRight;
+  detailsButton.style.paddingBottom = detailsButtonStyles.paddingBottom;
+  detailsButton.style.paddingLeft = detailsButtonStyles.paddingLeft;
+  detailsButton.style.width = detailsButtonStyles.width;
 
   var companyName = obj.shortname;
   var eventName;
@@ -433,13 +500,13 @@ function buildSearchInputHTML(obj) {
 
   document.addEventListener('mouseout', function(event) {
     if (event.target.className.toLowerCase() === 'go-button') {
-      event.target.style.backgroundColor = obj.buttonsBackgroundColor.leftmostButtonBackgroundColor || '#3D89DF';
+      event.target.style.backgroundColor = obj.buttonsBackgroundColor.goButtonBackgroundColor || '#3D89DF';
     }
   });
 
   document.addEventListener('mouseover', function(event) {
     if (event.target.className.toLowerCase() === 'go-button') {
-      event.target.style.backgroundColor = obj.buttonsBackgroundColor.leftmostButtonBackgroundColorHover || '#88BCF8';
+      event.target.style.backgroundColor = obj.buttonsBackgroundColor.goButtonBackgroundColorHover || '#88BCF8';
       event.target.style.cursor = 'pointer';
     }
   });
