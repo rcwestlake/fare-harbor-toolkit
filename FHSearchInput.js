@@ -541,4 +541,28 @@ function buildSearchInputHTML(obj) {
     }
   });
 
+  document.addEventListener('click', function () {
+    if (event.target.className.toLowerCase() === 'details-button') {
+      var hitAPI = new XMLHttpRequest();
+      var currYear = new Date().getFullYear();
+      var currMonth = new Date().getMonth() + 1;
+      var url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/?full-items=yes';
+      if (targetID) {
+        hitAPI.open('GET', url, true);
+        hitAPI.send();
+        hitAPI.onreadystatechange = function() {
+          if (hitAPI.readyState === XMLHttpRequest.DONE) {
+            if (hitAPI.status === 200) {
+              window.location = url;
+            } else {
+              console.error('There was a problem with the API call.');
+            }
+          }
+        }
+      } else {
+        alert('Please select a valid event.');
+      }
+    }
+    });
+
 }
