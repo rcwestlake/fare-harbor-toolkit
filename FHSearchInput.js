@@ -19,39 +19,39 @@ function buildSearchInputHTML(obj) {
   var dateInputClass;
 
   var leftFieldInputStyles = {
-    backgroundColor: obj.inputFieldBackgroundColor.leftmostFieldBackgroundColor || '#ffffff',
-    backgroundPosition: obj.inputFieldIcons.leftmostFieldIconPosition || '10px 1px',
-    backgroundSize: obj.inputFieldIcons.leftmostFieldIconSize || '28px 39px',
-    borderBottomWidth: obj.inputFieldBorders.leftmostFieldBorderBottomWidth || '1px',
-    borderTopWidth: obj.inputFieldBorders.leftmostFieldBorderTopWidth || '1px',
-    borderRightWidth: obj.inputFieldBorders.leftmostFieldBorderRightWidth || '1px',
-    borderLeftWidth: obj.inputFieldBorders.leftmostFieldBorderLeftWidth || '1px',
-    borderBottomStyle: obj.inputFieldBorders.leftmostFieldBorderBottomStyle || 'solid',
-    borderTopStyle: obj.inputFieldBorders.leftmostFieldBorderTopStyle || 'solid',
-    borderRightStyle: obj.inputFieldBorders.leftmostFieldBorderRightStyle || 'solid',
-    borderLeftStyle: obj.inputFieldBorders.leftmostFieldBorderLeftStyle || 'solid',
-    borderBottomColor: obj.inputFieldBorders.leftmostFieldBorderBottomColor || '#979797',
-    borderTopColor: obj.inputFieldBorders.leftmostFieldBorderTopColor || '#979797',
-    borderRightColor: obj.inputFieldBorders.leftmostFieldBorderRightColor || '#979797',
-    borderLeftColor: obj.inputFieldBorders.leftmostFieldBorderLeftColor || '#979797',
-    color: obj.inputFieldText.leftmostFieldTextColor || '#A09C9C',
-    fontFamily: obj.inputFieldText.leftmostFieldTextFontName || 'Palatino-Roman, serif',
-    fontSize: obj.inputFieldText.leftmostFieldTextFontSize || '22px',
-    height: obj.inputFieldHeightAndWidth.leftmostFieldHeight || '39px',
-    marginTop: obj.inputFieldMarginsAndPadding.leftmostFieldMarginTop || '0px',
-    marginRight: obj.inputFieldMarginsAndPadding.leftmostFieldMarginRight || '5px',
-    marginBottom: obj.inputFieldMarginsAndPadding.leftmostFieldMarginBottom || '0px',
-    marginLeft: obj.inputFieldMarginsAndPadding.leftmostFieldMarginLeft || '5px',
-    paddingTop: obj.inputFieldMarginsAndPadding.leftmostFieldPaddingTop || '0px',
-    paddingRight: obj.inputFieldMarginsAndPadding.leftmostFieldPaddingRight || '0px',
-    paddingBottom: obj.inputFieldMarginsAndPadding.leftmostFieldPaddingBottom || '0px',
-    paddingLeft: obj.inputFieldMarginsAndPadding.leftmostFieldPaddingLeft || '0px',
-    textAlign: obj.inputFieldText.leftmostFieldTextAlign || 'center',
-    width: obj.inputFieldHeightAndWidth.leftmostFieldWidth || '200px',
+    backgroundColor: obj.inputFieldBackgroundColor.leftInputFieldBackgroundColor || '#ffffff',
+    backgroundPosition: obj.inputFieldIcons.leftInputFieldIconPosition || '10px 1px',
+    backgroundSize: obj.inputFieldIcons.leftInputFieldIconSize || '28px 39px',
+    borderBottomWidth: obj.inputFieldBorders.leftInputFieldBorderBottomWidth || '1px',
+    borderTopWidth: obj.inputFieldBorders.leftInputFieldBorderTopWidth || '1px',
+    borderRightWidth: obj.inputFieldBorders.leftInputFieldBorderRightWidth || '1px',
+    borderLeftWidth: obj.inputFieldBorders.leftInputFieldBorderLeftWidth || '1px',
+    borderBottomStyle: obj.inputFieldBorders.leftInputFieldBorderBottomStyle || 'solid',
+    borderTopStyle: obj.inputFieldBorders.leftInputFieldBorderTopStyle || 'solid',
+    borderRightStyle: obj.inputFieldBorders.leftInputFieldBorderRightStyle || 'solid',
+    borderLeftStyle: obj.inputFieldBorders.leftInputFieldBorderLeftStyle || 'solid',
+    borderBottomColor: obj.inputFieldBorders.leftInputFieldBorderBottomColor || '#979797',
+    borderTopColor: obj.inputFieldBorders.leftInputFieldBorderTopColor || '#979797',
+    borderRightColor: obj.inputFieldBorders.leftInputFieldBorderRightColor || '#979797',
+    borderLeftColor: obj.inputFieldBorders.leftInputFieldBorderLeftColor || '#979797',
+    color: obj.inputFieldText.leftInputFieldTextColor || '#A09C9C',
+    fontFamily: obj.inputFieldText.leftInputFieldTextFontName || 'Palatino-Roman, serif',
+    fontSize: obj.inputFieldText.leftInputFieldTextFontSize || '22px',
+    height: obj.inputFieldHeightAndWidth.leftInputFieldHeight || '39px',
+    marginTop: obj.inputFieldMarginsAndPadding.leftInputFieldMarginTop || '0px',
+    marginRight: obj.inputFieldMarginsAndPadding.leftInputFieldMarginRight || '5px',
+    marginBottom: obj.inputFieldMarginsAndPadding.leftInputFieldMarginBottom || '0px',
+    marginLeft: obj.inputFieldMarginsAndPadding.leftInputFieldMarginLeft || '5px',
+    paddingTop: obj.inputFieldMarginsAndPadding.leftInputFieldPaddingTop || '0px',
+    paddingRight: obj.inputFieldMarginsAndPadding.leftInputFieldPaddingRight || '0px',
+    paddingBottom: obj.inputFieldMarginsAndPadding.leftInputFieldPaddingBottom || '0px',
+    paddingLeft: obj.inputFieldMarginsAndPadding.leftInputFieldPaddingLeft || '0px',
+    textAlign: obj.inputFieldText.leftInputFieldTextAlign || 'center',
+    width: obj.inputFieldHeightAndWidth.leftInputFieldWidth || '200px',
   }
 
-  var leftFieldHTMLType = obj.inputFieldTypes.leftmostFieldHTMLType || 'SELECT';
-  var leftFieldFunction = obj.inputFieldTypes.leftmostFieldFunction || 'eventPicker';
+  var leftFieldHTMLType = obj.inputFieldTypes.leftInputFieldHTMLType || 'SELECT';
+  var leftFieldFunction = obj.inputFieldTypes.leftInputFieldFunction || 'eventPicker';
 
   var leftFieldInput = document.createElement(leftFieldHTMLType);
   document.body.appendChild(leftFieldInput);
@@ -90,49 +90,49 @@ function buildSearchInputHTML(obj) {
   if (leftFieldFunction === 'eventPicker') {
     eventInputField = leftFieldInput;
     eventInputFieldHTMLType = leftFieldHTMLType;
-    eventInputFieldTextContent = obj.inputFieldText.leftmostFieldTextContent || 'Which Event?';
+    eventInputFieldTextContent = obj.inputFieldText.leftInputFieldTextContent || 'Which Event?';
     eventInputClass = 'left-field-input';
   } else if (leftFieldFunction === 'datePicker') {
     dateInputField = leftFieldInput;
     dateInputFieldHTMLType = leftFieldHTMLType;
-    dateInputFieldTextContent = obj.inputFieldText.leftmostFieldTextContent || 'When?';
+    dateInputFieldTextContent = obj.inputFieldText.leftInputFieldTextContent || 'When?';
     dateInputClass = 'left-field-input';
   }
 
   var rightFieldInputStyles = {
-    backgroundColor: obj.inputFieldBackgroundColor.secondFieldFromLeftBackgroundColor || '#ffffff',
-    backgroundPosition: obj.inputFieldIcons.secondFieldFromLeftIconPosition || '10px 5px',
-    backgroundSize: obj.inputFieldIcons.secondFieldFromLeftIconSize || '32px 32px',
-    borderBottomWidth: obj.inputFieldBorders.secondFieldFromLeftBorderBottomWidth || '1px',
-    borderTopWidth: obj.inputFieldBorders.secondFieldFromLeftBorderTopWidth || '1px',
-    borderRightWidth: obj.inputFieldBorders.secondFieldFromLeftBorderRightWidth || '1px',
-    borderLeftWidth: obj.inputFieldBorders.secondFieldFromLeftBorderLeftWidth || '1px',
-    borderBottomStyle: obj.inputFieldBorders.secondFieldFromLeftBorderBottomStyle || 'solid',
-    borderTopStyle: obj.inputFieldBorders.secondFieldFromLeftBorderTopStyle || 'solid',
-    borderRightStyle: obj.inputFieldBorders.secondFieldFromLeftBorderRightStyle || 'solid',
-    borderLeftStyle: obj.inputFieldBorders.secondFieldFromLeftBorderLeftStyle || 'solid',
-    borderBottomColor: obj.inputFieldBorders.secondFieldFromLeftBorderBottomColor || '#979797',
-    borderTopColor: obj.inputFieldBorders.secondFieldFromLeftBorderTopColor || '#979797',
-    borderRightColor: obj.inputFieldBorders.secondFieldFromLeftBorderRightColor || '#979797',
-    borderLeftColor: obj.inputFieldBorders.secondFieldFromLeftBorderLeftColor || '#979797',
-    color: obj.inputFieldText.secondFieldFromLeftTextColor || '#A09C9C',
-    fontFamily: obj.inputFieldText.secondFieldFromLeftTextFontName || 'Palatino-Roman, serif',
-    fontSize: obj.inputFieldText.secondFieldFromLeftTextFontSize || '22px',
-    height: obj.inputFieldHeightAndWidth.secondFieldFromLeftHeight || '39px',
-    marginTop: obj.inputFieldMarginsAndPadding.secondFieldFromLeftMarginTop || '0px',
-    marginRight: obj.inputFieldMarginsAndPadding.secondFieldFromLeftMarginRight || '5px',
-    marginBottom: obj.inputFieldMarginsAndPadding.secondFieldFromLeftMarginBottom || '0px',
-    marginLeft: obj.inputFieldMarginsAndPadding.secondFieldFromLeftMarginLeft || '5px',
-    paddingTop: obj.inputFieldMarginsAndPadding.secondFieldFromLeftPaddingTop || '0px',
-    paddingRight: obj.inputFieldMarginsAndPadding.secondFieldFromLeftPaddingRight || '0px',
-    paddingBottom: obj.inputFieldMarginsAndPadding.secondFieldFromLeftPaddingBottom || '0px',
-    paddingLeft: obj.inputFieldMarginsAndPadding.secondFieldFromLeftPaddingLeft || '0px',
-    textAlign: obj.inputFieldText.secondFieldFromLeftTextAlign || 'center',
-    width: obj.inputFieldHeightAndWidth.secondFieldFromLeftWidth ||'200px',
+    backgroundColor: obj.inputFieldBackgroundColor.rightInputFieldBackgroundColor || '#ffffff',
+    backgroundPosition: obj.inputFieldIcons.rightInputFieldIconPosition || '10px 5px',
+    backgroundSize: obj.inputFieldIcons.rightInputFieldIconSize || '32px 32px',
+    borderBottomWidth: obj.inputFieldBorders.rightInputFieldBorderBottomWidth || '1px',
+    borderTopWidth: obj.inputFieldBorders.rightInputFieldBorderTopWidth || '1px',
+    borderRightWidth: obj.inputFieldBorders.rightInputFieldBorderRightWidth || '1px',
+    borderLeftWidth: obj.inputFieldBorders.rightInputFieldBorderLeftWidth || '1px',
+    borderBottomStyle: obj.inputFieldBorders.rightInputFieldBorderBottomStyle || 'solid',
+    borderTopStyle: obj.inputFieldBorders.rightInputFieldBorderTopStyle || 'solid',
+    borderRightStyle: obj.inputFieldBorders.rightInputFieldBorderRightStyle || 'solid',
+    borderLeftStyle: obj.inputFieldBorders.rightInputFieldBorderLeftStyle || 'solid',
+    borderBottomColor: obj.inputFieldBorders.rightInputFieldBorderBottomColor || '#979797',
+    borderTopColor: obj.inputFieldBorders.rightInputFieldBorderTopColor || '#979797',
+    borderRightColor: obj.inputFieldBorders.rightInputFieldBorderRightColor || '#979797',
+    borderLeftColor: obj.inputFieldBorders.rightInputFieldBorderLeftColor || '#979797',
+    color: obj.inputFieldText.rightInputFieldTextColor || '#A09C9C',
+    fontFamily: obj.inputFieldText.rightInputFieldTextFontName || 'Palatino-Roman, serif',
+    fontSize: obj.inputFieldText.rightInputFieldTextFontSize || '22px',
+    height: obj.inputFieldHeightAndWidth.rightInputFieldHeight || '39px',
+    marginTop: obj.inputFieldMarginsAndPadding.rightInputFieldMarginTop || '0px',
+    marginRight: obj.inputFieldMarginsAndPadding.rightInputFieldMarginRight || '5px',
+    marginBottom: obj.inputFieldMarginsAndPadding.rightInputFieldMarginBottom || '0px',
+    marginLeft: obj.inputFieldMarginsAndPadding.rightInputFieldMarginLeft || '5px',
+    paddingTop: obj.inputFieldMarginsAndPadding.rightInputFieldPaddingTop || '0px',
+    paddingRight: obj.inputFieldMarginsAndPadding.rightInputFieldPaddingRight || '0px',
+    paddingBottom: obj.inputFieldMarginsAndPadding.rightInputFieldPaddingBottom || '0px',
+    paddingLeft: obj.inputFieldMarginsAndPadding.rightInputFieldPaddingLeft || '0px',
+    textAlign: obj.inputFieldText.rightInputFieldTextAlign || 'center',
+    width: obj.inputFieldHeightAndWidth.rightInputFieldWidth ||'200px',
   }
 
   var rightFieldHTMLType = obj.inputFieldTypes.rightmostFieldHTMLType || 'SELECT';
-  var rightFieldFunction = obj.inputFieldTypes.secondFieldFromLeftFunction || 'datePicker';
+  var rightFieldFunction = obj.inputFieldTypes.rightInputFieldFunction || 'datePicker';
 
   var rightFieldInput = document.createElement(rightFieldHTMLType);
   document.body.appendChild(rightFieldInput);
@@ -171,12 +171,12 @@ function buildSearchInputHTML(obj) {
   if (rightFieldFunction === 'eventPicker') {
     eventInputField = rightFieldInput;
     eventInputFieldHTMLType = rightFieldHTMLType;
-    eventInputFieldTextContent = obj.inputFieldText.secondFieldFromLeftTextContent || 'Which Event?';
+    eventInputFieldTextContent = obj.inputFieldText.rightInputFieldTextContent || 'Which Event?';
     eventInputClass = 'right-field-input';
   } else if (rightFieldFunction === 'datePicker') {
     dateInputField = rightFieldInput;
     dateInputFieldHTMLType = rightFieldHTMLType;
-    dateInputFieldTextContent = obj.inputFieldText.secondFieldFromLeftTextContent || 'When?';
+    dateInputFieldTextContent = obj.inputFieldText.rightInputFieldTextContent || 'When?';
     dateInputClass = 'right-field-input';
   }
 
