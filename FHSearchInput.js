@@ -267,25 +267,26 @@ function buildSearchInputHTML(obj) {
       color: obj.buttonsText.detailsButtonTextColor || '#000000',
       fontFamily: obj.buttonsText.detailsButtonTextFontName || 'Palatino-Bold, serif',
       fontSize: obj.buttonsText.detailsButtonTextFontSize || '25px',
-      height: obj.buttonsHeightAndWidth.detailsButtonHeight || '39px',
-      marginTop: obj.buttonsMarginsAndPadding.detailsButtonMarginTop || '0px',
-      marginRight: obj.buttonsMarginsAndPadding.detailsButtonMarginRight || '10px',
-      marginBottom: obj.buttonsMarginsAndPadding.detailsButtonMarginBottom || '0px',
-      marginLeft: obj.buttonsMarginsAndPadding.detailsButtonMarginLeft || '10px',
-      paddingTop: obj.buttonsMarginsAndPadding.detailsButtonPaddingTop || '0px',
-      paddingRight: obj.buttonsMarginsAndPadding.detailsButtonPaddingRight || '0px',
-      paddingBottom: obj.buttonsMarginsAndPadding.detailsButtonPaddingBottom || '0px',
-      paddingLeft: obj.buttonsMarginsAndPadding.detailsButtonPaddingLeft || '0px',
-      width: obj.buttonsHeightAndWidth.detailsButtonWidth || '105px',
+      height: obj.buttonsHeightAndWidth.detailsButtonHeight || 'auto',
+      marginTop: obj.buttonsMarginsAndPadding.detailsButtonMarginTop || '10px',
+      marginRight: obj.buttonsMarginsAndPadding.detailsButtonMarginRight || 'auto',
+      marginBottom: obj.buttonsMarginsAndPadding.detailsButtonMarginBottom || '10px',
+      marginLeft: obj.buttonsMarginsAndPadding.detailsButtonMarginLeft || 'auto',
+      paddingTop: obj.buttonsMarginsAndPadding.detailsButtonPaddingTop || '5px',
+      paddingRight: obj.buttonsMarginsAndPadding.detailsButtonPaddingRight || '5px',
+      paddingBottom: obj.buttonsMarginsAndPadding.detailsButtonPaddingBottom || '5px',
+      paddingLeft: obj.buttonsMarginsAndPadding.detailsButtonPaddingLeft || '5px',
+      width: obj.buttonsHeightAndWidth.detailsButtonWidth || 'auto',
     }
 
-    var detailsButtonContent = obj.buttonsText.detailsButtonTextContent || 'Go!';
+    var detailsButtonContent = obj.buttonsText.detailsButtonTextContent || 'See full event details';
 
     var detailsButton = document.createElement('BUTTON');
     var detailsButtonText = document.createTextNode(detailsButtonContent);
     detailsButton.appendChild(detailsButtonText);
     document.body.appendChild(detailsButton);
-    detailsButton.classList.add('go-button');
+    detailsButton.classList.add('details-button');
+    detailsButton.style.display = 'block';
     detailsButton.style.backgroundColor = detailsButtonStyles.backgroundColor;
     detailsButton.style.borderBottomWidth = detailsButtonStyles.borderBottomWidth;
     detailsButton.style.borderTopWidth = detailsButtonStyles.borderTopWidth;
@@ -314,7 +315,6 @@ function buildSearchInputHTML(obj) {
     detailsButton.style.paddingBottom = detailsButtonStyles.paddingBottom;
     detailsButton.style.paddingLeft = detailsButtonStyles.paddingLeft;
     detailsButton.style.width = detailsButtonStyles.width;
-
   }
 
   var companyName = obj.shortname;
