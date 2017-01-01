@@ -32,6 +32,7 @@ var toolCreator = (function() {
       case 'SearchInput':
         return FHSearchInput(
           {
+            includeDetailsInputField: config.toolDetails.inputFields.includeDetailsInputField,
             inputFieldText: config.toolDetails.inputFields.inputFieldText,
             inputFieldTypes: config.toolDetails.inputFields.inputFieldTypes,
             inputFieldHeightAndWidth: config.toolDetails.inputFields.inputFieldHeightAndWidth,

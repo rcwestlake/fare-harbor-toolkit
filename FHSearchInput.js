@@ -179,75 +179,6 @@ function buildSearchInputHTML(obj) {
     dateInputFieldTextContent = obj.inputFieldText.rightInputFieldTextContent || 'When?';
     dateInputClass = 'right-field-input';
   }
-  //stopped
-
-  var detailsInputFieldStyles = {
-    backgroundColor: obj.inputFieldBackgroundColor.detailsInputFieldBackgroundColor || '#ffffff',
-    backgroundPosition: obj.inputFieldIcons.detailsInputFieldIconPosition || '10px 5px',
-    backgroundSize: obj.inputFieldIcons.detailsInputFieldIconSize || '32px 32px',
-    borderBottomWidth: obj.inputFieldBorders.detailsInputFieldBorderBottomWidth || '1px',
-    borderTopWidth: obj.inputFieldBorders.detailsInputFieldBorderTopWidth || '1px',
-    borderRightWidth: obj.inputFieldBorders.detailsInputFieldBorderRightWidth || '1px',
-    borderLeftWidth: obj.inputFieldBorders.detailsInputFieldBorderLeftWidth || '1px',
-    borderBottomStyle: obj.inputFieldBorders.detailsInputFieldBorderBottomStyle || 'solid',
-    borderTopStyle: obj.inputFieldBorders.detailsInputFieldBorderTopStyle || 'solid',
-    borderRightStyle: obj.inputFieldBorders.detailsInputFieldBorderRightStyle || 'solid',
-    borderLeftStyle: obj.inputFieldBorders.detailsInputFieldBorderLeftStyle || 'solid',
-    borderBottomColor: obj.inputFieldBorders.detailsInputFieldBorderBottomColor || '#979797',
-    borderTopColor: obj.inputFieldBorders.detailsInputFieldBorderTopColor || '#979797',
-    borderRightColor: obj.inputFieldBorders.detailsInputFieldBorderRightColor || '#979797',
-    borderLeftColor: obj.inputFieldBorders.detailsInputFieldBorderLeftColor || '#979797',
-    color: obj.inputFieldText.detailsInputFieldTextColor || '#A09C9C',
-    fontFamily: obj.inputFieldText.detailsInputFieldTextFontName || 'Palatino-Roman, serif',
-    fontSize: obj.inputFieldText.detailsInputFieldTextFontSize || '22px',
-    height: obj.inputFieldHeightAndWidth.detailsInputFieldHeight || '39px',
-    marginTop: obj.inputFieldMarginsAndPadding.detailsInputFieldMarginTop || '0px',
-    marginRight: obj.inputFieldMarginsAndPadding.detailsInputFieldMarginRight || '5px',
-    marginBottom: obj.inputFieldMarginsAndPadding.detailsInputFieldMarginBottom || '0px',
-    marginLeft: obj.inputFieldMarginsAndPadding.detailsInputFieldMarginLeft || '5px',
-    paddingTop: obj.inputFieldMarginsAndPadding.detailsInputFieldPaddingTop || '0px',
-    paddingRight: obj.inputFieldMarginsAndPadding.detailsInputFieldPaddingRight || '0px',
-    paddingBottom: obj.inputFieldMarginsAndPadding.detailsInputFieldPaddingBottom || '0px',
-    paddingLeft: obj.inputFieldMarginsAndPadding.detailsInputFieldPaddingLeft || '0px',
-    textAlign: obj.inputFieldText.detailsInputFieldTextAlign || 'center',
-    width: obj.inputFieldHeightAndWidth.detailsInputFieldWidth ||'200px',
-  }
-
-  var detailsInputFieldHTMLType = obj.inputFieldTypes.detailsInputFieldHTMLType || 'SELECT';
-
-  var detailsInputField = document.createElement(detailsInputFieldHTMLType);
-  document.body.appendChild(detailsInputField);
-  detailsInputField.classList.add('details-field-input');
-  detailsInputField.style.background = detailsInputFieldStyles.background;
-  detailsInputField.style.backgroundColor = detailsInputFieldStyles.backgroundColor;
-  detailsInputField.style.backgroundPosition = detailsInputFieldStyles.backgroundPosition;
-  detailsInputField.style.backgroundSize = detailsInputFieldStyles.backgroundSize;
-  detailsInputField.style.borderBottomWidth = detailsInputFieldStyles.borderBottomWidth;
-  detailsInputField.style.borderTopWidth = detailsInputFieldStyles.borderTopWidth;
-  detailsInputField.style.borderRightWidth = detailsInputFieldStyles.borderRightWidth;
-  detailsInputField.style.borderLeftWidth = detailsInputFieldStyles.borderLeftWidth;
-  detailsInputField.style.borderBottomStyle = detailsInputFieldStyles.borderBottomStyle;
-  detailsInputField.style.borderTopStyle = detailsInputFieldStyles.borderTopStyle;
-  detailsInputField.style.borderRightStyle = detailsInputFieldStyles.borderRightStyle;
-  detailsInputField.style.borderLeftStyle = detailsInputFieldStyles.borderLeftStyle;
-  detailsInputField.style.borderBottomColor = detailsInputFieldStyles.borderBottomColor;
-  detailsInputField.style.borderTopColor = detailsInputFieldStyles.borderTopColor;
-  detailsInputField.style.borderRightColor = detailsInputFieldStyles.borderRightColor;
-  detailsInputField.style.borderLeftColor = detailsInputFieldStyles.borderLeftColor;
-  detailsInputField.style.color = detailsInputFieldStyles.color;
-  detailsInputField.style.fontFamily = detailsInputFieldStyles.fontFamily;
-  detailsInputField.style.fontSize = detailsInputFieldStyles.fontSize;
-  detailsInputField.style.height = detailsInputFieldStyles.height;
-  detailsInputField.style.marginTop = detailsInputFieldStyles.marginTop;
-  detailsInputField.style.marginRight = detailsInputFieldStyles.marginRight;
-  detailsInputField.style.marginBottom = detailsInputFieldStyles.marginBottom;
-  detailsInputField.style.marginLeft = detailsInputFieldStyles.marginLeft;
-  detailsInputField.style.paddingTop = detailsInputFieldStyles.paddingTop;
-  detailsInputField.style.paddingRight = detailsInputFieldStyles.paddingRight;
-  detailsInputField.style.paddingBottom = detailsInputFieldStyles.paddingBottom;
-  detailsInputField.style.paddingLeft = detailsInputFieldStyles.paddingLeft;
-  detailsInputField.style.textAlign = detailsInputFieldStyles.textAlign;
-  detailsInputField.style.width = detailsInputFieldStyles.width;
 
   var goButtonStyles = {
     backgroundColor: obj.buttonsBackgroundColor.leftmostButtonBackgroundColor || '#3D89DF',
@@ -315,6 +246,77 @@ function buildSearchInputHTML(obj) {
   goButton.style.paddingBottom = goButtonStyles.paddingBottom;
   goButton.style.paddingLeft = goButtonStyles.paddingLeft;
   goButton.style.width = goButtonStyles.width;
+
+  if (obj.includeDetailsInputField) {
+    var detailsInputFieldStyles = {
+      backgroundColor: obj.inputFieldBackgroundColor.detailsInputFieldBackgroundColor || '#ffffff',
+      backgroundPosition: obj.inputFieldIcons.detailsInputFieldIconPosition || '10px 5px',
+      backgroundSize: obj.inputFieldIcons.detailsInputFieldIconSize || '32px 32px',
+      borderBottomWidth: obj.inputFieldBorders.detailsInputFieldBorderBottomWidth || '1px',
+      borderTopWidth: obj.inputFieldBorders.detailsInputFieldBorderTopWidth || '1px',
+      borderRightWidth: obj.inputFieldBorders.detailsInputFieldBorderRightWidth || '1px',
+      borderLeftWidth: obj.inputFieldBorders.detailsInputFieldBorderLeftWidth || '1px',
+      borderBottomStyle: obj.inputFieldBorders.detailsInputFieldBorderBottomStyle || 'solid',
+      borderTopStyle: obj.inputFieldBorders.detailsInputFieldBorderTopStyle || 'solid',
+      borderRightStyle: obj.inputFieldBorders.detailsInputFieldBorderRightStyle || 'solid',
+      borderLeftStyle: obj.inputFieldBorders.detailsInputFieldBorderLeftStyle || 'solid',
+      borderBottomColor: obj.inputFieldBorders.detailsInputFieldBorderBottomColor || '#979797',
+      borderTopColor: obj.inputFieldBorders.detailsInputFieldBorderTopColor || '#979797',
+      borderRightColor: obj.inputFieldBorders.detailsInputFieldBorderRightColor || '#979797',
+      borderLeftColor: obj.inputFieldBorders.detailsInputFieldBorderLeftColor || '#979797',
+      color: obj.inputFieldText.detailsInputFieldTextColor || '#A09C9C',
+      fontFamily: obj.inputFieldText.detailsInputFieldTextFontName || 'Palatino-Roman, serif',
+      fontSize: obj.inputFieldText.detailsInputFieldTextFontSize || '22px',
+      height: obj.inputFieldHeightAndWidth.detailsInputFieldHeight || '39px',
+      marginTop: obj.inputFieldMarginsAndPadding.detailsInputFieldMarginTop || '0px',
+      marginRight: obj.inputFieldMarginsAndPadding.detailsInputFieldMarginRight || '5px',
+      marginBottom: obj.inputFieldMarginsAndPadding.detailsInputFieldMarginBottom || '0px',
+      marginLeft: obj.inputFieldMarginsAndPadding.detailsInputFieldMarginLeft || '5px',
+      paddingTop: obj.inputFieldMarginsAndPadding.detailsInputFieldPaddingTop || '0px',
+      paddingRight: obj.inputFieldMarginsAndPadding.detailsInputFieldPaddingRight || '0px',
+      paddingBottom: obj.inputFieldMarginsAndPadding.detailsInputFieldPaddingBottom || '0px',
+      paddingLeft: obj.inputFieldMarginsAndPadding.detailsInputFieldPaddingLeft || '0px',
+      textAlign: obj.inputFieldText.detailsInputFieldTextAlign || 'center',
+      width: obj.inputFieldHeightAndWidth.detailsInputFieldWidth ||'200px',
+    }
+
+    var detailsInputFieldHTMLType = obj.inputFieldTypes.detailsInputFieldHTMLType || 'SELECT';
+
+    var detailsInputField = document.createElement(detailsInputFieldHTMLType);
+    document.body.appendChild(detailsInputField);
+    detailsInputField.classList.add('details-field-input');
+    detailsInputField.style.display = 'block';
+    detailsInputField.style.background = detailsInputFieldStyles.background;
+    detailsInputField.style.backgroundColor = detailsInputFieldStyles.backgroundColor;
+    detailsInputField.style.backgroundPosition = detailsInputFieldStyles.backgroundPosition;
+    detailsInputField.style.backgroundSize = detailsInputFieldStyles.backgroundSize;
+    detailsInputField.style.borderBottomWidth = detailsInputFieldStyles.borderBottomWidth;
+    detailsInputField.style.borderTopWidth = detailsInputFieldStyles.borderTopWidth;
+    detailsInputField.style.borderRightWidth = detailsInputFieldStyles.borderRightWidth;
+    detailsInputField.style.borderLeftWidth = detailsInputFieldStyles.borderLeftWidth;
+    detailsInputField.style.borderBottomStyle = detailsInputFieldStyles.borderBottomStyle;
+    detailsInputField.style.borderTopStyle = detailsInputFieldStyles.borderTopStyle;
+    detailsInputField.style.borderRightStyle = detailsInputFieldStyles.borderRightStyle;
+    detailsInputField.style.borderLeftStyle = detailsInputFieldStyles.borderLeftStyle;
+    detailsInputField.style.borderBottomColor = detailsInputFieldStyles.borderBottomColor;
+    detailsInputField.style.borderTopColor = detailsInputFieldStyles.borderTopColor;
+    detailsInputField.style.borderRightColor = detailsInputFieldStyles.borderRightColor;
+    detailsInputField.style.borderLeftColor = detailsInputFieldStyles.borderLeftColor;
+    detailsInputField.style.color = detailsInputFieldStyles.color;
+    detailsInputField.style.fontFamily = detailsInputFieldStyles.fontFamily;
+    detailsInputField.style.fontSize = detailsInputFieldStyles.fontSize;
+    detailsInputField.style.height = detailsInputFieldStyles.height;
+    detailsInputField.style.marginTop = detailsInputFieldStyles.marginTop;
+    detailsInputField.style.marginRight = detailsInputFieldStyles.marginRight;
+    detailsInputField.style.marginBottom = detailsInputFieldStyles.marginBottom;
+    detailsInputField.style.marginLeft = detailsInputFieldStyles.marginLeft;
+    detailsInputField.style.paddingTop = detailsInputFieldStyles.paddingTop;
+    detailsInputField.style.paddingRight = detailsInputFieldStyles.paddingRight;
+    detailsInputField.style.paddingBottom = detailsInputFieldStyles.paddingBottom;
+    detailsInputField.style.paddingLeft = detailsInputFieldStyles.paddingLeft;
+    detailsInputField.style.textAlign = detailsInputFieldStyles.textAlign;
+    detailsInputField.style.width = detailsInputFieldStyles.width;
+  }
 
   var companyName = obj.shortname;
   var eventName;

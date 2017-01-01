@@ -74,6 +74,7 @@ var FHConfig = {
         leftInputFieldFunction: '',
         rightInputFieldFunction: '',
       },
+      includeDetailsInputField: true,
       inputFieldBackgroundColor: {
         leftInputFieldBackgroundColor: '',
         rightInputFieldBackgroundColor: '',
