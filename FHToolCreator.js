@@ -32,6 +32,7 @@ var toolCreator = (function() {
       case 'SearchInput':
         return FHSearchInput(
           {
+            container: config.toolDetails.container,
             inputFieldText: config.toolDetails.inputFields.inputFieldText,
             inputFieldTypes: config.toolDetails.inputFields.inputFieldTypes,
             inputFieldHeightAndWidth: config.toolDetails.inputFields.inputFieldHeightAndWidth,
@@ -39,6 +40,7 @@ var toolCreator = (function() {
             inputFieldBorders: config.toolDetails.inputFields.inputFieldBorders,
             inputFieldMarginsAndPadding: config.toolDetails.inputFields.inputFieldMarginsAndPadding,
             inputFieldBackgroundColor: config.toolDetails.inputFields.inputFieldBackgroundColor,
+            doesDetailsButtonExist: config.toolDetails.buttons.doesDetailsButtonExist,
             buttonsBackgroundColor: config.toolDetails.buttons.buttonsBackgroundColor,
             buttonsText: config.toolDetails.buttons.buttonsText,
             buttonsBorders: config.toolDetails.buttons.buttonsBorders,
