@@ -7,6 +7,8 @@ var FHSearchInput = function(obj) {
   return create(obj)
 }
 
+//just set default margins and padding 
+
 function buildSearchInputHTML(obj) {
 
   var eventInputField;
@@ -384,7 +386,7 @@ function buildSearchInputHTML(obj) {
     detailsButton.style.paddingLeft = detailsButtonStyles.paddingLeft;
     detailsButton.style.width = detailsButtonStyles.width;
   }
-  
+
   //eventPicker
   window.addEventListener('load', function () {
     var hitAPI = new XMLHttpRequest();
@@ -590,7 +592,11 @@ function buildSearchInputHTML(obj) {
     }
   });
 
+  //customize item IDs coming in
+  //wrap button in anchor tag
+
   document.addEventListener('click', function(event) {
+
     if (event.target.className.toLowerCase() === 'go-button') {
       var hitAPI = new XMLHttpRequest();
       var url;
@@ -617,12 +623,13 @@ function buildSearchInputHTML(obj) {
     }
   });
 
+  //need anchor tag here too
   document.addEventListener('click', function () {
     if (event.target.className.toLowerCase() === 'details-button') {
       var hitAPI = new XMLHttpRequest();
       var currYear = new Date().getFullYear();
       var currMonth = new Date().getMonth() + 1;
-      var url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/?full-items=yes';
+      var url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/?full-items=yes'; //this should to go a href
       if (targetID) {
         hitAPI.open('GET', url, true);
         hitAPI.send();

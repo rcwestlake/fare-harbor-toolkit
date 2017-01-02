@@ -8,32 +8,38 @@ var FHFooter = function(obj) {
 }
 
 function buildFooterHTML(obj) {
+  var footer;
+  var firstElementTextColor;
+  var secondElementTextColor;
+  var thirdElementTextColor;
+  var fourthElementTextColor;
 
   var footerStyles = {
     backgroundColor: obj.footer.footerBackgroundColor || '#88BCF8',
     height: obj.footer.height || 'auto',
     width: obj.footer.width || '100vw',
-    display: obj.footer.displayType || 'block',
-    borderTopWidth: obj.footerBorders.footerBorderTopWidth || '1px',
-    borderRightWidth: obj.footerBorders.footerBorderRightWidth || '1px',
-    borderBottomWidth: obj.footerBorders.footerBorderBottomWidth || '1px',
-    borderLeftWidth: obj.footerBorders.footerBorderLeftWidth || '1px',
-    borderTopStyle: obj.footerBorders.footerBorderTopStyle || 'solid',
-    borderRightStyle: obj.footerBorders.footerBorderRightStyle || 'solid',
-    borderBottomStyle: obj.footerBorders.footerBorderBottomStyle || 'solid',
-    borderLeftStyle: obj.footerBorders.footerBorderLeftStyle || 'solid',
+    display: 'block',
+    borderTopWidth: '1px',
+    borderRightWidth: '1px',
+    borderBottomWidth: '1px',
+    borderLeftWidth: '1px',
+    borderTopStyle: 'solid',
+    borderRightStyle: 'solid',
+    borderBottomStyle: 'solid',
+    borderLeftStyle: 'solid',
     borderTopColor: obj.footerBorders.footerBorderTopColor || '#88BCF8',
     borderRightColor: obj.footerBorders.footerBorderRightColor || '#88BCF8',
     borderBottomColor: obj.footerBorders.footerBorderBottomColor || '#88BCF8',
     borderLeftColor: obj.footerBorders.footerBorderLeftColor || '#88BCF8',
   };
 
-  var footer = document.createElement('FOOTER');
+  footer = document.createElement('FOOTER');
   document.body.appendChild(footer);
   footer.style.backgroundColor = footerStyles.backgroundColor;
   footer.style.height = footerStyles.height;
   footer.style.width = footerStyles.width;
   footer.style.display = footerStyles.display;
+  footer.style.textAlign = 'center';
   footer.style.borderTopWidth = footerStyles.borderTopWidth;
   footer.style.borderRightWidth = footerStyles.borderRightWidth;
   footer.style.borderBottomWidth = footerStyles.borderBottomWidth;
@@ -56,41 +62,79 @@ function buildFooterHTML(obj) {
     footer.appendChild(linkWrapper);
     linkWrapper.href = filteredElements[i].linkTo;
     linkWrapper.style.textDecoration = 'none';
-    linkWrapper.style.color = '#000000';
-    if (filteredElements[i].type === 'textLink') {
-      var text = document.createElement('P');
-      linkWrapper.appendChild(text);
-      var textContent = document.createTextNode(filteredElements[i].textContent);
-      text.appendChild(textContent);
-      text.style.display = 'inline-block';
-      text.style.fontFamily = filteredElements[i].fontName || 'Palatino-Bold, serif';
-      text.style.fontSize = filteredElements[i].fontSize || '16px';
-      text.style.fontWeight = filteredElements[i].fontWeight || 'normal';
-      text.style.marginTop = filteredElements[i].marginTop || '0';
-      text.style.marginRight = filteredElements[i].marginRight || '0';
-      text.style.marginBottom = filteredElements[i].marginBottom || '0';
-      text.style.marginLeft = filteredElements[i].marginLeft || '0';
-      text.style.height = '50px';
-      text.style.lineHeight = '50px';
-      text.style.whiteSpace = 'noWrap';
-    } else if (filteredElements[i].type === 'socialMedia') {
-      var img = document.createElement('IMG');
-      var sources = {
-        facebook: 'images/facebook.png',
-        twitter: 'images/twitter.png',
-        googlePlus: 'images/google-plus3.png',
-      };
-      linkWrapper.appendChild(img);
-      var socialMediaType = filteredElements[i].socialMediaType.toLowerCase();
-      img.src = sources[filteredElements[i].socialMediaType];
-      img.style.verticalAlign = 'middle';
-      img.style.height = filteredElements[i].height || 'auto';
-      img.style.width = filteredElements[i].width || 'auto';
-      img.style.marginTop = filteredElements[i].marginTop || '0';
-      img.style.marginRight = filteredElements[i].marginRight || '0';
-      img.style.marginBottom = filteredElements[i].marginBottom || '0';
-      img.style.marginLeft = filteredElements[i].marginLeft || '0';
+    linkWrapper.style.color = filteredElements[i].color || '#000000';
+
+    var text = document.createElement('P');
+    linkWrapper.appendChild(text);
+    text.id = filteredElements[i].id;
+    text.classList.add('footer-element');
+    var textContent = document.createTextNode(filteredElements[i].textContent);
+    text.appendChild(textContent);
+    text.style.display = 'inline-block';
+    if (filteredElements[i].id === 'first') {
+      firstElementTextColor = filteredElements[i].color || '#000000';
+      text.style.color = firstElementTextColor;
+    } else if (filteredElements[i].id === 'second') {
+      secondElementTextColor = filteredElements[i].color || '#000000';
+      text.style.color = secondElementTextColor;
+    } else if (filteredElements[i].id === 'third') {
+      thirdElementTextColor = filteredElements[i].color || '#000000';
+      text.style.color = thirdElementTextColor;
+    } else if (filteredElements[i].id === 'fourth') {
+      fourthElementTextColor = filteredElements[i].color || '#000000';
+      text.style.color = fourthElementTextColor;
+    }
+    text.style.fontFamily = filteredElements[i].fontName || 'Palatino-Bold, serif';
+    text.style.fontSize = filteredElements[i].fontSize || '16px';
+    text.style.fontWeight = filteredElements[i].fontWeight || 'normal';
+    text.style.height = '50px';
+    text.style.lineHeight = '50px';
+    text.style.whiteSpace = 'noWrap';
+  }
+
+  formatElements();
+
+  function formatElements() {
+    var el1 = document.getElementById('first');
+    var el2 = document.getElementById('second');
+    var el3 = document.getElementById('third');
+    var el4 = document.getElementById('fourth');
+    if (filteredElements.length === 1) {
+      el1.style.fontSize = '2em';
+      el1.style.fontWeight = '900';
+    } else if (filteredElements.length === 2) {
+      el1.style.marginRight = '50px';
+      el2.style.marginLeft = '50px';
+    } else if (filteredElements.length === 3) {
+      el1.style.marginRight = '50px';
+      el2.style.marginRight = '50px';
+    } else if (filteredElements.length === 4) {
+      el1.style.marginRight = '50px';
+      el2.style.marginRight = '50px';
+      el3.style.marginRight = '50px';
     }
   }
+
+  document.addEventListener('mouseover', function () {
+    if (event.target.className.toLowerCase() === 'footer-element') {
+      event.target.style.color = obj.footer.elementHoverColor || 'rgb(136, 136, 136)';
+      event.target.style.cursor = 'pointer';
+    }
+    });
+
+    document.addEventListener('mouseout', function () {
+      if (event.target.className.toLowerCase() === 'footer-element') {
+        if (event.target.id === 'first') {
+          event.target.style.color = firstElementTextColor;
+        } else if (event.target.id === 'second') {
+          event.target.style.color = secondElementTextColor;
+        } else if (event.target.id === 'third') {
+          event.target.style.color = thirdElementTextColor;
+        } else if (event.target.id === 'fourth') {
+          event.target.style.color = fourthElementTextColor;
+        }
+        event.target.style.cursor = 'pointer';
+      }
+      });
 
 }
