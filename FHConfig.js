@@ -4,7 +4,7 @@ var year = date.getFullYear();
 var month = date.getMonth() + 1;
 
 var FHConfig = {
-  toolType: 'Footer',
+  toolType: 'Modal',
   shortname: 'bodyglove',
   text: {
     fontPrimary: '',
@@ -13,14 +13,16 @@ var FHConfig = {
     headerExtraText: 'Powered by FareHarbor',
     headerExtraTextLink: 'http://www.fareharbor.com',
     headerExtraTextSize: '',
-    mainActionButton: 'Book Now',
+    bookButtonText: 'BOOK NOW',
+    bookButtonTextSize: '',
     globalTextAlign: '',
   },
   colors: {
     headerColor: '',
     headerTextColor: '',
-    mainButtonColor: '',
-    mainButtonTextColor: '',
+    headerExtraTextColor: '',
+    bookButtonColor: '',
+    bookButtonTextColor: '',
   },
   toolDetails: {
     modal: {

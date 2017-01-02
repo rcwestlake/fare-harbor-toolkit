@@ -37,21 +37,25 @@ function buildModalHTML(props) {
 function buildFHButton(props) {
   button = document.createElement('button');
   button.classList.add('FH-reservation-button');
-  button.textContent = props.text.mainActionButton;
-  button.style.position = 'fixed';
-  button.style.width = '130px';
-  button.style.height = '30px';
-  button.style.right = '20px';
+  button.textContent = props.text.bookButtonText;
+  button.style.backgroundColor = props.colors.bookButtonColor || '#dd5347';
   button.style.bottom = '20px';
   button.style.border = 'none';
   button.style.boxShadow = '0 1px 6px rgba(0,0,0,.06), 0 2px 32px rgba(0,0,0,.16)';
   button.style.cursor = 'pointer';
+  button.style.color = props.colors.bookButtonTextColor || '#ffffff';
+  button.style.fontSize = props.colors.bookButtonTextSize || '15px';
+  button.style.position = 'fixed';
+  button.style.right = '20px';
+  button.style.height = '60px';
+  button.style.width = '170px';
 
   return button;
 }
 
 function buildModalContainer(props) {
   modalContainer = document.createElement('div');
+  modalContainer.classList.add('FH-reservation-modal');
   modalContainer.style.color = props.colors.headerTextColor || 'white';
   modalContainer.style.backgroundColor = '#ffffff';
   modalContainer.style.borderRadius = '10px 10px 10px 10px';
@@ -60,7 +64,7 @@ function buildModalContainer(props) {
   modalContainer.style.display = 'none';
   modalContainer.style.fontFamily = props.text.fontPrimary || 'Tahoma, Geneva, sans-serif';
   modalContainer.style.position = 'fixed';
-  modalContainer.style.bottom = '80px';
+  modalContainer.style.bottom = '100px';
   modalContainer.style.right = '20px';
   modalContainer.style.height = '550px';
   modalContainer.style.width = '350px';
@@ -97,15 +101,19 @@ function buildExtraText(props) {
   if(props.text.headerExtraTextLink) {
     extraTitleText = document.createElement('a');
     extraTitleText.textContent = props.text.headerExtraText;
+    extraTitleText.style.color = props.colors.headerExtraTextColor || '#ffffff';
     extraTitleText.style.fontSize = '10px';
     extraTitleText.style.margin = '0px';
     extraTitleText.href = props.text.headerExtraTextLink;
     extraTitleText.target = '_blank';
+    extraTitleText.style.textDecoration = 'none';
 
     return extraTitleText;
   } else if(props.text.headerExtraText) {
     extraTitleText = document.createElement('p');
     extraTitleText.textContent = props.text.headerExtraText;
+    extraTitleText.style.color = props.colors.headerExtraTextColor || '#ffffff';
+    extraTitleText.style.textDecoration = 'none';
     extraTitleText.style.fontSize = '10px';
     extraTitleText.style.margin = '0px';
 
@@ -181,14 +189,16 @@ function addTextToCard(props, cards, index) {
   textContainer.style.minHeight = '100%';
   textContainer.style.minWidth = cards[index].icon ? '75%' : '100%';
   textContainer.style.textAlign = 'right';
+  textContainer.style.paddingTop = '15%';
 
   text.textContent = cards[index].text;
   text.style.display = 'inline-block';
   text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
-  text.style.color = props.cardFontsAndColors.mainTextColor || 'blue';
-  text.style.paddingTop = '15%';
-  text.style.paddingRight = '10%';
+  text.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
+  text.style.textDecoration = 'none';
+  text.style.borderBottom = '3px solid black';
   text.style.margin = '0px';
+  text.style.marginRight = '5%';
   text.href = cards[index].linkTo;
 
   textContainer.appendChild(text);
