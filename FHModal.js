@@ -147,20 +147,27 @@ function addCards(props) {
   }
 }
 
-function addCardToContainer(props, cards, i) {
+function addCardToContainer(props, cards, index) {
   var cardHeight = Math.floor(100 / cards.length);
-  
+
+  var cardContainer = document.createElement('a');
   var card = document.createElement('div');
 
-  card.style.height = '' + cardHeight + '%';
+  cardContainer.href = cards[index].linkTo;
+  cardContainer.style.display = 'block';
+  cardContainer.style.height = '' + cardHeight + '%';
+
+  if(index < cards.length - 1) {
+    cardContainer.style.borderBottom = props.colors.headerColor ?
+    '' + '1px solid ' + props.colors.headerColor :
+    '1px solid #2EA1D9';
+  }
+
   card.style.display = 'block';
 
-  if(i < cards.length - 1) {
-    card.style.borderBottom = props.colors.headerColor ?
-                                '' + '1px solid ' + props.colors.headerColor :
-                                '1px solid #2EA1D9';
-  }
-  return card
+  cardContainer.appendChild(card);
+
+  return cardContainer
 }
 
 function addTextToCard(props, cards, index) {
