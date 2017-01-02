@@ -149,7 +149,7 @@ function addCards(props) {
 
 function addCardToContainer(props, cards, i) {
   var cardHeight = Math.floor(100 / cards.length);
-
+  
   var card = document.createElement('div');
 
   card.style.height = '' + cardHeight + '%';
@@ -183,6 +183,7 @@ function addTextToCard(props, cards, index) {
   text.style.paddingRight = '10%';
   text.style.margin = '0px';
   text.href = cards[index].linkTo;
+
   textContainer.appendChild(text);
 
   if(cards[index].extraText) {
@@ -204,11 +205,13 @@ function addIcons(props, card, index) {
   if(card[index].icon) {
     iconContainer = document.createElement('div');
     icon = document.createElement('img');
+
     iconContainer.style.display = 'inline';
     iconContainer.style.float = 'left';
     iconContainer.style.paddingTop = '10%';
     iconContainer.style.paddingLeft = '3%';
     iconContainer.style.width = '20%';
+
     icon.src = card[index].icon;
     icon.style.height = 'auto';
     icon.style.width = 'auto';

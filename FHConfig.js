@@ -35,7 +35,7 @@ var FHConfig = {
             extraText: '',
             itemID: '',
             linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/?full-items=yes',
-            icon: 'images/ticket-icon-yellow.png',
+            icon: 'images/ticket-icon-blue.png',
           },
           {
             doesItExist: true,
