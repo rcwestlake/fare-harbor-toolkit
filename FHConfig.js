@@ -43,7 +43,7 @@ var FHConfig = {
             extraText: '',
             itemID: '',
             linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/',
-            icon: '',
+            icon: 'images/calendar-icon-blue.png',
           },
           {
             doesItExist: true,
