@@ -4,11 +4,15 @@ var year = date.getFullYear();
 var month = date.getMonth() + 1;
 
 var FHConfig = {
-  toolType: 'SearchInput',
+  toolType: 'Modal',
   shortname: 'bodyglove',
   text: {
     fontPrimary: '',
     headerText: 'Ticket Info',
+    headerTextSize: '',
+    headerExtraText: 'Powered by FareHarbor',
+    headerExtraTextLink: 'http://www.fareharbor.com',
+    headerExtraTextSize: '',
     mainActionButton: 'Book Now',
     globalTextAlign: '',
   },
@@ -54,15 +58,17 @@ var FHConfig = {
             linkTo: '',
           },
         ],
+        fontsAndColors: {
+          mainTextSize: '',
+          extraTextSize: '',
+          mainTextColor: '',
+          extraTextColor: '',
+        },
         marginsAndPadding: {
-          marginLeft: '',
-          marginRight: '',
-          marginTop: '',
-          marginBottom: '',
-          paddingLeft: '',
-          paddingRight: '',
-          paddingTop: '',
-          paddingBottom: '',
+          headerTextPaddingLeft: '',
+          headerTextPaddingTop: '',
+          headerTextPaddingRight: '',
+          headerTextPaddingBottom: '',
         },
       },
     },

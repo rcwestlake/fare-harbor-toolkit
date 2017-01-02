@@ -16,7 +16,8 @@ var toolCreator = (function() {
             colors: config.colors,
             cards: config.toolDetails.modal.cards,
             numberOfCards: config.toolDetails.modal.cards.numberOfCards,
-            marginsAndPadding: config.toolDetails.modal.cards.marginsAndPadding.global,
+            cardFontsAndColors: config.toolDetails.modal.cards.fontsAndColors,
+            marginsAndPadding: config.toolDetails.modal.cards.marginsAndPadding,
           }
       );
       case 'Footer':
