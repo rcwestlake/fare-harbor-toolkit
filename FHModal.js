@@ -5,6 +5,7 @@ var cardsContainer;
 var reservationTitleContainer;
 var reservationTitle;
 var extraTitleText;
+var textContainer;
 
 var FHModal = function(props) {
   function create(props) {
@@ -119,7 +120,7 @@ function buildCardsContainer(props) {
   return cardsContainer;
 }
 
-function addCards(props) { //remove breaks after returning from case statements
+function addCards(props) {
   switch (props.modalType.toLowerCase()) {
     case 'simple':
       var cards = props.cards.cardDetail.filter(function(card) {
@@ -128,10 +129,9 @@ function addCards(props) { //remove breaks after returning from case statements
 
       for(var i = 0; i < cards.length; i++) {
         var card = addCardToContainer(props, cards, i);
-        var text = addTextToCard(cards, i);
+        var text = addTextToCard(props, cards, i);
 
-        card.appendChild(text[0]);
-        text[1] ? card.appendChild(text[1]) : null
+        card.appendChild(textContainer);
         cardsContainer.appendChild(card);
       }
 
@@ -150,6 +150,8 @@ function addCardToContainer(props, cards, i) {
   var card = document.createElement('div');
 
   card.style.height = '' + cardHeight + '%';
+  card.style.display = 'block';
+
   if(i < cards.length - 1) {
     card.style.borderBottom = props.colors.headerColor ?
                                 '' + '1px solid ' + props.colors.headerColor :
@@ -158,23 +160,39 @@ function addCardToContainer(props, cards, i) {
   return card
 }
 
-function addTextToCard(cards, index) {
+function addTextToCard(props, cards, index) {
   var extraText;
+  textContainer = document.createElement('div');
   var text = cards[index].linkTo ?
               document.createElement('a') :
               document.createElement('p');
 
-  if(cards[index].extraText) {
-    extraText = document.createElement('p')
-    extraText.textContent = cards[index].extraText;
-    extraText.style.color = 'red';
-  }
+  textContainer.style.display = 'block';
+  textContainer.style.minHeight = '100%';
+  textContainer.style.minWidth = '100%';
+  textContainer.style.textAlign = 'right';
 
   text.textContent = cards[index].text;
-  text.style.color = 'red';
+  text.style.display = 'inline-block';
+  text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
+  text.style.color = props.cardFontsAndColors.mainTextColor || 'blue';
+  text.style.paddingTop = '15%';
+  text.style.paddingRight = '10%';
+  text.style.margin = '0px';
   text.href = cards[index].linkTo;
+  textContainer.appendChild(text);
 
-  return [text, extraText]
+  if(cards[index].extraText) {
+    extraText = document.createElement('p');
+    extraText.textContent = cards[index].extraText;
+    extraText.style.color = props.cardFontsAndColors.extraTextColor || 'red';
+    extraText.style.paddingTop = '5px';
+    extraText.style.paddingRight = '10%';
+    extraText.style.margin = '0px';
+    textContainer.appendChild(extraText);
+  }
+
+  return textContainer
 }
 
 document.addEventListener('click', function(e) {

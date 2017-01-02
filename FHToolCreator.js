@@ -16,6 +16,7 @@ var toolCreator = (function() {
             colors: config.colors,
             cards: config.toolDetails.modal.cards,
             numberOfCards: config.toolDetails.modal.cards.numberOfCards,
+            cardFontsAndColors: config.toolDetails.modal.cards.fontsAndColors,
             marginsAndPadding: config.toolDetails.modal.cards.marginsAndPadding,
           }
       );
