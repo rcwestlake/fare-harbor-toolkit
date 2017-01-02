@@ -35,6 +35,7 @@ var FHConfig = {
             extraText: '',
             itemID: '',
             linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/?full-items=yes',
+            icon: 'images/ticket-icon-yellow.png',
           },
           {
             doesItExist: true,
@@ -42,6 +43,7 @@ var FHConfig = {
             extraText: '',
             itemID: '',
             linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/',
+            icon: '',
           },
           {
             doesItExist: true,
@@ -49,6 +51,7 @@ var FHConfig = {
             extraText: '555-555-5555',
             itemID: '',
             linkTo: '',
+            icon: '',
           },
           {
             doesItExist: false,
@@ -56,6 +59,7 @@ var FHConfig = {
             extraText: '',
             itemID: '',
             linkTo: '',
+            icon: '',
           },
         ],
         fontsAndColors: {

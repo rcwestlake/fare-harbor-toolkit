@@ -6,6 +6,7 @@ var reservationTitleContainer;
 var reservationTitle;
 var extraTitleText;
 var textContainer;
+var iconContainer;
 
 var FHModal = function(props) {
   function create(props) {
@@ -30,7 +31,7 @@ function buildModalHTML(props) {
   body.appendChild(modalContainer);
   modalContainer.appendChild(cardsContainer);
 
-  addCards(props)
+  addCards(props);
 }
 
 function buildFHButton(props) {
@@ -51,19 +52,19 @@ function buildFHButton(props) {
 
 function buildModalContainer(props) {
   modalContainer = document.createElement('div');
-  modalContainer.style.position = 'fixed';
+  modalContainer.style.color = props.colors.headerTextColor || 'white';
+  modalContainer.style.backgroundColor = '#ffffff';
+  modalContainer.style.borderRadius = '10px 10px 10px 10px';
+  modalContainer.style.boxShadow = '0 3px 5px rgba(0,0,0,.2)';
+  modalContainer.style.boxSizing = 'border-box';
   modalContainer.style.display = 'none';
+  modalContainer.style.fontFamily = props.text.fontPrimary || 'Tahoma, Geneva, sans-serif';
+  modalContainer.style.position = 'fixed';
   modalContainer.style.bottom = '80px';
   modalContainer.style.right = '20px';
   modalContainer.style.height = '550px';
   modalContainer.style.width = '350px';
-  modalContainer.style.boxSizing = 'border-box';
-  modalContainer.style.backgroundColor = '#ffffff';
   modalContainer.style.textAlign = props.text.globalTextAlign || 'center';
-  modalContainer.style.color = props.colors.headerTextColor || 'white';
-  modalContainer.style.fontFamily = props.text.fontPrimary || 'Tahoma, Geneva, sans-serif';
-  modalContainer.style.borderRadius = '10px 10px 10px 10px';
-  modalContainer.style.boxShadow = '0 3px 5px rgba(0,0,0,.2)';
 
   return modalContainer;
 }
@@ -129,9 +130,11 @@ function addCards(props) {
 
       for(var i = 0; i < cards.length; i++) {
         var card = addCardToContainer(props, cards, i);
-        var text = addTextToCard(props, cards, i);
+        addTextToCard(props, cards, i);
+        addIcons(props, cards, i);
 
         card.appendChild(textContainer);
+        cards[i].icon ? card.appendChild(iconContainer): null;
         cardsContainer.appendChild(card);
       }
 
@@ -167,9 +170,9 @@ function addTextToCard(props, cards, index) {
               document.createElement('a') :
               document.createElement('p');
 
-  textContainer.style.display = 'block';
+  textContainer.style.display = 'inline-block';
   textContainer.style.minHeight = '100%';
-  textContainer.style.minWidth = '100%';
+  textContainer.style.minWidth = cards[index].icon ? '75%' : '100%';
   textContainer.style.textAlign = 'right';
 
   text.textContent = cards[index].text;
@@ -193,6 +196,26 @@ function addTextToCard(props, cards, index) {
   }
 
   return textContainer
+}
+
+function addIcons(props, card, index) {
+  var icon;
+
+  if(card[index].icon) {
+    iconContainer = document.createElement('div');
+    icon = document.createElement('img');
+    iconContainer.style.display = 'inline';
+    iconContainer.style.float = 'left';
+    iconContainer.style.paddingTop = '10%';
+    iconContainer.style.paddingLeft = '3%';
+    iconContainer.style.width = '20%';
+    icon.src = card[index].icon;
+    icon.style.height = 'auto';
+    icon.style.width = 'auto';
+    iconContainer.appendChild(icon);
+  }
+
+  return iconContainer
 }
 
 document.addEventListener('click', function(e) {
