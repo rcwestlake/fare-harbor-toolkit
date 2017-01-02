@@ -8,7 +8,7 @@ var FHConfig = {
   shortname: 'bodyglove',
   text: {
     fontPrimary: '',
-    headerText: 'Ticket Info',
+    headerText: 'Reservation Info',
     headerTextSize: '',
     headerExtraText: 'Powered by FareHarbor',
     headerExtraTextLink: 'http://www.fareharbor.com',
@@ -49,8 +49,8 @@ var FHConfig = {
           },
           {
             doesItExist: true,
-            text: 'Tickets by phone',
-            extraText: '555-555-5555',
+            text: '"One of the best experiences of my life. So amazing"',
+            extraText: '-Jenna, customer in 2016',
             itemID: '',
             linkTo: '',
             icon: '',

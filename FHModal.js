@@ -78,7 +78,7 @@ function buildHeaderContainer(props) {
   reservationTitleContainer.style.height = '15%';
   reservationTitleContainer.style.boxSizing = 'border-box';
   reservationTitleContainer.style.paddingTop = '0px';
-  reservationTitleContainer.style.backgroundColor = props.colors.headerColor || '#2EA1D9';
+  reservationTitleContainer.style.backgroundColor = props.colors.headerColor || '#dd5347';
   reservationTitleContainer.style.borderRadius = '10px 10px 0px 0px';
 
   return reservationTitleContainer;
@@ -196,7 +196,6 @@ function addTextToCard(props, cards, index) {
   text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
   text.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
   text.style.textDecoration = 'none';
-  text.style.borderBottom = '3px solid black';
   text.style.margin = '0px';
   text.style.marginRight = '5%';
   text.href = cards[index].linkTo;
@@ -206,10 +205,10 @@ function addTextToCard(props, cards, index) {
   if(cards[index].extraText) {
     extraText = document.createElement('p');
     extraText.textContent = cards[index].extraText;
-    extraText.style.color = props.cardFontsAndColors.extraTextColor || 'red';
-    extraText.style.paddingTop = '5px';
-    extraText.style.paddingRight = '10%';
+    extraText.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
     extraText.style.margin = '0px';
+    extraText.style.paddingTop = '5px';
+    extraText.style.marginRight = '5%';
     textContainer.appendChild(extraText);
   }
 
