@@ -156,7 +156,6 @@ function addCardToContainer(props, cards, index) {
   var cardHeight = Math.floor(100 / cards.length);
 
   var cardContainer = document.createElement('a');
-  var card = document.createElement('div');
 
   cardContainer.href = cards[index].linkTo;
   cardContainer.style.display = 'block';
@@ -168,10 +167,6 @@ function addCardToContainer(props, cards, index) {
     '1px solid #2EA1D9';
   }
 
-  card.style.display = 'block';
-
-  cardContainer.appendChild(card);
-
   return cardContainer
 }
 
@@ -182,20 +177,22 @@ function addTextToCard(props, cards, index) {
               document.createElement('a') :
               document.createElement('p');
 
+  textContainer.style.boxSizing = 'border-box';
   textContainer.style.display = 'inline-block';
   textContainer.style.minHeight = '100%';
-  textContainer.style.minWidth = cards[index].icon ? '75%' : '100%';
+  textContainer.style.maxWidth = cards[index].icon ? '75%' : '100%';
+  textContainer.style.width = cards[index].icon ? '75%' : '100%';
   textContainer.style.textAlign = 'right';
-  textContainer.style.paddingTop = '15%';
 
   text.textContent = cards[index].text;
+  text.href = cards[index].linkTo;
   text.style.display = 'inline-block';
   text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
   text.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
   text.style.textDecoration = 'none';
   text.style.margin = '0px';
   text.style.marginRight = '5%';
-  text.href = cards[index].linkTo;
+  text.style.paddingTop = '25%';
 
   textContainer.appendChild(text);
 
@@ -204,7 +201,6 @@ function addTextToCard(props, cards, index) {
     extraText.textContent = cards[index].extraText;
     extraText.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
     extraText.style.margin = '0px';
-    extraText.style.paddingTop = '5px';
     extraText.style.marginRight = '5%';
     textContainer.appendChild(extraText);
   }
@@ -223,6 +219,7 @@ function addIcons(props, card, index) {
     iconContainer.style.float = 'left';
     iconContainer.style.paddingTop = '10%';
     iconContainer.style.paddingLeft = '3%';
+    iconContainer.style.maxWidth = '20%';
     iconContainer.style.width = '20%';
 
     icon.src = card[index].icon;

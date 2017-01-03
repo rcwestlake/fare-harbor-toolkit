@@ -49,7 +49,7 @@ var FHConfig = {
           },
           {
             doesItExist: true,
-            text: '"One of the best experiences of my life. So amazing"',
+            text: '"So amazing"',
             extraText: '-Jenna, customer in 2016',
             itemID: '',
             linkTo: '',
