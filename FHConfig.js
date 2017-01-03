@@ -73,7 +73,7 @@ var FHConfig = {
       },
     },
     searchInputContainer: {
-      borderDebug: true,
+      borderDebug: false,
       marginTop: '',
       marginRight: '',
       marginBottom: '',
@@ -98,12 +98,6 @@ var FHConfig = {
         rightInputFieldTextFontName: '',
         leftInputFieldTextFontSize: '',
         rightInputFieldTextFontSize: '',
-      },
-      inputFieldHeightAndWidth: {
-        leftInputFieldHeight: '',
-        leftInputFieldWidth: '',
-        rightInputFieldHeight: '',
-        rightInputFieldWidth: '',
       },
       inputFieldBorders: {
         leftInputFieldBorderBottomColor: '',

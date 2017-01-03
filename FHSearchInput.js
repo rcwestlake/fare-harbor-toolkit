@@ -25,24 +25,32 @@ function buildSearchInputHTML(obj) {
   var detailsButton;
   var detailsButtonExists = obj.doesDetailsButtonExist;
   var buttonLinkWrapper;
-
   var stackDependentStyle;
+  var mobileView;
 
-  if (obj.stackOrientation === 'horizontal') {
+  if (window.innerWidth < 700) {
+    mobileView = true;
+  } else {
+    mobileView = false;
+  }
+
+  if (mobileView) {
     stackDependentStyle = {
-      leftInputFieldDisplay: 'inline-block',
-      rightInputFieldDisplay: 'inline-block',
-      leftInputFieldMarginTop: '0px',
-      leftInputFieldMarginRight: '5px',
-      leftInputFieldMarginBottom: '0px',
-      leftInputFieldMarginLeft: '5px',
-      rightInputFieldMarginTop: '0px',
-      rightInputFieldMarginRight: '5px',
-      rightInputFieldMarginBottom: '0px',
-      rightInputFieldMarginLeft: '5px',
-      detailsButtonMarginTop: '20px',
-      detailsButtonMarginBottom: '20px',
-    }
+      leftInputFieldDisplay: 'block',
+      rightInputFieldDisplay: 'block',
+      leftInputFieldMarginTop: '15px',
+      leftInputFieldMarginRight: 'auto',
+      leftInputFieldMarginBottom: '15px',
+      leftInputFieldMarginLeft: 'auto',
+      rightInputFieldMarginTop: '15px',
+      rightInputFieldMarginRight: 'auto',
+      rightInputFieldMarginBottom: '15px',
+      rightInputFieldMarginLeft: 'auto',
+      detailsButtonMarginTop: '40px',
+      detailsButtonMarginBottom: '40px',
+      leftInputFieldWidth: '200px',
+      rightInputFieldWidth: '200px',
+      }
   } else if (obj.stackOrientation === 'vertical') {
     stackDependentStyle = {
       leftInputFieldDisplay: 'block',
@@ -57,6 +65,25 @@ function buildSearchInputHTML(obj) {
       rightInputFieldMarginLeft: 'auto',
       detailsButtonMarginTop: '40px',
       detailsButtonMarginBottom: '40px',
+      leftInputFieldWidth: '30vw',
+      rightInputFieldWidth: '30vw',
+      }
+  } else {
+    stackDependentStyle = {
+      leftInputFieldDisplay: 'inline-block',
+      rightInputFieldDisplay: 'inline-block',
+      leftInputFieldMarginTop: '0px',
+      leftInputFieldMarginRight: '5px',
+      leftInputFieldMarginBottom: '0px',
+      leftInputFieldMarginLeft: '5px',
+      rightInputFieldMarginTop: '0px',
+      rightInputFieldMarginRight: '5px',
+      rightInputFieldMarginBottom: '0px',
+      rightInputFieldMarginLeft: '5px',
+      detailsButtonMarginTop: '20px',
+      detailsButtonMarginBottom: '20px',
+      leftInputFieldWidth: '200px',
+      rightInputFieldWidth: '200px',
     }
   }
 
@@ -105,12 +132,12 @@ function buildSearchInputHTML(obj) {
       color: obj.inputFieldText.leftInputFieldTextColor || '#A09C9C',
       fontFamily: obj.inputFieldText.leftInputFieldTextFontName || 'Palatino-Roman, serif',
       fontSize: obj.inputFieldText.leftInputFieldTextFontSize || '22px',
-      height: obj.inputFieldHeightAndWidth.leftInputFieldHeight || '39px',
+      height: '39px',
       marginTop: stackDependentStyle.leftInputFieldMarginTop,
       marginRight: stackDependentStyle.leftInputFieldMarginRight,
       marginBottom: stackDependentStyle.leftInputFieldMarginBottom,
       marginLeft: stackDependentStyle.leftInputFieldMarginLeft,
-      width: obj.inputFieldHeightAndWidth.leftInputFieldWidth || '200px',
+      width: stackDependentStyle.leftInputFieldWidth,
     }
 
     var leftFieldInput = document.createElement('SELECT');
@@ -183,12 +210,12 @@ function buildSearchInputHTML(obj) {
       color: obj.inputFieldText.rightInputFieldTextColor || '#A09C9C',
       fontFamily: obj.inputFieldText.rightInputFieldTextFontName || 'Palatino-Roman, serif',
       fontSize: obj.inputFieldText.rightInputFieldTextFontSize || '22px',
-      height: obj.inputFieldHeightAndWidth.rightInputFieldHeight || '39px',
+      height: '39px',
       marginTop: stackDependentStyle.rightInputFieldMarginTop,
       marginRight: stackDependentStyle.rightInputFieldMarginRight,
       marginBottom: stackDependentStyle.rightInputFieldMarginBottom,
       marginLeft: stackDependentStyle.rightInputFieldMarginLeft,
-      width: obj.inputFieldHeightAndWidth.rightInputFieldWidth ||'200px',
+      width: stackDependentStyle.rightInputFieldWidth,
     }
 
     var rightFieldInput = document.createElement('SELECT');

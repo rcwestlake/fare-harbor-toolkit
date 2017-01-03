@@ -37,7 +37,6 @@ var toolCreator = (function() {
             stackOrientation: config.toolDetails.inputFields.stackOrientation,
             inputFieldText: config.toolDetails.inputFields.inputFieldText,
             inputFieldTypes: config.toolDetails.inputFields.inputFieldTypes,
-            inputFieldHeightAndWidth: config.toolDetails.inputFields.inputFieldHeightAndWidth,
             inputFieldBorders: config.toolDetails.inputFields.inputFieldBorders,
             inputFieldBackgroundColor: config.toolDetails.inputFields.inputFieldBackgroundColor,
             doesDetailsButtonExist: config.toolDetails.buttons.doesDetailsButtonExist,
