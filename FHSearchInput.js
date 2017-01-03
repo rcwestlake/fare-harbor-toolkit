@@ -7,16 +7,12 @@ var FHSearchInput = function(obj) {
   return create(obj)
 }
 
-//just set default margins and padding
-
 function buildSearchInputHTML(obj) {
 
   var eventInputField;
-  var eventInputFieldHTMLType;
   var eventInputFieldTextContent;
   var eventInputClass;
   var dateInputField;
-  var dateInputFieldHTMLType;
   var dateInputFieldTextContent;
   var dateInputClass;
   var companyName = obj.shortname;
@@ -28,7 +24,6 @@ function buildSearchInputHTML(obj) {
   var container;
   var detailsButton;
   var detailsButtonExists = obj.doesDetailsButtonExist;
-  // var mainURL;
   var buttonLinkWrapper;
 
   createContainer(obj);
@@ -56,21 +51,18 @@ function buildSearchInputHTML(obj) {
   createLeftInputField(obj);
 
   function createLeftInputField(obj) {
-    var leftFieldHTMLType = obj.inputFieldTypes.leftInputFieldHTMLType || 'SELECT';
     var leftFieldFunction = obj.inputFieldTypes.leftInputFieldFunction || 'eventPicker';
 
     var leftFieldInputStyles = {
       backgroundColor: obj.inputFieldBackgroundColor.leftInputFieldBackgroundColor || '#ffffff',
-      backgroundPosition: obj.inputFieldIcons.leftInputFieldIconPosition || '10px 1px',
-      backgroundSize: obj.inputFieldIcons.leftInputFieldIconSize || '28px 39px',
-      borderBottomWidth: obj.inputFieldBorders.leftInputFieldBorderBottomWidth || '1px',
-      borderTopWidth: obj.inputFieldBorders.leftInputFieldBorderTopWidth || '1px',
-      borderRightWidth: obj.inputFieldBorders.leftInputFieldBorderRightWidth || '1px',
-      borderLeftWidth: obj.inputFieldBorders.leftInputFieldBorderLeftWidth || '1px',
-      borderBottomStyle: obj.inputFieldBorders.leftInputFieldBorderBottomStyle || 'solid',
-      borderTopStyle: obj.inputFieldBorders.leftInputFieldBorderTopStyle || 'solid',
-      borderRightStyle: obj.inputFieldBorders.leftInputFieldBorderRightStyle || 'solid',
-      borderLeftStyle: obj.inputFieldBorders.leftInputFieldBorderLeftStyle || 'solid',
+      borderBottomWidth: '1px',
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderLeftWidth: '1px',
+      borderBottomStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderLeftStyle: 'solid',
       borderBottomColor: obj.inputFieldBorders.leftInputFieldBorderBottomColor || '#979797',
       borderTopColor: obj.inputFieldBorders.leftInputFieldBorderTopColor || '#979797',
       borderRightColor: obj.inputFieldBorders.leftInputFieldBorderRightColor || '#979797',
@@ -79,25 +71,17 @@ function buildSearchInputHTML(obj) {
       fontFamily: obj.inputFieldText.leftInputFieldTextFontName || 'Palatino-Roman, serif',
       fontSize: obj.inputFieldText.leftInputFieldTextFontSize || '22px',
       height: obj.inputFieldHeightAndWidth.leftInputFieldHeight || '39px',
-      marginTop: obj.inputFieldMarginsAndPadding.leftInputFieldMarginTop || '0px',
-      marginRight: obj.inputFieldMarginsAndPadding.leftInputFieldMarginRight || '5px',
-      marginBottom: obj.inputFieldMarginsAndPadding.leftInputFieldMarginBottom || '0px',
-      marginLeft: obj.inputFieldMarginsAndPadding.leftInputFieldMarginLeft || '5px',
-      paddingTop: obj.inputFieldMarginsAndPadding.leftInputFieldPaddingTop || '0px',
-      paddingRight: obj.inputFieldMarginsAndPadding.leftInputFieldPaddingRight || '0px',
-      paddingBottom: obj.inputFieldMarginsAndPadding.leftInputFieldPaddingBottom || '0px',
-      paddingLeft: obj.inputFieldMarginsAndPadding.leftInputFieldPaddingLeft || '0px',
-      textAlign: obj.inputFieldText.leftInputFieldTextAlign || 'center',
+      marginTop: '0px',
+      marginRight: '5px',
+      marginBottom: '0px',
+      marginLeft: '5px',
       width: obj.inputFieldHeightAndWidth.leftInputFieldWidth || '200px',
     }
 
-    var leftFieldInput = document.createElement(leftFieldHTMLType);
+    var leftFieldInput = document.createElement('SELECT');
     container.appendChild(leftFieldInput);
     leftFieldInput.classList.add('left-field-input');
-    leftFieldInput.style.background = leftFieldInputStyles.background;
     leftFieldInput.style.backgroundColor = leftFieldInputStyles.backgroundColor;
-    leftFieldInput.style.backgroundPosition = leftFieldInputStyles.backgroundPosition;
-    leftFieldInput.style.backgroundSize = leftFieldInputStyles.backgroundSize;
     leftFieldInput.style.borderBottomWidth = leftFieldInputStyles.borderBottomWidth;
     leftFieldInput.style.borderTopWidth = leftFieldInputStyles.borderTopWidth;
     leftFieldInput.style.borderRightWidth = leftFieldInputStyles.borderRightWidth;
@@ -118,18 +102,12 @@ function buildSearchInputHTML(obj) {
     leftFieldInput.style.marginRight = leftFieldInputStyles.marginRight;
     leftFieldInput.style.marginBottom = leftFieldInputStyles.marginBottom;
     leftFieldInput.style.marginLeft = leftFieldInputStyles.marginLeft;
-    leftFieldInput.style.paddingTop = leftFieldInputStyles.paddingTop;
-    leftFieldInput.style.paddingRight = leftFieldInputStyles.paddingRight;
-    leftFieldInput.style.paddingBottom = leftFieldInputStyles.paddingBottom;
-    leftFieldInput.style.paddingLeft = leftFieldInputStyles.paddingLeft;
-    leftFieldInput.style.textAlign = leftFieldInputStyles.textAlign;
     leftFieldInput.style.width = leftFieldInputStyles.width;
 
     assignLeftFieldFunction(
       {
       func: leftFieldFunction,
       input: leftFieldInput,
-      type: leftFieldHTMLType,
       text: obj.inputFieldText.leftInputFieldTextContent,
     })
   }
@@ -137,12 +115,10 @@ function buildSearchInputHTML(obj) {
   function assignLeftFieldFunction(options) {
     if (options.func === 'eventPicker') {
       eventInputField = options.input;
-      eventInputFieldHTMLType = options.type;
       eventInputFieldTextContent = options.text || 'Which Event?';
       eventInputClass = 'left-field-input';
     } else if (options.func === 'datePicker') {
       dateInputField = options.input;
-      dateInputFieldHTMLType = options.type;
       dateInputFieldTextContent = options.text || 'When?';
       dateInputClass = 'left-field-input';
     }
@@ -151,21 +127,18 @@ function buildSearchInputHTML(obj) {
   createRightInputField(obj);
 
   function createRightInputField(obj) {
-    var rightFieldHTMLType = obj.inputFieldTypes.rightmostFieldHTMLType || 'SELECT';
     var rightFieldFunction = obj.inputFieldTypes.rightInputFieldFunction || 'datePicker';
 
     var rightFieldInputStyles = {
       backgroundColor: obj.inputFieldBackgroundColor.rightInputFieldBackgroundColor || '#ffffff',
-      backgroundPosition: obj.inputFieldIcons.rightInputFieldIconPosition || '10px 5px',
-      backgroundSize: obj.inputFieldIcons.rightInputFieldIconSize || '32px 32px',
-      borderBottomWidth: obj.inputFieldBorders.rightInputFieldBorderBottomWidth || '1px',
-      borderTopWidth: obj.inputFieldBorders.rightInputFieldBorderTopWidth || '1px',
-      borderRightWidth: obj.inputFieldBorders.rightInputFieldBorderRightWidth || '1px',
-      borderLeftWidth: obj.inputFieldBorders.rightInputFieldBorderLeftWidth || '1px',
-      borderBottomStyle: obj.inputFieldBorders.rightInputFieldBorderBottomStyle || 'solid',
-      borderTopStyle: obj.inputFieldBorders.rightInputFieldBorderTopStyle || 'solid',
-      borderRightStyle: obj.inputFieldBorders.rightInputFieldBorderRightStyle || 'solid',
-      borderLeftStyle: obj.inputFieldBorders.rightInputFieldBorderLeftStyle || 'solid',
+      borderBottomWidth: '1px',
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderLeftWidth: '1px',
+      borderBottomStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderLeftStyle: 'solid',
       borderBottomColor: obj.inputFieldBorders.rightInputFieldBorderBottomColor || '#979797',
       borderTopColor: obj.inputFieldBorders.rightInputFieldBorderTopColor || '#979797',
       borderRightColor: obj.inputFieldBorders.rightInputFieldBorderRightColor || '#979797',
@@ -174,25 +147,17 @@ function buildSearchInputHTML(obj) {
       fontFamily: obj.inputFieldText.rightInputFieldTextFontName || 'Palatino-Roman, serif',
       fontSize: obj.inputFieldText.rightInputFieldTextFontSize || '22px',
       height: obj.inputFieldHeightAndWidth.rightInputFieldHeight || '39px',
-      marginTop: obj.inputFieldMarginsAndPadding.rightInputFieldMarginTop || '0px',
-      marginRight: obj.inputFieldMarginsAndPadding.rightInputFieldMarginRight || '5px',
-      marginBottom: obj.inputFieldMarginsAndPadding.rightInputFieldMarginBottom || '0px',
-      marginLeft: obj.inputFieldMarginsAndPadding.rightInputFieldMarginLeft || '5px',
-      paddingTop: obj.inputFieldMarginsAndPadding.rightInputFieldPaddingTop || '0px',
-      paddingRight: obj.inputFieldMarginsAndPadding.rightInputFieldPaddingRight || '0px',
-      paddingBottom: obj.inputFieldMarginsAndPadding.rightInputFieldPaddingBottom || '0px',
-      paddingLeft: obj.inputFieldMarginsAndPadding.rightInputFieldPaddingLeft || '0px',
-      textAlign: obj.inputFieldText.rightInputFieldTextAlign || 'center',
+      marginTop: '0px',
+      marginRight: '5px',
+      marginBottom: '0px',
+      marginLeft: '5px',
       width: obj.inputFieldHeightAndWidth.rightInputFieldWidth ||'200px',
     }
 
-    var rightFieldInput = document.createElement(rightFieldHTMLType);
+    var rightFieldInput = document.createElement('SELECT');
     container.appendChild(rightFieldInput);
     rightFieldInput.classList.add('right-field-input');
-    rightFieldInput.style.background = rightFieldInputStyles.background;
     rightFieldInput.style.backgroundColor = rightFieldInputStyles.backgroundColor;
-    rightFieldInput.style.backgroundPosition = rightFieldInputStyles.backgroundPosition;
-    rightFieldInput.style.backgroundSize = rightFieldInputStyles.backgroundSize;
     rightFieldInput.style.borderBottomWidth = rightFieldInputStyles.borderBottomWidth;
     rightFieldInput.style.borderTopWidth = rightFieldInputStyles.borderTopWidth;
     rightFieldInput.style.borderRightWidth = rightFieldInputStyles.borderRightWidth;
@@ -213,18 +178,12 @@ function buildSearchInputHTML(obj) {
     rightFieldInput.style.marginRight = rightFieldInputStyles.marginRight;
     rightFieldInput.style.marginBottom = rightFieldInputStyles.marginBottom;
     rightFieldInput.style.marginLeft = rightFieldInputStyles.marginLeft;
-    rightFieldInput.style.paddingTop = rightFieldInputStyles.paddingTop;
-    rightFieldInput.style.paddingRight = rightFieldInputStyles.paddingRight;
-    rightFieldInput.style.paddingBottom = rightFieldInputStyles.paddingBottom;
-    rightFieldInput.style.paddingLeft = rightFieldInputStyles.paddingLeft;
-    rightFieldInput.style.textAlign = rightFieldInputStyles.textAlign;
     rightFieldInput.style.width = rightFieldInputStyles.width;
 
     assignRightFieldFunction(
       {
       func: rightFieldFunction,
       input: rightFieldInput,
-      type: rightFieldHTMLType,
       text: obj.inputFieldText.rightInputFieldTextContent,
     });
   }
@@ -232,12 +191,10 @@ function buildSearchInputHTML(obj) {
   function assignRightFieldFunction(options) {
     if (options.func === 'eventPicker') {
       eventInputField = options.input;
-      eventInputFieldHTMLType = options.type;
       eventInputFieldTextContent = options.text || 'Which Event?';
       eventInputClass = 'right-field-input';
     } else if (options.func === 'datePicker') {
       dateInputField = options.input;
-      dateInputFieldHTMLType = options.type;
       dateInputFieldTextContent = options.text || 'When?';
       dateInputClass = 'right-field-input';
     }
@@ -250,32 +207,28 @@ function buildSearchInputHTML(obj) {
 
     var goButtonStyles = {
       backgroundColor: obj.buttonsBackgroundColor.goButtonBackgroundColor || '#3D89DF',
-      borderBottomWidth: obj.buttonsBorders.goButtonBorderBottomWidth || '1px',
-      borderTopWidth: obj.buttonsBorders.goButtonBorderTopWidth || '1px',
-      borderRightWidth: obj.buttonsBorders.goButtonBorderRightWidth || '1px',
-      borderLeftWidth: obj.buttonsBorders.goButtonBorderLeftWidth || '1px',
-      borderBottomStyle: obj.buttonsBorders.goButtonBorderBottomStyle || 'solid',
-      borderTopStyle: obj.buttonsBorders.goButtonBorderTopStyle || 'solid',
-      borderRightStyle: obj.buttonsBorders.goButtonBorderRightStyle || 'solid',
-      borderLeftStyle: obj.buttonsBorders.goButtonBorderLeftStyle || 'solid',
+      borderBottomWidth: '1px',
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderLeftWidth: '1px',
+      borderBottomStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderLeftStyle: 'solid',
       borderBottomColor: obj.buttonsBorders.goButtonBorderBottomColor || '#8CC0FB',
       borderTopColor: obj.buttonsBorders.goButtonBorderTopColor || '#8CC0FB',
       borderRightColor: obj.buttonsBorders.goButtonBorderRightColor || '#8CC0FB',
       borderLeftColor: obj.buttonsBorders.goButtonBorderLeftColor || '#8CC0FB',
-      borderRadius: obj.buttonsBorders.goButtonBorderRadius || '8px',
-      boxShadow: obj.buttonsBellsAndWhistles.goButtonBoxShadow || '0 3px 3px 0 rgba(0,0,0,0.50)',
+      borderRadius: '8px',
+      boxShadow: '0 3px 3px 0 rgba(0,0,0,0.50)',
       color: obj.buttonsText.goButtonTextColor || '#000000',
       fontFamily: obj.buttonsText.goButtonTextFontName || 'Palatino-Bold, serif',
       fontSize: obj.buttonsText.goButtonTextFontSize || '25px',
       height: obj.buttonsHeightAndWidth.goButtonHeight || '39px',
-      marginTop: obj.buttonsMarginsAndPadding.goButtonMarginTop || '0px',
-      marginRight: obj.buttonsMarginsAndPadding.goButtonMarginRight || '10px',
-      marginBottom: obj.buttonsMarginsAndPadding.goButtonMarginBottom || '0px',
-      marginLeft: obj.buttonsMarginsAndPadding.goButtonMarginLeft || '10px',
-      paddingTop: obj.buttonsMarginsAndPadding.goButtonPaddingTop || '0px',
-      paddingRight: obj.buttonsMarginsAndPadding.goButtonPaddingRight || '0px',
-      paddingBottom: obj.buttonsMarginsAndPadding.goButtonPaddingBottom || '0px',
-      paddingLeft: obj.buttonsMarginsAndPadding.goButtonPaddingLeft || '0px',
+      marginTop: '0px',
+      marginRight: '10px',
+      marginBottom: '0px',
+      marginLeft: '10px',
       width: obj.buttonsHeightAndWidth.goButtonWidth || '105px',
     }
 
@@ -311,10 +264,6 @@ function buildSearchInputHTML(obj) {
     goButton.style.marginRight = goButtonStyles.marginRight;
     goButton.style.marginBottom = goButtonStyles.marginBottom;
     goButton.style.marginLeft = goButtonStyles.marginLeft;
-    goButton.style.paddingTop = goButtonStyles.paddingTop;
-    goButton.style.paddingRight = goButtonStyles.paddingRight;
-    goButton.style.paddingBottom = goButtonStyles.paddingBottom;
-    goButton.style.paddingLeft = goButtonStyles.paddingLeft;
     goButton.style.width = goButtonStyles.width;
   }
 
@@ -327,32 +276,28 @@ function buildSearchInputHTML(obj) {
 
     var detailsButtonStyles = {
       backgroundColor: obj.buttonsBackgroundColor.detailsButtonBackgroundColor || '#3D89DF',
-      borderBottomWidth: obj.buttonsBorders.detailsButtonBorderBottomWidth || '1px',
-      borderTopWidth: obj.buttonsBorders.detailsButtonBorderTopWidth || '1px',
-      borderRightWidth: obj.buttonsBorders.detailsButtonBorderRightWidth || '1px',
-      borderLeftWidth: obj.buttonsBorders.detailsButtonBorderLeftWidth || '1px',
-      borderBottomStyle: obj.buttonsBorders.detailsButtonBorderBottomStyle || 'solid',
-      borderTopStyle: obj.buttonsBorders.detailsButtonBorderTopStyle || 'solid',
-      borderRightStyle: obj.buttonsBorders.detailsButtonBorderRightStyle || 'solid',
-      borderLeftStyle: obj.buttonsBorders.detailsButtonBorderLeftStyle || 'solid',
+      borderBottomWidth: '1px',
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderLeftWidth: '1px',
+      borderBottomStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderLeftStyle: 'solid',
       borderBottomColor: obj.buttonsBorders.detailsButtonBorderBottomColor || '#8CC0FB',
       borderTopColor: obj.buttonsBorders.detailsButtonBorderTopColor || '#8CC0FB',
       borderRightColor: obj.buttonsBorders.detailsButtonBorderRightColor || '#8CC0FB',
       borderLeftColor: obj.buttonsBorders.detailsButtonBorderLeftColor || '#8CC0FB',
-      borderRadius: obj.buttonsBorders.detailsButtonBorderRadius || '8px',
-      boxShadow: obj.buttonsBellsAndWhistles.detailsButtonBoxShadow || '0 3px 3px 0 rgba(0,0,0,0.50)',
+      borderRadius: '8px',
+      boxShadow: '0 3px 3px 0 rgba(0,0,0,0.50)',
       color: obj.buttonsText.detailsButtonTextColor || '#000000',
       fontFamily: obj.buttonsText.detailsButtonTextFontName || 'Palatino-Bold, serif',
       fontSize: obj.buttonsText.detailsButtonTextFontSize || '25px',
       height: obj.buttonsHeightAndWidth.detailsButtonHeight || 'auto',
-      marginTop: obj.buttonsMarginsAndPadding.detailsButtonMarginTop || '10px',
-      marginRight: obj.buttonsMarginsAndPadding.detailsButtonMarginRight || 'auto',
-      marginBottom: obj.buttonsMarginsAndPadding.detailsButtonMarginBottom || '10px',
-      marginLeft: obj.buttonsMarginsAndPadding.detailsButtonMarginLeft || 'auto',
-      paddingTop: obj.buttonsMarginsAndPadding.detailsButtonPaddingTop || '5px',
-      paddingRight: obj.buttonsMarginsAndPadding.detailsButtonPaddingRight || '5px',
-      paddingBottom: obj.buttonsMarginsAndPadding.detailsButtonPaddingBottom || '5px',
-      paddingLeft: obj.buttonsMarginsAndPadding.detailsButtonPaddingLeft || '5px',
+      marginTop: '10px',
+      marginRight: 'auto',
+      marginBottom: '10px',
+      marginLeft: 'auto',
       width: obj.buttonsHeightAndWidth.detailsButtonWidth || 'auto',
     }
 
@@ -390,14 +335,9 @@ function buildSearchInputHTML(obj) {
     detailsButton.style.marginRight = detailsButtonStyles.marginRight;
     detailsButton.style.marginBottom = detailsButtonStyles.marginBottom;
     detailsButton.style.marginLeft = detailsButtonStyles.marginLeft;
-    detailsButton.style.paddingTop = detailsButtonStyles.paddingTop;
-    detailsButton.style.paddingRight = detailsButtonStyles.paddingRight;
-    detailsButton.style.paddingBottom = detailsButtonStyles.paddingBottom;
-    detailsButton.style.paddingLeft = detailsButtonStyles.paddingLeft;
     detailsButton.style.width = detailsButtonStyles.width;
   }
 
-  //eventPicker
   window.addEventListener('load', function () {
     var hitAPI = new XMLHttpRequest();
     var url = 'https://demo.fareharbor.com/api/external/v1/companies/' + companyName + '/items/?api-app=5fa25381-5ec6-4e86-8b4e-a95735beffa4&api-user=1be378f8-8a6f-4788-b7f0-c2c9b02ca009';
@@ -408,32 +348,21 @@ function buildSearchInputHTML(obj) {
         if (hitAPI.status === 200) {
           var JSONObj = JSON.parse(hitAPI.responseText);
           var items = JSONObj["items"];
-          if (eventInputFieldHTMLType === 'SELECT') {
-            var opt0 = document.createElement('OPTION');
-            eventInputField.appendChild(opt0);
-            var text0 = document.createTextNode(eventInputFieldTextContent);
-            opt0.appendChild(text0);
-            for (var i = 0; i < items.length; i++) {
-              var opt = document.createElement('OPTION');
-              eventInputField.appendChild(opt);
-              var text1 = document.createTextNode(items[i]["name"]);
-              var text2 = items[i]["name"];
-              opt.appendChild(text1);
-              itemsArray.push({
-                name: items[i]["name"],
-                id: items[i]["pk"]
-              });
-              // document.addEventListener('change', function () {
-              //   if (event.target.className.toLowerCase() === eventInputClass) {
-              //       eventName = eventInputField.value;
-              //       var target = itemsArray.filter(function(item){
-              //           return item.name === eventName
-              //         });
-              //         targetID = target[0].id;
-              //     }
-              //   });
+          var opt0 = document.createElement('OPTION');
+          eventInputField.appendChild(opt0);
+          var text0 = document.createTextNode(eventInputFieldTextContent);
+          opt0.appendChild(text0);
+          for (var i = 0; i < items.length; i++) {
+            var opt = document.createElement('OPTION');
+            eventInputField.appendChild(opt);
+            var text1 = document.createTextNode(items[i]["name"]);
+            var text2 = items[i]["name"];
+            opt.appendChild(text1);
+            itemsArray.push({
+              name: items[i]["name"],
+              id: items[i]["pk"]
+            });
             }
-          }
         } else {
           console.error('There was a problem with the API call.');
         }
@@ -441,8 +370,6 @@ function buildSearchInputHTML(obj) {
     }
     });
 
-//datePicker
-    if (dateInputFieldHTMLType === 'SELECT') {
       var allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       var currMonth = allMonths[new Date().getMonth()];
       var nextMonth = {
@@ -513,7 +440,6 @@ function buildSearchInputHTML(obj) {
       dateInputField.appendChild(opt5);
       var text5 = document.createTextNode(currMonthPlusFour + ' ' + yearFour);
       opt5.appendChild(text5);
-    }
 
   document.addEventListener('change', function () {
     if (event.target.className.toLowerCase() === dateInputClass) {
@@ -576,9 +502,8 @@ function buildSearchInputHTML(obj) {
         year = '2019';
       }
 
-      //need to make the 'When' dynamic
-      if (document.querySelector('.' + dateInputClass).value === 'When?') {
-        if (!targetID || document.querySelector('.' + eventInputClass).value === 'Which Event?') {
+      if (document.querySelector('.' + dateInputClass).value === dateInputFieldTextContent) {
+        if (!targetID || document.querySelector('.' + eventInputClass).value === eventInputFieldTextContent) {
         //no month and no event
         buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes';
       } else {
@@ -602,7 +527,6 @@ function buildSearchInputHTML(obj) {
           }
         }
       } else {
-        // debugger;
         if (!targetID) {
           //month but no event
           url = 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/';
@@ -676,11 +600,11 @@ function buildSearchInputHTML(obj) {
         var hitAPI = new XMLHttpRequest();
         var currYear = new Date().getFullYear();
         var currMonth = new Date().getMonth() + 1;
-        //need to make the 'Which Event?' dynamic
-        if (document.querySelector('.' + eventInputClass).value === 'Which Event?') {
+        if (document.querySelector('.' + eventInputClass).value === eventInputFieldTextContent) {
           targetID = null;
+          detailsButtonWrapper.href = null;
           detailsButton.disabled = true;
-          if (!month || document.querySelector('.' + dateInputClass).value === 'When?') {
+          if (!month || document.querySelector('.' + dateInputClass).value === dateInputFieldTextContent) {
             //no month and no event
             buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes'
           } else {
