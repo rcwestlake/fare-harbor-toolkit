@@ -7,6 +7,8 @@ var FHSearchInput = function(obj) {
   return create(obj)
 }
 
+//just set default margins and padding
+
 function buildSearchInputHTML(obj) {
 
   var eventInputField;
