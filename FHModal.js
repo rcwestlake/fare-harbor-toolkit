@@ -215,14 +215,15 @@ function addIcons(props, card, index) {
     iconContainer = document.createElement('div');
     icon = document.createElement('img');
 
-    iconContainer.style.display = 'inline';
+    iconContainer.style.boxSizing = 'border-box';
     iconContainer.style.float = 'left';
-    iconContainer.style.paddingTop = '10%';
     iconContainer.style.paddingLeft = '3%';
-    iconContainer.style.maxWidth = '20%';
-    iconContainer.style.width = '20%';
+    iconContainer.style.maxWidth = '25%';
+    iconContainer.style.height = '100%';
+    iconContainer.style.width = '25%';
 
     icon.src = card[index].icon;
+    icon.style.marginTop = '55%';
     icon.style.height = 'auto';
     icon.style.width = 'auto';
     iconContainer.appendChild(icon);
