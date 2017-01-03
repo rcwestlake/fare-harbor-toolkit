@@ -281,6 +281,7 @@ function buildSearchInputHTML(obj) {
 
     buttonLinkWrapper = document.createElement('A');
     buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes';
+    buttonLinkWrapper.style.textDecoration = 'none';
     var goButton = document.createElement('BUTTON');
     var goButtonText = document.createTextNode(goButtonContent);
     goButton.appendChild(goButtonText);
@@ -355,10 +356,14 @@ function buildSearchInputHTML(obj) {
       width: obj.buttonsHeightAndWidth.detailsButtonWidth || 'auto',
     }
 
+    detailsButtonWrapper = document.createElement('A');
+    detailsButtonWrapper.href = null;
+    detailsButtonWrapper.style.textDecoration = 'none';
     detailsButton = document.createElement('BUTTON');
     var detailsButtonText = document.createTextNode(detailsButtonContent);
     detailsButton.appendChild(detailsButtonText);
-    container.appendChild(detailsButton);
+    container.appendChild(detailsButtonWrapper);
+    detailsButtonWrapper.appendChild(detailsButton)
     detailsButton.classList.add('details-button');
     detailsButton.style.display = 'block';
     detailsButton.disabled = true;
@@ -614,7 +619,6 @@ function buildSearchInputHTML(obj) {
             }
         } else {
           //event and month
-          console.log(itemsArray);
           eventName = eventInputField.value;
           var target = itemsArray.filter(function(item){
               return item.name === eventName
@@ -666,31 +670,6 @@ function buildSearchInputHTML(obj) {
     }
   });
 
-  //need anchor tag here too
-  document.addEventListener('click', function () {
-    if (event.target.className.toLowerCase() === 'details-button') {
-      var hitAPI = new XMLHttpRequest();
-      var currYear = new Date().getFullYear();
-      var currMonth = new Date().getMonth() + 1;
-      var url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/?full-items=yes'; //this should to go a href
-      if (targetID) {
-        hitAPI.open('GET', url, true);
-        hitAPI.send();
-        hitAPI.onreadystatechange = function() {
-          if (hitAPI.readyState === XMLHttpRequest.DONE) {
-            if (hitAPI.status === 200) {
-              window.location = url;
-            } else {
-              console.error('There was a problem with the API call.');
-            }
-          }
-        }
-      } else {
-        alert('Please select a valid event.');
-      }
-    }
-    });
-
     document.addEventListener('change', function () {
       if (event.target.className.toLowerCase() === eventInputClass) {
         var url;
@@ -720,14 +699,26 @@ function buildSearchInputHTML(obj) {
               }
           }
         } else {
+          var hitAPI2 = new XMLHttpRequest();
           detailsButton.disabled = false;
+          eventName = eventInputField.value;
+          var target = itemsArray.filter(function(item){
+              return item.name === eventName
+            });
+            targetID = target[0].id;
+          var url1 = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/?full-items=yes';
+          hitAPI2.open('GET', url1, true);
+          hitAPI2.send();
+          hitAPI2.onreadystatechange = function() {
+              if (hitAPI2.readyState === XMLHttpRequest.DONE) {
+                if (hitAPI2.status === 200) {
+                  detailsButtonWrapper.href = url1;
+                } else {
+                  console.error('There was a problem with the API call.');
+                }
+              }
+            }
           if (!month) {
-            //event but no month
-            eventName = eventInputField.value;
-            var target = itemsArray.filter(function(item){
-                return item.name === eventName
-              });
-              targetID = target[0].id;
             url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/';
             hitAPI.open('GET', url, true);
             hitAPI.send();
@@ -741,12 +732,6 @@ function buildSearchInputHTML(obj) {
                 }
               }
           } else {
-            //event and month
-            eventName = eventInputField.value;
-            var target = itemsArray.filter(function(item){
-                return item.name === eventName
-              });
-              targetID = target[0].id;
             url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + year + '/' + month + '/';
             hitAPI.open('GET', url, true);
             hitAPI.send();
