@@ -4,7 +4,7 @@ var year = date.getFullYear();
 var month = date.getMonth() + 1;
 
 var FHConfig = {
-  toolType: 'SearchInput',
+  toolType: 'Footer',
   shortname: 'bodyglove',
   text: {
     fontPrimary: '',
@@ -166,7 +166,7 @@ var FHConfig = {
           height: '',
           width: '',
           fontName: '',
-          fontSize: '20px',
+          fontSize: '22px',
           fontWeight: 'bolder',
         },
         {
