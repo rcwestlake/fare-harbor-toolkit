@@ -1,12 +1,8 @@
 var body = document.body;
 var button;
-var modalContainer;
-var cardsContainer;
-var reservationTitleContainer;
-var reservationTitle;
-var extraTitleText;
 var textContainer;
 var iconContainer;
+var bookButtonText;
 
 var FHModal = function(props) {
   function create(props) {
@@ -19,11 +15,11 @@ function buildModalHTML(props) {
   buildFHButton(props);
   body.appendChild(button);
 
-  buildModalContainer(props);
-  buildHeaderContainer(props);
-  buildHeaderTitle(props);
-  buildExtraText(props);
-  buildCardsContainer(props);
+  var modalContainer = buildModalContainer(props);
+  var reservationTitleContainer = buildHeaderContainer(props);
+  var reservationTitle = buildHeaderTitle(props);
+  var extraTitleText = buildExtraText(props);
+  var cardsContainer = buildCardsContainer(props);
 
   reservationTitleContainer.appendChild(reservationTitle);
   extraTitleText ? reservationTitleContainer.appendChild(extraTitleText) : null;
@@ -49,6 +45,7 @@ function buildFHButton(props) {
   button.style.right = '20px';
   button.style.height = '60px';
   button.style.width = '170px';
+  bookButtonText = props.text.bookButtonText;
 
   return button;
 }
@@ -240,10 +237,12 @@ function addIcons(props, card, index) {
 document.addEventListener('click', function(e) {
   if(e.target.className === 'FH-reservation-button') {
     if (modalContainer.style.display === 'none') {
+      button.textContent = 'X'
       return modalContainer.style.display = 'block'
     }
 
     if (modalContainer.style.display === 'block') {
+      button.textContent = bookButtonText;
       return modalContainer.style.display = 'none'
     }
   }
