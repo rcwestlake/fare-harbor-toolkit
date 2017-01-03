@@ -34,6 +34,7 @@ var toolCreator = (function() {
         return FHSearchInput(
           {
             container: config.toolDetails.searchInputContainer,
+            stackOrientation: config.toolDetails.inputFields.stackOrientation,
             inputFieldText: config.toolDetails.inputFields.inputFieldText,
             inputFieldTypes: config.toolDetails.inputFields.inputFieldTypes,
             inputFieldHeightAndWidth: config.toolDetails.inputFields.inputFieldHeightAndWidth,

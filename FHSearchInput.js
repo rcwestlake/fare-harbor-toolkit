@@ -7,8 +7,6 @@ var FHSearchInput = function(obj) {
   return create(obj)
 }
 
-//just set default margins and padding
-
 function buildSearchInputHTML(obj) {
 
   var eventInputField;
@@ -27,6 +25,40 @@ function buildSearchInputHTML(obj) {
   var detailsButton;
   var detailsButtonExists = obj.doesDetailsButtonExist;
   var buttonLinkWrapper;
+
+  var stackDependentStyle;
+
+  if (obj.stackOrientation === 'horizontal') {
+    stackDependentStyle = {
+      leftInputFieldDisplay: 'inline-block',
+      rightInputFieldDisplay: 'inline-block',
+      leftInputFieldMarginTop: '0px',
+      leftInputFieldMarginRight: '5px',
+      leftInputFieldMarginBottom: '0px',
+      leftInputFieldMarginLeft: '5px',
+      rightInputFieldMarginTop: '0px',
+      rightInputFieldMarginRight: '5px',
+      rightInputFieldMarginBottom: '0px',
+      rightInputFieldMarginLeft: '5px',
+      detailsButtonMarginTop: '20px',
+      detailsButtonMarginBottom: '20px',
+    }
+  } else if (obj.stackOrientation === 'vertical') {
+    stackDependentStyle = {
+      leftInputFieldDisplay: 'block',
+      rightInputFieldDisplay: 'block',
+      leftInputFieldMarginTop: '15px',
+      leftInputFieldMarginRight: 'auto',
+      leftInputFieldMarginBottom: '15px',
+      leftInputFieldMarginLeft: 'auto',
+      rightInputFieldMarginTop: '15px',
+      rightInputFieldMarginRight: 'auto',
+      rightInputFieldMarginBottom: '15px',
+      rightInputFieldMarginLeft: 'auto',
+      detailsButtonMarginTop: '40px',
+      detailsButtonMarginBottom: '40px',
+    }
+  }
 
   createContainer(obj);
 
@@ -57,6 +89,7 @@ function buildSearchInputHTML(obj) {
 
     var leftFieldInputStyles = {
       backgroundColor: obj.inputFieldBackgroundColor.leftInputFieldBackgroundColor || '#ffffff',
+      display: stackDependentStyle.leftInputFieldDisplay,
       borderBottomWidth: '1px',
       borderTopWidth: '1px',
       borderRightWidth: '1px',
@@ -73,16 +106,17 @@ function buildSearchInputHTML(obj) {
       fontFamily: obj.inputFieldText.leftInputFieldTextFontName || 'Palatino-Roman, serif',
       fontSize: obj.inputFieldText.leftInputFieldTextFontSize || '22px',
       height: obj.inputFieldHeightAndWidth.leftInputFieldHeight || '39px',
-      marginTop: '0px',
-      marginRight: '5px',
-      marginBottom: '0px',
-      marginLeft: '5px',
+      marginTop: stackDependentStyle.leftInputFieldMarginTop,
+      marginRight: stackDependentStyle.leftInputFieldMarginRight,
+      marginBottom: stackDependentStyle.leftInputFieldMarginBottom,
+      marginLeft: stackDependentStyle.leftInputFieldMarginLeft,
       width: obj.inputFieldHeightAndWidth.leftInputFieldWidth || '200px',
     }
 
     var leftFieldInput = document.createElement('SELECT');
     container.appendChild(leftFieldInput);
     leftFieldInput.classList.add('left-field-input');
+    leftFieldInput.style.display = leftFieldInputStyles.display;
     leftFieldInput.style.backgroundColor = leftFieldInputStyles.backgroundColor;
     leftFieldInput.style.borderBottomWidth = leftFieldInputStyles.borderBottomWidth;
     leftFieldInput.style.borderTopWidth = leftFieldInputStyles.borderTopWidth;
@@ -133,6 +167,7 @@ function buildSearchInputHTML(obj) {
 
     var rightFieldInputStyles = {
       backgroundColor: obj.inputFieldBackgroundColor.rightInputFieldBackgroundColor || '#ffffff',
+      display: stackDependentStyle.rightInputFieldDisplay,
       borderBottomWidth: '1px',
       borderTopWidth: '1px',
       borderRightWidth: '1px',
@@ -149,16 +184,17 @@ function buildSearchInputHTML(obj) {
       fontFamily: obj.inputFieldText.rightInputFieldTextFontName || 'Palatino-Roman, serif',
       fontSize: obj.inputFieldText.rightInputFieldTextFontSize || '22px',
       height: obj.inputFieldHeightAndWidth.rightInputFieldHeight || '39px',
-      marginTop: '0px',
-      marginRight: '5px',
-      marginBottom: '0px',
-      marginLeft: '5px',
+      marginTop: stackDependentStyle.rightInputFieldMarginTop,
+      marginRight: stackDependentStyle.rightInputFieldMarginRight,
+      marginBottom: stackDependentStyle.rightInputFieldMarginBottom,
+      marginLeft: stackDependentStyle.rightInputFieldMarginLeft,
       width: obj.inputFieldHeightAndWidth.rightInputFieldWidth ||'200px',
     }
 
     var rightFieldInput = document.createElement('SELECT');
     container.appendChild(rightFieldInput);
     rightFieldInput.classList.add('right-field-input');
+    rightFieldInput.style.display = rightFieldInputStyles.display;
     rightFieldInput.style.backgroundColor = rightFieldInputStyles.backgroundColor;
     rightFieldInput.style.borderBottomWidth = rightFieldInputStyles.borderBottomWidth;
     rightFieldInput.style.borderTopWidth = rightFieldInputStyles.borderTopWidth;
@@ -296,9 +332,9 @@ function buildSearchInputHTML(obj) {
       fontFamily: obj.buttonsText.detailsButtonTextFontName || 'Palatino-Bold, serif',
       fontSize: obj.buttonsText.detailsButtonTextFontSize || '25px',
       height: obj.buttonsHeightAndWidth.detailsButtonHeight || 'auto',
-      marginTop: '10px',
+      marginTop: stackDependentStyle.detailsButtonMarginTop,
       marginRight: 'auto',
-      marginBottom: '10px',
+      marginBottom: stackDependentStyle.detailsButtonMarginBottom,
       marginLeft: 'auto',
       width: obj.buttonsHeightAndWidth.detailsButtonWidth || 'auto',
     }
@@ -451,18 +487,18 @@ function buildSearchInputHTML(obj) {
       var currMonth = new Date().getMonth() + 1;
 
       var target = document.querySelector('.' + dateInputClass).value;
-      var Jan = /Jan?/;
-      var Feb = /Feb?/;
-      var Mar = /Mar?/;
-      var Apr = /Apr?/;
-      var May = /May?/;
-      var Jun = /Jun?/;
-      var Jul = /Jul?/;
-      var Aug = /Aug?/;
-      var Sep = /Sep?/;
-      var Oct = /Oct?/;
-      var Nov = /Nov?/;
-      var Dec = /Dec?/;
+      var Jan = /Jan+/;
+      var Feb = /Feb+/;
+      var Mar = /Mar+/;
+      var Apr = /Apr+/;
+      var May = /May+/;
+      var Jun = /Jun+/;
+      var Jul = /Jul+/;
+      var Aug = /Aug+/;
+      var Sep = /Sep+/;
+      var Oct = /Oct+/;
+      var Nov = /Nov+/;
+      var Dec = /Dec+/;
       var y16 = /[6]/g;
       var y17 = /[7]/g;
       var y18 = /[8]/g;

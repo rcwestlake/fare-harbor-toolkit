@@ -73,13 +73,14 @@ var FHConfig = {
       },
     },
     searchInputContainer: {
-      borderDebug: false,
+      borderDebug: true,
       marginTop: '',
       marginRight: '',
       marginBottom: '',
       marginLeft: '',
     },
     inputFields: {
+      stackOrientation: 'horizontal',
       inputFieldTypes: {
         leftInputFieldFunction: '',
         rightInputFieldFunction: '',
