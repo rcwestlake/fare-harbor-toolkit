@@ -155,7 +155,7 @@ function addCards(props) {
 function addCardToContainer(props, cards, index) {
   var cardHeight = Math.floor(100 / cards.length);
 
-  var cardContainer = document.createElement('a');
+  var cardContainer = cards[index].linkTo ? document.createElement('a') : document.createElement('div') ;
 
   cardContainer.href = cards[index].linkTo;
   cardContainer.style.display = 'block';
@@ -213,9 +213,6 @@ function addTextToCard(props, cards, index) {
     extraText.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
     extraText.style.margin = '0px';
     extraText.style.marginLeft = cards[index].icon ? '10%': '3%';
-    extraText.style.position = 'relative';
-    extraText.style.top = '50%';
-    extraText.style.transform = 'translateY(-50%)';
     textContainer.appendChild(extraText);
   }
 
