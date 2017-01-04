@@ -47,6 +47,12 @@ function buildFHButton(props) {
   button.style.zIndex = '3561031316';
   bookButtonText = props.text.bookButtonText;
 
+  if(window.innerWidth < '500') {
+    button.style.fontSize = '12px';
+    button.style.height = '40px';
+    button.style.width = '130px';
+  }
+
   return button;
 }
 
