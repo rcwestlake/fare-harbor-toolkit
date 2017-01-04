@@ -1,3 +1,8 @@
+// var xhr = new XMLHttpRequest();
+// if ("withCredentials" in xhr) {
+//   console.log('with credentials');
+// }
+
 var FHSearchInput = function(obj) {
   function create(obj) {
     buildSearchInputHTML(obj)
