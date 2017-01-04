@@ -10,6 +10,7 @@ var toolCreator = (function() {
         return FHModal(
           {
             shortname: config.shortname,
+            selectedItems: config.selectedItems,
             modalType: config.toolDetails.modal.modalType,
             showFullItems: config.toolDetails.modal.showFullItems,
             text: config.text,
@@ -34,6 +35,7 @@ var toolCreator = (function() {
         return FHSearchInput(
           {
             container: config.toolDetails.searchInputContainer,
+            selectedItems: config.selectedItems,
             stackOrientation: config.toolDetails.inputFields.stackOrientation,
             inputFieldText: config.toolDetails.inputFields.inputFieldText,
             inputFieldTypes: config.toolDetails.inputFields.inputFieldTypes,

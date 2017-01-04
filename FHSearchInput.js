@@ -413,19 +413,31 @@ function buildSearchInputHTML(obj) {
         if (hitAPI.status === 200) {
           var JSONObj = JSON.parse(hitAPI.responseText);
           var items = JSONObj["items"];
+          var newItems = [];
+          if (obj.selectedItems.length > 0) {
+            for (var i = 0; i < obj.selectedItems.length; i++) {
+              for (var j = 0; j < items.length; j++) {
+                if (items[j]["pk"] === obj.selectedItems[i]) {
+                  newItems.push(items[j]);
+                }
+              }
+            }
+          } else {
+            newItems = items;
+          }
           var opt0 = document.createElement('OPTION');
           eventInputField.appendChild(opt0);
           var text0 = document.createTextNode(eventInputFieldTextContent);
           opt0.appendChild(text0);
-          for (var i = 0; i < items.length; i++) {
+          for (var i = 0; i < newItems.length; i++) {
             var opt = document.createElement('OPTION');
             eventInputField.appendChild(opt);
-            var text1 = document.createTextNode(items[i]["name"]);
-            var text2 = items[i]["name"];
+            var text1 = document.createTextNode(newItems[i]["name"]);
+            var text2 = newItems[i]["name"];
             opt.appendChild(text1);
             itemsArray.push({
-              name: items[i]["name"],
-              id: items[i]["pk"]
+              name: newItems[i]["name"],
+              id: newItems[i]["pk"]
             });
             }
         } else {
