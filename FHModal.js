@@ -241,11 +241,12 @@ function addIcons(props, card, index) {
     iconContainer.style.boxSizing = 'border-box';
     iconContainer.style.float = 'left';
     iconContainer.style.paddingLeft = '3%';
+    iconContainer.style.position = 'relative';
+    iconContainer.style.top = '50%';
+    iconContainer.style.transform = 'translateY(-50%)';
     iconContainer.style.maxWidth = '25%';
-    iconContainer.style.height = '100%';
     iconContainer.style.width = '25%';
     icon.src = card[index].icon;
-    icon.style.marginTop = '55%';
     icon.style.height = 'auto';
     icon.style.width = 'auto';
     iconContainer.appendChild(icon);
