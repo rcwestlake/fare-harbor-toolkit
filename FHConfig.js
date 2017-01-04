@@ -4,24 +4,26 @@ var year = date.getFullYear();
 var month = date.getMonth() + 1;
 
 var FHConfig = {
-  toolType: 'SearchInput',
+  toolType: 'Modal',
   shortname: 'bodyglove',
   selectedItems: [],
   text: {
     fontPrimary: '',
-    headerText: 'Ticket Info',
+    headerText: 'Reservation Info',
     headerTextSize: '',
     headerExtraText: 'Powered by FareHarbor',
     headerExtraTextLink: 'http://www.fareharbor.com',
     headerExtraTextSize: '',
-    mainActionButton: 'Book Now',
+    bookButtonText: 'BOOK NOW',
+    bookButtonTextSize: '',
     globalTextAlign: '',
   },
   colors: {
     headerColor: '',
     headerTextColor: '',
-    mainButtonColor: '',
-    mainButtonTextColor: '',
+    headerExtraTextColor: '',
+    bookButtonColor: '',
+    bookButtonTextColor: '',
   },
   toolDetails: {
     modal: {
@@ -33,30 +35,38 @@ var FHConfig = {
           {
             doesItExist: true,
             text: 'See activities and tickets',
+            textType: '',
             extraText: '',
             itemID: '',
             linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/?full-items=yes',
+            icon: 'images/ticket-icon-blue.png',
           },
           {
             doesItExist: true,
             text: 'View online calendar',
+            textType: '',
             extraText: '',
             itemID: '',
             linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/',
+            icon: 'images/calendar-icon-blue.png',
           },
           {
             doesItExist: true,
-            text: 'Tickets by phone',
-            extraText: '555-555-5555',
+            text: '"It was the best tour of my life!"',
+            textType: 'Quote',
+            extraText: 'Julie, customer in 2016',
             itemID: '',
             linkTo: '',
+            icon: '',
           },
           {
             doesItExist: false,
             text: '',
+            textType: '',
             extraText: '',
             itemID: '',
             linkTo: '',
+            icon: '',
           },
         ],
         fontsAndColors: {
