@@ -213,6 +213,9 @@ function addTextToCard(props, cards, index) {
     extraText.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
     extraText.style.margin = '0px';
     extraText.style.marginLeft = cards[index].icon ? '10%': '3%';
+    extraText.style.position = 'relative';
+    extraText.style.top = '50%';
+    extraText.style.transform = 'translateY(-50%)';
     textContainer.appendChild(extraText);
   }
 
