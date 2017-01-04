@@ -17,14 +17,12 @@ function buildModalHTML(props) {
   body.appendChild(button);
 
   var modalContainer = buildModalContainer(props);
-  var reservationTitleContainer = buildHeaderContainer(props);
-  var reservationTitle = buildHeaderTitle(props);
-  var extraTitleText = buildExtraText(props);
+  var headerAlignContainer = buildHeaderContainer(props);
+  var headerTitle = buildHeaderTitle(props);
   var cardsContainer = buildCardsContainer(props);
 
-  reservationTitleContainer.appendChild(reservationTitle);
-  extraTitleText ? reservationTitleContainer.appendChild(extraTitleText) : null;
-  modalContainer.appendChild(reservationTitleContainer);
+  headerContainer.appendChild(headerTitle);
+  modalContainer.appendChild(headerAlignContainer);
   body.appendChild(modalContainer);
   modalContainer.appendChild(cardsContainer);
 
@@ -46,7 +44,14 @@ function buildFHButton(props) {
   button.style.right = '20px';
   button.style.height = '60px';
   button.style.width = '170px';
+  button.style.zIndex = '3561031316';
   bookButtonText = props.text.bookButtonText;
+
+  if(window.innerWidth < '500') {
+    button.style.fontSize = '12px';
+    button.style.height = '40px';
+    button.style.width = '130px';
+  }
 
   return button;
 }
@@ -64,35 +69,58 @@ function buildModalContainer(props) {
   modalContainer.style.position = 'fixed';
   modalContainer.style.bottom = '100px';
   modalContainer.style.right = '20px';
-  modalContainer.style.height = '550px';
-  modalContainer.style.width = '350px';
+
+  if(window.innerWidth < '550') {
+    modalContainer.style.borderRadius = '0px';
+    modalContainer.style.top = '0px';
+    modalContainer.style.left = '0px';
+    modalContainer.style.height = '100%';
+    modalContainer.style.width = '100%';
+  } else {
+    modalContainer.style.height = '550px';
+    modalContainer.style.width = '350px';
+  }
+
   modalContainer.style.textAlign = props.text.globalTextAlign || 'center';
+  modalContainer.style.zIndex = '35610311';
 
   return modalContainer;
 }
 
 function buildHeaderContainer(props) {
-  reservationTitleContainer = document.createElement('section');
-  reservationTitleContainer.style.height = '15%';
-  reservationTitleContainer.style.boxSizing = 'border-box';
-  reservationTitleContainer.style.paddingTop = '0px';
-  reservationTitleContainer.style.backgroundColor = props.colors.headerColor || '#dd5347';
-  reservationTitleContainer.style.borderRadius = '10px 10px 0px 0px';
+  headerContainer = document.createElement('section');
+  headerContainer.style.height = '15%';
+  headerContainer.style.boxSizing = 'border-box';
+  headerContainer.style.paddingTop = '0px';
+  headerContainer.style.backgroundColor = props.colors.headerColor || '#dd5347';
+  headerContainer.style.borderRadius = '10px 10px 0px 0px';
 
-  return reservationTitleContainer;
+  if(window.innerWidth < '500') {
+    headerContainer.style.borderRadius = '0px';
+  }
+
+  return headerContainer;
 }
 
 function buildHeaderTitle(props) {
-  reservationTitle = document.createElement('p');
-  reservationTitle.textContent = props.text.headerText;
-  reservationTitle.style.fontSize = props.text.headerTextSize || '30px';
-  reservationTitle.style.fontSize = props.text.headerTextSize || '30px';
-  reservationTitle.style.marginTop = '0px';
-  reservationTitle.style.paddingTop = '3%';
-  reservationTitle.style.marginBottom = props.marginsAndPadding.headerTextMarginBottom || '0px';
-  reservationTitle.style.verticalAlign = 'middle';
+  var headerAlignContainer = document.createElement('div');
+  headerTitle = document.createElement('p');
 
-  return reservationTitle;
+  headerAlignContainer.style.position = 'relative';
+  headerAlignContainer.style.top = '50%';
+  headerAlignContainer.style.transform = 'translateY(-50%)';
+
+  headerTitle.textContent = props.text.headerText;
+  headerTitle.style.fontSize = props.text.headerTextSize || '30px';
+  headerTitle.style.fontSize = props.text.headerTextSize || '30px';
+  headerTitle.style.marginTop = '0px';
+  headerTitle.style.marginBottom = props.marginsAndPadding.headerTextMarginBottom || '0px';
+
+  headerAlignContainer.appendChild(headerTitle);
+  var extraTitleText = buildExtraText(props);
+  extraTitleText ? headerAlignContainer.appendChild(extraTitleText) : null;
+
+  return headerAlignContainer;
 }
 
 function buildExtraText(props) {
