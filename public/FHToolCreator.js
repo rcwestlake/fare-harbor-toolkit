@@ -34,18 +34,18 @@ var toolCreator = (function() {
       case 'SearchInput':
         return FHSearchInput(
           {
-            container: config.toolDetails.searchInputContainer,
+            container: config.toolDetails.searchInput.searchInputContainer,
             selectedItems: config.selectedItems,
-            stackOrientation: config.toolDetails.inputFields.stackOrientation,
-            inputFieldText: config.toolDetails.inputFields.inputFieldText,
-            inputFieldTypes: config.toolDetails.inputFields.inputFieldTypes,
-            inputFieldBorders: config.toolDetails.inputFields.inputFieldBorders,
-            inputFieldBackgroundColor: config.toolDetails.inputFields.inputFieldBackgroundColor,
-            doesDetailsButtonExist: config.toolDetails.buttons.doesDetailsButtonExist,
-            buttonsBackgroundColor: config.toolDetails.buttons.buttonsBackgroundColor,
-            buttonsText: config.toolDetails.buttons.buttonsText,
-            buttonsBorders: config.toolDetails.buttons.buttonsBorders,
-            buttonsHeightAndWidth: config.toolDetails.buttons.buttonsHeightAndWidth,
+            stackOrientation: config.toolDetails.searchInput.inputFields.stackOrientation,
+            inputFieldText: config.toolDetails.searchInput.inputFields.inputFieldText,
+            inputFieldTypes: config.toolDetails.searchInput.inputFields.inputFieldTypes,
+            inputFieldBorders: config.toolDetails.searchInput.inputFields.inputFieldBorders,
+            inputFieldBackgroundColor: config.toolDetails.searchInput.inputFields.inputFieldBackgroundColor,
+            doesDetailsButtonExist: config.toolDetails.searchInput.buttons.doesDetailsButtonExist,
+            buttonsBackgroundColor: config.toolDetails.searchInput.buttons.buttonsBackgroundColor,
+            buttonsText: config.toolDetails.searchInput.buttons.buttonsText,
+            buttonsBorders: config.toolDetails.searchInput.buttons.buttonsBorders,
+            buttonsHeightAndWidth: config.toolDetails.searchInput.buttons.buttonsHeightAndWidth,
             shortname: config.shortname,
         }
       );
