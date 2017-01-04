@@ -1,6 +1,7 @@
 var body = document.body;
 var button;
 var textContainer;
+var alignContainer;
 var iconContainer;
 var bookButtonText;
 
@@ -126,6 +127,30 @@ function buildCardsContainer(props) {
   return cardsContainer;
 }
 
+function buildTextContainers(props, cards, index) {
+  textContainer = document.createElement('div');
+  alignContainer = document.createElement('div');
+
+  textContainer.style.boxSizing = 'border-box';
+  textContainer.style.display = 'inline-block';
+  textContainer.style.float = 'right';
+  textContainer.style.minHeight = '100%';
+  textContainer.style.maxWidth = cards[index].icon ? '75%' : '100%';
+  textContainer.style.height = '100%';
+  textContainer.style.width = cards[index].icon ? '75%' : '100%';
+  textContainer.style.textAlign = cards[index].icon ? 'left' : 'center';
+  textContainer.style.position = 'relative';
+
+  alignContainer.style.boxSizing = 'border-box';
+  alignContainer.style.display = 'block';
+  alignContainer.style.height = 'auto';
+  alignContainer.style.width = '100%';
+  alignContainer.style.position = 'relative';
+  alignContainer.style.top = '50%';
+  alignContainer.style.transform = 'translateY(-50%)';
+  textContainer.appendChild(alignContainer)
+}
+
 function addCards(props) {
   switch (props.modalType.toLowerCase()) {
     case 'simple':
@@ -172,30 +197,11 @@ function addCardToContainer(props, cards, index) {
 
 function addTextToCard(props, cards, index) {
   var extraText;
-  textContainer = document.createElement('div');
-  var alignContainer = document.createElement('div');
   var text = cards[index].linkTo ?
               document.createElement('a') :
               document.createElement('p');
 
-  textContainer.style.boxSizing = 'border-box';
-  textContainer.style.display = 'inline-block';
-  textContainer.style.float = 'right';
-  textContainer.style.minHeight = '100%';
-  textContainer.style.maxWidth = cards[index].icon ? '75%' : '100%';
-  textContainer.style.height = '100%';
-  textContainer.style.width = cards[index].icon ? '75%' : '100%';
-  textContainer.style.textAlign = cards[index].icon ? 'left' : 'center';
-  textContainer.style.position = 'relative';
-
-  alignContainer.style.boxSizing = 'border-box';
-  alignContainer.style.display = 'block';
-  alignContainer.style.height = 'auto';
-  alignContainer.style.width = '100%';
-  alignContainer.style.position = 'relative';
-  alignContainer.style.top = '50%';
-  alignContainer.style.transform = 'translateY(-50%)';
-  textContainer.appendChild(alignContainer)
+  buildTextContainers(props, cards, index)
 
   text.textContent = cards[index].text;
   text.href = cards[index].linkTo;
@@ -224,8 +230,6 @@ function addTextToCard(props, cards, index) {
     extraText.style.marginLeft = cards[index].icon ? '10%': '3%';
     alignContainer.appendChild(extraText);
   }
-
-  return textContainer
 }
 
 function addIcons(props, card, index) {
@@ -246,8 +250,6 @@ function addIcons(props, card, index) {
     icon.style.width = 'auto';
     iconContainer.appendChild(icon);
   }
-
-  return iconContainer
 }
 
 document.addEventListener('click', function(e) {
