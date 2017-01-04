@@ -7,16 +7,12 @@ var FHSearchInput = function(obj) {
   return create(obj)
 }
 
-//just set default margins and padding 
-
 function buildSearchInputHTML(obj) {
 
   var eventInputField;
-  var eventInputFieldHTMLType;
   var eventInputFieldTextContent;
   var eventInputClass;
   var dateInputField;
-  var dateInputFieldHTMLType;
   var dateInputFieldTextContent;
   var dateInputClass;
   var companyName = obj.shortname;
@@ -28,6 +24,68 @@ function buildSearchInputHTML(obj) {
   var container;
   var detailsButton;
   var detailsButtonExists = obj.doesDetailsButtonExist;
+  var buttonLinkWrapper;
+  var stackDependentStyle;
+  var mobileView;
+
+  if (window.innerWidth < 700) {
+    mobileView = true;
+  } else {
+    mobileView = false;
+  }
+
+  if (mobileView) {
+    stackDependentStyle = {
+      leftInputFieldDisplay: 'block',
+      rightInputFieldDisplay: 'block',
+      leftInputFieldMarginTop: '15px',
+      leftInputFieldMarginRight: 'auto',
+      leftInputFieldMarginBottom: '15px',
+      leftInputFieldMarginLeft: 'auto',
+      rightInputFieldMarginTop: '15px',
+      rightInputFieldMarginRight: 'auto',
+      rightInputFieldMarginBottom: '15px',
+      rightInputFieldMarginLeft: 'auto',
+      detailsButtonMarginTop: '40px',
+      detailsButtonMarginBottom: '40px',
+      leftInputFieldWidth: '200px',
+      rightInputFieldWidth: '200px',
+      }
+  } else if (obj.stackOrientation === 'vertical') {
+    stackDependentStyle = {
+      leftInputFieldDisplay: 'block',
+      rightInputFieldDisplay: 'block',
+      leftInputFieldMarginTop: '15px',
+      leftInputFieldMarginRight: 'auto',
+      leftInputFieldMarginBottom: '15px',
+      leftInputFieldMarginLeft: 'auto',
+      rightInputFieldMarginTop: '15px',
+      rightInputFieldMarginRight: 'auto',
+      rightInputFieldMarginBottom: '15px',
+      rightInputFieldMarginLeft: 'auto',
+      detailsButtonMarginTop: '40px',
+      detailsButtonMarginBottom: '40px',
+      leftInputFieldWidth: '30vw',
+      rightInputFieldWidth: '30vw',
+      }
+  } else {
+    stackDependentStyle = {
+      leftInputFieldDisplay: 'inline-block',
+      rightInputFieldDisplay: 'inline-block',
+      leftInputFieldMarginTop: '0px',
+      leftInputFieldMarginRight: '5px',
+      leftInputFieldMarginBottom: '0px',
+      leftInputFieldMarginLeft: '5px',
+      rightInputFieldMarginTop: '0px',
+      rightInputFieldMarginRight: '5px',
+      rightInputFieldMarginBottom: '0px',
+      rightInputFieldMarginLeft: '5px',
+      detailsButtonMarginTop: '20px',
+      detailsButtonMarginBottom: '20px',
+      leftInputFieldWidth: '200px',
+      rightInputFieldWidth: '200px',
+    }
+  }
 
   createContainer(obj);
 
@@ -54,21 +112,19 @@ function buildSearchInputHTML(obj) {
   createLeftInputField(obj);
 
   function createLeftInputField(obj) {
-    var leftFieldHTMLType = obj.inputFieldTypes.leftInputFieldHTMLType || 'SELECT';
     var leftFieldFunction = obj.inputFieldTypes.leftInputFieldFunction || 'eventPicker';
 
     var leftFieldInputStyles = {
       backgroundColor: obj.inputFieldBackgroundColor.leftInputFieldBackgroundColor || '#ffffff',
-      backgroundPosition: obj.inputFieldIcons.leftInputFieldIconPosition || '10px 1px',
-      backgroundSize: obj.inputFieldIcons.leftInputFieldIconSize || '28px 39px',
-      borderBottomWidth: obj.inputFieldBorders.leftInputFieldBorderBottomWidth || '1px',
-      borderTopWidth: obj.inputFieldBorders.leftInputFieldBorderTopWidth || '1px',
-      borderRightWidth: obj.inputFieldBorders.leftInputFieldBorderRightWidth || '1px',
-      borderLeftWidth: obj.inputFieldBorders.leftInputFieldBorderLeftWidth || '1px',
-      borderBottomStyle: obj.inputFieldBorders.leftInputFieldBorderBottomStyle || 'solid',
-      borderTopStyle: obj.inputFieldBorders.leftInputFieldBorderTopStyle || 'solid',
-      borderRightStyle: obj.inputFieldBorders.leftInputFieldBorderRightStyle || 'solid',
-      borderLeftStyle: obj.inputFieldBorders.leftInputFieldBorderLeftStyle || 'solid',
+      display: stackDependentStyle.leftInputFieldDisplay,
+      borderBottomWidth: '1px',
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderLeftWidth: '1px',
+      borderBottomStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderLeftStyle: 'solid',
       borderBottomColor: obj.inputFieldBorders.leftInputFieldBorderBottomColor || '#979797',
       borderTopColor: obj.inputFieldBorders.leftInputFieldBorderTopColor || '#979797',
       borderRightColor: obj.inputFieldBorders.leftInputFieldBorderRightColor || '#979797',
@@ -76,26 +132,19 @@ function buildSearchInputHTML(obj) {
       color: obj.inputFieldText.leftInputFieldTextColor || '#A09C9C',
       fontFamily: obj.inputFieldText.leftInputFieldTextFontName || 'Palatino-Roman, serif',
       fontSize: obj.inputFieldText.leftInputFieldTextFontSize || '22px',
-      height: obj.inputFieldHeightAndWidth.leftInputFieldHeight || '39px',
-      marginTop: obj.inputFieldMarginsAndPadding.leftInputFieldMarginTop || '0px',
-      marginRight: obj.inputFieldMarginsAndPadding.leftInputFieldMarginRight || '5px',
-      marginBottom: obj.inputFieldMarginsAndPadding.leftInputFieldMarginBottom || '0px',
-      marginLeft: obj.inputFieldMarginsAndPadding.leftInputFieldMarginLeft || '5px',
-      paddingTop: obj.inputFieldMarginsAndPadding.leftInputFieldPaddingTop || '0px',
-      paddingRight: obj.inputFieldMarginsAndPadding.leftInputFieldPaddingRight || '0px',
-      paddingBottom: obj.inputFieldMarginsAndPadding.leftInputFieldPaddingBottom || '0px',
-      paddingLeft: obj.inputFieldMarginsAndPadding.leftInputFieldPaddingLeft || '0px',
-      textAlign: obj.inputFieldText.leftInputFieldTextAlign || 'center',
-      width: obj.inputFieldHeightAndWidth.leftInputFieldWidth || '200px',
+      height: '39px',
+      marginTop: stackDependentStyle.leftInputFieldMarginTop,
+      marginRight: stackDependentStyle.leftInputFieldMarginRight,
+      marginBottom: stackDependentStyle.leftInputFieldMarginBottom,
+      marginLeft: stackDependentStyle.leftInputFieldMarginLeft,
+      width: stackDependentStyle.leftInputFieldWidth,
     }
 
-    var leftFieldInput = document.createElement(leftFieldHTMLType);
+    var leftFieldInput = document.createElement('SELECT');
     container.appendChild(leftFieldInput);
     leftFieldInput.classList.add('left-field-input');
-    leftFieldInput.style.background = leftFieldInputStyles.background;
+    leftFieldInput.style.display = leftFieldInputStyles.display;
     leftFieldInput.style.backgroundColor = leftFieldInputStyles.backgroundColor;
-    leftFieldInput.style.backgroundPosition = leftFieldInputStyles.backgroundPosition;
-    leftFieldInput.style.backgroundSize = leftFieldInputStyles.backgroundSize;
     leftFieldInput.style.borderBottomWidth = leftFieldInputStyles.borderBottomWidth;
     leftFieldInput.style.borderTopWidth = leftFieldInputStyles.borderTopWidth;
     leftFieldInput.style.borderRightWidth = leftFieldInputStyles.borderRightWidth;
@@ -116,18 +165,12 @@ function buildSearchInputHTML(obj) {
     leftFieldInput.style.marginRight = leftFieldInputStyles.marginRight;
     leftFieldInput.style.marginBottom = leftFieldInputStyles.marginBottom;
     leftFieldInput.style.marginLeft = leftFieldInputStyles.marginLeft;
-    leftFieldInput.style.paddingTop = leftFieldInputStyles.paddingTop;
-    leftFieldInput.style.paddingRight = leftFieldInputStyles.paddingRight;
-    leftFieldInput.style.paddingBottom = leftFieldInputStyles.paddingBottom;
-    leftFieldInput.style.paddingLeft = leftFieldInputStyles.paddingLeft;
-    leftFieldInput.style.textAlign = leftFieldInputStyles.textAlign;
     leftFieldInput.style.width = leftFieldInputStyles.width;
 
     assignLeftFieldFunction(
       {
       func: leftFieldFunction,
       input: leftFieldInput,
-      type: leftFieldHTMLType,
       text: obj.inputFieldText.leftInputFieldTextContent,
     })
   }
@@ -135,12 +178,10 @@ function buildSearchInputHTML(obj) {
   function assignLeftFieldFunction(options) {
     if (options.func === 'eventPicker') {
       eventInputField = options.input;
-      eventInputFieldHTMLType = options.type;
       eventInputFieldTextContent = options.text || 'Which Event?';
       eventInputClass = 'left-field-input';
     } else if (options.func === 'datePicker') {
       dateInputField = options.input;
-      dateInputFieldHTMLType = options.type;
       dateInputFieldTextContent = options.text || 'When?';
       dateInputClass = 'left-field-input';
     }
@@ -149,21 +190,19 @@ function buildSearchInputHTML(obj) {
   createRightInputField(obj);
 
   function createRightInputField(obj) {
-    var rightFieldHTMLType = obj.inputFieldTypes.rightmostFieldHTMLType || 'SELECT';
     var rightFieldFunction = obj.inputFieldTypes.rightInputFieldFunction || 'datePicker';
 
     var rightFieldInputStyles = {
       backgroundColor: obj.inputFieldBackgroundColor.rightInputFieldBackgroundColor || '#ffffff',
-      backgroundPosition: obj.inputFieldIcons.rightInputFieldIconPosition || '10px 5px',
-      backgroundSize: obj.inputFieldIcons.rightInputFieldIconSize || '32px 32px',
-      borderBottomWidth: obj.inputFieldBorders.rightInputFieldBorderBottomWidth || '1px',
-      borderTopWidth: obj.inputFieldBorders.rightInputFieldBorderTopWidth || '1px',
-      borderRightWidth: obj.inputFieldBorders.rightInputFieldBorderRightWidth || '1px',
-      borderLeftWidth: obj.inputFieldBorders.rightInputFieldBorderLeftWidth || '1px',
-      borderBottomStyle: obj.inputFieldBorders.rightInputFieldBorderBottomStyle || 'solid',
-      borderTopStyle: obj.inputFieldBorders.rightInputFieldBorderTopStyle || 'solid',
-      borderRightStyle: obj.inputFieldBorders.rightInputFieldBorderRightStyle || 'solid',
-      borderLeftStyle: obj.inputFieldBorders.rightInputFieldBorderLeftStyle || 'solid',
+      display: stackDependentStyle.rightInputFieldDisplay,
+      borderBottomWidth: '1px',
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderLeftWidth: '1px',
+      borderBottomStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderLeftStyle: 'solid',
       borderBottomColor: obj.inputFieldBorders.rightInputFieldBorderBottomColor || '#979797',
       borderTopColor: obj.inputFieldBorders.rightInputFieldBorderTopColor || '#979797',
       borderRightColor: obj.inputFieldBorders.rightInputFieldBorderRightColor || '#979797',
@@ -171,26 +210,19 @@ function buildSearchInputHTML(obj) {
       color: obj.inputFieldText.rightInputFieldTextColor || '#A09C9C',
       fontFamily: obj.inputFieldText.rightInputFieldTextFontName || 'Palatino-Roman, serif',
       fontSize: obj.inputFieldText.rightInputFieldTextFontSize || '22px',
-      height: obj.inputFieldHeightAndWidth.rightInputFieldHeight || '39px',
-      marginTop: obj.inputFieldMarginsAndPadding.rightInputFieldMarginTop || '0px',
-      marginRight: obj.inputFieldMarginsAndPadding.rightInputFieldMarginRight || '5px',
-      marginBottom: obj.inputFieldMarginsAndPadding.rightInputFieldMarginBottom || '0px',
-      marginLeft: obj.inputFieldMarginsAndPadding.rightInputFieldMarginLeft || '5px',
-      paddingTop: obj.inputFieldMarginsAndPadding.rightInputFieldPaddingTop || '0px',
-      paddingRight: obj.inputFieldMarginsAndPadding.rightInputFieldPaddingRight || '0px',
-      paddingBottom: obj.inputFieldMarginsAndPadding.rightInputFieldPaddingBottom || '0px',
-      paddingLeft: obj.inputFieldMarginsAndPadding.rightInputFieldPaddingLeft || '0px',
-      textAlign: obj.inputFieldText.rightInputFieldTextAlign || 'center',
-      width: obj.inputFieldHeightAndWidth.rightInputFieldWidth ||'200px',
+      height: '39px',
+      marginTop: stackDependentStyle.rightInputFieldMarginTop,
+      marginRight: stackDependentStyle.rightInputFieldMarginRight,
+      marginBottom: stackDependentStyle.rightInputFieldMarginBottom,
+      marginLeft: stackDependentStyle.rightInputFieldMarginLeft,
+      width: stackDependentStyle.rightInputFieldWidth,
     }
 
-    var rightFieldInput = document.createElement(rightFieldHTMLType);
+    var rightFieldInput = document.createElement('SELECT');
     container.appendChild(rightFieldInput);
     rightFieldInput.classList.add('right-field-input');
-    rightFieldInput.style.background = rightFieldInputStyles.background;
+    rightFieldInput.style.display = rightFieldInputStyles.display;
     rightFieldInput.style.backgroundColor = rightFieldInputStyles.backgroundColor;
-    rightFieldInput.style.backgroundPosition = rightFieldInputStyles.backgroundPosition;
-    rightFieldInput.style.backgroundSize = rightFieldInputStyles.backgroundSize;
     rightFieldInput.style.borderBottomWidth = rightFieldInputStyles.borderBottomWidth;
     rightFieldInput.style.borderTopWidth = rightFieldInputStyles.borderTopWidth;
     rightFieldInput.style.borderRightWidth = rightFieldInputStyles.borderRightWidth;
@@ -211,18 +243,12 @@ function buildSearchInputHTML(obj) {
     rightFieldInput.style.marginRight = rightFieldInputStyles.marginRight;
     rightFieldInput.style.marginBottom = rightFieldInputStyles.marginBottom;
     rightFieldInput.style.marginLeft = rightFieldInputStyles.marginLeft;
-    rightFieldInput.style.paddingTop = rightFieldInputStyles.paddingTop;
-    rightFieldInput.style.paddingRight = rightFieldInputStyles.paddingRight;
-    rightFieldInput.style.paddingBottom = rightFieldInputStyles.paddingBottom;
-    rightFieldInput.style.paddingLeft = rightFieldInputStyles.paddingLeft;
-    rightFieldInput.style.textAlign = rightFieldInputStyles.textAlign;
     rightFieldInput.style.width = rightFieldInputStyles.width;
 
     assignRightFieldFunction(
       {
       func: rightFieldFunction,
       input: rightFieldInput,
-      type: rightFieldHTMLType,
       text: obj.inputFieldText.rightInputFieldTextContent,
     });
   }
@@ -230,12 +256,10 @@ function buildSearchInputHTML(obj) {
   function assignRightFieldFunction(options) {
     if (options.func === 'eventPicker') {
       eventInputField = options.input;
-      eventInputFieldHTMLType = options.type;
       eventInputFieldTextContent = options.text || 'Which Event?';
       eventInputClass = 'right-field-input';
     } else if (options.func === 'datePicker') {
       dateInputField = options.input;
-      dateInputFieldHTMLType = options.type;
       dateInputFieldTextContent = options.text || 'When?';
       dateInputClass = 'right-field-input';
     }
@@ -248,39 +272,39 @@ function buildSearchInputHTML(obj) {
 
     var goButtonStyles = {
       backgroundColor: obj.buttonsBackgroundColor.goButtonBackgroundColor || '#3D89DF',
-      borderBottomWidth: obj.buttonsBorders.goButtonBorderBottomWidth || '1px',
-      borderTopWidth: obj.buttonsBorders.goButtonBorderTopWidth || '1px',
-      borderRightWidth: obj.buttonsBorders.goButtonBorderRightWidth || '1px',
-      borderLeftWidth: obj.buttonsBorders.goButtonBorderLeftWidth || '1px',
-      borderBottomStyle: obj.buttonsBorders.goButtonBorderBottomStyle || 'solid',
-      borderTopStyle: obj.buttonsBorders.goButtonBorderTopStyle || 'solid',
-      borderRightStyle: obj.buttonsBorders.goButtonBorderRightStyle || 'solid',
-      borderLeftStyle: obj.buttonsBorders.goButtonBorderLeftStyle || 'solid',
+      borderBottomWidth: '1px',
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderLeftWidth: '1px',
+      borderBottomStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderLeftStyle: 'solid',
       borderBottomColor: obj.buttonsBorders.goButtonBorderBottomColor || '#8CC0FB',
       borderTopColor: obj.buttonsBorders.goButtonBorderTopColor || '#8CC0FB',
       borderRightColor: obj.buttonsBorders.goButtonBorderRightColor || '#8CC0FB',
       borderLeftColor: obj.buttonsBorders.goButtonBorderLeftColor || '#8CC0FB',
-      borderRadius: obj.buttonsBorders.goButtonBorderRadius || '8px',
-      boxShadow: obj.buttonsBellsAndWhistles.goButtonBoxShadow || '0 3px 3px 0 rgba(0,0,0,0.50)',
+      borderRadius: '8px',
+      boxShadow: '0 3px 3px 0 rgba(0,0,0,0.50)',
       color: obj.buttonsText.goButtonTextColor || '#000000',
       fontFamily: obj.buttonsText.goButtonTextFontName || 'Palatino-Bold, serif',
       fontSize: obj.buttonsText.goButtonTextFontSize || '25px',
       height: obj.buttonsHeightAndWidth.goButtonHeight || '39px',
-      marginTop: obj.buttonsMarginsAndPadding.goButtonMarginTop || '0px',
-      marginRight: obj.buttonsMarginsAndPadding.goButtonMarginRight || '10px',
-      marginBottom: obj.buttonsMarginsAndPadding.goButtonMarginBottom || '0px',
-      marginLeft: obj.buttonsMarginsAndPadding.goButtonMarginLeft || '10px',
-      paddingTop: obj.buttonsMarginsAndPadding.goButtonPaddingTop || '0px',
-      paddingRight: obj.buttonsMarginsAndPadding.goButtonPaddingRight || '0px',
-      paddingBottom: obj.buttonsMarginsAndPadding.goButtonPaddingBottom || '0px',
-      paddingLeft: obj.buttonsMarginsAndPadding.goButtonPaddingLeft || '0px',
+      marginTop: '0px',
+      marginRight: '10px',
+      marginBottom: '0px',
+      marginLeft: '10px',
       width: obj.buttonsHeightAndWidth.goButtonWidth || '105px',
     }
 
+    buttonLinkWrapper = document.createElement('A');
+    buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes';
+    buttonLinkWrapper.style.textDecoration = 'none';
     var goButton = document.createElement('BUTTON');
     var goButtonText = document.createTextNode(goButtonContent);
     goButton.appendChild(goButtonText);
-    container.appendChild(goButton);
+    container.appendChild(buttonLinkWrapper);
+    buttonLinkWrapper.appendChild(goButton)
     goButton.classList.add('go-button');
     goButton.style.backgroundColor = goButtonStyles.backgroundColor;
     goButton.style.borderBottomWidth = goButtonStyles.borderBottomWidth;
@@ -305,10 +329,6 @@ function buildSearchInputHTML(obj) {
     goButton.style.marginRight = goButtonStyles.marginRight;
     goButton.style.marginBottom = goButtonStyles.marginBottom;
     goButton.style.marginLeft = goButtonStyles.marginLeft;
-    goButton.style.paddingTop = goButtonStyles.paddingTop;
-    goButton.style.paddingRight = goButtonStyles.paddingRight;
-    goButton.style.paddingBottom = goButtonStyles.paddingBottom;
-    goButton.style.paddingLeft = goButtonStyles.paddingLeft;
     goButton.style.width = goButtonStyles.width;
   }
 
@@ -321,39 +341,39 @@ function buildSearchInputHTML(obj) {
 
     var detailsButtonStyles = {
       backgroundColor: obj.buttonsBackgroundColor.detailsButtonBackgroundColor || '#3D89DF',
-      borderBottomWidth: obj.buttonsBorders.detailsButtonBorderBottomWidth || '1px',
-      borderTopWidth: obj.buttonsBorders.detailsButtonBorderTopWidth || '1px',
-      borderRightWidth: obj.buttonsBorders.detailsButtonBorderRightWidth || '1px',
-      borderLeftWidth: obj.buttonsBorders.detailsButtonBorderLeftWidth || '1px',
-      borderBottomStyle: obj.buttonsBorders.detailsButtonBorderBottomStyle || 'solid',
-      borderTopStyle: obj.buttonsBorders.detailsButtonBorderTopStyle || 'solid',
-      borderRightStyle: obj.buttonsBorders.detailsButtonBorderRightStyle || 'solid',
-      borderLeftStyle: obj.buttonsBorders.detailsButtonBorderLeftStyle || 'solid',
+      borderBottomWidth: '1px',
+      borderTopWidth: '1px',
+      borderRightWidth: '1px',
+      borderLeftWidth: '1px',
+      borderBottomStyle: 'solid',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderLeftStyle: 'solid',
       borderBottomColor: obj.buttonsBorders.detailsButtonBorderBottomColor || '#8CC0FB',
       borderTopColor: obj.buttonsBorders.detailsButtonBorderTopColor || '#8CC0FB',
       borderRightColor: obj.buttonsBorders.detailsButtonBorderRightColor || '#8CC0FB',
       borderLeftColor: obj.buttonsBorders.detailsButtonBorderLeftColor || '#8CC0FB',
-      borderRadius: obj.buttonsBorders.detailsButtonBorderRadius || '8px',
-      boxShadow: obj.buttonsBellsAndWhistles.detailsButtonBoxShadow || '0 3px 3px 0 rgba(0,0,0,0.50)',
+      borderRadius: '8px',
+      boxShadow: '0 3px 3px 0 rgba(0,0,0,0.50)',
       color: obj.buttonsText.detailsButtonTextColor || '#000000',
       fontFamily: obj.buttonsText.detailsButtonTextFontName || 'Palatino-Bold, serif',
       fontSize: obj.buttonsText.detailsButtonTextFontSize || '25px',
       height: obj.buttonsHeightAndWidth.detailsButtonHeight || 'auto',
-      marginTop: obj.buttonsMarginsAndPadding.detailsButtonMarginTop || '10px',
-      marginRight: obj.buttonsMarginsAndPadding.detailsButtonMarginRight || 'auto',
-      marginBottom: obj.buttonsMarginsAndPadding.detailsButtonMarginBottom || '10px',
-      marginLeft: obj.buttonsMarginsAndPadding.detailsButtonMarginLeft || 'auto',
-      paddingTop: obj.buttonsMarginsAndPadding.detailsButtonPaddingTop || '5px',
-      paddingRight: obj.buttonsMarginsAndPadding.detailsButtonPaddingRight || '5px',
-      paddingBottom: obj.buttonsMarginsAndPadding.detailsButtonPaddingBottom || '5px',
-      paddingLeft: obj.buttonsMarginsAndPadding.detailsButtonPaddingLeft || '5px',
+      marginTop: stackDependentStyle.detailsButtonMarginTop,
+      marginRight: 'auto',
+      marginBottom: stackDependentStyle.detailsButtonMarginBottom,
+      marginLeft: 'auto',
       width: obj.buttonsHeightAndWidth.detailsButtonWidth || 'auto',
     }
 
+    detailsButtonWrapper = document.createElement('A');
+    detailsButtonWrapper.href = null;
+    detailsButtonWrapper.style.textDecoration = 'none';
     detailsButton = document.createElement('BUTTON');
     var detailsButtonText = document.createTextNode(detailsButtonContent);
     detailsButton.appendChild(detailsButtonText);
-    container.appendChild(detailsButton);
+    container.appendChild(detailsButtonWrapper);
+    detailsButtonWrapper.appendChild(detailsButton)
     detailsButton.classList.add('details-button');
     detailsButton.style.display = 'block';
     detailsButton.disabled = true;
@@ -380,14 +400,9 @@ function buildSearchInputHTML(obj) {
     detailsButton.style.marginRight = detailsButtonStyles.marginRight;
     detailsButton.style.marginBottom = detailsButtonStyles.marginBottom;
     detailsButton.style.marginLeft = detailsButtonStyles.marginLeft;
-    detailsButton.style.paddingTop = detailsButtonStyles.paddingTop;
-    detailsButton.style.paddingRight = detailsButtonStyles.paddingRight;
-    detailsButton.style.paddingBottom = detailsButtonStyles.paddingBottom;
-    detailsButton.style.paddingLeft = detailsButtonStyles.paddingLeft;
     detailsButton.style.width = detailsButtonStyles.width;
   }
 
-  //eventPicker
   window.addEventListener('load', function () {
     var hitAPI = new XMLHttpRequest();
     var url = 'https://demo.fareharbor.com/api/external/v1/companies/' + companyName + '/items/?api-app=5fa25381-5ec6-4e86-8b4e-a95735beffa4&api-user=1be378f8-8a6f-4788-b7f0-c2c9b02ca009';
@@ -398,32 +413,33 @@ function buildSearchInputHTML(obj) {
         if (hitAPI.status === 200) {
           var JSONObj = JSON.parse(hitAPI.responseText);
           var items = JSONObj["items"];
-          if (eventInputFieldHTMLType === 'SELECT') {
-            var opt0 = document.createElement('OPTION');
-            eventInputField.appendChild(opt0);
-            var text0 = document.createTextNode(eventInputFieldTextContent);
-            opt0.appendChild(text0);
-            for (var i = 0; i < items.length; i++) {
-              var opt = document.createElement('OPTION');
-              eventInputField.appendChild(opt);
-              var text1 = document.createTextNode(items[i]["name"]);
-              var text2 = items[i]["name"];
-              opt.appendChild(text1);
-              itemsArray.push({
-                name: items[i]["name"],
-                id: items[i]["pk"]
-              });
-              document.addEventListener('change', function () {
-                if (event.target.className.toLowerCase() === eventInputClass) {
-                    eventName = eventInputField.value;
-                    var target = itemsArray.filter(function(item){
-                        return item.name === eventName
-                      });
-                      targetID = target[0].id;
-                  }
-                });
+          var newItems = [];
+          if (obj.selectedItems.length > 0) {
+            for (var i = 0; i < obj.selectedItems.length; i++) {
+              for (var j = 0; j < items.length; j++) {
+                if (items[j]["pk"] === obj.selectedItems[i]) {
+                  newItems.push(items[j]);
+                }
+              }
             }
+          } else {
+            newItems = items;
           }
+          var opt0 = document.createElement('OPTION');
+          eventInputField.appendChild(opt0);
+          var text0 = document.createTextNode(eventInputFieldTextContent);
+          opt0.appendChild(text0);
+          for (var i = 0; i < newItems.length; i++) {
+            var opt = document.createElement('OPTION');
+            eventInputField.appendChild(opt);
+            var text1 = document.createTextNode(newItems[i]["name"]);
+            var text2 = newItems[i]["name"];
+            opt.appendChild(text1);
+            itemsArray.push({
+              name: newItems[i]["name"],
+              id: newItems[i]["pk"]
+            });
+            }
         } else {
           console.error('There was a problem with the API call.');
         }
@@ -431,8 +447,6 @@ function buildSearchInputHTML(obj) {
     }
     });
 
-//datePicker
-    if (dateInputFieldHTMLType === 'SELECT') {
       var allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
       var currMonth = allMonths[new Date().getMonth()];
       var nextMonth = {
@@ -503,63 +517,128 @@ function buildSearchInputHTML(obj) {
       dateInputField.appendChild(opt5);
       var text5 = document.createTextNode(currMonthPlusFour + ' ' + yearFour);
       opt5.appendChild(text5);
-    }
 
   document.addEventListener('change', function () {
-  if (event.target.className.toLowerCase() === dateInputClass) {
-    var target = document.querySelector('.' + dateInputClass).value;
-    var Jan = /Jan?/;
-    var Feb = /Feb?/;
-    var Mar = /Mar?/;
-    var Apr = /Apr?/;
-    var May = /May?/;
-    var Jun = /Jun?/;
-    var Jul = /Jul?/;
-    var Aug = /Aug?/;
-    var Sep = /Sep?/;
-    var Oct = /Oct?/;
-    var Nov = /Nov?/;
-    var Dec = /Dec?/;
-    var y16 = /[6]/g;
-    var y17 = /[7]/g;
-    var y18 = /[8]/g;
-    var y19 = /[9]/g;
+    if (event.target.className.toLowerCase() === dateInputClass) {
+      var url;
+      var hitAPI = new XMLHttpRequest();
+      var currYear = new Date().getFullYear();
+      var currMonth = new Date().getMonth() + 1;
 
-    if (Jan.test(target)) {
-      month = '01';
-    } else if (Feb.test(target)) {
-      month = '02';
-    } else if (Mar.test(target)) {
-      month = '03';
-    } else if (Apr.test(target)) {
-      month = '04';
-    } else if (May.test(target)) {
-      month = '05';
-    } else if (Jun.test(target)) {
-      month = '06';
-    } else if (Jul.test(target)) {
-      month = '07';
-    } else if (Aug.test(target)) {
-      month = '08';
-    } else if (Sep.test(target)) {
-      month = '09';
-    } else if (Oct.test(target)) {
-      month = '10';
-    } else if (Nov.test(target)) {
-      month = '11';
-    } else if (Dec.test(target)) {
-      month = '12';
-    }
+      var target = document.querySelector('.' + dateInputClass).value;
+      var Jan = /Jan+/;
+      var Feb = /Feb+/;
+      var Mar = /Mar+/;
+      var Apr = /Apr+/;
+      var May = /May+/;
+      var Jun = /Jun+/;
+      var Jul = /Jul+/;
+      var Aug = /Aug+/;
+      var Sep = /Sep+/;
+      var Oct = /Oct+/;
+      var Nov = /Nov+/;
+      var Dec = /Dec+/;
+      var y16 = /[6]/g;
+      var y17 = /[7]/g;
+      var y18 = /[8]/g;
+      var y19 = /[9]/g;
 
-    if (y16.test(target)) {
-      year = '2016';
-    } else if (y17.test(target)) {
-      year = '2017';
-    } else if (y18.test(target)) {
-      year = '2018';
-    } else if (y19.test(target)) {
-      year = '2019';
-    }
+      if (Jan.test(target)) {
+        month = '01';
+      } else if (Feb.test(target)) {
+        month = '02';
+      } else if (Mar.test(target)) {
+        month = '03';
+      } else if (Apr.test(target)) {
+        month = '04';
+      } else if (May.test(target)) {
+        month = '05';
+      } else if (Jun.test(target)) {
+        month = '06';
+      } else if (Jul.test(target)) {
+        month = '07';
+      } else if (Aug.test(target)) {
+        month = '08';
+      } else if (Sep.test(target)) {
+        month = '09';
+      } else if (Oct.test(target)) {
+        month = '10';
+      } else if (Nov.test(target)) {
+        month = '11';
+      } else if (Dec.test(target)) {
+        month = '12';
+      }
+
+      if (y16.test(target)) {
+        year = '2016';
+      } else if (y17.test(target)) {
+        year = '2017';
+      } else if (y18.test(target)) {
+        year = '2018';
+      } else if (y19.test(target)) {
+        year = '2019';
+      }
+
+      if (document.querySelector('.' + dateInputClass).value === dateInputFieldTextContent) {
+        if (!targetID || document.querySelector('.' + eventInputClass).value === eventInputFieldTextContent) {
+        //no month and no event
+        buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes';
+      } else {
+        //event but no month
+        eventName = eventInputField.value;
+        var target = itemsArray.filter(function(item){
+            return item.name === eventName
+          });
+          targetID = target[0].id;
+        url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/';
+        hitAPI.open('GET', url, true);
+        hitAPI.send();
+        hitAPI.onreadystatechange = function() {
+            if (hitAPI.readyState === XMLHttpRequest.DONE) {
+              if (hitAPI.status === 200) {
+                buttonLinkWrapper.href = url;
+              } else {
+                console.error('There was a problem with the API call.');
+              }
+            }
+          }
+        }
+      } else {
+        if (!targetID) {
+          //month but no event
+          url = 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/';
+          hitAPI.open('GET', url, true);
+          hitAPI.send();
+          hitAPI.onreadystatechange = function() {
+              if (hitAPI.readyState === XMLHttpRequest.DONE) {
+                if (hitAPI.status === 200) {
+                  buttonLinkWrapper.href = url;
+                } else {
+                  console.error('There was a problem with the API call.');
+                }
+              }
+            }
+        } else {
+          //event and month
+          eventName = eventInputField.value;
+          var target = itemsArray.filter(function(item){
+              return item.name === eventName
+            });
+            targetID = target[0].id;
+          url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + year + '/' + month + '/';
+          hitAPI.open('GET', url, true);
+          hitAPI.send();
+          hitAPI.onreadystatechange = function() {
+              if (hitAPI.readyState === XMLHttpRequest.DONE) {
+                if (hitAPI.status === 200) {
+                  buttonLinkWrapper.href = url;
+                } else {
+                  console.error('There was a problem with the API call.');
+                }
+              }
+            }
+        }
+      }
 
   }
     });
@@ -592,68 +671,84 @@ function buildSearchInputHTML(obj) {
     }
   });
 
-  //customize item IDs coming in
-  //wrap button in anchor tag
-
-  document.addEventListener('click', function(event) {
-
-    if (event.target.className.toLowerCase() === 'go-button') {
-      var hitAPI = new XMLHttpRequest();
-      var url;
-      if (targetID && month && year) {
-        url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + year + '/' + month + '/';
-      } else if (targetID && !month) {
+    document.addEventListener('change', function () {
+      if (event.target.className.toLowerCase() === eventInputClass) {
+        var url;
+        var hitAPI = new XMLHttpRequest();
         var currYear = new Date().getFullYear();
         var currMonth = new Date().getMonth() + 1;
-        url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/';
-      } else {
-        url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/?full-items=yes';
-      }
-      hitAPI.open('GET', url, true);
-      hitAPI.send();
-      hitAPI.onreadystatechange = function() {
-        if (hitAPI.readyState === XMLHttpRequest.DONE) {
-          if (hitAPI.status === 200) {
-            window.location = url;
-          } else {
-            console.error('There was a problem with the API call.');
-          }
-        }
-      }
-    }
-  });
-
-  //need anchor tag here too
-  document.addEventListener('click', function () {
-    if (event.target.className.toLowerCase() === 'details-button') {
-      var hitAPI = new XMLHttpRequest();
-      var currYear = new Date().getFullYear();
-      var currMonth = new Date().getMonth() + 1;
-      var url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/?full-items=yes'; //this should to go a href
-      if (targetID) {
-        hitAPI.open('GET', url, true);
-        hitAPI.send();
-        hitAPI.onreadystatechange = function() {
-          if (hitAPI.readyState === XMLHttpRequest.DONE) {
-            if (hitAPI.status === 200) {
-              window.location = url;
-            } else {
-              console.error('There was a problem with the API call.');
-            }
-          }
-        }
-      } else {
-        alert('Please select a valid event.');
-      }
-    }
-    });
-
-    document.addEventListener('change', function () {
-        if (document.querySelector('.' + eventInputClass).value === 'Which Event?') {
+        if (document.querySelector('.' + eventInputClass).value === eventInputFieldTextContent) {
+          targetID = null;
+          detailsButtonWrapper.href = null;
           detailsButton.disabled = true;
+          if (!month || document.querySelector('.' + dateInputClass).value === dateInputFieldTextContent) {
+            //no month and no event
+            buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes'
+          } else {
+            //month but no event
+            url = 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/';
+            hitAPI.open('GET', url, true);
+            hitAPI.send();
+            hitAPI.onreadystatechange = function() {
+                if (hitAPI.readyState === XMLHttpRequest.DONE) {
+                  if (hitAPI.status === 200) {
+                    buttonLinkWrapper.href = url;
+                  } else {
+                    console.error('There was a problem with the API call.');
+                  }
+                }
+              }
+          }
         } else {
+          var hitAPI2 = new XMLHttpRequest();
           detailsButton.disabled = false;
+          eventName = eventInputField.value;
+          var target = itemsArray.filter(function(item){
+              return item.name === eventName
+            });
+            targetID = target[0].id;
+          var url1 = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/?full-items=yes';
+          hitAPI2.open('GET', url1, true);
+          hitAPI2.send();
+          hitAPI2.onreadystatechange = function() {
+              if (hitAPI2.readyState === XMLHttpRequest.DONE) {
+                if (hitAPI2.status === 200) {
+                  detailsButtonWrapper.href = url1;
+                } else {
+                  console.error('There was a problem with the API call.');
+                }
+              }
+            }
+          if (!month) {
+            url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/';
+            hitAPI.open('GET', url, true);
+            hitAPI.send();
+            hitAPI.onreadystatechange = function() {
+                if (hitAPI.readyState === XMLHttpRequest.DONE) {
+                  if (hitAPI.status === 200) {
+                    buttonLinkWrapper.href = url;
+                  } else {
+                    console.error('There was a problem with the API call.');
+                  }
+                }
+              }
+          } else {
+            url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + year + '/' + month + '/';
+            hitAPI.open('GET', url, true);
+            hitAPI.send();
+            hitAPI.onreadystatechange = function() {
+                if (hitAPI.readyState === XMLHttpRequest.DONE) {
+                  if (hitAPI.status === 200) {
+                    buttonLinkWrapper.href = url;
+                  } else {
+                    console.error('There was a problem with the API call.');
+                  }
+                }
+              }
+          }
         }
-      });
+      }
+
+    });
 
 }

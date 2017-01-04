@@ -10,6 +10,7 @@ var toolCreator = (function() {
         return FHModal(
           {
             shortname: config.shortname,
+            selectedItems: config.selectedItems,
             modalType: config.toolDetails.modal.modalType,
             showFullItems: config.toolDetails.modal.showFullItems,
             text: config.text,
@@ -33,21 +34,18 @@ var toolCreator = (function() {
       case 'SearchInput':
         return FHSearchInput(
           {
-            container: config.toolDetails.container,
+            container: config.toolDetails.searchInputContainer,
+            selectedItems: config.selectedItems,
+            stackOrientation: config.toolDetails.inputFields.stackOrientation,
             inputFieldText: config.toolDetails.inputFields.inputFieldText,
             inputFieldTypes: config.toolDetails.inputFields.inputFieldTypes,
-            inputFieldHeightAndWidth: config.toolDetails.inputFields.inputFieldHeightAndWidth,
-            inputFieldIcons: config.toolDetails.inputFields.inputFieldIcons,
             inputFieldBorders: config.toolDetails.inputFields.inputFieldBorders,
-            inputFieldMarginsAndPadding: config.toolDetails.inputFields.inputFieldMarginsAndPadding,
             inputFieldBackgroundColor: config.toolDetails.inputFields.inputFieldBackgroundColor,
             doesDetailsButtonExist: config.toolDetails.buttons.doesDetailsButtonExist,
             buttonsBackgroundColor: config.toolDetails.buttons.buttonsBackgroundColor,
             buttonsText: config.toolDetails.buttons.buttonsText,
             buttonsBorders: config.toolDetails.buttons.buttonsBorders,
-            buttonsBellsAndWhistles: config.toolDetails.buttons.buttonsBellsAndWhistles,
             buttonsHeightAndWidth: config.toolDetails.buttons.buttonsHeightAndWidth,
-            buttonsMarginsAndPadding: config.toolDetails.buttons.buttonsMarginsAndPadding,
             shortname: config.shortname,
         }
       );

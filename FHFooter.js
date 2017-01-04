@@ -13,6 +13,13 @@ function buildFooterHTML(obj) {
   var secondElementTextColor;
   var thirdElementTextColor;
   var fourthElementTextColor;
+  var mobileView;
+
+  if (window.innerWidth < 700) {
+    mobileView = true;
+  } else {
+    mobileView = false;
+  }
 
   var footerStyles = {
     backgroundColor: obj.footer.footerBackgroundColor || '#88BCF8',
@@ -70,7 +77,7 @@ function buildFooterHTML(obj) {
     text.classList.add('footer-element');
     var textContent = document.createTextNode(filteredElements[i].textContent);
     text.appendChild(textContent);
-    text.style.display = 'inline-block';
+    mobileView ? text.style.display = 'block' : text.style.display = 'inline-block';
     if (filteredElements[i].id === 'first') {
       firstElementTextColor = filteredElements[i].color || '#000000';
       text.style.color = firstElementTextColor;
@@ -87,9 +94,9 @@ function buildFooterHTML(obj) {
     text.style.fontFamily = filteredElements[i].fontName || 'Palatino-Bold, serif';
     text.style.fontSize = filteredElements[i].fontSize || '16px';
     text.style.fontWeight = filteredElements[i].fontWeight || 'normal';
-    text.style.height = '50px';
-    text.style.lineHeight = '50px';
-    text.style.whiteSpace = 'noWrap';
+    mobileView ? text.style.height = '' : text.style.height = '50px';
+    mobileView ? text.style.lineHeight = '' : text.style.lineHeight = '50px';
+    mobileView ? text.style.whiteSpace = '' : text.style.whiteSpace = 'noWrap';
   }
 
   formatElements();
@@ -99,19 +106,30 @@ function buildFooterHTML(obj) {
     var el2 = document.getElementById('second');
     var el3 = document.getElementById('third');
     var el4 = document.getElementById('fourth');
-    if (filteredElements.length === 1) {
-      el1.style.fontSize = '2em';
-      el1.style.fontWeight = '900';
-    } else if (filteredElements.length === 2) {
-      el1.style.marginRight = '50px';
-      el2.style.marginLeft = '50px';
-    } else if (filteredElements.length === 3) {
-      el1.style.marginRight = '50px';
-      el2.style.marginRight = '50px';
-    } else if (filteredElements.length === 4) {
-      el1.style.marginRight = '50px';
-      el2.style.marginRight = '50px';
-      el3.style.marginRight = '50px';
+    if (mobileView) {
+      if (filteredElements.length === 1) {
+        el1.style.fontSize = '2em';
+        el1.style.fontWeight = '900';
+      }
+      el1.style.margin = '40px auto';
+      el2.style.margin = '40px auto';
+      el3.style.margin = '40px auto';
+      el4.style.margin = '40px auto';
+    } else {
+      if (filteredElements.length === 1) {
+        el1.style.fontSize = '2em';
+        el1.style.fontWeight = '900';
+      } else if (filteredElements.length === 2) {
+        el1.style.marginRight = '50px';
+        el2.style.marginLeft = '50px';
+      } else if (filteredElements.length === 3) {
+        el1.style.marginRight = '50px';
+        el2.style.marginRight = '50px';
+      } else if (filteredElements.length === 4) {
+        el1.style.marginRight = '50px';
+        el2.style.marginRight = '50px';
+        el3.style.marginRight = '50px';
+      }
     }
   }
 
