@@ -1,0 +1,23 @@
+{
+  "name": "fare-harbor-toolkit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "node FHServer.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcwestlake/fare-harbor-toolkit.git"
+  },
+  "author": "Graham Nessler & Ryan Westlake",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rcwestlake/fare-harbor-toolkit/issues"
+  },
+  "homepage": "https://github.com/rcwestlake/fare-harbor-toolkit#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
