@@ -538,10 +538,10 @@ function buildSearchInputHTML(obj) {
       var Oct = /Oct+/;
       var Nov = /Nov+/;
       var Dec = /Dec+/;
-      var y16 = /[6]/g;
-      var y17 = /[7]/g;
-      var y18 = /[8]/g;
-      var y19 = /[9]/g;
+      var y16 = /16/;
+      var y17 = /17/;
+      var y18 = /18/;
+      var y19 = /19/;
 
       if (Jan.test(target)) {
         month = '01';
