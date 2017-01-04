@@ -53,7 +53,7 @@ var FHConfig = {
             doesItExist: true,
             text: 'Call Us',
             textType: '',
-            extraText: '555-555-5555',
+            extraText: '',
             itemID: '',
             linkTo: '',
             icon: '',
