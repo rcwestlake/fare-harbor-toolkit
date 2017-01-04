@@ -34,6 +34,7 @@ var FHConfig = {
           {
             doesItExist: true,
             text: 'See activities and tickets',
+            textType: '',
             extraText: '',
             itemID: '',
             linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/?full-items=yes',
@@ -42,6 +43,7 @@ var FHConfig = {
           {
             doesItExist: true,
             text: 'View online calendar',
+            textType: '',
             extraText: '',
             itemID: '',
             linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/',
@@ -49,8 +51,9 @@ var FHConfig = {
           },
           {
             doesItExist: true,
-            text: '"So amazing"',
-            extraText: '-Jenna, customer in 2016',
+            text: 'Call Us',
+            textType: '',
+            extraText: '555-555-5555',
             itemID: '',
             linkTo: '',
             icon: '',
@@ -58,6 +61,7 @@ var FHConfig = {
           {
             doesItExist: false,
             text: '',
+            textType: '',
             extraText: '',
             itemID: '',
             linkTo: '',

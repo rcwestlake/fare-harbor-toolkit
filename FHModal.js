@@ -164,7 +164,7 @@ function addCardToContainer(props, cards, index) {
   if(index < cards.length - 1) {
     cardContainer.style.borderBottom = props.colors.headerColor ?
     '' + '1px solid ' + props.colors.headerColor :
-    '1px solid #2EA1D9';
+    '1px solid #dd5347';
   }
 
   return cardContainer
@@ -179,20 +179,31 @@ function addTextToCard(props, cards, index) {
 
   textContainer.style.boxSizing = 'border-box';
   textContainer.style.display = 'inline-block';
+  textContainer.style.float = 'right';
   textContainer.style.minHeight = '100%';
   textContainer.style.maxWidth = cards[index].icon ? '75%' : '100%';
+  textContainer.style.height = '100%';
   textContainer.style.width = cards[index].icon ? '75%' : '100%';
-  textContainer.style.textAlign = 'right';
+  textContainer.style.textAlign = cards[index].icon ? 'left' : 'center';
+  textContainer.style.position = 'relative';
 
   text.textContent = cards[index].text;
   text.href = cards[index].linkTo;
   text.style.display = 'inline-block';
   text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
+
+  if(cards[index].textType.toLowerCase() === 'quote') {
+    text.style.fontStyle = 'italic';
+  }
+
   text.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
   text.style.textDecoration = 'none';
   text.style.margin = '0px';
-  text.style.marginRight = '5%';
-  text.style.paddingTop = '25%';
+  text.style.marginLeft = cards[index].icon ? '10%': '3%';
+  text.style.marginRight = '3%';
+  text.style.position = 'relative';
+  text.style.top = '50%';
+  text.style.transform = 'translateY(-50%)';
 
   textContainer.appendChild(text);
 
@@ -201,7 +212,7 @@ function addTextToCard(props, cards, index) {
     extraText.textContent = cards[index].extraText;
     extraText.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
     extraText.style.margin = '0px';
-    extraText.style.marginRight = '5%';
+    extraText.style.marginLeft = cards[index].icon ? '10%': '3%';
     textContainer.appendChild(extraText);
   }
 
@@ -214,14 +225,12 @@ function addIcons(props, card, index) {
   if(card[index].icon) {
     iconContainer = document.createElement('div');
     icon = document.createElement('img');
-
     iconContainer.style.boxSizing = 'border-box';
     iconContainer.style.float = 'left';
     iconContainer.style.paddingLeft = '3%';
     iconContainer.style.maxWidth = '25%';
     iconContainer.style.height = '100%';
     iconContainer.style.width = '25%';
-
     icon.src = card[index].icon;
     icon.style.marginTop = '55%';
     icon.style.height = 'auto';
