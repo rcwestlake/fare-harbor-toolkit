@@ -46,6 +46,7 @@ function buildFHButton(props) {
   button.style.right = '20px';
   button.style.height = '60px';
   button.style.width = '170px';
+  button.style.zIndex = '3561031316';
   bookButtonText = props.text.bookButtonText;
 
   return button;
@@ -64,9 +65,20 @@ function buildModalContainer(props) {
   modalContainer.style.position = 'fixed';
   modalContainer.style.bottom = '100px';
   modalContainer.style.right = '20px';
-  modalContainer.style.height = '550px';
-  modalContainer.style.width = '350px';
+
+  if(window.innerWidth < '550') {
+    modalContainer.style.borderRadius = '0px';
+    modalContainer.style.top = '0px';
+    modalContainer.style.left = '0px';
+    modalContainer.style.height = '100%';
+    modalContainer.style.width = '100%';
+  } else {
+    modalContainer.style.height = '550px';
+    modalContainer.style.width = '350px';
+  }
+
   modalContainer.style.textAlign = props.text.globalTextAlign || 'center';
+  modalContainer.style.zIndex = '35610311';
 
   return modalContainer;
 }
@@ -78,6 +90,10 @@ function buildHeaderContainer(props) {
   reservationTitleContainer.style.paddingTop = '0px';
   reservationTitleContainer.style.backgroundColor = props.colors.headerColor || '#dd5347';
   reservationTitleContainer.style.borderRadius = '10px 10px 0px 0px';
+
+  if(window.innerWidth < '500') {
+    reservationTitleContainer.style.borderRadius = '0px';
+  }
 
   return reservationTitleContainer;
 }
