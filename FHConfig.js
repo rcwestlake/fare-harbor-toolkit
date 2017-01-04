@@ -52,9 +52,9 @@ var FHConfig = {
           },
           {
             doesItExist: true,
-            text: 'Call Us',
-            textType: '',
-            extraText: '555-555-5555',
+            text: '"It was the best tour of my life!"',
+            textType: 'Quote',
+            extraText: 'Julie, customer in 2016',
             itemID: '',
             linkTo: '',
             icon: '',

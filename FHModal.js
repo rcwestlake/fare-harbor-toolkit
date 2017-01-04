@@ -71,7 +71,7 @@ function buildModalContainer(props) {
 }
 
 function buildHeaderContainer(props) {
-  reservationTitleContainer = document.createElement('div');
+  reservationTitleContainer = document.createElement('section');
   reservationTitleContainer.style.height = '15%';
   reservationTitleContainer.style.boxSizing = 'border-box';
   reservationTitleContainer.style.paddingTop = '0px';
@@ -173,6 +173,7 @@ function addCardToContainer(props, cards, index) {
 function addTextToCard(props, cards, index) {
   var extraText;
   textContainer = document.createElement('div');
+  var alignContainer = document.createElement('div');
   var text = cards[index].linkTo ?
               document.createElement('a') :
               document.createElement('p');
@@ -187,6 +188,15 @@ function addTextToCard(props, cards, index) {
   textContainer.style.textAlign = cards[index].icon ? 'left' : 'center';
   textContainer.style.position = 'relative';
 
+  alignContainer.style.boxSizing = 'border-box';
+  alignContainer.style.display = 'block';
+  alignContainer.style.height = 'auto';
+  alignContainer.style.width = '100%';
+  alignContainer.style.position = 'relative';
+  alignContainer.style.top = '50%';
+  alignContainer.style.transform = 'translateY(-50%)';
+  textContainer.appendChild(alignContainer)
+
   text.textContent = cards[index].text;
   text.href = cards[index].linkTo;
   text.style.display = 'inline-block';
@@ -194,6 +204,7 @@ function addTextToCard(props, cards, index) {
 
   if(cards[index].textType.toLowerCase() === 'quote') {
     text.style.fontStyle = 'italic';
+    text.style.fontSize = props.cardFontsAndColors.mainTextSize || '18px';
   }
 
   text.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
@@ -201,11 +212,9 @@ function addTextToCard(props, cards, index) {
   text.style.margin = '0px';
   text.style.marginLeft = cards[index].icon ? '10%': '3%';
   text.style.marginRight = '3%';
-  text.style.position = 'relative';
-  text.style.top = '50%';
-  text.style.transform = 'translateY(-50%)';
 
-  textContainer.appendChild(text);
+
+  alignContainer.appendChild(text);
 
   if(cards[index].extraText) {
     extraText = document.createElement('p');
@@ -213,7 +222,7 @@ function addTextToCard(props, cards, index) {
     extraText.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
     extraText.style.margin = '0px';
     extraText.style.marginLeft = cards[index].icon ? '10%': '3%';
-    textContainer.appendChild(extraText);
+    alignContainer.appendChild(extraText);
   }
 
   return textContainer
