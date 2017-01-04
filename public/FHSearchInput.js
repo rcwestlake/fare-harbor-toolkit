@@ -405,7 +405,7 @@ function buildSearchInputHTML(obj) {
 
   window.addEventListener('load', function () {
     var hitAPI = new XMLHttpRequest();
-    var url = 'https://demo.fareharbor.com/api/external/v1/companies/' + companyName + '/items/?api-app=5fa25381-5ec6-4e86-8b4e-a95735beffa4&api-user=1be378f8-8a6f-4788-b7f0-c2c9b02ca009';
+    var url = 'http://localhost:8080/api';
     hitAPI.open('GET', url, true);
     hitAPI.send();
     hitAPI.onreadystatechange = function() {
@@ -538,10 +538,10 @@ function buildSearchInputHTML(obj) {
       var Oct = /Oct+/;
       var Nov = /Nov+/;
       var Dec = /Dec+/;
-      var y16 = /[6]/g;
-      var y17 = /[7]/g;
-      var y18 = /[8]/g;
-      var y19 = /[9]/g;
+      var y16 = /16/;
+      var y17 = /17/;
+      var y18 = /18/;
+      var y19 = /19/;
 
       if (Jan.test(target)) {
         month = '01';
