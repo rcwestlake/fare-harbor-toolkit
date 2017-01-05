@@ -13,6 +13,9 @@ var FHSearchInput = function(obj) {
     var itemsArray = [];
     var month;
     var year;
+    var leftFieldInput;
+    var rightFieldInput;
+    var goButton;
     var container;
     var detailsButton;
     var detailsButtonExists = obj.doesDetailsButtonExist;
@@ -20,62 +23,70 @@ var FHSearchInput = function(obj) {
     var stackDependentStyle;
     var mobileView;
 
-    if (window.innerWidth < 700) {
-      mobileView = true;
-    } else {
-      mobileView = false;
+    makeResponsive();
+
+    function makeResponsive() {
+      if (window.innerWidth < 700) {
+        mobileView = true;
+      } else {
+        mobileView = false;
+      }
     }
 
-    if (mobileView) {
-      stackDependentStyle = {
-        leftInputFieldDisplay: 'block',
-        rightInputFieldDisplay: 'block',
-        leftInputFieldMarginTop: '15px',
-        leftInputFieldMarginRight: 'auto',
-        leftInputFieldMarginBottom: '15px',
-        leftInputFieldMarginLeft: 'auto',
-        rightInputFieldMarginTop: '15px',
-        rightInputFieldMarginRight: 'auto',
-        rightInputFieldMarginBottom: '15px',
-        rightInputFieldMarginLeft: 'auto',
-        detailsButtonMarginTop: '40px',
-        detailsButtonMarginBottom: '40px',
-        leftInputFieldWidth: '200px',
-        rightInputFieldWidth: '200px',
+    adjustOrientation();
+
+    function adjustOrientation() {
+      if (mobileView) {
+        stackDependentStyle = {
+          leftInputFieldDisplay: 'block',
+          rightInputFieldDisplay: 'block',
+          leftInputFieldMarginTop: '15px',
+          leftInputFieldMarginRight: 'auto',
+          leftInputFieldMarginBottom: '15px',
+          leftInputFieldMarginLeft: 'auto',
+          rightInputFieldMarginTop: '15px',
+          rightInputFieldMarginRight: 'auto',
+          rightInputFieldMarginBottom: '15px',
+          rightInputFieldMarginLeft: 'auto',
+          detailsButtonMarginTop: '40px',
+          detailsButtonMarginBottom: '40px',
+          leftInputFieldWidth: '200px',
+          rightInputFieldWidth: '200px',
+          }
+      } else if (obj.stackOrientation === 'vertical') {
+        stackDependentStyle = {
+          leftInputFieldDisplay: 'block',
+          rightInputFieldDisplay: 'block',
+          leftInputFieldMarginTop: '15px',
+          leftInputFieldMarginRight: 'auto',
+          leftInputFieldMarginBottom: '15px',
+          leftInputFieldMarginLeft: 'auto',
+          rightInputFieldMarginTop: '15px',
+          rightInputFieldMarginRight: 'auto',
+          rightInputFieldMarginBottom: '15px',
+          rightInputFieldMarginLeft: 'auto',
+          detailsButtonMarginTop: '40px',
+          detailsButtonMarginBottom: '40px',
+          leftInputFieldWidth: '30vw',
+          rightInputFieldWidth: '30vw',
+          }
+      } else {
+        stackDependentStyle = {
+          leftInputFieldDisplay: 'inline-block',
+          rightInputFieldDisplay: 'inline-block',
+          leftInputFieldMarginTop: '0px',
+          leftInputFieldMarginRight: '5px',
+          leftInputFieldMarginBottom: '0px',
+          leftInputFieldMarginLeft: '5px',
+          rightInputFieldMarginTop: '0px',
+          rightInputFieldMarginRight: '5px',
+          rightInputFieldMarginBottom: '0px',
+          rightInputFieldMarginLeft: '5px',
+          detailsButtonMarginTop: '20px',
+          detailsButtonMarginBottom: '20px',
+          leftInputFieldWidth: '200px',
+          rightInputFieldWidth: '200px',
         }
-    } else if (obj.stackOrientation === 'vertical') {
-      stackDependentStyle = {
-        leftInputFieldDisplay: 'block',
-        rightInputFieldDisplay: 'block',
-        leftInputFieldMarginTop: '15px',
-        leftInputFieldMarginRight: 'auto',
-        leftInputFieldMarginBottom: '15px',
-        leftInputFieldMarginLeft: 'auto',
-        rightInputFieldMarginTop: '15px',
-        rightInputFieldMarginRight: 'auto',
-        rightInputFieldMarginBottom: '15px',
-        rightInputFieldMarginLeft: 'auto',
-        detailsButtonMarginTop: '40px',
-        detailsButtonMarginBottom: '40px',
-        leftInputFieldWidth: '30vw',
-        rightInputFieldWidth: '30vw',
-        }
-    } else {
-      stackDependentStyle = {
-        leftInputFieldDisplay: 'inline-block',
-        rightInputFieldDisplay: 'inline-block',
-        leftInputFieldMarginTop: '0px',
-        leftInputFieldMarginRight: '5px',
-        leftInputFieldMarginBottom: '0px',
-        leftInputFieldMarginLeft: '5px',
-        rightInputFieldMarginTop: '0px',
-        rightInputFieldMarginRight: '5px',
-        rightInputFieldMarginBottom: '0px',
-        rightInputFieldMarginLeft: '5px',
-        detailsButtonMarginTop: '20px',
-        detailsButtonMarginBottom: '20px',
-        leftInputFieldWidth: '200px',
-        rightInputFieldWidth: '200px',
       }
     }
 
@@ -132,51 +143,56 @@ var FHSearchInput = function(obj) {
         width: stackDependentStyle.leftInputFieldWidth,
       }
 
-      var leftFieldInput = document.createElement('SELECT');
-      container.appendChild(leftFieldInput);
-      leftFieldInput.classList.add('left-field-input');
-      leftFieldInput.style.display = leftFieldInputStyles.display;
-      leftFieldInput.style.backgroundColor = leftFieldInputStyles.backgroundColor;
-      leftFieldInput.style.borderBottomWidth = leftFieldInputStyles.borderBottomWidth;
-      leftFieldInput.style.borderTopWidth = leftFieldInputStyles.borderTopWidth;
-      leftFieldInput.style.borderRightWidth = leftFieldInputStyles.borderRightWidth;
-      leftFieldInput.style.borderLeftWidth = leftFieldInputStyles.borderLeftWidth;
-      leftFieldInput.style.borderBottomStyle = leftFieldInputStyles.borderBottomStyle;
-      leftFieldInput.style.borderTopStyle = leftFieldInputStyles.borderTopStyle;
-      leftFieldInput.style.borderRightStyle = leftFieldInputStyles.borderRightStyle;
-      leftFieldInput.style.borderLeftStyle = leftFieldInputStyles.borderLeftStyle;
-      leftFieldInput.style.borderBottomColor = leftFieldInputStyles.borderBottomColor;
-      leftFieldInput.style.borderTopColor = leftFieldInputStyles.borderTopColor;
-      leftFieldInput.style.borderRightColor = leftFieldInputStyles.borderRightColor;
-      leftFieldInput.style.borderLeftColor = leftFieldInputStyles.borderLeftColor;
-      leftFieldInput.style.color = leftFieldInputStyles.color;
-      leftFieldInput.style.fontFamily = leftFieldInputStyles.fontFamily;
-      leftFieldInput.style.fontSize = leftFieldInputStyles.fontSize;
-      leftFieldInput.style.height = leftFieldInputStyles.height;
-      leftFieldInput.style.marginTop = leftFieldInputStyles.marginTop;
-      leftFieldInput.style.marginRight = leftFieldInputStyles.marginRight;
-      leftFieldInput.style.marginBottom = leftFieldInputStyles.marginBottom;
-      leftFieldInput.style.marginLeft = leftFieldInputStyles.marginLeft;
-      leftFieldInput.style.width = leftFieldInputStyles.width;
+      makeHTMLForLeftInput();
+
+      function makeHTMLForLeftInput() {
+        leftFieldInput = document.createElement('SELECT');
+        container.appendChild(leftFieldInput);
+        leftFieldInput.classList.add('left-field-input');
+        leftFieldInput.style.display = leftFieldInputStyles.display;
+        leftFieldInput.style.backgroundColor = leftFieldInputStyles.backgroundColor;
+        leftFieldInput.style.borderBottomWidth = leftFieldInputStyles.borderBottomWidth;
+        leftFieldInput.style.borderTopWidth = leftFieldInputStyles.borderTopWidth;
+        leftFieldInput.style.borderRightWidth = leftFieldInputStyles.borderRightWidth;
+        leftFieldInput.style.borderLeftWidth = leftFieldInputStyles.borderLeftWidth;
+        leftFieldInput.style.borderBottomStyle = leftFieldInputStyles.borderBottomStyle;
+        leftFieldInput.style.borderTopStyle = leftFieldInputStyles.borderTopStyle;
+        leftFieldInput.style.borderRightStyle = leftFieldInputStyles.borderRightStyle;
+        leftFieldInput.style.borderLeftStyle = leftFieldInputStyles.borderLeftStyle;
+        leftFieldInput.style.borderBottomColor = leftFieldInputStyles.borderBottomColor;
+        leftFieldInput.style.borderTopColor = leftFieldInputStyles.borderTopColor;
+        leftFieldInput.style.borderRightColor = leftFieldInputStyles.borderRightColor;
+        leftFieldInput.style.borderLeftColor = leftFieldInputStyles.borderLeftColor;
+        leftFieldInput.style.color = leftFieldInputStyles.color;
+        leftFieldInput.style.fontFamily = leftFieldInputStyles.fontFamily;
+        leftFieldInput.style.fontSize = leftFieldInputStyles.fontSize;
+        leftFieldInput.style.height = leftFieldInputStyles.height;
+        leftFieldInput.style.marginTop = leftFieldInputStyles.marginTop;
+        leftFieldInput.style.marginRight = leftFieldInputStyles.marginRight;
+        leftFieldInput.style.marginBottom = leftFieldInputStyles.marginBottom;
+        leftFieldInput.style.marginLeft = leftFieldInputStyles.marginLeft;
+        leftFieldInput.style.width = leftFieldInputStyles.width;
+      }
 
       assignLeftFieldFunction(
         {
         func: leftFieldFunction,
         input: leftFieldInput,
         text: obj.inputFieldText.leftInputFieldTextContent,
-      })
-    }
+      });
 
-    function assignLeftFieldFunction(options) {
-      if (options.func === 'eventPicker') {
-        eventInputField = options.input;
-        eventInputFieldTextContent = options.text || 'Which Event?';
-        eventInputClass = 'left-field-input';
-      } else if (options.func === 'datePicker') {
-        dateInputField = options.input;
-        dateInputFieldTextContent = options.text || 'When?';
-        dateInputClass = 'left-field-input';
+      function assignLeftFieldFunction(options) {
+        if (options.func === 'eventPicker') {
+          eventInputField = options.input;
+          eventInputFieldTextContent = options.text || 'Which Event?';
+          eventInputClass = 'left-field-input';
+        } else if (options.func === 'datePicker') {
+          dateInputField = options.input;
+          dateInputFieldTextContent = options.text || 'When?';
+          dateInputClass = 'left-field-input';
+        }
       }
+
     }
 
     createRightInputField(obj);
@@ -210,32 +226,36 @@ var FHSearchInput = function(obj) {
         width: stackDependentStyle.rightInputFieldWidth,
       }
 
-      var rightFieldInput = document.createElement('SELECT');
-      container.appendChild(rightFieldInput);
-      rightFieldInput.classList.add('right-field-input');
-      rightFieldInput.style.display = rightFieldInputStyles.display;
-      rightFieldInput.style.backgroundColor = rightFieldInputStyles.backgroundColor;
-      rightFieldInput.style.borderBottomWidth = rightFieldInputStyles.borderBottomWidth;
-      rightFieldInput.style.borderTopWidth = rightFieldInputStyles.borderTopWidth;
-      rightFieldInput.style.borderRightWidth = rightFieldInputStyles.borderRightWidth;
-      rightFieldInput.style.borderLeftWidth = rightFieldInputStyles.borderLeftWidth;
-      rightFieldInput.style.borderBottomStyle = rightFieldInputStyles.borderBottomStyle;
-      rightFieldInput.style.borderTopStyle = rightFieldInputStyles.borderTopStyle;
-      rightFieldInput.style.borderRightStyle = rightFieldInputStyles.borderRightStyle;
-      rightFieldInput.style.borderLeftStyle = rightFieldInputStyles.borderLeftStyle;
-      rightFieldInput.style.borderBottomColor = rightFieldInputStyles.borderBottomColor;
-      rightFieldInput.style.borderTopColor = rightFieldInputStyles.borderTopColor;
-      rightFieldInput.style.borderRightColor = rightFieldInputStyles.borderRightColor;
-      rightFieldInput.style.borderLeftColor = rightFieldInputStyles.borderLeftColor;
-      rightFieldInput.style.color = rightFieldInputStyles.color;
-      rightFieldInput.style.fontFamily = rightFieldInputStyles.fontFamily;
-      rightFieldInput.style.fontSize = rightFieldInputStyles.fontSize;
-      rightFieldInput.style.height = rightFieldInputStyles.height;
-      rightFieldInput.style.marginTop = rightFieldInputStyles.marginTop;
-      rightFieldInput.style.marginRight = rightFieldInputStyles.marginRight;
-      rightFieldInput.style.marginBottom = rightFieldInputStyles.marginBottom;
-      rightFieldInput.style.marginLeft = rightFieldInputStyles.marginLeft;
-      rightFieldInput.style.width = rightFieldInputStyles.width;
+      makeHTMLForRightInput();
+
+      function makeHTMLForRightInput() {
+        rightFieldInput = document.createElement('SELECT');
+        container.appendChild(rightFieldInput);
+        rightFieldInput.classList.add('right-field-input');
+        rightFieldInput.style.display = rightFieldInputStyles.display;
+        rightFieldInput.style.backgroundColor = rightFieldInputStyles.backgroundColor;
+        rightFieldInput.style.borderBottomWidth = rightFieldInputStyles.borderBottomWidth;
+        rightFieldInput.style.borderTopWidth = rightFieldInputStyles.borderTopWidth;
+        rightFieldInput.style.borderRightWidth = rightFieldInputStyles.borderRightWidth;
+        rightFieldInput.style.borderLeftWidth = rightFieldInputStyles.borderLeftWidth;
+        rightFieldInput.style.borderBottomStyle = rightFieldInputStyles.borderBottomStyle;
+        rightFieldInput.style.borderTopStyle = rightFieldInputStyles.borderTopStyle;
+        rightFieldInput.style.borderRightStyle = rightFieldInputStyles.borderRightStyle;
+        rightFieldInput.style.borderLeftStyle = rightFieldInputStyles.borderLeftStyle;
+        rightFieldInput.style.borderBottomColor = rightFieldInputStyles.borderBottomColor;
+        rightFieldInput.style.borderTopColor = rightFieldInputStyles.borderTopColor;
+        rightFieldInput.style.borderRightColor = rightFieldInputStyles.borderRightColor;
+        rightFieldInput.style.borderLeftColor = rightFieldInputStyles.borderLeftColor;
+        rightFieldInput.style.color = rightFieldInputStyles.color;
+        rightFieldInput.style.fontFamily = rightFieldInputStyles.fontFamily;
+        rightFieldInput.style.fontSize = rightFieldInputStyles.fontSize;
+        rightFieldInput.style.height = rightFieldInputStyles.height;
+        rightFieldInput.style.marginTop = rightFieldInputStyles.marginTop;
+        rightFieldInput.style.marginRight = rightFieldInputStyles.marginRight;
+        rightFieldInput.style.marginBottom = rightFieldInputStyles.marginBottom;
+        rightFieldInput.style.marginLeft = rightFieldInputStyles.marginLeft;
+        rightFieldInput.style.width = rightFieldInputStyles.width;
+      }
 
       assignRightFieldFunction(
         {
@@ -243,18 +263,19 @@ var FHSearchInput = function(obj) {
         input: rightFieldInput,
         text: obj.inputFieldText.rightInputFieldTextContent,
       });
-    }
 
-    function assignRightFieldFunction(options) {
-      if (options.func === 'eventPicker') {
-        eventInputField = options.input;
-        eventInputFieldTextContent = options.text || 'Which Event?';
-        eventInputClass = 'right-field-input';
-      } else if (options.func === 'datePicker') {
-        dateInputField = options.input;
-        dateInputFieldTextContent = options.text || 'When?';
-        dateInputClass = 'right-field-input';
+      function assignRightFieldFunction(options) {
+        if (options.func === 'eventPicker') {
+          eventInputField = options.input;
+          eventInputFieldTextContent = options.text || 'Which Event?';
+          eventInputClass = 'right-field-input';
+        } else if (options.func === 'datePicker') {
+          dateInputField = options.input;
+          dateInputFieldTextContent = options.text || 'When?';
+          dateInputClass = 'right-field-input';
+        }
       }
+
     }
 
     createGoButton(obj);
@@ -289,39 +310,44 @@ var FHSearchInput = function(obj) {
         width: obj.buttonsHeightAndWidth.goButtonWidth || '105px',
       }
 
-      buttonLinkWrapper = document.createElement('A');
-      buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes';
-      buttonLinkWrapper.style.textDecoration = 'none';
-      var goButton = document.createElement('BUTTON');
-      var goButtonText = document.createTextNode(goButtonContent);
-      goButton.appendChild(goButtonText);
-      container.appendChild(buttonLinkWrapper);
-      buttonLinkWrapper.appendChild(goButton)
-      goButton.classList.add('go-button');
-      goButton.style.backgroundColor = goButtonStyles.backgroundColor;
-      goButton.style.borderBottomWidth = goButtonStyles.borderBottomWidth;
-      goButton.style.borderTopWidth = goButtonStyles.borderTopWidth;
-      goButton.style.borderRightWidth = goButtonStyles.borderRightWidth;
-      goButton.style.borderLeftWidth = goButtonStyles.borderLeftWidth;
-      goButton.style.borderBottomStyle = goButtonStyles.borderBottomStyle;
-      goButton.style.borderTopStyle = goButtonStyles.borderTopStyle;
-      goButton.style.borderRightStyle = goButtonStyles.borderRightStyle;
-      goButton.style.borderLeftStyle = goButtonStyles.borderLeftStyle;
-      goButton.style.borderBottomColor = goButtonStyles.borderBottomColor;
-      goButton.style.borderTopColor = goButtonStyles.borderTopColor;
-      goButton.style.borderRightColor = goButtonStyles.borderRightColor;
-      goButton.style.borderLeftColor = goButtonStyles.borderLeftColor;
-      goButton.style.borderRadius = goButtonStyles.borderRadius;
-      goButton.style.boxShadow = goButtonStyles.boxShadow;
-      goButton.style.color = goButtonStyles.color;
-      goButton.style.fontFamily = goButtonStyles.fontFamily;
-      goButton.style.fontSize = goButtonStyles.fontSize;
-      goButton.style.height = goButtonStyles.height;
-      goButton.style.marginTop = goButtonStyles.marginTop;
-      goButton.style.marginRight = goButtonStyles.marginRight;
-      goButton.style.marginBottom = goButtonStyles.marginBottom;
-      goButton.style.marginLeft = goButtonStyles.marginLeft;
-      goButton.style.width = goButtonStyles.width;
+      makeHTMLForGoButton();
+
+      function makeHTMLForGoButton() {
+        buttonLinkWrapper = document.createElement('A');
+        buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes';
+        buttonLinkWrapper.style.textDecoration = 'none';
+        goButton = document.createElement('BUTTON');
+        var goButtonText = document.createTextNode(goButtonContent);
+        goButton.appendChild(goButtonText);
+        container.appendChild(buttonLinkWrapper);
+        buttonLinkWrapper.appendChild(goButton)
+        goButton.classList.add('go-button');
+        goButton.style.backgroundColor = goButtonStyles.backgroundColor;
+        goButton.style.borderBottomWidth = goButtonStyles.borderBottomWidth;
+        goButton.style.borderTopWidth = goButtonStyles.borderTopWidth;
+        goButton.style.borderRightWidth = goButtonStyles.borderRightWidth;
+        goButton.style.borderLeftWidth = goButtonStyles.borderLeftWidth;
+        goButton.style.borderBottomStyle = goButtonStyles.borderBottomStyle;
+        goButton.style.borderTopStyle = goButtonStyles.borderTopStyle;
+        goButton.style.borderRightStyle = goButtonStyles.borderRightStyle;
+        goButton.style.borderLeftStyle = goButtonStyles.borderLeftStyle;
+        goButton.style.borderBottomColor = goButtonStyles.borderBottomColor;
+        goButton.style.borderTopColor = goButtonStyles.borderTopColor;
+        goButton.style.borderRightColor = goButtonStyles.borderRightColor;
+        goButton.style.borderLeftColor = goButtonStyles.borderLeftColor;
+        goButton.style.borderRadius = goButtonStyles.borderRadius;
+        goButton.style.boxShadow = goButtonStyles.boxShadow;
+        goButton.style.color = goButtonStyles.color;
+        goButton.style.fontFamily = goButtonStyles.fontFamily;
+        goButton.style.fontSize = goButtonStyles.fontSize;
+        goButton.style.height = goButtonStyles.height;
+        goButton.style.marginTop = goButtonStyles.marginTop;
+        goButton.style.marginRight = goButtonStyles.marginRight;
+        goButton.style.marginBottom = goButtonStyles.marginBottom;
+        goButton.style.marginLeft = goButtonStyles.marginLeft;
+        goButton.style.width = goButtonStyles.width;
+      }
+
     }
 
     if (detailsButtonExists) {
@@ -358,41 +384,47 @@ var FHSearchInput = function(obj) {
         width: obj.buttonsHeightAndWidth.detailsButtonWidth || 'auto',
       }
 
-      detailsButtonWrapper = document.createElement('A');
-      detailsButtonWrapper.href = null;
-      detailsButtonWrapper.style.textDecoration = 'none';
-      detailsButton = document.createElement('BUTTON');
-      var detailsButtonText = document.createTextNode(detailsButtonContent);
-      detailsButton.appendChild(detailsButtonText);
-      container.appendChild(detailsButtonWrapper);
-      detailsButtonWrapper.appendChild(detailsButton)
-      detailsButton.classList.add('details-button');
-      detailsButton.style.display = 'block';
-      detailsButton.disabled = true;
-      detailsButton.style.backgroundColor = detailsButtonStyles.backgroundColor;
-      detailsButton.style.borderBottomWidth = detailsButtonStyles.borderBottomWidth;
-      detailsButton.style.borderTopWidth = detailsButtonStyles.borderTopWidth;
-      detailsButton.style.borderRightWidth = detailsButtonStyles.borderRightWidth;
-      detailsButton.style.borderLeftWidth = detailsButtonStyles.borderLeftWidth;
-      detailsButton.style.borderBottomStyle = detailsButtonStyles.borderBottomStyle;
-      detailsButton.style.borderTopStyle = detailsButtonStyles.borderTopStyle;
-      detailsButton.style.borderRightStyle = detailsButtonStyles.borderRightStyle;
-      detailsButton.style.borderLeftStyle = detailsButtonStyles.borderLeftStyle;
-      detailsButton.style.borderBottomColor = detailsButtonStyles.borderBottomColor;
-      detailsButton.style.borderTopColor = detailsButtonStyles.borderTopColor;
-      detailsButton.style.borderRightColor = detailsButtonStyles.borderRightColor;
-      detailsButton.style.borderLeftColor = detailsButtonStyles.borderLeftColor;
-      detailsButton.style.borderRadius = detailsButtonStyles.borderRadius;
-      detailsButton.style.boxShadow = detailsButtonStyles.boxShadow;
-      detailsButton.style.color = detailsButtonStyles.color;
-      detailsButton.style.fontFamily = detailsButtonStyles.fontFamily;
-      detailsButton.style.fontSize = detailsButtonStyles.fontSize;
-      detailsButton.style.height = detailsButtonStyles.height;
-      detailsButton.style.marginTop = detailsButtonStyles.marginTop;
-      detailsButton.style.marginRight = detailsButtonStyles.marginRight;
-      detailsButton.style.marginBottom = detailsButtonStyles.marginBottom;
-      detailsButton.style.marginLeft = detailsButtonStyles.marginLeft;
-      detailsButton.style.width = detailsButtonStyles.width;
+      makeHTMLForDetailsButton();
+
+      function makeHTMLForDetailsButton() {
+        detailsButtonWrapper = document.createElement('A');
+        detailsButtonWrapper.href = '';
+        detailsButtonWrapper.style.textDecoration = 'none';
+        detailsButton = document.createElement('BUTTON');
+        var detailsButtonText = document.createTextNode(detailsButtonContent);
+        detailsButton.appendChild(detailsButtonText);
+        container.appendChild(detailsButtonWrapper);
+        detailsButtonWrapper.appendChild(detailsButton)
+        detailsButton.classList.add('details-button');
+        detailsButton.style.display = 'block';
+        detailsButton.disabled = true;
+        detailsButton.title = 'Please select an event.';
+        detailsButton.style.backgroundColor = detailsButtonStyles.backgroundColor;
+        detailsButton.style.borderBottomWidth = detailsButtonStyles.borderBottomWidth;
+        detailsButton.style.borderTopWidth = detailsButtonStyles.borderTopWidth;
+        detailsButton.style.borderRightWidth = detailsButtonStyles.borderRightWidth;
+        detailsButton.style.borderLeftWidth = detailsButtonStyles.borderLeftWidth;
+        detailsButton.style.borderBottomStyle = detailsButtonStyles.borderBottomStyle;
+        detailsButton.style.borderTopStyle = detailsButtonStyles.borderTopStyle;
+        detailsButton.style.borderRightStyle = detailsButtonStyles.borderRightStyle;
+        detailsButton.style.borderLeftStyle = detailsButtonStyles.borderLeftStyle;
+        detailsButton.style.borderBottomColor = detailsButtonStyles.borderBottomColor;
+        detailsButton.style.borderTopColor = detailsButtonStyles.borderTopColor;
+        detailsButton.style.borderRightColor = detailsButtonStyles.borderRightColor;
+        detailsButton.style.borderLeftColor = detailsButtonStyles.borderLeftColor;
+        detailsButton.style.borderRadius = detailsButtonStyles.borderRadius;
+        detailsButton.style.boxShadow = detailsButtonStyles.boxShadow;
+        detailsButton.style.color = detailsButtonStyles.color;
+        detailsButton.style.fontFamily = detailsButtonStyles.fontFamily;
+        detailsButton.style.fontSize = detailsButtonStyles.fontSize;
+        detailsButton.style.height = detailsButtonStyles.height;
+        detailsButton.style.marginTop = detailsButtonStyles.marginTop;
+        detailsButton.style.marginRight = detailsButtonStyles.marginRight;
+        detailsButton.style.marginBottom = detailsButtonStyles.marginBottom;
+        detailsButton.style.marginLeft = detailsButtonStyles.marginLeft;
+        detailsButton.style.width = detailsButtonStyles.width;
+      }
+
     }
 
     window.addEventListener('load', function () {
@@ -513,7 +545,6 @@ var FHSearchInput = function(obj) {
     document.addEventListener('change', function () {
       if (event.target.className.toLowerCase() === dateInputClass) {
         var url;
-        var hitAPI = new XMLHttpRequest();
         var currYear = new Date().getFullYear();
         var currMonth = new Date().getMonth() + 1;
 
@@ -636,24 +667,24 @@ var FHSearchInput = function(obj) {
       document.addEventListener('change', function () {
         if (event.target.className.toLowerCase() === eventInputClass) {
           var url;
-          var hitAPI = new XMLHttpRequest();
           var currYear = new Date().getFullYear();
           var currMonth = new Date().getMonth() + 1;
           if (document.querySelector('.' + eventInputClass).value === eventInputFieldTextContent) {
             targetID = null;
-            detailsButtonWrapper.href = null;
+            detailsButtonWrapper.href = '';
             detailsButton.disabled = true;
+            detailsButton.title = 'Please select an event.';
             if (!month || document.querySelector('.' + dateInputClass).value === dateInputFieldTextContent) {
               //no month and no event
               buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes'
             } else {
               //month but no event
-              url = 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/';
+              url = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/calendar/' + year + '/' + month + '/';
               buttonLinkWrapper.href = url;
             }
           } else {
-            var hitAPI2 = new XMLHttpRequest();
             detailsButton.disabled = false;
+            detailsButton.title = '';
             eventName = eventInputField.value;
             var target = itemsArray.filter(function(item){
                 return item.name === eventName
