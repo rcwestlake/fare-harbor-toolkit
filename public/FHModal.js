@@ -197,12 +197,46 @@ function addCards(props) {
       }
 
       break;
-    case 'showactivities':
-      console.log('in showactivities case statement');
+    case 'showitems':
+      console.log(props.selectedItems);
+      var items = filterAPIBySelectedItems(props);
       break;
     default:
       console.log('Incorrect modalType specified in FHModal.js');
   }
+}
+
+function filterAPIBySelectedItems(props) {
+  var selectedItems = props.selectedItems;
+  var filteredItems = [];
+  var url = 'http://localhost:8080/api';
+
+  var hitAPI = new XMLHttpRequest();
+  hitAPI.open("GET", url, true);
+  hitAPI.onload = function(e) {
+    if (hitAPI.readyState === 4) {
+      if (hitAPI.status === 200) {
+        var data = JSON.parse(hitAPI.responseText);
+        var items = data.items
+
+        var filtered = items.filter(function(item) {
+          if(selectedItems.indexOf(item.pk) > -1) {
+            filteredItems.push(item);
+          }
+        });
+        console.log('filteredItems', filteredItems);
+      } else {
+        console.error(hitAPI.statusText);
+      }
+    }
+  }
+
+  hitAPI.onerror = function(e) {
+    console.error(hitAPI.statusText);
+  }
+  hitAPI.send(null);
+
+  return filteredItems;
 }
 
 function addCardToContainer(props, cards, index) {

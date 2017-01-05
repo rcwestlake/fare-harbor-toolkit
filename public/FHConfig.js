@@ -6,7 +6,7 @@ var month = date.getMonth() + 1;
 var FHConfig = {
   toolType: 'Modal',
   shortname: 'bodyglove',
-  selectedItems: [],
+  selectedItems: [183, 1186, 1187],
   text: {
     fontPrimary: '',
     headerText: 'Reservation Info',
@@ -27,7 +27,7 @@ var FHConfig = {
   },
   toolDetails: {
     modal: {
-      modalType: 'Simple',
+      modalType: 'showItems',
       showFullItems: true,
       cards: {
         numberOfCards: null,
