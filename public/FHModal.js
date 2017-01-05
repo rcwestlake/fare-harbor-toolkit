@@ -228,7 +228,7 @@ function filterAPIBySelectedItems(props, selectedItems, numOfCards) {
             if(selectedItems.indexOf(item.pk) > -1) {
               filteredItems.push(item);
             }
-          });
+          })
         } else {
           filteredItems = items.slice(0, numOfCards);
         }
@@ -236,8 +236,11 @@ function filterAPIBySelectedItems(props, selectedItems, numOfCards) {
         for(var i = 0; i < filteredItems.length; i++) {
           var item = addCardToContainer(props, filteredItems, i);
           addItemToCard(props, filteredItems, i);
+          addTextToCard(props, filteredItems, i);
+
           cardsContainer.appendChild(item);
           item.appendChild(imgContainer);
+          imgContainer.appendChild(alignContainer);
         }
       } else {
         console.error(hitAPI.statusText);
@@ -254,11 +257,16 @@ function filterAPIBySelectedItems(props, selectedItems, numOfCards) {
 function addItemToCard(props, items, index) {
   imgContainer = document.createElement('a');
   var img = document.createElement('img');
-  //
+
+  imgContainer.style.minHeight = '100%';
+  imgContainer.style.minWidth = '100%';
+
   img.src = items[index].image_cdn_url;
+  img.style.backgroundSize = 'cover';
+  img.style.backgroundRepeat = 'no-repeat';
+  img.style.display = 'block';
   img.style.height = '100%';
   img.style.width = '100%';
-
   imgContainer.appendChild(img);
 }
 
@@ -268,13 +276,16 @@ function addCardToContainer(props, cards, index) {
   var cardContainer = cards[index].linkTo ? document.createElement('a') : document.createElement('div') ;
 
   cardContainer.href = cards[index].linkTo;
+  cardContainer.style.boxSizing = 'border-box';
   cardContainer.style.display = 'block';
   cardContainer.style.height = '' + cardHeight + '%';
 
-  if(index < cards.length - 1) {
-    cardContainer.style.borderBottom = props.colors.headerColor ?
-    '' + '1px solid ' + props.colors.headerColor :
-    '1px solid #dd5347';
+  if(props.modalType.toLowerCase() === 'simple') {
+    if(index < cards.length - 1) {
+      cardContainer.style.borderBottom = props.colors.headerColor ?
+      '' + '1px solid ' + props.colors.headerColor :
+      '1px solid #dd5347';
+    }
   }
 
   return cardContainer
@@ -288,32 +299,45 @@ function addTextToCard(props, cards, index) {
 
   buildTextContainers(props, cards, index)
 
-  text.textContent = cards[index].text;
-  text.href = cards[index].linkTo;
-  text.style.display = 'inline-block';
-  text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
+  switch (props.modalType.toLowerCase()) {
+    case 'simple':
+      text.textContent = cards[index].text;
+      text.href = cards[index].linkTo;
+      text.style.display = 'inline-block';
+      text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
 
-  if(cards[index].textType.toLowerCase() === 'quote') {
-    text.style.fontStyle = 'italic';
-    text.style.fontSize = props.cardFontsAndColors.mainTextSize || '18px';
-  }
+      if(cards[index].textType.toLowerCase() === 'quote') {
+        text.style.fontStyle = 'italic';
+        text.style.fontSize = props.cardFontsAndColors.mainTextSize || '18px';
+      }
 
-  text.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
-  text.style.textDecoration = 'none';
-  text.style.margin = '0px';
-  text.style.marginLeft = cards[index].icon ? '10%': '3%';
-  text.style.marginRight = '3%';
+      text.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
+      text.style.textDecoration = 'none';
+      text.style.margin = '0px';
+      text.style.marginLeft = cards[index].icon ? '10%': '3%';
+      text.style.marginRight = '3%';
 
 
-  alignContainer.appendChild(text);
+      alignContainer.appendChild(text);
 
-  if(cards[index].extraText) {
-    extraText = document.createElement('p');
-    extraText.textContent = cards[index].extraText;
-    extraText.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
-    extraText.style.margin = '0px';
-    extraText.style.marginLeft = cards[index].icon ? '10%': '3%';
-    alignContainer.appendChild(extraText);
+      if(cards[index].extraText) {
+        extraText = document.createElement('p');
+        extraText.textContent = cards[index].extraText;
+        extraText.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
+        extraText.style.margin = '0px';
+        extraText.style.marginLeft = cards[index].icon ? '10%': '3%';
+        alignContainer.appendChild(extraText);
+      }
+      break;
+    case 'showitems':
+      text.textContent = cards[index].name
+      text.style.color = '#333C4A';
+      text.style.display = 'inline-block';
+      text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
+      alignContainer.appendChild(text);
+      break;
+    default:
+      console.log('Error with modalType case');
   }
 }
 
