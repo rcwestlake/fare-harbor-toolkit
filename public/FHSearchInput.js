@@ -381,6 +381,7 @@ var FHSearchInput = function(obj) {
         marginRight: 'auto',
         marginBottom: stackDependentStyle.detailsButtonMarginBottom,
         marginLeft: 'auto',
+        padding: '10px',
         width: obj.buttonsHeightAndWidth.detailsButtonWidth || 'auto',
       }
 
@@ -422,6 +423,7 @@ var FHSearchInput = function(obj) {
         detailsButton.style.marginRight = detailsButtonStyles.marginRight;
         detailsButton.style.marginBottom = detailsButtonStyles.marginBottom;
         detailsButton.style.marginLeft = detailsButtonStyles.marginLeft;
+        detailsButton.style.padding = detailsButtonStyles.padding;
         detailsButton.style.width = detailsButtonStyles.width;
       }
 
