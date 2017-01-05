@@ -6,15 +6,15 @@ var FHConfig = (function () {
   };
   return {
     config: {
-     toolType: 'SearchInput',
+     toolType: 'Modal',
      shortname: options.shortname,
      selectedItems: [],
      text: {
        fontPrimary: '',
        headerText: 'Reservation Info',
        headerTextSize: '',
-       headerExtraText: 'Powered by FareHarbor',
-       headerExtraTextLink: 'http://www.fareharbor.com',
+       headerExtraText: 'Ranked as Hawaii\'s top tour!',
+       headerExtraTextLink: '',
        headerExtraTextSize: '',
        bookButtonText: 'BOOK NOW',
        bookButtonTextSize: '',
@@ -29,7 +29,7 @@ var FHConfig = (function () {
      },
      toolDetails: {
        modal: {
-         modalType: 'Simple',
+         modalType: 'showItems',
          showFullItems: true,
          cards: {
            numberOfCards: null,
@@ -38,7 +38,7 @@ var FHConfig = (function () {
                doesItExist: true,
                text: 'See activities and tickets',
                textType: '',
-               extraText: '',
+               extraText: 'Starts at $100',
                itemID: '',
                linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/?full-items=yes',
                icon: 'images/ticket-icon-blue.png',
@@ -47,7 +47,7 @@ var FHConfig = (function () {
                doesItExist: true,
                text: 'View online calendar',
                textType: '',
-               extraText: '',
+               extraText: '4.5 hours',
                itemID: '',
                linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/calendar/' + options.year + '/' + options.month + '/',
                icon: 'images/calendar-icon-blue.png',
@@ -56,7 +56,7 @@ var FHConfig = (function () {
                doesItExist: true,
                text: '"It was the best tour of my life!"',
                textType: 'Quote',
-               extraText: 'Julie, customer in 2016',
+               extraText: 'Day and night tours',
                itemID: '',
                linkTo: '',
                icon: '',
@@ -225,5 +225,4 @@ var FHConfig = (function () {
      },
    }
   };
-
 })();

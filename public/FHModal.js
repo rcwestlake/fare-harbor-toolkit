@@ -4,6 +4,7 @@ var textContainer;
 var alignContainer;
 var iconContainer;
 var bookButtonText;
+var imgContainer;
 
 var FHModal = function(props) {
   function create(props) {
@@ -149,6 +150,7 @@ function buildExtraText(props) {
 
 function buildCardsContainer(props) {
   cardsContainer = document.createElement('section');
+  cardsContainer.style.boxSizing = 'border-box';
   cardsContainer.style.height = '85%';
   cardsContainer.style.backgroundColor = 'white';
 
@@ -176,16 +178,23 @@ function buildTextContainers(props, cards, index) {
   alignContainer.style.position = 'relative';
   alignContainer.style.top = '50%';
   alignContainer.style.transform = 'translateY(-50%)';
+
+  if(props.modalType.toLowerCase() === 'showitems') {
+    alignContainer.style.position = 'absolute';
+    alignContainer.style.top = '50%';
+    alignContainer.style.height = '100%';
+  }
+
   textContainer.appendChild(alignContainer)
 }
 
 function addCards(props) {
+  var cards = props.cards.cardDetail.filter(function(card) {
+    return card.doesItExist === true
+  });
+
   switch (props.modalType.toLowerCase()) {
     case 'simple':
-      var cards = props.cards.cardDetail.filter(function(card) {
-        return card.doesItExist === true
-      });
-
       for(var i = 0; i < cards.length; i++) {
         var card = addCardToContainer(props, cards, i);
         addTextToCard(props, cards, i);
@@ -197,12 +206,83 @@ function addCards(props) {
       }
 
       break;
-    case 'showactivities':
-      console.log('in showactivities case statement');
+    case 'showitems':
+      var selectedItems = props.selectedItems;
+      var numOfCards = cards.length;
+
+      filterAPIBySelectedItems(props, selectedItems, numOfCards);
       break;
     default:
       console.log('Incorrect modalType specified in FHModal.js');
   }
+}
+
+function filterAPIBySelectedItems(props, selectedItems, numOfCards) {
+  var filteredItems = [];
+  var url = 'http://localhost:8080/api';
+
+  var hitAPI = new XMLHttpRequest();
+  hitAPI.open("GET", url, true);
+  hitAPI.onload = function(e) {
+    if (hitAPI.readyState === 4) {
+      if (hitAPI.status === 200) {
+        var data = JSON.parse(hitAPI.responseText);
+        var items = data.items;
+
+        if(selectedItems.length > 0) {
+          var filtered = items.filter(function(item) {
+            if(selectedItems.indexOf(item.pk) > -1) {
+              filteredItems.push(item);
+            }
+          })
+        } else {
+          filteredItems = items.slice(0, numOfCards);
+        }
+        for(var i = 0; i < filteredItems.length; i++) {
+          var item = addCardToContainer(props, filteredItems, i);
+          addItemToCard(props, filteredItems, i);
+          addTextToCard(props, filteredItems, i);
+
+          cardsContainer.appendChild(item);
+          item.appendChild(imgContainer);
+          imgContainer.appendChild(alignContainer);
+        }
+      } else {
+        console.error(hitAPI.statusText);
+      }
+    }
+  }
+
+  hitAPI.onerror = function(e) {
+    console.error(hitAPI.statusText);
+  }
+  hitAPI.send(null);
+}
+
+function addItemToCard(props, items, index) {
+  imgContainer = document.createElement('a');
+  var anchorContainer = document.createElement('div');
+  var img = document.createElement('p');
+
+  anchorContainer.style.height = '100%';
+  anchorContainer.style.width = '100%';
+
+  imgContainer.href = 'https://demo.fareharbor.com/embeds/book/' + props.shortname + '/items/' + items[index].pk + '/?full-items=yes'
+  imgContainer.style.boxSizing = 'border-box';
+  imgContainer.style.display = 'block';
+  imgContainer.style.height = '100%';
+  imgContainer.style.width = '100%';
+
+  img.style.backgroundImage = 'url(' + items[index].image_cdn_url + ')';
+  img.style.backgroundRepeat = 'no-repeat';
+  img.style.backgroundPosition = '50% 50%';
+  img.style.backgroundSize = 'cover';
+  img.style.margin = '0px';
+  img.style.overflow = 'hidden';
+  img.style.minHeight = '100%';
+  imgContainer.style.position = 'relative';
+  anchorContainer.appendChild(img);
+  imgContainer.appendChild(anchorContainer);
 }
 
 function addCardToContainer(props, cards, index) {
@@ -211,13 +291,20 @@ function addCardToContainer(props, cards, index) {
   var cardContainer = cards[index].linkTo ? document.createElement('a') : document.createElement('div') ;
 
   cardContainer.href = cards[index].linkTo;
+  cardContainer.style.boxSizing = 'border-box';
   cardContainer.style.display = 'block';
   cardContainer.style.height = '' + cardHeight + '%';
 
-  if(index < cards.length - 1) {
-    cardContainer.style.borderBottom = props.colors.headerColor ?
-    '' + '1px solid ' + props.colors.headerColor :
-    '1px solid #dd5347';
+  if(props.modalType.toLowerCase() === 'showitems') {
+    cardContainer.style.marginBottom = '1px';
+  }
+
+  if(props.modalType.toLowerCase() === 'simple') {
+    if(index < cards.length - 1) {
+      cardContainer.style.borderBottom = props.colors.headerColor ?
+      '' + '1px solid ' + props.colors.headerColor :
+      '1px solid #dd5347';
+    }
   }
 
   return cardContainer
@@ -231,33 +318,68 @@ function addTextToCard(props, cards, index) {
 
   buildTextContainers(props, cards, index)
 
-  text.textContent = cards[index].text;
-  text.href = cards[index].linkTo;
-  text.style.display = 'inline-block';
-  text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
-
-  if(cards[index].textType.toLowerCase() === 'quote') {
-    text.style.fontStyle = 'italic';
-    text.style.fontSize = props.cardFontsAndColors.mainTextSize || '18px';
-  }
-
-  text.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
-  text.style.textDecoration = 'none';
   text.style.margin = '0px';
-  text.style.marginLeft = cards[index].icon ? '10%': '3%';
-  text.style.marginRight = '3%';
 
+  switch (props.modalType.toLowerCase()) {
+    case 'simple':
+      text.textContent = cards[index].text;
+      text.href = cards[index].linkTo;
+      text.style.display = 'inline-block';
+      text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
+
+      if(cards[index].textType.toLowerCase() === 'quote') {
+        text.style.fontStyle = 'italic';
+        text.style.fontSize = props.cardFontsAndColors.extraTextSize || '18px';
+      }
+
+      text.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
+      text.style.textDecoration = 'none';
+      text.style.marginLeft = cards[index].icon ? '10%': '3%';
+      text.style.marginRight = '3%';
+
+      if(cards[index].extraText) {
+        extraText = document.createElement('p');
+        extraText.textContent = cards[index].extraText;
+        extraText.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
+        extraText.style.margin = '0px';
+        extraText.style.marginLeft = cards[index].icon ? '10%': '3%';
+        alignContainer.appendChild(extraText);
+      }
+      break;
+    case 'showitems':
+      extraText = document.createElement('p');
+
+      text.textContent = cards[index].name
+      text.style.backgroundColor = 'rgba(0, 0, 0, 0.45)';
+      text.style.borderRadius = '0px 10px 10px 0px';
+      text.style.color = '#ffffff';
+      text.style.fontSize = props.cardFontsAndColors.mainTextSize || '18px';
+      text.style.padding = '15px 7px';
+      text.style.position = 'absolute';
+      text.style.top = '30%';
+      text.style.textAlign = 'left';
+      text.style.width = '55%';
+
+      extraText.textContent = props.cards.cardDetail[index].extraText;
+      extraText.style.backgroundColor = props.colors.headerColor || 'rgba(221, 82, 70, 0.78)';
+      extraText.style.borderRadius = '5px 0px 0px 5px';
+      extraText.style.color = '#ffffff';
+      extraText.style.fontSize = props.cardFontsAndColors.extraTextSize || '15px';
+      extraText.style.margin = '0px';
+      extraText.style.padding = '0px 7px';
+      extraText.style.position = 'absolute';
+      extraText.style.top = '10px';
+      extraText.style.right = '0px';
+      extraText.style.width = '30%';
+      extraText.style.textAlign = 'left';
+
+      break;
+    default:
+      console.log('Error with modalType case');
+  }
 
   alignContainer.appendChild(text);
-
-  if(cards[index].extraText) {
-    extraText = document.createElement('p');
-    extraText.textContent = cards[index].extraText;
-    extraText.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
-    extraText.style.margin = '0px';
-    extraText.style.marginLeft = cards[index].icon ? '10%': '3%';
-    alignContainer.appendChild(extraText);
-  }
+  alignContainer.appendChild(extraText);
 }
 
 function addIcons(props, card, index) {

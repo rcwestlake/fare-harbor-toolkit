@@ -20,7 +20,7 @@ app.listen(app.get('port'), function() {
 });
 
 function pingAPI() {
- return axios.get('https://demo.fareharbor.com/api/external/v1/companies/' + shortname + '/items/?api-app=5fa25381-5ec6-4e86-8b4e-a95735beffa4&api-user=1be378f8-8a6f-4788-b7f0-c2c9b02ca009')
+  return axios.get('https://demo.fareharbor.com/api/external/v1/companies/' + shortname + '/items/?api-app=5fa25381-5ec6-4e86-8b4e-a95735beffa4&api-user=1be378f8-8a6f-4788-b7f0-c2c9b02ca009')
 }
 
 app.get('/api', function(req, res) {
