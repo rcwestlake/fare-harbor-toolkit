@@ -591,33 +591,13 @@ function buildSearchInputHTML(obj) {
           });
           targetID = target[0].id;
         url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/';
-        hitAPI.open('GET', url, true);
-        hitAPI.send();
-        hitAPI.onreadystatechange = function() {
-            if (hitAPI.readyState === XMLHttpRequest.DONE) {
-              if (hitAPI.status === 200) {
-                buttonLinkWrapper.href = url;
-              } else {
-                console.error('There was a problem with the API call.');
-              }
-            }
-          }
+        buttonLinkWrapper.href = url;
         }
       } else {
         if (!targetID) {
           //month but no event
           url = 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/';
-          hitAPI.open('GET', url, true);
-          hitAPI.send();
-          hitAPI.onreadystatechange = function() {
-              if (hitAPI.readyState === XMLHttpRequest.DONE) {
-                if (hitAPI.status === 200) {
-                  buttonLinkWrapper.href = url;
-                } else {
-                  console.error('There was a problem with the API call.');
-                }
-              }
-            }
+          buttonLinkWrapper.href = url;
         } else {
           //event and month
           eventName = eventInputField.value;
@@ -626,17 +606,7 @@ function buildSearchInputHTML(obj) {
             });
             targetID = target[0].id;
           url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + year + '/' + month + '/';
-          hitAPI.open('GET', url, true);
-          hitAPI.send();
-          hitAPI.onreadystatechange = function() {
-              if (hitAPI.readyState === XMLHttpRequest.DONE) {
-                if (hitAPI.status === 200) {
-                  buttonLinkWrapper.href = url;
-                } else {
-                  console.error('There was a problem with the API call.');
-                }
-              }
-            }
+          buttonLinkWrapper.href = url;
         }
       }
 
@@ -687,17 +657,7 @@ function buildSearchInputHTML(obj) {
           } else {
             //month but no event
             url = 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/';
-            hitAPI.open('GET', url, true);
-            hitAPI.send();
-            hitAPI.onreadystatechange = function() {
-                if (hitAPI.readyState === XMLHttpRequest.DONE) {
-                  if (hitAPI.status === 200) {
-                    buttonLinkWrapper.href = url;
-                  } else {
-                    console.error('There was a problem with the API call.');
-                  }
-                }
-              }
+            buttonLinkWrapper.href = url;
           }
         } else {
           var hitAPI2 = new XMLHttpRequest();
@@ -708,43 +668,13 @@ function buildSearchInputHTML(obj) {
             });
             targetID = target[0].id;
           var url1 = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/?full-items=yes';
-          hitAPI2.open('GET', url1, true);
-          hitAPI2.send();
-          hitAPI2.onreadystatechange = function() {
-              if (hitAPI2.readyState === XMLHttpRequest.DONE) {
-                if (hitAPI2.status === 200) {
-                  detailsButtonWrapper.href = url1;
-                } else {
-                  console.error('There was a problem with the API call.');
-                }
-              }
-            }
+          detailsButtonWrapper.href = url1;
           if (!month) {
             url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/';
-            hitAPI.open('GET', url, true);
-            hitAPI.send();
-            hitAPI.onreadystatechange = function() {
-                if (hitAPI.readyState === XMLHttpRequest.DONE) {
-                  if (hitAPI.status === 200) {
-                    buttonLinkWrapper.href = url;
-                  } else {
-                    console.error('There was a problem with the API call.');
-                  }
-                }
-              }
+            buttonLinkWrapper.href = url;
           } else {
             url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + year + '/' + month + '/';
-            hitAPI.open('GET', url, true);
-            hitAPI.send();
-            hitAPI.onreadystatechange = function() {
-                if (hitAPI.readyState === XMLHttpRequest.DONE) {
-                  if (hitAPI.status === 200) {
-                    buttonLinkWrapper.href = url;
-                  } else {
-                    console.error('There was a problem with the API call.');
-                  }
-                }
-              }
+            buttonLinkWrapper.href = url;
           }
         }
       }
