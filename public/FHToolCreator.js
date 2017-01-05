@@ -1,7 +1,6 @@
 var config = window.FHConfig ? window.FHConfig : null;
 var FHModal = window.FHModal ? window.FHModal : null;
 var FHFooter = window.FHFooter ? window.FHFooter : null;
-// var FHSearchInput = window.FHSearchInput ? window.FHSearchInput : null;
 
 var toolCreator = (function() {
   function create(config) {
@@ -32,7 +31,7 @@ var toolCreator = (function() {
           }
       );
       case 'SearchInput':
-        return buildSearchInputHTML(
+        return FHSearchInput(
           {
             container: config.toolDetails.searchInput.searchInputContainer,
             selectedItems: config.selectedItems,
