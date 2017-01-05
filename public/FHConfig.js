@@ -8,13 +8,13 @@ var FHConfig = (function () {
     config: {
      toolType: 'Modal',
      shortname: options.shortname,
-     selectedItems: [183, 1187, 1188],
+     selectedItems: [],
      text: {
        fontPrimary: '',
        headerText: 'Reservation Info',
        headerTextSize: '',
-       headerExtraText: 'Powered by FareHarbor',
-       headerExtraTextLink: 'http://www.fareharbor.com',
+       headerExtraText: 'Ranked as Hawaii\'s top tour!',
+       headerExtraTextLink: '',
        headerExtraTextSize: '',
        bookButtonText: 'BOOK NOW',
        bookButtonTextSize: '',
@@ -29,7 +29,7 @@ var FHConfig = (function () {
      },
      toolDetails: {
        modal: {
-         modalType: 'showItems',
+         modalType: 'showitems',
          showFullItems: true,
          cards: {
            numberOfCards: null,
@@ -38,7 +38,7 @@ var FHConfig = (function () {
                doesItExist: true,
                text: 'See activities and tickets',
                textType: '',
-               extraText: '',
+               extraText: 'testing the extra text with lots of extra text hahaa',
                itemID: '',
                linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/?full-items=yes',
                icon: 'images/ticket-icon-blue.png',
@@ -47,7 +47,7 @@ var FHConfig = (function () {
                doesItExist: true,
                text: 'View online calendar',
                textType: '',
-               extraText: '',
+               extraText: 'Pricing starts at $100 for adults',
                itemID: '',
                linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/calendar/' + options.year + '/' + options.month + '/',
                icon: 'images/calendar-icon-blue.png',
@@ -62,7 +62,7 @@ var FHConfig = (function () {
                icon: '',
              },
              {
-               doesItExist: false,
+               doesItExist: true,
                text: '',
                textType: '',
                extraText: '',

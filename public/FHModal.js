@@ -206,7 +206,6 @@ function addCards(props) {
 
       break;
     case 'showitems':
-      console.log('in show items');
       var selectedItems = props.selectedItems;
       var numOfCards = cards.length;
 
@@ -227,7 +226,7 @@ function filterAPIBySelectedItems(props, selectedItems, numOfCards) {
     if (hitAPI.readyState === 4) {
       if (hitAPI.status === 200) {
         var data = JSON.parse(hitAPI.responseText);
-        var items = data.items
+        var items = data.items;
 
         if(selectedItems.length > 0) {
           var filtered = items.filter(function(item) {
@@ -238,7 +237,6 @@ function filterAPIBySelectedItems(props, selectedItems, numOfCards) {
         } else {
           filteredItems = items.slice(0, numOfCards);
         }
-        console.log(filteredItems);
         for(var i = 0; i < filteredItems.length; i++) {
           var item = addCardToContainer(props, filteredItems, i);
           addItemToCard(props, filteredItems, i);
@@ -314,6 +312,8 @@ function addTextToCard(props, cards, index) {
 
   buildTextContainers(props, cards, index)
 
+  text.style.margin = '0px';
+
   switch (props.modalType.toLowerCase()) {
     case 'simple':
       text.textContent = cards[index].text;
@@ -328,12 +328,8 @@ function addTextToCard(props, cards, index) {
 
       text.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
       text.style.textDecoration = 'none';
-      text.style.margin = '0px';
       text.style.marginLeft = cards[index].icon ? '10%': '3%';
       text.style.marginRight = '3%';
-
-
-      alignContainer.appendChild(text);
 
       if(cards[index].extraText) {
         extraText = document.createElement('p');
@@ -345,15 +341,29 @@ function addTextToCard(props, cards, index) {
       }
       break;
     case 'showitems':
+      extraText = document.createElement('p');
+
       text.textContent = cards[index].name
-      text.style.color = '#333C4A';
-      text.style.display = 'inline-block';
+      text.style.backgroundColor = 'rgba(0, 0, 0, 0.45)';
+      text.style.color = '#ffffff';
       text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
-      alignContainer.appendChild(text);
+      text.style.fontWeight = 'bold';
+      text.style.padding = '7px';
+      text.style.width = '70%';
+
+      extraText.textContent = props.cards.cardDetail[index].extraText;
+      extraText.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+      extraText.style.marginTop = '10px';
+      extraText.style.width = '70%';
+      extraText.style.textAlign = 'right';
+
       break;
     default:
       console.log('Error with modalType case');
   }
+
+  alignContainer.appendChild(text);
+  alignContainer.appendChild(extraText);
 }
 
 function addIcons(props, card, index) {
