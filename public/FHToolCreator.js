@@ -1,4 +1,5 @@
-var config = window.FHConfig ? window.FHConfig : null;
+var config = FHConfig.config;
+//RW: need to make this not global
 var FHModal = window.FHModal ? window.FHModal : null;
 
 var toolCreator = (function() {
