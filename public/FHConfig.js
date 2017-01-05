@@ -6,7 +6,7 @@ var FHConfig = (function () {
   };
   return {
     config: {
-     toolType: 'Modal',
+     toolType: 'SearchInput',
      shortname: options.shortname,
      selectedItems: [],
      text: {
