@@ -1,11 +1,13 @@
 var FHSearchInput = function(obj) {
-  function create(obj) {
-    buildSearchInputHTML(obj)
+  // function create(obj) {
+  //   buildSearchInputHTML(obj)
+  //
+  // }
 
-  }
+  // return create(obj)
+  return buildSearchInputHTML(obj);
 
-  return create(obj)
-}
+};
 
 function buildSearchInputHTML(obj) {
 
