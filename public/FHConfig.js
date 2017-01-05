@@ -8,7 +8,7 @@ var FHConfig = (function () {
     config: {
      toolType: 'Modal',
      shortname: options.shortname,
-     selectedItems: [],
+     selectedItems: [183, 1187, 1188],
      text: {
        fontPrimary: '',
        headerText: 'Reservation Info',

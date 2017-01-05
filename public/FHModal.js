@@ -178,6 +178,12 @@ function buildTextContainers(props, cards, index) {
   alignContainer.style.position = 'relative';
   alignContainer.style.top = '50%';
   alignContainer.style.transform = 'translateY(-50%)';
+
+  if(props.modalType.toLowerCase() === 'showitems') {
+    alignContainer.style.position = 'absolute';
+    alignContainer.style.top = '50%';
+  }
+
   textContainer.appendChild(alignContainer)
 }
 
@@ -264,17 +270,17 @@ function addItemToCard(props, items, index) {
 
   imgContainer.style.boxSizing = 'border-box';
   imgContainer.style.display = 'block';
-  imgContainer.style.position = 'relative';
   imgContainer.style.height = '100%';
   imgContainer.style.width = '100%';
 
   img.style.backgroundImage = 'url(' + items[index].image_cdn_url + ')';
-  img.style.backgroundSize = 'cover';
   img.style.backgroundRepeat = 'no-repeat';
+  img.style.backgroundPosition = '50% 50%';
+  img.style.backgroundSize = 'cover';
   img.style.margin = '0px';
   img.style.overflow = 'hidden';
   img.style.minHeight = '100%';
-  img.style.backgroundPosition = '50% 50%';
+  imgContainer.style.position = 'relative';
   anchorContainer.appendChild(img);
   imgContainer.appendChild(anchorContainer);
 }
