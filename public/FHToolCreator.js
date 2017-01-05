@@ -1,6 +1,5 @@
 var config = window.FHConfig ? window.FHConfig : null;
 var FHModal = window.FHModal ? window.FHModal : null;
-var FHFooter = window.FHFooter ? window.FHFooter : null;
 
 var toolCreator = (function() {
   function create(config) {
