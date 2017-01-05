@@ -6,7 +6,7 @@ var FHConfig = (function () {
   };
   return {
     config: {
-     toolType: 'SearchInput',
+     toolType: 'Modal',
      shortname: options.shortname,
      selectedItems: [],
      text: {
@@ -29,7 +29,7 @@ var FHConfig = (function () {
      },
      toolDetails: {
        modal: {
-         modalType: 'Simple',
+         modalType: 'showItems',
          showFullItems: true,
          cards: {
            numberOfCards: null,

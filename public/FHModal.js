@@ -255,19 +255,28 @@ function filterAPIBySelectedItems(props, selectedItems, numOfCards) {
 }
 
 function addItemToCard(props, items, index) {
-  imgContainer = document.createElement('a');
-  var img = document.createElement('img');
+  imgContainer = document.createElement('div');
+  var anchorContainer = document.createElement('a');
+  var img = document.createElement('p');
 
-  imgContainer.style.minHeight = '100%';
-  imgContainer.style.minWidth = '100%';
+  anchorContainer.style.height = '100%';
+  anchorContainer.style.width = '100%';
 
-  img.src = items[index].image_cdn_url;
+  imgContainer.style.boxSizing = 'border-box';
+  imgContainer.style.display = 'block';
+  imgContainer.style.position = 'relative';
+  imgContainer.style.height = '100%';
+  imgContainer.style.width = '100%';
+
+  img.style.backgroundImage = 'url(' + items[index].image_cdn_url + ')';
   img.style.backgroundSize = 'cover';
   img.style.backgroundRepeat = 'no-repeat';
-  img.style.display = 'block';
-  img.style.height = '100%';
-  img.style.width = '100%';
-  imgContainer.appendChild(img);
+  img.style.margin = '0px';
+  img.style.overflow = 'hidden';
+  img.style.minHeight = '100%';
+  img.style.backgroundPosition = '50% 50%';
+  anchorContainer.appendChild(img);
+  imgContainer.appendChild(anchorContainer);
 }
 
 function addCardToContainer(props, cards, index) {
