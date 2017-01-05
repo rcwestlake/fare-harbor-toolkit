@@ -4,6 +4,7 @@ var textContainer;
 var alignContainer;
 var iconContainer;
 var bookButtonText;
+var imgContainer;
 
 var FHModal = function(props) {
   function create(props) {
@@ -149,6 +150,7 @@ function buildExtraText(props) {
 
 function buildCardsContainer(props) {
   cardsContainer = document.createElement('section');
+  cardsContainer.style.boxSizing = 'border-box';
   cardsContainer.style.height = '85%';
   cardsContainer.style.backgroundColor = 'white';
 
@@ -183,6 +185,7 @@ function addCards(props) {
   var cards = props.cards.cardDetail.filter(function(card) {
     return card.doesItExist === true
   });
+
   switch (props.modalType.toLowerCase()) {
     case 'simple':
       for(var i = 0; i < cards.length; i++) {
@@ -197,11 +200,11 @@ function addCards(props) {
 
       break;
     case 'showitems':
+      console.log('in show items');
       var selectedItems = props.selectedItems;
       var numOfCards = cards.length;
 
-
-      var items = filterAPIBySelectedItems(props, selectedItems, numOfCards);
+      filterAPIBySelectedItems(props, selectedItems, numOfCards);
       break;
     default:
       console.log('Incorrect modalType specified in FHModal.js');
@@ -226,12 +229,16 @@ function filterAPIBySelectedItems(props, selectedItems, numOfCards) {
               filteredItems.push(item);
             }
           });
-          console.log('filteredItems', filteredItems);
         } else {
           filteredItems = items.slice(0, numOfCards);
-          console.log(filteredItems);
         }
-
+        console.log(filteredItems);
+        for(var i = 0; i < filteredItems.length; i++) {
+          var item = addCardToContainer(props, filteredItems, i);
+          addItemToCard(props, filteredItems, i);
+          cardsContainer.appendChild(item);
+          item.appendChild(imgContainer);
+        }
       } else {
         console.error(hitAPI.statusText);
       }
@@ -242,8 +249,17 @@ function filterAPIBySelectedItems(props, selectedItems, numOfCards) {
     console.error(hitAPI.statusText);
   }
   hitAPI.send(null);
+}
 
-  return filteredItems;
+function addItemToCard(props, items, index) {
+  imgContainer = document.createElement('a');
+  var img = document.createElement('img');
+  //
+  img.src = items[index].image_cdn_url;
+  img.style.height = '100%';
+  img.style.width = '100%';
+
+  imgContainer.appendChild(img);
 }
 
 function addCardToContainer(props, cards, index) {

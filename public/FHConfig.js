@@ -27,7 +27,7 @@ var FHConfig = {
   },
   toolDetails: {
     modal: {
-      modalType: 'showItems',
+      modalType: 'showitems',
       showFullItems: true,
       cards: {
         numberOfCards: null,
@@ -60,7 +60,7 @@ var FHConfig = {
             icon: '',
           },
           {
-            doesItExist: true,
+            doesItExist: false,
             text: '',
             textType: '',
             extraText: '',
