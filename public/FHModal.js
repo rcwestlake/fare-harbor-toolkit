@@ -180,12 +180,11 @@ function buildTextContainers(props, cards, index) {
 }
 
 function addCards(props) {
+  var cards = props.cards.cardDetail.filter(function(card) {
+    return card.doesItExist === true
+  });
   switch (props.modalType.toLowerCase()) {
     case 'simple':
-      var cards = props.cards.cardDetail.filter(function(card) {
-        return card.doesItExist === true
-      });
-
       for(var i = 0; i < cards.length; i++) {
         var card = addCardToContainer(props, cards, i);
         addTextToCard(props, cards, i);
@@ -198,16 +197,18 @@ function addCards(props) {
 
       break;
     case 'showitems':
-      console.log(props.selectedItems);
-      var items = filterAPIBySelectedItems(props);
+      var selectedItems = props.selectedItems;
+      var numOfCards = cards.length;
+
+
+      var items = filterAPIBySelectedItems(props, selectedItems, numOfCards);
       break;
     default:
       console.log('Incorrect modalType specified in FHModal.js');
   }
 }
 
-function filterAPIBySelectedItems(props) {
-  var selectedItems = props.selectedItems;
+function filterAPIBySelectedItems(props, selectedItems, numOfCards) {
   var filteredItems = [];
   var url = 'http://localhost:8080/api';
 
@@ -219,12 +220,18 @@ function filterAPIBySelectedItems(props) {
         var data = JSON.parse(hitAPI.responseText);
         var items = data.items
 
-        var filtered = items.filter(function(item) {
-          if(selectedItems.indexOf(item.pk) > -1) {
-            filteredItems.push(item);
-          }
-        });
-        console.log('filteredItems', filteredItems);
+        if(selectedItems.length > 0) {
+          var filtered = items.filter(function(item) {
+            if(selectedItems.indexOf(item.pk) > -1) {
+              filteredItems.push(item);
+            }
+          });
+          console.log('filteredItems', filteredItems);
+        } else {
+          filteredItems = items.slice(0, numOfCards);
+          console.log(filteredItems);
+        }
+
       } else {
         console.error(hitAPI.statusText);
       }

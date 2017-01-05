@@ -6,7 +6,7 @@ var month = date.getMonth() + 1;
 var FHConfig = {
   toolType: 'Modal',
   shortname: 'bodyglove',
-  selectedItems: [183, 1186, 1187],
+  selectedItems: [183, 1187, 1188],
   text: {
     fontPrimary: '',
     headerText: 'Reservation Info',
@@ -60,7 +60,7 @@ var FHConfig = {
             icon: '',
           },
           {
-            doesItExist: false,
+            doesItExist: true,
             text: '',
             textType: '',
             extraText: '',
