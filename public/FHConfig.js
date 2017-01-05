@@ -1,13 +1,13 @@
-var shortname = 'bodyglove';
-var date = new Date();
-var year = date.getFullYear();
-var month = date.getMonth() + 1;
-
 var FHConfig = (function () {
+  var options = {
+    shortname: 'bodyglove',
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
+  };
   return {
     config: {
      toolType: 'SearchInput',
-     shortname: 'bodyglove',
+     shortname: options.shortname,
      selectedItems: [],
      text: {
        fontPrimary: '',
@@ -40,7 +40,7 @@ var FHConfig = (function () {
                textType: '',
                extraText: '',
                itemID: '',
-               linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/?full-items=yes',
+               linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/?full-items=yes',
                icon: 'images/ticket-icon-blue.png',
              },
              {
@@ -49,7 +49,7 @@ var FHConfig = (function () {
                textType: '',
                extraText: '',
                itemID: '',
-               linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/',
+               linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/calendar/' + options.year + '/' + options.month + '/',
                icon: 'images/calendar-icon-blue.png',
              },
              {
@@ -176,7 +176,7 @@ var FHConfig = (function () {
              doesItExist: true,
              id: 'first',
              textContent: 'Book Now!',
-             linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/',
+             linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/',
              color: '',
              height: '',
              width: '',
@@ -188,7 +188,7 @@ var FHConfig = (function () {
              doesItExist: true,
              id: 'second',
              textContent: 'Check Availability',
-             linkTo: 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/',
+             linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/calendar/' + options.year + '/' + options.month + '/',
              color: '',
              height: '',
              width: '',
@@ -227,5 +227,3 @@ var FHConfig = (function () {
   };
 
 })();
-
-// var FHConfig =
