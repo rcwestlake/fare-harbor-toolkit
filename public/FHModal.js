@@ -260,13 +260,14 @@ function filterAPIBySelectedItems(props, selectedItems, numOfCards) {
 }
 
 function addItemToCard(props, items, index) {
-  imgContainer = document.createElement('div');
-  var anchorContainer = document.createElement('a');
+  imgContainer = document.createElement('a');
+  var anchorContainer = document.createElement('div');
   var img = document.createElement('p');
 
   anchorContainer.style.height = '100%';
   anchorContainer.style.width = '100%';
 
+  imgContainer.href = 'https://demo.fareharbor.com/embeds/book/' + props.shortname + '/items/' + items[index].pk + '/?full-items=yes'
   imgContainer.style.boxSizing = 'border-box';
   imgContainer.style.display = 'block';
   imgContainer.style.height = '100%';
@@ -293,6 +294,10 @@ function addCardToContainer(props, cards, index) {
   cardContainer.style.boxSizing = 'border-box';
   cardContainer.style.display = 'block';
   cardContainer.style.height = '' + cardHeight + '%';
+
+  if(props.modalType.toLowerCase() === 'showitems') {
+    cardContainer.style.marginBottom = '1px';
+  }
 
   if(props.modalType.toLowerCase() === 'simple') {
     if(index < cards.length - 1) {
@@ -324,7 +329,7 @@ function addTextToCard(props, cards, index) {
 
       if(cards[index].textType.toLowerCase() === 'quote') {
         text.style.fontStyle = 'italic';
-        text.style.fontSize = props.cardFontsAndColors.mainTextSize || '18px';
+        text.style.fontSize = props.cardFontsAndColors.extraTextSize || '18px';
       }
 
       text.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
@@ -346,20 +351,27 @@ function addTextToCard(props, cards, index) {
 
       text.textContent = cards[index].name
       text.style.backgroundColor = 'rgba(0, 0, 0, 0.45)';
+      text.style.borderRadius = '0px 10px 10px 0px';
       text.style.color = '#ffffff';
-      text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
-      text.style.fontWeight = 'bold';
-      text.style.padding = '7px';
+      text.style.fontSize = props.cardFontsAndColors.mainTextSize || '18px';
+      text.style.padding = '15px 7px';
+      text.style.position = 'absolute';
+      text.style.top = '30%';
       text.style.textAlign = 'left';
       text.style.width = '55%';
 
       extraText.textContent = props.cards.cardDetail[index].extraText;
-      extraText.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-      extraText.style.marginTop = '0px';
+      extraText.style.backgroundColor = props.colors.headerColor || 'rgba(221, 82, 70, 0.78)';
+      extraText.style.borderRadius = '5px 0px 0px 5px';
+      extraText.style.color = '#ffffff';
+      extraText.style.fontSize = props.cardFontsAndColors.extraTextSize || '15px';
+      extraText.style.margin = '0px';
+      extraText.style.padding = '0px 7px';
       extraText.style.position = 'absolute';
-      extraText.style.bottom = '0px';
-      extraText.style.width = '55%';
-      extraText.style.textAlign = 'right';
+      extraText.style.top = '10px';
+      extraText.style.right = '0px';
+      extraText.style.width = '30%';
+      extraText.style.textAlign = 'left';
 
       break;
     default:
