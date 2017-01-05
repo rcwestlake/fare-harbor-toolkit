@@ -62,7 +62,7 @@ var FHConfig = (function () {
                icon: '',
              },
              {
-               doesItExist: true,
+               doesItExist: false,
                text: '',
                textType: '',
                extraText: '',

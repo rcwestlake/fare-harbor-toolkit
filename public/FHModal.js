@@ -182,6 +182,7 @@ function buildTextContainers(props, cards, index) {
   if(props.modalType.toLowerCase() === 'showitems') {
     alignContainer.style.position = 'absolute';
     alignContainer.style.top = '50%';
+    alignContainer.style.height = '100%';
   }
 
   textContainer.appendChild(alignContainer)
@@ -349,12 +350,15 @@ function addTextToCard(props, cards, index) {
       text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
       text.style.fontWeight = 'bold';
       text.style.padding = '7px';
-      text.style.width = '70%';
+      text.style.textAlign = 'left';
+      text.style.width = '55%';
 
       extraText.textContent = props.cards.cardDetail[index].extraText;
       extraText.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
-      extraText.style.marginTop = '10px';
-      extraText.style.width = '70%';
+      extraText.style.marginTop = '0px';
+      extraText.style.position = 'absolute';
+      extraText.style.bottom = '0px';
+      extraText.style.width = '55%';
       extraText.style.textAlign = 'right';
 
       break;
