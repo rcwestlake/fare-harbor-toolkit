@@ -1,17 +1,14 @@
 var config = FHConfig.config;
-//RW: need to make this not global
-var FHModal = window.FHModal ? window.FHModal : null;
 
 var toolCreator = (function() {
   function create(config) {
     switch (config.toolType) {
       case 'Modal':
-        return FHModal(
+        return FHModal.create(
           {
             shortname: config.shortname,
             selectedItems: config.selectedItems,
             modalType: config.toolDetails.modal.modalType,
-            showFullItems: config.toolDetails.modal.showFullItems,
             text: config.text,
             colors: config.colors,
             cards: config.toolDetails.modal.cards,

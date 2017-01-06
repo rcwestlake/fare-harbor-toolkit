@@ -13,7 +13,7 @@ var FHConfig = (function () {
        fontPrimary: '',
        headerText: 'Reservation Info',
        headerTextSize: '',
-       headerExtraText: 'Ranked as Hawaii\'s top tour!',
+       headerExtraText: 'This is a placeholder',
        headerExtraTextLink: '',
        headerExtraTextSize: '',
        bookButtonText: 'BOOK NOW',
@@ -29,8 +29,7 @@ var FHConfig = (function () {
      },
      toolDetails: {
        modal: {
-         modalType: 'showItems',
-         showFullItems: true,
+         modalType: 'simple',
          cards: {
            numberOfCards: null,
            cardDetail: [
@@ -38,7 +37,7 @@ var FHConfig = (function () {
                doesItExist: true,
                text: 'See activities and tickets',
                textType: '',
-               extraText: 'Starts at $100',
+               extraText: '',
                itemID: '',
                linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/?full-items=yes',
                icon: 'images/ticket-icon-blue.png',
@@ -47,7 +46,7 @@ var FHConfig = (function () {
                doesItExist: true,
                text: 'View online calendar',
                textType: '',
-               extraText: '4.5 hours',
+               extraText: '',
                itemID: '',
                linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/calendar/' + options.year + '/' + options.month + '/',
                icon: 'images/calendar-icon-blue.png',
@@ -56,7 +55,7 @@ var FHConfig = (function () {
                doesItExist: true,
                text: '"It was the best tour of my life!"',
                textType: 'Quote',
-               extraText: 'Day and night tours',
+               extraText: '',
                itemID: '',
                linkTo: '',
                icon: '',
