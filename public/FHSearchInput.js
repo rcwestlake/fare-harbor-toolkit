@@ -621,7 +621,7 @@ var FHSearchInput = function(obj) {
         } else {
           if (!targetID) {
             //month but no event
-            url = 'https://demo.fareharbor.com/embeds/book/' + shortname + '/items/calendar/' + year + '/' + month + '/';
+            url = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/calendar/' + year + '/' + month + '/';
             buttonLinkWrapper.href = url;
           } else {
             //event and month
