@@ -95,10 +95,10 @@ var FHSearchInput = function(obj) {
     function createContainer(obj) {
       var containerStyles = {
         border: obj.container.borderDebug ? '1px dotted red' : '',
-        marginTop: obj.container.marginTop || '40vh',
-        marginRight: obj.container.marginRight || 'auto',
-        marginBottom: obj.container.marginBottom || '40vh',
-        marginLeft: obj.container.marginLeft || 'auto',
+        marginTop: '40vh',
+        marginRight: 'auto',
+        marginBottom: '40vh',
+        marginLeft: 'auto',
       }
 
       container = document.createElement('DIV');
@@ -302,12 +302,12 @@ var FHSearchInput = function(obj) {
         color: obj.buttonsText.goButtonTextColor || '#000000',
         fontFamily: obj.buttonsText.goButtonTextFontName || 'Palatino-Bold, serif',
         fontSize: obj.buttonsText.goButtonTextFontSize || '25px',
-        height: obj.buttonsHeightAndWidth.goButtonHeight || '39px',
+        height: '39px',
         marginTop: '0px',
         marginRight: '10px',
         marginBottom: '0px',
         marginLeft: '10px',
-        width: obj.buttonsHeightAndWidth.goButtonWidth || '105px',
+        width: '105px',
       }
 
       makeHTMLForGoButton();
@@ -376,13 +376,13 @@ var FHSearchInput = function(obj) {
         color: obj.buttonsText.detailsButtonTextColor || '#000000',
         fontFamily: obj.buttonsText.detailsButtonTextFontName || 'Palatino-Bold, serif',
         fontSize: obj.buttonsText.detailsButtonTextFontSize || '25px',
-        height: obj.buttonsHeightAndWidth.detailsButtonHeight || 'auto',
+        height: 'auto',
         marginTop: stackDependentStyle.detailsButtonMarginTop,
         marginRight: 'auto',
         marginBottom: stackDependentStyle.detailsButtonMarginBottom,
         marginLeft: 'auto',
         padding: '10px',
-        width: obj.buttonsHeightAndWidth.detailsButtonWidth || 'auto',
+        width: 'auto',
       }
 
       makeHTMLForDetailsButton();
