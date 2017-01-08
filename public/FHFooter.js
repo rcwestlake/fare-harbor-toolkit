@@ -16,8 +16,8 @@ var FHFooter = function(obj) {
 
     var footerStyles = {
       backgroundColor: obj.footer.footerBackgroundColor || '#88BCF8',
-      height: obj.footer.height || 'auto',
-      width: obj.footer.width || '100vw',
+      height: 'auto',
+      width: '100vw',
       display: 'block',
       borderTopWidth: '1px',
       borderRightWidth: '1px',
@@ -152,8 +152,3 @@ var FHFooter = function(obj) {
   return buildFooterHTML(obj);
 
 };
-
-// function buildFooterHTML(obj) {
-//
-//
-// }

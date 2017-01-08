@@ -6,7 +6,7 @@ var FHConfig = (function () {
   };
   return {
     config: {
-     toolType: 'SearchInput',
+     toolType: 'Footer',
      shortname: options.shortname,
      selectedItems: [],
      text: {
@@ -87,13 +87,9 @@ var FHConfig = (function () {
        searchInput: {
          searchInputContainer: {
            borderDebug: false,
-           marginTop: '',
-           marginRight: '',
-           marginBottom: '',
-           marginLeft: '',
          },
+         stackOrientation: 'horizontal',
          inputFields: {
-           stackOrientation: 'horizontal',
            inputFieldTypes: {
              leftInputFieldFunction: '',
              rightInputFieldFunction: '',
@@ -151,18 +147,10 @@ var FHConfig = (function () {
              detailsButtonBorderRightColor: '',
              detailsButtonBorderLeftColor: '',
            },
-           buttonsHeightAndWidth: {
-             goButtonHeight: '',
-             goButtonWidth: '',
-             detailsButtonHeight: '',
-             detailsButtonWidth: '',
-           },
          },
        },
        footer: {
          footerBackgroundColor: '',
-         height: '',
-         width: '',
          footerBorders: {
            footerBorderBottomColor: '',
            footerBorderTopColor: '',
@@ -177,8 +165,6 @@ var FHConfig = (function () {
              textContent: 'Book Now!',
              linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/',
              color: '',
-             height: '',
-             width: '',
              fontName: '',
              fontSize: '22px',
              fontWeight: 'bolder',
@@ -189,8 +175,6 @@ var FHConfig = (function () {
              textContent: 'Check Availability',
              linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/calendar/' + options.year + '/' + options.month + '/',
              color: '',
-             height: '',
-             width: '',
              fontName: '',
              fontSize: '',
              fontWeight: '',
@@ -201,8 +185,6 @@ var FHConfig = (function () {
              textContent: 'Offers',
              linkTo: '',
              color: '',
-             height: '',
-             width: '',
              fontName: '',
              fontSize: '',
              fontWeight: '',
@@ -213,8 +195,6 @@ var FHConfig = (function () {
              textContent: 'Deals',
              linkTo: '',
              color: '',
-             height: '',
-             width: '',
              fontName: '',
              fontSize: '',
              fontWeight: '',
