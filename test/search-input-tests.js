@@ -2,9 +2,9 @@ var assert    = require('assert');
 var webdriver = require('selenium-webdriver');
 var test = require('selenium-webdriver/testing');
 
-test.describe('testing ideabox',function(){
+test.describe('Search Input',function(){
   this.timeout(10000)
-  test.it('should...', function(){
+  test.it('should render two input fields', function(){
     var driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
