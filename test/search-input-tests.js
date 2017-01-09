@@ -65,6 +65,24 @@ test.describe('Search Input',function(){
     }).then(function (link) {
       assert.strictEqual(link, 'https://demo.fareharbor.com/embeds/book/bodyglove/items/?full-items=yes');
     })
+
+    driver.quit()
+  })
+
+  test.it('should render an empty link by default for the additional details button', function() {
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+    driver.findElement({className: 'details-button-wrapper'}).then(function (wrapper) {
+      return wrapper.getAttribute('href')
+    }).then(function (link) {
+      assert.strictEqual(link, '');
+    })
+
+    driver.quit()
   })
 
 })
