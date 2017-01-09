@@ -1,5 +1,6 @@
 var FHModal = (function(props) {
   var body = document.body;
+  var styles = FHModalStyles;
   var button;
   var textContainer;
   var alignContainer;
@@ -32,7 +33,8 @@ var FHModal = (function(props) {
     button = document.createElement('button');
     button.classList.add('FH-reservation-button');
     button.textContent = props.text.bookButtonText;
-    button.style.backgroundColor = props.colors.bookButtonColor || '#dd5347';
+    // button.style.backgroundColor = props.colors.bookButtonColor || '#dd5347';
+    styles.buildButtonStyle(button, props)
     button.style.bottom = '20px';
     button.style.border = 'none';
     button.style.boxShadow = '0 1px 6px rgba(0,0,0,.06), 0 2px 32px rgba(0,0,0,.16)';
@@ -41,8 +43,6 @@ var FHModal = (function(props) {
     button.style.fontSize = props.colors.bookButtonTextSize || '15px';
     button.style.position = 'fixed';
     button.style.right = '20px';
-    button.style.height = '60px';
-    button.style.width = '170px';
     button.style.zIndex = '3561031316';
     bookButtonText = props.text.bookButtonText;
 
@@ -294,7 +294,7 @@ var FHModal = (function(props) {
                         document.createElement('a') :
                         document.createElement('div') ;
 
-    cardContainer.classList.add('FH-modal-card');                  
+    cardContainer.classList.add('FH-modal-card');
     cardContainer.href = cards[index].linkTo;
     cardContainer.style.boxSizing = 'border-box';
     cardContainer.style.display = 'block';
