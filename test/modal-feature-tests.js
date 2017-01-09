@@ -15,7 +15,7 @@ test.describe('Modal - feature tests', function() {
 
   test.it('finds the Modal button', function() {
     driver.findElements({className: 'FH-reservation-button'}).then(function(res) {
-      assert.equal(res.length, 1, 'book button has 21 characters')
+      assert.equal(res.length, 1, 'displays only 1 button')
     });
   });
 
@@ -35,7 +35,7 @@ test.describe('Modal - feature tests', function() {
 
   test.it('finds the Modal title', function() {
     driver.findElement({className: 'FH-header-title'}).then(function(res) {
-      return res.getAttribute("innerText")
+      return res.getAttribute('innerText')
     }).then(function(text) {
       assert.equal(text, 'Reservation Info', 'displays correct text in header')
     })
@@ -52,6 +52,42 @@ test.describe('Modal - feature tests', function() {
   test.it('finds the length of cards in Modal', function() {
     driver.findElements({className: 'FH-modal-card'}).then(function(res) {
       assert.equal(res.length, 3, 'displays correct number of cards')
+    })
+  });
+
+  test.it('finds the text of the first card', function() {
+    driver.findElements({className: 'FH-modal-card'}).then(function(res) {
+      return res[0].getAttribute('innerText');
+    }).then(function(text) {
+      assert.equal(text, 'See activities and tickets', 'displays correct text for first card')
+    })
+  });
+
+  test.it('finds the text of the second card', function() {
+    driver.findElements({className: 'FH-modal-card'}).then(function(res) {
+      return res[1].getAttribute('innerText');
+    }).then(function(text) {
+      assert.equal(text, 'View online calendar', 'displays correct text for second card')
+    })
+  });
+
+  test.it('finds the text of the third card', function() {
+    driver.findElements({className: 'FH-modal-card'}).then(function(res) {
+      return res[2].getAttribute('innerText');
+    }).then(function(text) {
+      assert.equal(text, '"It was the best tour of my life!"', 'displays correct text for third card')
+    })
+  });
+
+  test.it('changes the book now text on click', function() {
+    var bookButton = driver.findElement({className: 'FH-reservation-button'})
+    bookButton.click();
+
+    driver.findElement({className: 'FH-reservation-button'}).then(function(res) {
+      return res.getAttribute('innerText')
+    })
+    .then(function(text) {
+      assert.equal(text, 'X', 'displays changed text after book button is clicked')
     })
     driver.quit();
   });
