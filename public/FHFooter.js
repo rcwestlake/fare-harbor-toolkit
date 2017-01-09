@@ -59,6 +59,7 @@ var FHFooter = function(obj) {
 
     for (var i = 0; i < filteredElements.length; i++) {
       var linkWrapper = document.createElement('A');
+      linkWrapper.id = filteredElements[i].id + 'link';
       footer.appendChild(linkWrapper);
       linkWrapper.href = filteredElements[i].linkTo;
       linkWrapper.style.textDecoration = 'none';
