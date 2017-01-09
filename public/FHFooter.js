@@ -84,7 +84,7 @@ var FHFooter = function(obj) {
         fourthElementTextColor = filteredElements[i].color || '#000000';
         text.style.color = fourthElementTextColor;
       }
-      text.style.fontFamily = filteredElements[i].fontName || 'Lucida-Grande, Verdana, serif';
+      text.style.fontFamily = filteredElements[i].fontName || 'Lucida-Grande, Verdana, sans-serif';
       text.style.fontSize = filteredElements[i].fontSize || '16px';
       text.style.fontWeight = filteredElements[i].fontWeight || 'normal';
       mobileView ? text.style.height = '' : text.style.height = '50px';
