@@ -85,4 +85,25 @@ test.describe('Search Input',function(){
     driver.quit()
   })
 
+  test.it('should change the main action button link appropriately when the date dropdown value changes', function () {
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+    var dateField = driver.findElement({className: 'right-field-input'});
+    dateField.click();
+    dateField.sendKeys('Ma');
+    dateField.click();
+
+    driver.findElement({className: 'go-button-wrapper'}).then(function (wrapper) {
+      return wrapper.getAttribute('href')
+    }).then(function (link) {
+      assert.strictEqual(link, 'https://demo.fareharbor.com/embeds/book/bodyglove/items/calendar/2017/03/');
+    })
+
+    driver.quit()
+  })
+
 })
