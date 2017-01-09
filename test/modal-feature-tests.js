@@ -12,11 +12,16 @@ test.describe('Modal - feature tests', function() {
     driver.get('http://localhost:8080')
   });
 
-  test.afterEach(function() {
-    driver.quit();
+  test.it('finds the Modal button', function() {
+    driver.findElements({className: 'FH-reservation-button'}).then(function(res) {
+      assert.equal(res.length, 1, 'book button has 21 characters')
+    });
   });
 
-  test.it('visits localhost:8080', function() {
-    assert(true);
+  test.ignore('finds the Modal button', function() {
+    driver.findElements({className: 'FH-reservation-button'}).then(function(res) {
+      assert.equal(res, 'BOOK NOW', 'book button has 21 characters')
+    });
+    driver.quit();
   });
 })
