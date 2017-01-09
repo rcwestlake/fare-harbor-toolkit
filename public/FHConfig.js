@@ -6,7 +6,7 @@ var FHConfig = (function () {
   };
   return {
     config: {
-     toolType: 'Footer',
+     toolType: 'Modal',
      shortname: options.shortname,
      selectedItems: [],
      text: {
@@ -29,7 +29,7 @@ var FHConfig = (function () {
      },
      toolDetails: {
        modal: {
-         modalType: 'simple',
+         modalType: 'Simple',
          cards: {
            numberOfCards: null,
            cardDetail: [
