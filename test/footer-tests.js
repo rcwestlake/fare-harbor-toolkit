@@ -7,7 +7,7 @@ var test = require('selenium-webdriver/testing');
 test.describe('Footer', function () {
   this.timeout(10000)
 
-  it.only('should render with four elements by default', function () {
+  test.it('should render with four elements by default', function () {
     var driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
@@ -19,6 +19,23 @@ test.describe('Footer', function () {
     })
 
     driver.quit();
+  })
+
+  it.only('the default text for the first element in the footer should read "Book Now!"', function () {
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+    driver.findElements({id: 'first'}).then(function (elem) {
+      return elem.getText()
+    }).then(function (text) {
+      assert.strictEqual(text, 'Book Now!');
+    })
+
+    driver.quit();
+
   })
 
 })
