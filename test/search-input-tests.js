@@ -11,6 +11,15 @@ test.describe('Search Input',function(){
 
     driver.get('http://localhost:8080');
 
+    var inputFields = driver.findElements({tagName: 'select'}).then(function (input) {
+      assert.equal(input.length, 2)
+    })
+
+  //   var allIdeas = driver.findElements({tagName: 'li'})
+  // driver.findElements({tagName:'li'}).then((li) =>{
+  //   assert.equal(li.length, 2)
+  // })
+
     // var title = driver.findElement({name: 'title'})
     // var description = driver.findElement({name: 'description'})
     // title.sendKeys('this is a title').then(()=>{

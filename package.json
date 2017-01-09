@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "nodemon FHServer.js",
-    "unit": "mocha"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
