@@ -2,8 +2,11 @@ var assert    = require('assert');
 var webdriver = require('selenium-webdriver');
 var test = require('selenium-webdriver/testing');
 
+//be sure to change toolType to SearchInput in FHConfig.js before running these tests!
+
 test.describe('Search Input',function(){
   this.timeout(10000)
+
   test.it('should render two input fields', function(){
     var driver = new webdriver.Builder()
     .forBrowser('chrome')
@@ -11,29 +14,43 @@ test.describe('Search Input',function(){
 
     driver.get('http://localhost:8080');
 
-    var inputFields = driver.findElements({tagName: 'select'}).then(function (input) {
-      assert.equal(input.length, 2)
+    var inputFields = driver.findElements({tagName: 'select'}).then(function (select) {
+      assert.equal(select.length, 2)
     })
-
-  //   var allIdeas = driver.findElements({tagName: 'li'})
-  // driver.findElements({tagName:'li'}).then((li) =>{
-  //   assert.equal(li.length, 2)
-  // })
-
-    // var title = driver.findElement({name: 'title'})
-    // var description = driver.findElement({name: 'description'})
-    // title.sendKeys('this is a title').then(()=>{
-    //   return title.getAttribute('value')
-    // }).then((value)=>{
-    //   assert.equal(value, 'this is a title')
-    // })
-    //
-    // description.sendKeys('this is a description').then(()=>{
-    //   return description.getAttribute('value')
-    // }).then((value)=>{
-    //   assert.equal(value, 'this is a description')
-    // })
 
     driver.quit()
   })
+
+  test.it('main action button should render with the correct text', function () {
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+      driver.findElement({name: 'go-button'}).then(function(button) {
+        return button.getText()
+      }).then(function(text) {
+        assert.strictEqual(text, 'Go!');
+      })
+
+    driver.quit()
+  });
+
+  test.it('additional details button should render with correct text', function () {
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+    driver.findElement({name: 'details-button'}).then(function(button) {
+      return button.getText()
+    }).then(function(text) {
+      assert.strictEqual(text, 'See full event details');
+    })
+
+  driver.quit()
+  })
+
 })

@@ -322,6 +322,7 @@ var FHSearchInput = function(obj) {
         container.appendChild(buttonLinkWrapper);
         buttonLinkWrapper.appendChild(goButton)
         goButton.classList.add('go-button');
+        goButton.name = 'go-button';
         goButton.style.backgroundColor = goButtonStyles.backgroundColor;
         goButton.style.borderBottomWidth = goButtonStyles.borderBottomWidth;
         goButton.style.borderTopWidth = goButtonStyles.borderTopWidth;
@@ -397,6 +398,7 @@ var FHSearchInput = function(obj) {
         container.appendChild(detailsButtonWrapper);
         detailsButtonWrapper.appendChild(detailsButton)
         detailsButton.classList.add('details-button');
+        detailsButton.name = 'details-button';
         detailsButton.style.display = 'block';
         detailsButton.disabled = true;
         detailsButton.title = 'Please select an event.';
