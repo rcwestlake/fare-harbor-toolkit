@@ -4,7 +4,7 @@ var driver = new webdriver.Builder()
               .build();
 var test = require('selenium-webdriver/testing');
 var assert = require('chai').assert;
-// var config = require('./mock-config.js');
+var config = require('../public/FHConfig.js');
 
 test.describe('Modal - feature tests', function() {
   this.timeout(10000);
@@ -23,7 +23,7 @@ test.describe('Modal - feature tests', function() {
     driver.findElement({className: 'FH-reservation-button'}).then(function(res) {
       return res.getAttribute("innerText")
     }).then(function(text) {
-      assert.equal(text, 'BOOK NOW', 'book button has BOOK NOW text')
+      assert.equal(text, config.text.bookButtonText, 'book button has BOOK NOW text')
     })
   });
 
@@ -37,7 +37,7 @@ test.describe('Modal - feature tests', function() {
     driver.findElement({className: 'FH-header-title'}).then(function(res) {
       return res.getAttribute('innerText')
     }).then(function(text) {
-      assert.equal(text, 'Reservation Info', 'displays correct text in header')
+      assert.equal(text, config.text.headerText, 'displays correct text in header')
     })
   });
 
@@ -45,7 +45,7 @@ test.describe('Modal - feature tests', function() {
     driver.findElement({className: 'FH-extra-title'}).then(function(res) {
       return res.getAttribute("innerText")
     }).then(function(text) {
-      assert.equal(text, 'This is a placeholder', 'displays correct extraText in header')
+      assert.equal(text, config.text.headerExtraText, 'displays correct extraText in header')
     })
   });
 
@@ -59,7 +59,15 @@ test.describe('Modal - feature tests', function() {
     driver.findElements({className: 'FH-modal-card'}).then(function(res) {
       return res[0].getAttribute('innerText');
     }).then(function(text) {
-      assert.equal(text, 'See activities and tickets', 'displays correct text for first card')
+      assert.equal(text, config.toolDetails.modal.cards.cardDetail[0].text, 'displays correct text for first card')
+    })
+  });
+
+  test.it('has the correct href for the first card', function() {
+    driver.findElements({className: 'FH-modal-card'}).then(function(res) {
+      return res[0].getAttribute('href');
+    }).then(function(link) {
+      assert.equal(link, config.toolDetails.modal.cards.cardDetail[0].linkTo, 'displays correct href')
     })
   });
 
@@ -67,7 +75,15 @@ test.describe('Modal - feature tests', function() {
     driver.findElements({className: 'FH-modal-card'}).then(function(res) {
       return res[1].getAttribute('innerText');
     }).then(function(text) {
-      assert.equal(text, 'View online calendar', 'displays correct text for second card')
+      assert.equal(text, config.toolDetails.modal.cards.cardDetail[1].text, 'displays correct text for second card')
+    })
+  });
+
+  test.it('finds the href of the second card', function() {
+    driver.findElements({className: 'FH-modal-card'}).then(function(res) {
+      return res[1].getAttribute('href');
+    }).then(function(text) {
+      assert.equal(text, config.toolDetails.modal.cards.cardDetail[1].linkTo, 'displays correct href for second card')
     })
   });
 
@@ -75,7 +91,15 @@ test.describe('Modal - feature tests', function() {
     driver.findElements({className: 'FH-modal-card'}).then(function(res) {
       return res[2].getAttribute('innerText');
     }).then(function(text) {
-      assert.equal(text, '"It was the best tour of my life!"', 'displays correct text for third card')
+      assert.equal(text, config.toolDetails.modal.cards.cardDetail[2].text, 'displays correct text for third card')
+    })
+  });
+
+  test.it('finds the href of the third card', function() {
+    driver.findElements({className: 'FH-modal-card'}).then(function(res) {
+      return res[2].getAttribute('href');
+    }).then(function(text) {
+      assert.equal(text, config.toolDetails.modal.cards.cardDetail[2].linkTo, 'displays correct href for third card')
     })
   });
 

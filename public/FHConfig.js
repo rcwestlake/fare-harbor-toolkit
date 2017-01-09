@@ -205,3 +205,7 @@ var FHConfig = (function () {
    }
   };
 })();
+
+if(typeof module !== 'undefined') {
+  module.exports = FHConfig.config;
+}
