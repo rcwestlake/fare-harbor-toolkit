@@ -2,7 +2,7 @@ var assert    = require('assert');
 var webdriver = require('selenium-webdriver');
 var test = require('selenium-webdriver/testing');
 
-//be sure to change toolType to SearchInput in FHConfig.js before running these tests!
+//be sure to change toolType to SearchInput in FHConfig.js and shortname to 'bodyglove' in the same file before running these tests!
 
 test.describe('Search Input',function(){
   this.timeout(10000)

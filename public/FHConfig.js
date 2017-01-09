@@ -6,7 +6,7 @@ var FHConfig = (function () {
   };
   return {
     config: {
-     toolType: 'SearchInput',
+     toolType: 'Footer',
      shortname: options.shortname,
      selectedItems: [],
      text: {
