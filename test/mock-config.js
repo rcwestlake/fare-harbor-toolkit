@@ -1,4 +1,4 @@
-var FHConfig = (function () {
+var MockConfig = (function () {
   var options = {
     shortname: 'bodyglove',
     year: new Date().getFullYear(),
