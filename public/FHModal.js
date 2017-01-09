@@ -32,56 +32,15 @@ var FHModal = (function(props) {
   function buildFHButton(props) {
     button = document.createElement('button');
     button.classList.add('FH-reservation-button');
-    button.textContent = props.text.bookButtonText;
-    // button.style.backgroundColor = props.colors.bookButtonColor || '#dd5347';
-    styles.buildButtonStyle(button, props)
-    button.style.bottom = '20px';
-    button.style.border = 'none';
-    button.style.boxShadow = '0 1px 6px rgba(0,0,0,.06), 0 2px 32px rgba(0,0,0,.16)';
-    button.style.cursor = 'pointer';
-    button.style.color = props.colors.bookButtonTextColor || '#ffffff';
-    button.style.fontSize = props.colors.bookButtonTextSize || '15px';
-    button.style.position = 'fixed';
-    button.style.right = '20px';
-    button.style.zIndex = '3561031316';
     bookButtonText = props.text.bookButtonText;
 
-    if(window.innerWidth < '500') {
-      button.style.fontSize = '12px';
-      button.style.height = '40px';
-      button.style.width = '130px';
-    }
-
-    return button;
+    styles.buildButtonStyles(button, props);
   }
 
   function buildModalContainer(props) {
     modalContainer = document.createElement('div');
     modalContainer.classList.add('FH-reservation-modal');
-    modalContainer.style.color = props.colors.headerTextColor || 'white';
-    modalContainer.style.backgroundColor = '#ffffff';
-    modalContainer.style.borderRadius = '10px 10px 10px 10px';
-    modalContainer.style.boxShadow = '0 3px 5px rgba(0,0,0,.2)';
-    modalContainer.style.boxSizing = 'border-box';
-    modalContainer.style.display = 'none';
-    modalContainer.style.fontFamily = props.text.fontPrimary || 'Tahoma, Geneva, sans-serif';
-    modalContainer.style.position = 'fixed';
-    modalContainer.style.bottom = '100px';
-    modalContainer.style.right = '20px';
-
-    if(window.innerWidth < '550') {
-      modalContainer.style.borderRadius = '0px';
-      modalContainer.style.top = '0px';
-      modalContainer.style.left = '0px';
-      modalContainer.style.height = '100%';
-      modalContainer.style.width = '100%';
-    } else {
-      modalContainer.style.height = '550px';
-      modalContainer.style.width = '350px';
-    }
-
-    modalContainer.style.textAlign = props.text.globalTextAlign || 'center';
-    modalContainer.style.zIndex = '35610311';
+    styles.buildModalContainerStyles(modalContainer, props);
 
     return modalContainer;
   }
@@ -89,15 +48,7 @@ var FHModal = (function(props) {
   function buildHeaderContainer(props) {
     headerContainer = document.createElement('section');
     headerContainer.classList.add('FH-modal-header');
-    headerContainer.style.height = '15%';
-    headerContainer.style.boxSizing = 'border-box';
-    headerContainer.style.paddingTop = '0px';
-    headerContainer.style.backgroundColor = props.colors.headerColor || '#dd5347';
-    headerContainer.style.borderRadius = '10px 10px 0px 0px';
-
-    if(window.innerWidth < '500') {
-      headerContainer.style.borderRadius = '0px';
-    }
+    styles.buildHeaderContainerStyles(headerContainer, props);
 
     return headerContainer;
   }
@@ -107,15 +58,8 @@ var FHModal = (function(props) {
     headerTitle = document.createElement('p');
     headerTitle.classList.add('FH-header-title');
 
-    headerAlignContainer.style.position = 'relative';
-    headerAlignContainer.style.top = '50%';
-    headerAlignContainer.style.transform = 'translateY(-50%)';
-
-    headerTitle.textContent = props.text.headerText;
-    headerTitle.style.fontSize = props.text.headerTextSize || '30px';
-    headerTitle.style.fontSize = props.text.headerTextSize || '30px';
-    headerTitle.style.marginTop = '0px';
-    headerTitle.style.marginBottom = props.marginsAndPadding.headerTextMarginBottom || '0px';
+    styles.buildHeaderAlignContainerStyles(headerAlignContainer, props);
+    styles.buildHeaderTitleStyles(headerTitle, props);
 
     headerAlignContainer.appendChild(headerTitle);
     var extraTitleText = buildExtraText(props);
@@ -127,24 +71,12 @@ var FHModal = (function(props) {
   function buildExtraText(props) {
     if(props.text.headerExtraTextLink) {
       extraTitleText = document.createElement('a');
-      extraTitleText.classList.add('FH-extra-title');
-      extraTitleText.textContent = props.text.headerExtraText;
-      extraTitleText.style.color = props.colors.headerExtraTextColor || '#ffffff';
-      extraTitleText.style.fontSize = '10px';
-      extraTitleText.style.margin = '0px';
-      extraTitleText.href = props.text.headerExtraTextLink;
-      extraTitleText.target = '_blank';
-      extraTitleText.style.textDecoration = 'none';
+      styles.buildExtraTextLinkStyles(extraTitleText, props);
 
       return extraTitleText;
     } else if(props.text.headerExtraText) {
       extraTitleText = document.createElement('p');
-      extraTitleText.classList.add('FH-extra-title');
-      extraTitleText.textContent = props.text.headerExtraText;
-      extraTitleText.style.color = props.colors.headerExtraTextColor || '#ffffff';
-      extraTitleText.style.textDecoration = 'none';
-      extraTitleText.style.fontSize = '10px';
-      extraTitleText.style.margin = '0px';
+      styles.buildExtraTextParaStyles(extraTitleText, props);
 
       return extraTitleText
     }
@@ -152,10 +84,7 @@ var FHModal = (function(props) {
 
   function buildCardsContainer(props) {
     cardsContainer = document.createElement('section');
-    cardsContainer.style.boxSizing = 'border-box';
-    cardsContainer.style.height = '85%';
-    cardsContainer.style.backgroundColor = 'white';
-
+    styles.buildCardsContainerStyles(cardsContainer, props);
     return cardsContainer;
   }
 
@@ -163,15 +92,7 @@ var FHModal = (function(props) {
     textContainer = document.createElement('div');
     alignContainer = document.createElement('div');
 
-    textContainer.style.boxSizing = 'border-box';
-    textContainer.style.display = 'inline-block';
-    textContainer.style.float = 'right';
-    textContainer.style.minHeight = '100%';
-    textContainer.style.maxWidth = cards[index].icon ? '75%' : '100%';
-    textContainer.style.height = '100%';
-    textContainer.style.width = cards[index].icon ? '75%' : '100%';
-    textContainer.style.textAlign = cards[index].icon ? 'left' : 'center';
-    textContainer.style.position = 'relative';
+    styles.buildTextContainerStyles(textContainer, props, cards, index);
 
     alignContainer.style.boxSizing = 'border-box';
     alignContainer.style.display = 'block';

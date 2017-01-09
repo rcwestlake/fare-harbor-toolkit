@@ -29,7 +29,7 @@ var FHConfig = (function () {
      },
      toolDetails: {
        modal: {
-         modalType: 'showItems',
+         modalType: 'showitems',
          cards: {
            numberOfCards: null,
            cardDetail: [
@@ -37,7 +37,7 @@ var FHConfig = (function () {
                doesItExist: true,
                text: 'See activities and tickets',
                textType: '',
-               extraText: '',
+               extraText: 'Prices start at $100',
                itemID: '',
                linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/?full-items=yes',
                icon: 'images/ticket-icon-blue.png',
