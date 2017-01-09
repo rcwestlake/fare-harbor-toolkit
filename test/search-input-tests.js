@@ -53,4 +53,18 @@ test.describe('Search Input',function(){
   driver.quit()
   })
 
+  test.it('should render default link for main action button', function() {
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+    driver.findElement({className: 'go-button-wrapper'}).then(function (wrapper) {
+      return wrapper.getAttribute('href')
+    }).then(function (link) {
+      assert.strictEqual(link, 'https://demo.fareharbor.com/embeds/book/bodyglove/items/?full-items=yes');
+    })
+  })
+
 })

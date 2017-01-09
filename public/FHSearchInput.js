@@ -314,6 +314,7 @@ var FHSearchInput = function(obj) {
 
       function makeHTMLForGoButton() {
         buttonLinkWrapper = document.createElement('A');
+        buttonLinkWrapper.classList.add('go-button-wrapper');
         buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes';
         buttonLinkWrapper.style.textDecoration = 'none';
         goButton = document.createElement('BUTTON');
@@ -390,6 +391,7 @@ var FHSearchInput = function(obj) {
 
       function makeHTMLForDetailsButton() {
         detailsButtonWrapper = document.createElement('A');
+        detailsButtonWrapper.classList.add('details-button-wrapper');
         detailsButtonWrapper.href = '';
         detailsButtonWrapper.style.textDecoration = 'none';
         detailsButton = document.createElement('BUTTON');
