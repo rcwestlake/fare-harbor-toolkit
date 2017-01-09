@@ -190,6 +190,21 @@ test.describe('Search Input',function(){
     driver.quit()
   })
 
+  test.it('additional details button should be disabled by default', function () {
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+    driver.findElement({className: 'details-button'}).then(function (button) {
+      return button.getAttribute('disabled')
+    }).then(function (status) {
+      assert.strictEqual(status, 'true');
+    })
+
+  })
+
   //try to test disabled and enabling of more details button too
 
 })
