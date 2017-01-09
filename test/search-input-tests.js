@@ -246,7 +246,7 @@ test.describe('Search Input',function(){
     driver.quit()
   })
 
-  it('should change the additional details button link appropriately when the event data changes', function () {
+  test.it('should change the additional details button link appropriately when the event data changes', function () {
     var driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
@@ -284,6 +284,25 @@ test.describe('Search Input',function(){
 
     driver.quit()
 
+  })
+
+  test.it('lightframe should activate when user presses the main action button', function () {
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+    var goButton = driver.findElement({className: 'go-button'})
+    goButton.click();
+
+    driver.findElement({className: 'fh-ready'}).then(function (wrapper) {
+      return wrapper.getAttribute('style')
+    }).then(function (style) {
+      assert.strictEqual(style, 'overflow: hidden;');
+    })
+
+    driver.quit()
   })
 
 })
