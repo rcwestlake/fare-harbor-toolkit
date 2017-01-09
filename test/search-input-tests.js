@@ -203,6 +203,47 @@ test.describe('Search Input',function(){
       assert.strictEqual(status, 'true');
     })
 
+    driver.quit()
+
+  })
+
+  test.it('additional details button should be enabled when an event is selected', function () {
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+    var detailsButton = driver.findElement({className: 'details-button'});
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+
+    var eventField = driver.findElement({className: 'left-field-input'});
+    eventField.click();
+    eventField.sendKeys('Sno');
+    eventField.sendKeys(webdriver.Key.RETURN);
+    eventField.click();
+
+    driver.findElement({className: 'details-button'}).then(function (button) {
+      return button.getAttribute('disabled')
+    }).then(function (status) {
+      assert.strictEqual(status, null);
+    })
+
+    driver.quit()
   })
 
   //try to test disabled and enabling of more details button too
