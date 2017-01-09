@@ -115,4 +115,8 @@ test.describe('Modal - feature tests', function() {
     })
     driver.quit();
   });
+
+  if(config.toolDetails.modal.modalType.toLowerCase() === 'showitems') {
+    //run tests for showItems type
+  }
 })
