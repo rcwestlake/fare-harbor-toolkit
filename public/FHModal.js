@@ -88,6 +88,7 @@ var FHModal = (function(props) {
 
   function buildHeaderContainer(props) {
     headerContainer = document.createElement('section');
+    headerContainer.classList.add('FH-modal-header');
     headerContainer.style.height = '15%';
     headerContainer.style.boxSizing = 'border-box';
     headerContainer.style.paddingTop = '0px';
@@ -104,6 +105,7 @@ var FHModal = (function(props) {
   function buildHeaderTitle(props) {
     var headerAlignContainer = document.createElement('div');
     headerTitle = document.createElement('p');
+    headerTitle.classList.add('FH-header-title');
 
     headerAlignContainer.style.position = 'relative';
     headerAlignContainer.style.top = '50%';
@@ -125,6 +127,7 @@ var FHModal = (function(props) {
   function buildExtraText(props) {
     if(props.text.headerExtraTextLink) {
       extraTitleText = document.createElement('a');
+      extraTitleText.classList.add('FH-extra-title');
       extraTitleText.textContent = props.text.headerExtraText;
       extraTitleText.style.color = props.colors.headerExtraTextColor || '#ffffff';
       extraTitleText.style.fontSize = '10px';
@@ -136,6 +139,7 @@ var FHModal = (function(props) {
       return extraTitleText;
     } else if(props.text.headerExtraText) {
       extraTitleText = document.createElement('p');
+      extraTitleText.classList.add('FH-extra-title');
       extraTitleText.textContent = props.text.headerExtraText;
       extraTitleText.style.color = props.colors.headerExtraTextColor || '#ffffff';
       extraTitleText.style.textDecoration = 'none';
@@ -286,8 +290,11 @@ var FHModal = (function(props) {
   function addCardToContainer(props, cards, index) {
     var cardHeight = Math.floor(100 / cards.length);
 
-    var cardContainer = cards[index].linkTo ? document.createElement('a') : document.createElement('div') ;
+    var cardContainer = cards[index].linkTo ?
+                        document.createElement('a') :
+                        document.createElement('div') ;
 
+    cardContainer.classList.add('FH-modal-card');                  
     cardContainer.href = cards[index].linkTo;
     cardContainer.style.boxSizing = 'border-box';
     cardContainer.style.display = 'block';
