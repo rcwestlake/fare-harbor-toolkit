@@ -106,4 +106,46 @@ test.describe('Search Input',function(){
     driver.quit()
   })
 
+  test.it('should change the main action button link appropriately when the event dropdown changes', function () {
+    this.timeout(10000);
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+    var detailsButton = driver.findElement({className: 'details-button'});
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+
+    var eventField = driver.findElement({className: 'left-field-input'});
+    eventField.click();
+    eventField.sendKeys('Sno');
+    eventField.sendKeys(webdriver.Key.RETURN);
+    eventField.click();
+
+    driver.findElement({className: 'go-button-wrapper'}).then(function (wrapper) {
+      return wrapper.getAttribute('href')
+    }).then(function (link) {
+      assert.strictEqual(link, 'https://demo.fareharbor.com/embeds/book/bodyglove/items/183/calendar/2017/1/');
+    })
+
+    driver.quit()
+  })
+
+  //try to test disabled and enabling of more details button too
+
 })
