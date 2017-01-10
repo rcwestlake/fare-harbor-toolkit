@@ -119,7 +119,7 @@ var FHModal = (function(props) {
         filterAPIBySelectedItems(props, selectedItems, numOfCards);
         break;
       default:
-        console.log('Incorrect modalType specified in FHModal.js');
+        console.error('Incorrect modalType specified in FHModal.js');
     }
   }
 
@@ -181,29 +181,24 @@ var FHModal = (function(props) {
 
   function addCardToContainer(props, cards, index) {
     var cardHeight = Math.floor(100 / cards.length);
-
     var cardContainer = cards[index].linkTo ?
                         document.createElement('a') :
                         document.createElement('div');
 
     cardContainer.href = cards[index].linkTo;
     styles.buildCardContainerStyles(cardContainer, cardHeight, props, cards, index);
-
     return cardContainer
   }
 
   function addTextToCard(props, cards, index) {
     var extraText;
-    var text = cards[index].linkTo ?
-                document.createElement('a') :
-                document.createElement('p');
+    var text = document.createElement('p');
 
     buildTextContainers(props, cards, index);
 
     switch (props.modalType.toLowerCase()) {
       case 'simple':
         text.textContent = cards[index].text;
-        text.href = cards[index].linkTo;
         styles.buildSimpleTextStyles(text, props, cards, index)
 
         if(cards[index].extraText) {
@@ -223,7 +218,7 @@ var FHModal = (function(props) {
 
         break;
       default:
-        console.log('Error with modalType case');
+        console.error('Error with modalType case');
     }
 
     alignContainer.appendChild(text);
@@ -244,19 +239,33 @@ var FHModal = (function(props) {
     }
   }
 
+  function changeBookButtonText() {
+    if (modalContainer.style.display === 'none') {
+      return button.textContent = 'X'
+    }
+
+    if (modalContainer.style.display === 'block') {
+      return button.textContent = bookButtonText;
+    }
+  }
+
+  function showOrHideModal() {
+    if (modalContainer.style.display === 'none') {
+      return modalContainer.style.display = 'block'
+    }
+
+    if (modalContainer.style.display === 'block') {
+      return modalContainer.style.display = 'none'
+    }
+  }
+
   document.addEventListener('click', function(e) {
     if(e.target.className === 'FH-reservation-button') {
-      if (modalContainer.style.display === 'none') {
-        button.textContent = 'X'
-        return modalContainer.style.display = 'block'
-      }
-
-      if (modalContainer.style.display === 'block') {
-        button.textContent = bookButtonText;
-        return modalContainer.style.display = 'none'
-      }
+      changeBookButtonText()
+      showOrHideModal()
     }
   })
+
 
   return  {
     create: create
