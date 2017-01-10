@@ -2,6 +2,7 @@ var searchInputObj = FHConfig.config.toolDetails.searchInput;
 
 var mobileView;
 var stackDependentStyle;
+var stackOrientation = searchInputObj.stackOrientation || 'horizontal';
 
 makeResponsive();
 
@@ -12,6 +13,46 @@ function makeResponsive() {
     mobileView = false;
   }
 }
+
+(function dataValidationSearchInput() {
+
+  if (typeof searchInputObj.searchInputContainer.borderDebug !== 'boolean') {
+    throw new Error('Please enter a valid boolean value (true or false) for borderDebug.')
+  }
+
+  if (searchInputObj.stackOrientation.toLowerCase() !== 'horizontal' && searchInputObj.stackOrientation.toLowerCase() !== 'vertical' && searchInputObj.stackOrientation.toLowerCase() !== '') {
+    throw new Error('For the stackOrientation property, please enter "horizontal", "vertical", or an empty string.')
+  }
+
+  if (searchInputObj.inputFields.inputFieldTypes.leftInputFieldFunction !== '' && searchInputObj.inputFields.inputFieldTypes.leftInputFieldFunction !== 'datePicker' && searchInputObj.inputFields.inputFieldTypes.leftInputFieldFunction !== 'eventPicker') {
+    throw new Error('For the leftInputFieldFunction, please enter "datePicker", "eventPicker", or an empty string.')
+  }
+
+  if (searchInputObj.inputFields.inputFieldTypes.rightInputFieldFunction !== '' && searchInputObj.inputFields.inputFieldTypes.rightInputFieldFunction !== 'datePicker' && searchInputObj.inputFields.inputFieldTypes.rightInputFieldFunction !== 'eventPicker') {
+    throw new Error('For the rightInputFieldFunction, please enter "datePicker", "eventPicker", or an empty string.')
+  }
+
+  if (typeof searchInputObj.inputFields.inputFieldText.leftInputFieldTextContent !== 'string') {
+    throw new Error('The leftInputFieldTextContent must be a string. (An empty string is fine, but no numbers, booleans, or other non-string types.)')
+  }
+
+  if (typeof searchInputObj.inputFields.inputFieldText.rightInputFieldTextContent !== 'string') {
+    throw new Error('The rightInputFieldTextContent must be a string. (An empty string is fine, but no numbers, booleans, or other non-string types.)')
+  }
+
+  if (typeof searchInputObj.buttons.doesDetailsButtonExist !== 'boolean') {
+    throw new Error('Please enter a valid boolean (true or false) for doesDetailsButtonExist.')
+  }
+
+  if (typeof searchInputObj.buttons.buttonsText.goButtonTextContent !== 'string') {
+    throw new Error('The goButtonTextContent must be a string. (An empty string is fine, but no numbers, booleans, or other non-string types.)')
+  }
+
+  if (typeof searchInputObj.buttons.buttonsText.detailsButtonTextContent !== 'string') {
+    throw new Error('The detailsButtonTextContent must be a string. (An empty string is fine, but no numbers, booleans, or other non-string types.)')
+  }
+
+})()
 
 adjustOrientation();
 
@@ -33,7 +74,7 @@ function adjustOrientation() {
       leftInputFieldWidth: '200px',
       rightInputFieldWidth: '200px',
       }
-  } else if (searchInputObj.stackOrientation === 'vertical') {
+  } else if (stackOrientation === 'vertical') {
     stackDependentStyle = {
       leftInputFieldDisplay: 'block',
       rightInputFieldDisplay: 'block',
