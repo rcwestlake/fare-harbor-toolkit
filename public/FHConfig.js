@@ -6,7 +6,7 @@ var FHConfig = (function () {
   };
   return {
     config: {
-     toolType: 'SearchInput',
+     toolType: 'Footer',
      shortname: options.shortname,
      selectedItems: [],
      text: {
@@ -88,7 +88,7 @@ var FHConfig = (function () {
          searchInputContainer: {
            borderDebug: false,
          },
-         stackOrientation: 'horizontal',
+         stackOrientation: '',
          inputFields: {
            inputFieldTypes: {
              leftInputFieldFunction: '',
@@ -183,7 +183,7 @@ var FHConfig = (function () {
              doesItExist: true,
              id: 'third',
              textContent: 'Offers',
-             linkTo: '',
+             linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/calendar/' + options.year + '/' + options.month + '/',
              color: '',
              fontName: '',
              fontSize: '',
@@ -193,7 +193,7 @@ var FHConfig = (function () {
              doesItExist: true,
              id: 'fourth',
              textContent: 'Deals',
-             linkTo: '',
+             linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/calendar/' + options.year + '/' + options.month + '/',
              color: '',
              fontName: '',
              fontSize: '',
