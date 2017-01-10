@@ -10,7 +10,7 @@ var FHModalStyles = {
     element.style.fontSize = props.colors.bookButtonTextSize || '15px';
     element.style.position = 'fixed';
     element.style.right = '20px';
-    element.style.zIndex = '3561031316';
+    element.style.zIndex = '35610312';
     element.style.height = '60px';
     element.style.width = '170px';
 
