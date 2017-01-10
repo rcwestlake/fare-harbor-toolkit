@@ -1,6 +1,11 @@
 var footerObj = FHConfig.config.toolDetails.footer;
+var StickyDependentPosition;
 
 (function dataValidationFooter() {
+
+  if (typeof footerObj.isFooterSticky !== 'boolean') {
+    throw new Error('The value of isFooterSticky should always be a boolean.')
+  }
 
   if (footerObj.elements[0].doesItExist !== true || typeof footerObj.elements[0].doesItExist !== 'boolean') {
     throw new Error('The value of doesItExist for the element with id of "first" should always be the boolean value true.')
@@ -47,7 +52,6 @@ var footerObj = FHConfig.config.toolDetails.footer;
 var FHFooterStyles = {
   backgroundColor: footerObj.footerBackgroundColor || '#88BCF8',
   height: 'auto',
-  width: '100vw',
   display: 'block',
   borderTopWidth: '1px',
   borderRightWidth: '1px',
@@ -61,4 +65,11 @@ var FHFooterStyles = {
   borderRightColor: footerObj.footerBorders.footerBorderRightColor || '#88BCF8',
   borderBottomColor: footerObj.footerBorders.footerBorderBottomColor || '#88BCF8',
   borderLeftColor: footerObj.footerBorders.footerBorderLeftColor || '#88BCF8',
+  position: footerObj.isFooterSticky ? 'fixed' : 'static',
+  bottom: footerObj.isFooterSticky ? '20px' : '',
+  width: footerObj.isFooterSticky ? '100vw' : '',
+  marginTop: '15px',
+  marginRight: '10px',
+  marginBottom: '15px',
+  marginLeft: '10px',
 }

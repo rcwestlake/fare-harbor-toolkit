@@ -8,15 +8,21 @@ var config = require('../public/FHConfig.js');
 test.describe('Footer', function () {
   this.timeout(10000)
 
-  test.it('should render with four elements by default', function () {
+  test.it('should render with the number of elements specified in the config object', function () {
     var driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
 
     driver.get('http://localhost:8080');
 
+    var realElements = config.toolDetails.footer.elements.filter(function (elem) {
+      return elem.doesItExist === true;
+    });
+
+    var howManyElements = realElements.length;
+
     driver.findElements({className: 'footer-element'}).then(function (element) {
-      assert.strictEqual(element.length, 4);
+      assert.strictEqual(element.length, howManyElements);
     })
 
     driver.quit();
@@ -69,11 +75,11 @@ test.describe('Footer', function () {
 
     driver.get('http://localhost:8080');
 
-    driver.findElement({id: 'thirdlink'}).then(function (wrapper) {
-      return wrapper.getAttribute('href')
-    }).then(function (link) {
-      assert.strictEqual(link, newLink);
-    })
+      driver.findElement({id: 'thirdlink'}).then(function (wrapper) {
+        return wrapper.getAttribute('href')
+      }).then(function (link) {
+        assert.strictEqual(link, newLink);
+      })
 
     driver.quit();
   })

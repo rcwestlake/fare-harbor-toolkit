@@ -40,6 +40,12 @@ var FHFooter = function(obj) {
       footer.style.borderRightColor = styles.borderRightColor;
       footer.style.borderBottomColor = styles.borderBottomColor;
       footer.style.borderLeftColor = styles.borderLeftColor;
+      footer.style.position = styles.position;
+      footer.style.bottom = styles.bottom;
+      footer.style.marginTop = styles.marginTop;
+      footer.style.marginRight = styles.marginRight;
+      footer.style.marginBottom = styles.marginBottom;
+      footer.style.marginLeft = styles.marginLeft;
     }
 
     (function filterElementsByExistence(){

@@ -145,6 +145,7 @@ var FHConfig = (function () {
          },
        },
        footer: {
+         isFooterSticky: false,
          footerBackgroundColor: '',
          footerBorders: {
            footerBorderBottomColor: '',
