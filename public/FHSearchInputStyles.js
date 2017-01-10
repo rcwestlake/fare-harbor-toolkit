@@ -13,6 +13,20 @@ function makeResponsive() {
   }
 }
 
+(function dataValidation() {
+  if (searchInputObj.stackOrientation.toLowerCase() !== 'horizontal' && searchInputObj.stackOrientation.toLowerCase() !== 'vertical') {
+    throw new Error('Please enter either "horizontal" or "vertical" for the stackOrientation property.')
+  }
+
+  if (searchInputObj.inputFields.inputFieldTypes.leftInputFieldFunction !== '' && searchInputObj.inputFields.inputFieldTypes.leftInputFieldFunction !== 'datePicker' && searchInputObj.inputFields.inputFieldTypes.leftInputFieldFunction !== 'eventPicker') {
+    throw new Error('For the leftInputFieldFunction, please enter "datePicker", "eventPicker", or an empty string.')
+  }
+
+  if (searchInputObj.inputFields.inputFieldTypes.rightInputFieldFunction !== '' && searchInputObj.inputFields.inputFieldTypes.rightInputFieldFunction !== 'datePicker' && searchInputObj.inputFields.inputFieldTypes.rightInputFieldFunction !== 'eventPicker') {
+    throw new Error('For the rightInputFieldFunction, please enter "datePicker", "eventPicker", or an empty string.')
+  }
+})()
+
 adjustOrientation();
 
 function adjustOrientation() {
