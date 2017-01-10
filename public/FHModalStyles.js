@@ -110,5 +110,111 @@ var FHModalStyles = {
     element.style.width = cards[index].icon ? '75%' : '100%';
     element.style.textAlign = cards[index].icon ? 'left' : 'center';
     element.style.position = 'relative';
+  },
+
+  buildAlignContainerStyles: function(element, props, cards, index) {
+    element.style.boxSizing = 'border-box';
+    element.style.display = 'block';
+    element.style.height = 'auto';
+    element.style.width = '100%';
+    element.style.position = 'relative';
+    element.style.top = '50%';
+    element.style.transform = 'translateY(-50%)';
+
+    if(props.modalType.toLowerCase() === 'showitems') {
+      element.style.position = 'absolute';
+      element.style.top = '50%';
+      element.style.height = '100%';
+    }
+  },
+
+  buildAnchorContainerStyles: function(element) {
+    element.style.height = '100%';
+    element.style.width = '100%';
+  },
+
+  buildImgContainerStyles: function(element) {
+    element.style.boxSizing = 'border-box';
+    element.style.display = 'block';
+    element.style.position = 'relative';
+    element.style.height = '100%';
+    element.style.width = '100%';
+  },
+
+  buildImgStyles: function(element, items, index) {
+    element.style.backgroundImage = 'url(' + items[index].image_cdn_url + ')';
+    element.style.backgroundRepeat = 'no-repeat';
+    element.style.backgroundPosition = '50% 50%';
+    element.style.backgroundSize = 'cover';
+    element.style.margin = '0px';
+    element.style.overflow = 'hidden';
+    element.style.minHeight = '100%';
+  },
+
+  buildCardContainerStyles: function(element, height, props, cards, index) {
+    element.classList.add('FH-modal-card');
+    element.style.boxSizing = 'border-box';
+    element.style.display = 'block';
+    element.style.height = '' + height + '%';
+
+    if(props.modalType.toLowerCase() === 'showitems') {
+      element.style.marginBottom = '1px';
+    }
+
+    if(props.modalType.toLowerCase() === 'simple') {
+      if(index < cards.length - 1) {
+        element.style.borderBottom = props.colors.headerColor ?
+        '' + '1px solid ' + props.colors.headerColor :
+        '1px solid #dd5347';
+      }
+    }
+  },
+
+  buildSimpleTextStyles: function(element, props, cards, index) {
+    element.style.display = 'inline-block';
+    element.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
+
+    if(cards[index].textType.toLowerCase() === 'quote') {
+      element.style.fontStyle = 'italic';
+      element.style.fontSize = props.cardFontsAndColors.extraTextSize || '18px';
+    }
+
+    element.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
+    element.style.textDecoration = 'none';
+    element.style.marginLeft = cards[index].icon ? '10%': '3%';
+    element.style.marginRight = '3%';
+  },
+
+  buildSimpleExtraTextStyles: function(element, props, cards, index) {
+    element.textContent = cards[index].extraText;
+    element.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
+    element.style.margin = '0px';
+    element.style.marginLeft = cards[index].icon ? '10%': '3%';
+  },
+
+  buildItemsTextStyles: function(element, props, cards, index) {
+    element.style.backgroundColor = 'rgba(0, 0, 0, 0.45)';
+    element.style.borderRadius = '0px 10px 10px 0px';
+    element.style.color = '#ffffff';
+    element.style.fontSize = props.cardFontsAndColors.mainTextSize || '18px';
+    element.style.padding = '15px 7px';
+    element.style.position = 'absolute';
+    element.style.top = '30%';
+    element.style.textAlign = 'left';
+    element.style.width = '55%';
+  },
+
+  buildItemsExtraTextStyles: function(element, props, cards, index) {
+    element.style.backgroundColor = props.colors.headerColor || 'rgba(221, 82, 70, 0.78)';
+    element.style.borderRadius = '5px 0px 0px 5px';
+    element.style.color = '#ffffff';
+    element.style.fontSize = props.cardFontsAndColors.extraTextSize || '15px';
+    element.style.margin = '0px';
+    element.style.padding = '0px 7px';
+    element.style.position = 'absolute';
+    element.style.top = '10px';
+    element.style.right = '0px';
+    element.style.width = '30%';
+    element.style.textAlign = 'left';
   }
 }

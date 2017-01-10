@@ -91,22 +91,8 @@ var FHModal = (function(props) {
   function buildTextContainers(props, cards, index) {
     textContainer = document.createElement('div');
     alignContainer = document.createElement('div');
-
     styles.buildTextContainerStyles(textContainer, props, cards, index);
-
-    alignContainer.style.boxSizing = 'border-box';
-    alignContainer.style.display = 'block';
-    alignContainer.style.height = 'auto';
-    alignContainer.style.width = '100%';
-    alignContainer.style.position = 'relative';
-    alignContainer.style.top = '50%';
-    alignContainer.style.transform = 'translateY(-50%)';
-
-    if(props.modalType.toLowerCase() === 'showitems') {
-      alignContainer.style.position = 'absolute';
-      alignContainer.style.top = '50%';
-      alignContainer.style.height = '100%';
-    }
+    styles.buildAlignContainerStyles(alignContainer, props, cards, index);
 
     textContainer.appendChild(alignContainer)
   }
@@ -187,23 +173,11 @@ var FHModal = (function(props) {
     var anchorContainer = document.createElement('div');
     var img = document.createElement('p');
 
-    anchorContainer.style.height = '100%';
-    anchorContainer.style.width = '100%';
-
+    styles.buildAnchorContainerStyles(anchorContainer);
+    styles.buildImgContainerStyles(imgContainer);
     imgContainer.href = 'https://demo.fareharbor.com/embeds/book/' + props.shortname + '/items/' + items[index].pk + '/?full-items=yes'
-    imgContainer.style.boxSizing = 'border-box';
-    imgContainer.style.display = 'block';
-    imgContainer.style.height = '100%';
-    imgContainer.style.width = '100%';
+    styles.buildImgStyles(img, items, index);
 
-    img.style.backgroundImage = 'url(' + items[index].image_cdn_url + ')';
-    img.style.backgroundRepeat = 'no-repeat';
-    img.style.backgroundPosition = '50% 50%';
-    img.style.backgroundSize = 'cover';
-    img.style.margin = '0px';
-    img.style.overflow = 'hidden';
-    img.style.minHeight = '100%';
-    imgContainer.style.position = 'relative';
     anchorContainer.appendChild(img);
     imgContainer.appendChild(anchorContainer);
   }
@@ -213,25 +187,10 @@ var FHModal = (function(props) {
 
     var cardContainer = cards[index].linkTo ?
                         document.createElement('a') :
-                        document.createElement('div') ;
+                        document.createElement('div');
 
-    cardContainer.classList.add('FH-modal-card');
     cardContainer.href = cards[index].linkTo;
-    cardContainer.style.boxSizing = 'border-box';
-    cardContainer.style.display = 'block';
-    cardContainer.style.height = '' + cardHeight + '%';
-
-    if(props.modalType.toLowerCase() === 'showitems') {
-      cardContainer.style.marginBottom = '1px';
-    }
-
-    if(props.modalType.toLowerCase() === 'simple') {
-      if(index < cards.length - 1) {
-        cardContainer.style.borderBottom = props.colors.headerColor ?
-        '' + '1px solid ' + props.colors.headerColor :
-        '1px solid #dd5347';
-      }
-    }
+    styles.buildCardContainerStyles(cardContainer, cardHeight, props, cards, index);
 
     return cardContainer
   }
@@ -242,7 +201,7 @@ var FHModal = (function(props) {
                 document.createElement('a') :
                 document.createElement('p');
 
-    buildTextContainers(props, cards, index)
+    buildTextContainers(props, cards, index);
 
     text.style.margin = '0px';
 
@@ -250,25 +209,11 @@ var FHModal = (function(props) {
       case 'simple':
         text.textContent = cards[index].text;
         text.href = cards[index].linkTo;
-        text.style.display = 'inline-block';
-        text.style.fontSize = props.cardFontsAndColors.mainTextSize || '20px';
-
-        if(cards[index].textType.toLowerCase() === 'quote') {
-          text.style.fontStyle = 'italic';
-          text.style.fontSize = props.cardFontsAndColors.extraTextSize || '18px';
-        }
-
-        text.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
-        text.style.textDecoration = 'none';
-        text.style.marginLeft = cards[index].icon ? '10%': '3%';
-        text.style.marginRight = '3%';
+        styles.buildSimpleTextStyles(text, props, cards, index)
 
         if(cards[index].extraText) {
           extraText = document.createElement('p');
-          extraText.textContent = cards[index].extraText;
-          extraText.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
-          extraText.style.margin = '0px';
-          extraText.style.marginLeft = cards[index].icon ? '10%': '3%';
+          styles.buildSimpleExtraTextStyles(extraText, props, cards, index);
           alignContainer.appendChild(extraText);
         }
         break;
@@ -276,28 +221,10 @@ var FHModal = (function(props) {
         extraText = document.createElement('p');
 
         text.textContent = cards[index].name
-        text.style.backgroundColor = 'rgba(0, 0, 0, 0.45)';
-        text.style.borderRadius = '0px 10px 10px 0px';
-        text.style.color = '#ffffff';
-        text.style.fontSize = props.cardFontsAndColors.mainTextSize || '18px';
-        text.style.padding = '15px 7px';
-        text.style.position = 'absolute';
-        text.style.top = '30%';
-        text.style.textAlign = 'left';
-        text.style.width = '55%';
+        styles.buildItemsTextStyles(text, props, cards, index);
 
         extraText.textContent = props.cards.cardDetail[index].extraText;
-        extraText.style.backgroundColor = props.colors.headerColor || 'rgba(221, 82, 70, 0.78)';
-        extraText.style.borderRadius = '5px 0px 0px 5px';
-        extraText.style.color = '#ffffff';
-        extraText.style.fontSize = props.cardFontsAndColors.extraTextSize || '15px';
-        extraText.style.margin = '0px';
-        extraText.style.padding = '0px 7px';
-        extraText.style.position = 'absolute';
-        extraText.style.top = '10px';
-        extraText.style.right = '0px';
-        extraText.style.width = '30%';
-        extraText.style.textAlign = 'left';
+        styles.buildItemsExtraTextStyles(extraText, props, cards, index);
 
         break;
       default:
