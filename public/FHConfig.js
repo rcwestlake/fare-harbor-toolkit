@@ -88,7 +88,7 @@ var FHConfig = (function () {
          searchInputContainer: {
            borderDebug: false,
          },
-         stackOrientation: 'horizontal',
+         stackOrientation: '',
          inputFields: {
            inputFieldTypes: {
              leftInputFieldFunction: '',

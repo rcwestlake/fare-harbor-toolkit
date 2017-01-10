@@ -2,6 +2,7 @@ var searchInputObj = FHConfig.config.toolDetails.searchInput;
 
 var mobileView;
 var stackDependentStyle;
+var stackOrientation = searchInputObj.stackOrientation || 'horizontal';
 
 makeResponsive();
 
@@ -14,8 +15,8 @@ function makeResponsive() {
 }
 
 (function dataValidation() {
-  if (searchInputObj.stackOrientation.toLowerCase() !== 'horizontal' && searchInputObj.stackOrientation.toLowerCase() !== 'vertical') {
-    throw new Error('Please enter either "horizontal" or "vertical" for the stackOrientation property.')
+  if (searchInputObj.stackOrientation.toLowerCase() !== 'horizontal' && searchInputObj.stackOrientation.toLowerCase() !== 'vertical' && searchInputObj.stackOrientation.toLowerCase() !== '') {
+    throw new Error('For the stackOrientation property, please enter "horizontal", "vertical", or an empty string.')
   }
 
   if (searchInputObj.inputFields.inputFieldTypes.leftInputFieldFunction !== '' && searchInputObj.inputFields.inputFieldTypes.leftInputFieldFunction !== 'datePicker' && searchInputObj.inputFields.inputFieldTypes.leftInputFieldFunction !== 'eventPicker') {
@@ -24,6 +25,10 @@ function makeResponsive() {
 
   if (searchInputObj.inputFields.inputFieldTypes.rightInputFieldFunction !== '' && searchInputObj.inputFields.inputFieldTypes.rightInputFieldFunction !== 'datePicker' && searchInputObj.inputFields.inputFieldTypes.rightInputFieldFunction !== 'eventPicker') {
     throw new Error('For the rightInputFieldFunction, please enter "datePicker", "eventPicker", or an empty string.')
+  }
+
+  if (typeof searchInputObj.inputFields.inputFieldText.leftInputFieldTextContent !== 'string') {
+    throw new Error('The leftInputFieldTextContent must be a string. (An empty string is fine, but no numbers, booleans, or other non-string types.)')
   }
 })()
 
@@ -47,7 +52,7 @@ function adjustOrientation() {
       leftInputFieldWidth: '200px',
       rightInputFieldWidth: '200px',
       }
-  } else if (searchInputObj.stackOrientation === 'vertical') {
+  } else if (stackOrientation === 'vertical') {
     stackDependentStyle = {
       leftInputFieldDisplay: 'block',
       rightInputFieldDisplay: 'block',
