@@ -236,6 +236,7 @@ var FHModalStyles = {
   },
 
   buildIconStyles: function(element) {
+    element.classList.add('FH-card-icon');
     element.style.height = 'auto';
     element.style.width = 'auto';
   }
