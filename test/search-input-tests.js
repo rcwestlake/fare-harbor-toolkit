@@ -6,7 +6,7 @@ var config = require('../public/FHConfig.js');
 //be sure to change toolType to SearchInput in FHConfig.js before running these tests!
 
 test.describe('Search Input',function(){
-  this.timeout(10000)
+  this.timeout(15000)
 
   test.it('should render two input fields', function(){
     var driver = new webdriver.Builder()

@@ -1,6 +1,7 @@
 var FHFooter = function(obj) {
 
   var buildFooterHTML = function (obj) {
+    var styles = FHFooterStyles;
     var footer;
     var firstElementTextColor;
     var secondElementTextColor;
@@ -8,50 +9,35 @@ var FHFooter = function(obj) {
     var fourthElementTextColor;
     var mobileView;
 
-    if (window.innerWidth < 700) {
-      mobileView = true;
-    } else {
-      mobileView = false;
-    }
+    makeResponsive();
 
-    var footerStyles = {
-      backgroundColor: obj.footer.footerBackgroundColor || '#88BCF8',
-      height: 'auto',
-      width: '100vw',
-      display: 'block',
-      borderTopWidth: '1px',
-      borderRightWidth: '1px',
-      borderBottomWidth: '1px',
-      borderLeftWidth: '1px',
-      borderTopStyle: 'solid',
-      borderRightStyle: 'solid',
-      borderBottomStyle: 'solid',
-      borderLeftStyle: 'solid',
-      borderTopColor: obj.footerBorders.footerBorderTopColor || '#88BCF8',
-      borderRightColor: obj.footerBorders.footerBorderRightColor || '#88BCF8',
-      borderBottomColor: obj.footerBorders.footerBorderBottomColor || '#88BCF8',
-      borderLeftColor: obj.footerBorders.footerBorderLeftColor || '#88BCF8',
-    };
+    function makeResponsive() {
+      if (window.innerWidth < 700) {
+        mobileView = true;
+      } else {
+        mobileView = false;
+      }
+    }
 
     footer = document.createElement('FOOTER');
     document.body.appendChild(footer);
-    footer.style.backgroundColor = footerStyles.backgroundColor;
-    footer.style.height = footerStyles.height;
-    footer.style.width = footerStyles.width;
-    footer.style.display = footerStyles.display;
+    footer.style.backgroundColor = styles.backgroundColor;
+    footer.style.height = styles.height;
+    footer.style.width = styles.width;
+    footer.style.display = styles.display;
     footer.style.textAlign = 'center';
-    footer.style.borderTopWidth = footerStyles.borderTopWidth;
-    footer.style.borderRightWidth = footerStyles.borderRightWidth;
-    footer.style.borderBottomWidth = footerStyles.borderBottomWidth;
-    footer.style.borderLeftWidth = footerStyles.borderLeftWidth;
-    footer.style.borderTopStyle = footerStyles.borderTopStyle;
-    footer.style.borderRightStyle = footerStyles.borderRightStyle;
-    footer.style.borderBottomStyle = footerStyles.borderBottomStyle;
-    footer.style.borderLeftStyle = footerStyles.borderLeftStyle;
-    footer.style.borderTopColor = footerStyles.borderTopColor;
-    footer.style.borderRightColor = footerStyles.borderRightColor;
-    footer.style.borderBottomColor = footerStyles.borderBottomColor;
-    footer.style.borderLeftColor = footerStyles.borderLeftColor;
+    footer.style.borderTopWidth = styles.borderTopWidth;
+    footer.style.borderRightWidth = styles.borderRightWidth;
+    footer.style.borderBottomWidth = styles.borderBottomWidth;
+    footer.style.borderLeftWidth = styles.borderLeftWidth;
+    footer.style.borderTopStyle = styles.borderTopStyle;
+    footer.style.borderRightStyle = styles.borderRightStyle;
+    footer.style.borderBottomStyle = styles.borderBottomStyle;
+    footer.style.borderLeftStyle = styles.borderLeftStyle;
+    footer.style.borderTopColor = styles.borderTopColor;
+    footer.style.borderRightColor = styles.borderRightColor;
+    footer.style.borderBottomColor = styles.borderBottomColor;
+    footer.style.borderLeftColor = styles.borderLeftColor;
 
     var filteredElements = obj.elements.filter(function(element) {
         return element.doesItExist === true;

@@ -20,86 +20,15 @@ var FHSearchInput = function(obj) {
     var detailsButton;
     var detailsButtonExists = obj.doesDetailsButtonExist;
     var buttonLinkWrapper;
-    var stackDependentStyle;
-    var mobileView;
-
-    makeResponsive();
-
-    function makeResponsive() {
-      if (window.innerWidth < 700) {
-        mobileView = true;
-      } else {
-        mobileView = false;
-      }
-    }
-
-    adjustOrientation();
-
-    function adjustOrientation() {
-      if (mobileView) {
-        stackDependentStyle = {
-          leftInputFieldDisplay: 'block',
-          rightInputFieldDisplay: 'block',
-          leftInputFieldMarginTop: '15px',
-          leftInputFieldMarginRight: 'auto',
-          leftInputFieldMarginBottom: '15px',
-          leftInputFieldMarginLeft: 'auto',
-          rightInputFieldMarginTop: '15px',
-          rightInputFieldMarginRight: 'auto',
-          rightInputFieldMarginBottom: '15px',
-          rightInputFieldMarginLeft: 'auto',
-          detailsButtonMarginTop: '40px',
-          detailsButtonMarginBottom: '40px',
-          leftInputFieldWidth: '200px',
-          rightInputFieldWidth: '200px',
-          }
-      } else if (obj.stackOrientation === 'vertical') {
-        stackDependentStyle = {
-          leftInputFieldDisplay: 'block',
-          rightInputFieldDisplay: 'block',
-          leftInputFieldMarginTop: '15px',
-          leftInputFieldMarginRight: 'auto',
-          leftInputFieldMarginBottom: '15px',
-          leftInputFieldMarginLeft: 'auto',
-          rightInputFieldMarginTop: '15px',
-          rightInputFieldMarginRight: 'auto',
-          rightInputFieldMarginBottom: '15px',
-          rightInputFieldMarginLeft: 'auto',
-          detailsButtonMarginTop: '40px',
-          detailsButtonMarginBottom: '40px',
-          leftInputFieldWidth: '30vw',
-          rightInputFieldWidth: '30vw',
-          }
-      } else {
-        stackDependentStyle = {
-          leftInputFieldDisplay: 'inline-block',
-          rightInputFieldDisplay: 'inline-block',
-          leftInputFieldMarginTop: '0px',
-          leftInputFieldMarginRight: '5px',
-          leftInputFieldMarginBottom: '0px',
-          leftInputFieldMarginLeft: '5px',
-          rightInputFieldMarginTop: '0px',
-          rightInputFieldMarginRight: '5px',
-          rightInputFieldMarginBottom: '0px',
-          rightInputFieldMarginLeft: '5px',
-          detailsButtonMarginTop: '20px',
-          detailsButtonMarginBottom: '20px',
-          leftInputFieldWidth: '200px',
-          rightInputFieldWidth: '200px',
-        }
-      }
-    }
+    var containerStyles = FHContainerStyles;
+    var leftFieldInputStyles = FHLeftInputStyles;
+    var rightFieldInputStyles = FHRightInputStyles;
+    var goButtonStyles = FHGoButtonStyles;
+    var detailsButtonStyles = FHDetailsButtonStyles;
 
     createContainer(obj);
 
     function createContainer(obj) {
-      var containerStyles = {
-        border: obj.container.borderDebug ? '1px dotted red' : '',
-        marginTop: '40vh',
-        marginRight: 'auto',
-        marginBottom: '40vh',
-        marginLeft: 'auto',
-      }
 
       container = document.createElement('DIV');
       document.body.appendChild(container);
@@ -116,32 +45,6 @@ var FHSearchInput = function(obj) {
 
     function createLeftInputField(obj) {
       var leftFieldFunction = obj.inputFieldTypes.leftInputFieldFunction || 'eventPicker';
-
-      var leftFieldInputStyles = {
-        backgroundColor: obj.inputFieldBackgroundColor.leftInputFieldBackgroundColor || '#ffffff',
-        display: stackDependentStyle.leftInputFieldDisplay,
-        borderBottomWidth: '1px',
-        borderTopWidth: '1px',
-        borderRightWidth: '1px',
-        borderLeftWidth: '1px',
-        borderBottomStyle: 'solid',
-        borderTopStyle: 'solid',
-        borderRightStyle: 'solid',
-        borderLeftStyle: 'solid',
-        borderBottomColor: obj.inputFieldBorders.leftInputFieldBorderBottomColor || '#979797',
-        borderTopColor: obj.inputFieldBorders.leftInputFieldBorderTopColor || '#979797',
-        borderRightColor: obj.inputFieldBorders.leftInputFieldBorderRightColor || '#979797',
-        borderLeftColor: obj.inputFieldBorders.leftInputFieldBorderLeftColor || '#979797',
-        color: obj.inputFieldText.leftInputFieldTextColor || '#A09C9C',
-        fontFamily: obj.inputFieldText.leftInputFieldTextFontName || 'Lucida-Grande, Verdana, sans-serif',
-        fontSize: obj.inputFieldText.leftInputFieldTextFontSize || '22px',
-        height: '39px',
-        marginTop: stackDependentStyle.leftInputFieldMarginTop,
-        marginRight: stackDependentStyle.leftInputFieldMarginRight,
-        marginBottom: stackDependentStyle.leftInputFieldMarginBottom,
-        marginLeft: stackDependentStyle.leftInputFieldMarginLeft,
-        width: stackDependentStyle.leftInputFieldWidth,
-      }
 
       makeHTMLForLeftInput();
 
@@ -200,32 +103,6 @@ var FHSearchInput = function(obj) {
     function createRightInputField(obj) {
       var rightFieldFunction = obj.inputFieldTypes.rightInputFieldFunction || 'datePicker';
 
-      var rightFieldInputStyles = {
-        backgroundColor: obj.inputFieldBackgroundColor.rightInputFieldBackgroundColor || '#ffffff',
-        display: stackDependentStyle.rightInputFieldDisplay,
-        borderBottomWidth: '1px',
-        borderTopWidth: '1px',
-        borderRightWidth: '1px',
-        borderLeftWidth: '1px',
-        borderBottomStyle: 'solid',
-        borderTopStyle: 'solid',
-        borderRightStyle: 'solid',
-        borderLeftStyle: 'solid',
-        borderBottomColor: obj.inputFieldBorders.rightInputFieldBorderBottomColor || '#979797',
-        borderTopColor: obj.inputFieldBorders.rightInputFieldBorderTopColor || '#979797',
-        borderRightColor: obj.inputFieldBorders.rightInputFieldBorderRightColor || '#979797',
-        borderLeftColor: obj.inputFieldBorders.rightInputFieldBorderLeftColor || '#979797',
-        color: obj.inputFieldText.rightInputFieldTextColor || '#A09C9C',
-        fontFamily: obj.inputFieldText.rightInputFieldTextFontName || 'Lucida-Grande, Verdana, sans-serif',
-        fontSize: obj.inputFieldText.rightInputFieldTextFontSize || '22px',
-        height: '39px',
-        marginTop: stackDependentStyle.rightInputFieldMarginTop,
-        marginRight: stackDependentStyle.rightInputFieldMarginRight,
-        marginBottom: stackDependentStyle.rightInputFieldMarginBottom,
-        marginLeft: stackDependentStyle.rightInputFieldMarginLeft,
-        width: stackDependentStyle.rightInputFieldWidth,
-      }
-
       makeHTMLForRightInput();
 
       function makeHTMLForRightInput() {
@@ -283,33 +160,6 @@ var FHSearchInput = function(obj) {
     function createGoButton(obj) {
       var goButtonContent = obj.buttonsText.goButtonTextContent || 'Go!';
 
-      var goButtonStyles = {
-        backgroundColor: obj.buttonsBackgroundColor.goButtonBackgroundColor || '#3D89DF',
-        borderBottomWidth: '1px',
-        borderTopWidth: '1px',
-        borderRightWidth: '1px',
-        borderLeftWidth: '1px',
-        borderBottomStyle: 'solid',
-        borderTopStyle: 'solid',
-        borderRightStyle: 'solid',
-        borderLeftStyle: 'solid',
-        borderBottomColor: obj.buttonsBorders.goButtonBorderBottomColor || '#8CC0FB',
-        borderTopColor: obj.buttonsBorders.goButtonBorderTopColor || '#8CC0FB',
-        borderRightColor: obj.buttonsBorders.goButtonBorderRightColor || '#8CC0FB',
-        borderLeftColor: obj.buttonsBorders.goButtonBorderLeftColor || '#8CC0FB',
-        borderRadius: '8px',
-        boxShadow: '0 3px 3px 0 rgba(0,0,0,0.50)',
-        color: obj.buttonsText.goButtonTextColor || '#000000',
-        fontFamily: obj.buttonsText.goButtonTextFontName || 'Lucida-Grande, Verdana, sans-serif',
-        fontSize: obj.buttonsText.goButtonTextFontSize || '25px',
-        height: '39px',
-        marginTop: '0px',
-        marginRight: '10px',
-        marginBottom: '0px',
-        marginLeft: '10px',
-        width: '105px',
-      }
-
       makeHTMLForGoButton();
 
       function makeHTMLForGoButton() {
@@ -358,34 +208,6 @@ var FHSearchInput = function(obj) {
 
     function createDetailsButton(obj) {
       var detailsButtonContent = obj.buttonsText.detailsButtonTextContent || 'See full event details';
-
-      var detailsButtonStyles = {
-        backgroundColor: obj.buttonsBackgroundColor.detailsButtonBackgroundColor || '#3D89DF',
-        borderBottomWidth: '1px',
-        borderTopWidth: '1px',
-        borderRightWidth: '1px',
-        borderLeftWidth: '1px',
-        borderBottomStyle: 'solid',
-        borderTopStyle: 'solid',
-        borderRightStyle: 'solid',
-        borderLeftStyle: 'solid',
-        borderBottomColor: obj.buttonsBorders.detailsButtonBorderBottomColor || '#8CC0FB',
-        borderTopColor: obj.buttonsBorders.detailsButtonBorderTopColor || '#8CC0FB',
-        borderRightColor: obj.buttonsBorders.detailsButtonBorderRightColor || '#8CC0FB',
-        borderLeftColor: obj.buttonsBorders.detailsButtonBorderLeftColor || '#8CC0FB',
-        borderRadius: '8px',
-        boxShadow: '0 3px 3px 0 rgba(0,0,0,0.50)',
-        color: obj.buttonsText.detailsButtonTextColor || '#000000',
-        fontFamily: obj.buttonsText.detailsButtonTextFontName || 'Lucida-Grande, Verdana, sans-serif',
-        fontSize: obj.buttonsText.detailsButtonTextFontSize || '25px',
-        height: 'auto',
-        marginTop: stackDependentStyle.detailsButtonMarginTop,
-        marginRight: 'auto',
-        marginBottom: stackDependentStyle.detailsButtonMarginBottom,
-        marginLeft: 'auto',
-        padding: '10px',
-        width: 'auto',
-      }
 
       makeHTMLForDetailsButton();
 
