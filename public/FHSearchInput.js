@@ -133,7 +133,7 @@ var FHSearchInput = function(obj) {
         borderRightColor: obj.inputFieldBorders.leftInputFieldBorderRightColor || '#979797',
         borderLeftColor: obj.inputFieldBorders.leftInputFieldBorderLeftColor || '#979797',
         color: obj.inputFieldText.leftInputFieldTextColor || '#A09C9C',
-        fontFamily: obj.inputFieldText.leftInputFieldTextFontName || 'Palatino-Roman, serif',
+        fontFamily: obj.inputFieldText.leftInputFieldTextFontName || 'Lucida-Grande, Verdana, sans-serif',
         fontSize: obj.inputFieldText.leftInputFieldTextFontSize || '22px',
         height: '39px',
         marginTop: stackDependentStyle.leftInputFieldMarginTop,
@@ -216,7 +216,7 @@ var FHSearchInput = function(obj) {
         borderRightColor: obj.inputFieldBorders.rightInputFieldBorderRightColor || '#979797',
         borderLeftColor: obj.inputFieldBorders.rightInputFieldBorderLeftColor || '#979797',
         color: obj.inputFieldText.rightInputFieldTextColor || '#A09C9C',
-        fontFamily: obj.inputFieldText.rightInputFieldTextFontName || 'Palatino-Roman, serif',
+        fontFamily: obj.inputFieldText.rightInputFieldTextFontName || 'Lucida-Grande, Verdana, sans-serif',
         fontSize: obj.inputFieldText.rightInputFieldTextFontSize || '22px',
         height: '39px',
         marginTop: stackDependentStyle.rightInputFieldMarginTop,
@@ -300,7 +300,7 @@ var FHSearchInput = function(obj) {
         borderRadius: '8px',
         boxShadow: '0 3px 3px 0 rgba(0,0,0,0.50)',
         color: obj.buttonsText.goButtonTextColor || '#000000',
-        fontFamily: obj.buttonsText.goButtonTextFontName || 'Palatino-Bold, serif',
+        fontFamily: obj.buttonsText.goButtonTextFontName || 'Lucida-Grande, Verdana, sans-serif',
         fontSize: obj.buttonsText.goButtonTextFontSize || '25px',
         height: '39px',
         marginTop: '0px',
@@ -314,6 +314,7 @@ var FHSearchInput = function(obj) {
 
       function makeHTMLForGoButton() {
         buttonLinkWrapper = document.createElement('A');
+        buttonLinkWrapper.classList.add('go-button-wrapper');
         buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes';
         buttonLinkWrapper.style.textDecoration = 'none';
         goButton = document.createElement('BUTTON');
@@ -322,6 +323,7 @@ var FHSearchInput = function(obj) {
         container.appendChild(buttonLinkWrapper);
         buttonLinkWrapper.appendChild(goButton)
         goButton.classList.add('go-button');
+        goButton.name = 'go-button';
         goButton.style.backgroundColor = goButtonStyles.backgroundColor;
         goButton.style.borderBottomWidth = goButtonStyles.borderBottomWidth;
         goButton.style.borderTopWidth = goButtonStyles.borderTopWidth;
@@ -374,7 +376,7 @@ var FHSearchInput = function(obj) {
         borderRadius: '8px',
         boxShadow: '0 3px 3px 0 rgba(0,0,0,0.50)',
         color: obj.buttonsText.detailsButtonTextColor || '#000000',
-        fontFamily: obj.buttonsText.detailsButtonTextFontName || 'Palatino-Bold, serif',
+        fontFamily: obj.buttonsText.detailsButtonTextFontName || 'Lucida-Grande, Verdana, sans-serif',
         fontSize: obj.buttonsText.detailsButtonTextFontSize || '25px',
         height: 'auto',
         marginTop: stackDependentStyle.detailsButtonMarginTop,
@@ -389,6 +391,7 @@ var FHSearchInput = function(obj) {
 
       function makeHTMLForDetailsButton() {
         detailsButtonWrapper = document.createElement('A');
+        detailsButtonWrapper.classList.add('details-button-wrapper');
         detailsButtonWrapper.href = '';
         detailsButtonWrapper.style.textDecoration = 'none';
         detailsButton = document.createElement('BUTTON');
@@ -397,6 +400,7 @@ var FHSearchInput = function(obj) {
         container.appendChild(detailsButtonWrapper);
         detailsButtonWrapper.appendChild(detailsButton)
         detailsButton.classList.add('details-button');
+        detailsButton.name = 'details-button';
         detailsButton.style.display = 'block';
         detailsButton.disabled = true;
         detailsButton.title = 'Please select an event.';

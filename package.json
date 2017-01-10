@@ -5,9 +5,7 @@
   "main": "index.html",
   "scripts": {
     "start": "nodemon FHServer.js",
-    "feature": "./node_modules/.bin/wdio wdio.conf.js",
-    "unit": "mocha",
-    "testserver": "java -jar -Dwebdriver.geckodriver.driver=./geckodriver selenium-server-standalone-3.0.1.jar"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
