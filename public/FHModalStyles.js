@@ -22,6 +22,7 @@ var FHModalStyles = {
   },
 
   buildModalContainerStyles: function(element, props) {
+    element.classList.add('FH-reservation-modal');
     element.style.color = props.colors.headerTextColor || 'white';
     element.style.backgroundColor = '#ffffff';
     element.style.borderRadius = '10px 10px 10px 10px';
@@ -49,6 +50,7 @@ var FHModalStyles = {
   },
 
   buildHeaderContainerStyles: function(element, props) {
+    element.classList.add('FH-modal-header');
     element.style.height = '15%';
     element.style.boxSizing = 'border-box';
     element.style.paddingTop = '0px';
@@ -67,6 +69,7 @@ var FHModalStyles = {
   },
 
   buildHeaderTitleStyles: function(element, props) {
+    element.classList.add('FH-header-title');
     element.textContent = props.text.headerText;
     element.style.fontSize = props.text.headerTextSize || '30px';
     element.style.fontSize = props.text.headerTextSize || '30px';
@@ -180,16 +183,17 @@ var FHModalStyles = {
     }
 
     element.style.color = props.cardFontsAndColors.mainTextColor || '#333C4A';
-    element.style.textDecoration = 'none';
+    element.style.margin = '0px';
     element.style.marginLeft = cards[index].icon ? '10%': '3%';
     element.style.marginRight = '3%';
+    element.style.textDecoration = 'none';
   },
 
   buildSimpleExtraTextStyles: function(element, props, cards, index) {
     element.textContent = cards[index].extraText;
     element.style.color = props.cardFontsAndColors.extraTextColor || '#dd5347';
     element.style.margin = '0px';
-    element.style.marginLeft = cards[index].icon ? '10%': '3%';
+    element.style.marginLeft = cards[index].icon ? '10%': '0%';
   },
 
   buildItemsTextStyles: function(element, props, cards, index) {
@@ -197,6 +201,7 @@ var FHModalStyles = {
     element.style.borderRadius = '0px 10px 10px 0px';
     element.style.color = '#ffffff';
     element.style.fontSize = props.cardFontsAndColors.mainTextSize || '18px';
+    element.style.margin = '0px';
     element.style.padding = '15px 7px';
     element.style.position = 'absolute';
     element.style.top = '30%';
@@ -216,5 +221,21 @@ var FHModalStyles = {
     element.style.right = '0px';
     element.style.width = '30%';
     element.style.textAlign = 'left';
+  },
+
+  buildIconContainerStyles: function(element) {
+    element.style.boxSizing = 'border-box';
+    element.style.float = 'left';
+    element.style.paddingLeft = '3%';
+    element.style.position = 'relative';
+    element.style.top = '50%';
+    element.style.transform = 'translateY(-50%)';
+    element.style.maxWidth = '25%';
+    element.style.width = '25%';
+  },
+
+  buildIconStyles: function(element) {
+    element.style.height = 'auto';
+    element.style.width = 'auto';
   }
 }

@@ -29,7 +29,7 @@ var FHConfig = (function () {
      },
      toolDetails: {
        modal: {
-         modalType: 'showitems',
+         modalType: 'simple',
          cards: {
            numberOfCards: null,
            cardDetail: [
@@ -55,7 +55,7 @@ var FHConfig = (function () {
                doesItExist: true,
                text: '"It was the best tour of my life!"',
                textType: 'Quote',
-               extraText: '',
+               extraText: 'Julie, customer in 2016',
                itemID: '',
                linkTo: '',
                icon: '',

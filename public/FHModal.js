@@ -39,7 +39,6 @@ var FHModal = (function(props) {
 
   function buildModalContainer(props) {
     modalContainer = document.createElement('div');
-    modalContainer.classList.add('FH-reservation-modal');
     styles.buildModalContainerStyles(modalContainer, props);
 
     return modalContainer;
@@ -47,7 +46,6 @@ var FHModal = (function(props) {
 
   function buildHeaderContainer(props) {
     headerContainer = document.createElement('section');
-    headerContainer.classList.add('FH-modal-header');
     styles.buildHeaderContainerStyles(headerContainer, props);
 
     return headerContainer;
@@ -56,7 +54,6 @@ var FHModal = (function(props) {
   function buildHeaderTitle(props) {
     var headerAlignContainer = document.createElement('div');
     headerTitle = document.createElement('p');
-    headerTitle.classList.add('FH-header-title');
 
     styles.buildHeaderAlignContainerStyles(headerAlignContainer, props);
     styles.buildHeaderTitleStyles(headerTitle, props);
@@ -203,8 +200,6 @@ var FHModal = (function(props) {
 
     buildTextContainers(props, cards, index);
 
-    text.style.margin = '0px';
-
     switch (props.modalType.toLowerCase()) {
       case 'simple':
         text.textContent = cards[index].text;
@@ -241,17 +236,10 @@ var FHModal = (function(props) {
     if(card[index].icon) {
       iconContainer = document.createElement('div');
       icon = document.createElement('img');
-      iconContainer.style.boxSizing = 'border-box';
-      iconContainer.style.float = 'left';
-      iconContainer.style.paddingLeft = '3%';
-      iconContainer.style.position = 'relative';
-      iconContainer.style.top = '50%';
-      iconContainer.style.transform = 'translateY(-50%)';
-      iconContainer.style.maxWidth = '25%';
-      iconContainer.style.width = '25%';
+
+      styles.buildIconContainerStyles(iconContainer);
+      styles.buildIconStyles(icon);
       icon.src = card[index].icon;
-      icon.style.height = 'auto';
-      icon.style.width = 'auto';
       iconContainer.appendChild(icon);
     }
   }
