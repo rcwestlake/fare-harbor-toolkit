@@ -100,9 +100,7 @@ var FHSearchInput = function(obj) {
     function createRightInputField(obj) {
       var rightFieldFunction = obj.inputFieldTypes.rightInputFieldFunction || 'datePicker';
 
-      makeHTMLForRightInput();
-
-      function makeHTMLForRightInput() {
+      (function makeHTMLForRightInput() {
         rightFieldInput = document.createElement('SELECT');
         container.appendChild(rightFieldInput);
         rightFieldInput.classList.add('right-field-input');
@@ -129,7 +127,7 @@ var FHSearchInput = function(obj) {
         rightFieldInput.style.marginBottom = rightFieldInputStyles.marginBottom;
         rightFieldInput.style.marginLeft = rightFieldInputStyles.marginLeft;
         rightFieldInput.style.width = rightFieldInputStyles.width;
-      }
+      })()
 
       assignRightFieldFunction(
         {
@@ -157,9 +155,7 @@ var FHSearchInput = function(obj) {
     function createGoButton(obj) {
       var goButtonContent = obj.buttonsText.goButtonTextContent || 'Go!';
 
-      makeHTMLForGoButton();
-
-      function makeHTMLForGoButton() {
+      (function makeHTMLForGoButton() {
         buttonLinkWrapper = document.createElement('A');
         buttonLinkWrapper.classList.add('go-button-wrapper');
         buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes';
@@ -195,7 +191,7 @@ var FHSearchInput = function(obj) {
         goButton.style.marginBottom = goButtonStyles.marginBottom;
         goButton.style.marginLeft = goButtonStyles.marginLeft;
         goButton.style.width = goButtonStyles.width;
-      }
+      })()
 
     }
 
@@ -205,8 +201,6 @@ var FHSearchInput = function(obj) {
 
     function createDetailsButton(obj) {
       var detailsButtonContent = obj.buttonsText.detailsButtonTextContent || 'See full event details';
-
-      // makeHTMLForDetailsButton();
 
       (function makeHTMLForDetailsButton() {
         detailsButtonWrapper = document.createElement('A');
