@@ -31,14 +31,12 @@ var FHConfig = (function () {
        modal: {
          modalType: 'simple',
          cards: {
-           numberOfCards: null,
            cardDetail: [
              {
                doesItExist: true,
                text: 'See activities and tickets',
                textType: '',
                extraText: 'Prices start at $100',
-               itemID: '',
                linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/?full-items=yes',
                icon: 'images/ticket-icon-blue.png',
              },
@@ -47,7 +45,6 @@ var FHConfig = (function () {
                text: 'View online calendar',
                textType: '',
                extraText: '',
-               itemID: '',
                linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/calendar/' + options.year + '/' + options.month + '/',
                icon: 'images/calendar-icon-blue.png',
              },
@@ -56,7 +53,6 @@ var FHConfig = (function () {
                text: '"It was the best tour of my life!"',
                textType: 'Quote',
                extraText: 'Julie, customer in 2016',
-               itemID: '',
                linkTo: '',
                icon: '',
              },
@@ -65,7 +61,6 @@ var FHConfig = (function () {
                text: '',
                textType: '',
                extraText: '',
-               itemID: '',
                linkTo: '',
                icon: '',
              },

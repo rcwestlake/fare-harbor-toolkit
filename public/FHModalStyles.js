@@ -10,7 +10,7 @@ var FHModalStyles = {
     element.style.fontSize = props.colors.bookButtonTextSize || '15px';
     element.style.position = 'fixed';
     element.style.right = '20px';
-    element.style.zIndex = '3561031316';
+    element.style.zIndex = '35610312';
     element.style.height = '60px';
     element.style.width = '170px';
 
@@ -146,6 +146,7 @@ var FHModalStyles = {
 
   buildImgStyles: function(element, items, index) {
     element.style.backgroundImage = 'url(' + items[index].image_cdn_url + ')';
+    element.style.borderRadius = '6px';
     element.style.backgroundRepeat = 'no-repeat';
     element.style.backgroundPosition = '50% 50%';
     element.style.backgroundSize = 'cover';
@@ -161,7 +162,7 @@ var FHModalStyles = {
     element.style.height = '' + height + '%';
 
     if(props.modalType.toLowerCase() === 'showitems') {
-      element.style.marginBottom = '1px';
+      element.style.marginBottom = '2px';
     }
 
     if(props.modalType.toLowerCase() === 'simple') {
@@ -235,6 +236,7 @@ var FHModalStyles = {
   },
 
   buildIconStyles: function(element) {
+    element.classList.add('FH-card-icon');
     element.style.height = 'auto';
     element.style.width = 'auto';
   }
