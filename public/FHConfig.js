@@ -29,9 +29,8 @@ var FHConfig = (function () {
      },
      toolDetails: {
        modal: {
-         modalType: 'showitems',
+         modalType: 'simple',
          cards: {
-           numberOfCards: null,
            cardDetail: [
              {
                doesItExist: true,
