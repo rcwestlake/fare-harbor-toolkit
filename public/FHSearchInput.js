@@ -7,28 +7,27 @@ var FHSearchInput = function(obj) {
     var dateInputField;
     var dateInputFieldTextContent;
     var dateInputClass;
-    var companyName = obj.shortname;
+
     var eventName;
     var targetID;
     var itemsArray = [];
     var month;
     var year;
+
     var leftFieldInput;
     var rightFieldInput;
     var goButton;
     var container;
     var detailsButton;
-    var detailsButtonExists = obj.doesDetailsButtonExist;
     var buttonLinkWrapper;
+
     var containerStyles = FHContainerStyles;
     var leftFieldInputStyles = FHLeftInputStyles;
     var rightFieldInputStyles = FHRightInputStyles;
     var goButtonStyles = FHGoButtonStyles;
     var detailsButtonStyles = FHDetailsButtonStyles;
 
-    createContainer(obj);
-
-    function createContainer(obj) {
+    (function createContainer(obj) {
 
       container = document.createElement('DIV');
       document.body.appendChild(container);
@@ -39,16 +38,14 @@ var FHSearchInput = function(obj) {
       container.style.marginBottom = containerStyles.marginBottom;
       container.style.marginLeft = containerStyles.marginLeft;
       container.style.textAlign = 'center';
-    }
+    })()
 
     createLeftInputField(obj);
 
     function createLeftInputField(obj) {
       var leftFieldFunction = obj.inputFieldTypes.leftInputFieldFunction || 'eventPicker';
 
-      makeHTMLForLeftInput();
-
-      function makeHTMLForLeftInput() {
+      (function makeHTMLForLeftInput() {
         leftFieldInput = document.createElement('SELECT');
         container.appendChild(leftFieldInput);
         leftFieldInput.classList.add('left-field-input');
@@ -75,7 +72,7 @@ var FHSearchInput = function(obj) {
         leftFieldInput.style.marginBottom = leftFieldInputStyles.marginBottom;
         leftFieldInput.style.marginLeft = leftFieldInputStyles.marginLeft;
         leftFieldInput.style.width = leftFieldInputStyles.width;
-      }
+      })()
 
       assignLeftFieldFunction(
         {
@@ -202,16 +199,16 @@ var FHSearchInput = function(obj) {
 
     }
 
-    if (detailsButtonExists) {
+    if (obj.doesDetailsButtonExist) {
       createDetailsButton(obj);
     }
 
     function createDetailsButton(obj) {
       var detailsButtonContent = obj.buttonsText.detailsButtonTextContent || 'See full event details';
 
-      makeHTMLForDetailsButton();
+      // makeHTMLForDetailsButton();
 
-      function makeHTMLForDetailsButton() {
+      (function makeHTMLForDetailsButton() {
         detailsButtonWrapper = document.createElement('A');
         detailsButtonWrapper.classList.add('details-button-wrapper');
         detailsButtonWrapper.href = '';
@@ -251,7 +248,7 @@ var FHSearchInput = function(obj) {
         detailsButton.style.marginLeft = detailsButtonStyles.marginLeft;
         detailsButton.style.padding = detailsButtonStyles.padding;
         detailsButton.style.width = detailsButtonStyles.width;
-      }
+      })()
 
     }
 
@@ -441,7 +438,7 @@ var FHSearchInput = function(obj) {
               return item.name === eventName
             });
             targetID = target[0].id;
-          url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/';
+          url = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/';
           buttonLinkWrapper.href = url;
           }
         } else {
@@ -456,7 +453,7 @@ var FHSearchInput = function(obj) {
                 return item.name === eventName
               });
               targetID = target[0].id;
-            url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + year + '/' + month + '/';
+            url = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/' + targetID + '/calendar/' + year + '/' + month + '/';
             buttonLinkWrapper.href = url;
           }
         }
@@ -518,13 +515,13 @@ var FHSearchInput = function(obj) {
                 return item.name === eventName
               });
               targetID = target[0].id;
-            var url1 = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/?full-items=yes';
+            var url1 = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/?full-items=yes';
             detailsButtonWrapper.href = url1;
             if (!month) {
-              url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/';
+              url = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/';
               buttonLinkWrapper.href = url;
             } else {
-              url = 'https://demo.fareharbor.com/embeds/book/' + companyName + '/items/' + targetID + '/calendar/' + year + '/' + month + '/';
+              url = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/' + targetID + '/calendar/' + year + '/' + month + '/';
               buttonLinkWrapper.href = url;
             }
           }
