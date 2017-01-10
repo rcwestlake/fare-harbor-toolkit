@@ -102,7 +102,7 @@ var FHFooter = function(obj) {
       }
     }
 
-    (function formatElements() {
+    (function formatElementsDependingOnNumber() {
       var el1 = document.getElementById('first');
       var el2 = document.getElementById('second');
       var el3 = document.getElementById('third');
