@@ -14,7 +14,7 @@ function makeResponsive() {
   }
 }
 
-(function dataValidation() {
+(function dataValidationSearchInput() {
 
   if (typeof searchInputObj.searchInputContainer.borderDebug !== 'boolean') {
     throw new Error('Please enter a valid boolean value (true or false) for borderDebug.')

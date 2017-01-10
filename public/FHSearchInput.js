@@ -246,120 +246,155 @@ var FHSearchInput = function(obj) {
 
     }
 
-    window.addEventListener('load', function () {
-      var hitAPI = new XMLHttpRequest();
-      var url = 'http://localhost:8080/api';
-      hitAPI.open('GET', url, true);
-      hitAPI.send();
-      hitAPI.onreadystatechange = function() {
-        if (hitAPI.readyState === XMLHttpRequest.DONE) {
-          if (hitAPI.status === 200) {
-            var JSONObj = JSON.parse(hitAPI.responseText);
-            var items = JSONObj["items"];
-            var newItems = [];
-            if (obj.selectedItems.length > 0) {
-              for (var i = 0; i < obj.selectedItems.length; i++) {
-                for (var j = 0; j < items.length; j++) {
-                  if (items[j]["pk"] === obj.selectedItems[i]) {
-                    newItems.push(items[j]);
-                  }
-                }
+      (function makeAPICallForEvents(){
+        var hitAPI = new XMLHttpRequest();
+        var url = 'http://localhost:8080/api';
+        hitAPI.open('GET', url, true);
+        hitAPI.send();
+        hitAPI.onreadystatechange = function() {
+          if (hitAPI.readyState === XMLHttpRequest.DONE) {
+            if (hitAPI.status === 200) {
+              var JSONObj = JSON.parse(hitAPI.responseText);
+              var items = JSONObj["items"];
+              var newItems = [];
+              if (obj.selectedItems.length > 0) {
+                sliceItemsArray(obj.selectedItems, items, newItems);
+              } else {
+                newItems = items;
               }
+
+              createEventInputDefaultText();
+              populateEventsInEventField(newItems);
+
             } else {
-              newItems = items;
+              console.error('There was a problem with the API call.');
             }
-            var opt0 = document.createElement('OPTION');
-            eventInputField.appendChild(opt0);
-            var text0 = document.createTextNode(eventInputFieldTextContent);
-            opt0.appendChild(text0);
-            for (var i = 0; i < newItems.length; i++) {
-              var opt = document.createElement('OPTION');
-              eventInputField.appendChild(opt);
-              var text1 = document.createTextNode(newItems[i]["name"]);
-              var text2 = newItems[i]["name"];
-              opt.appendChild(text1);
-              itemsArray.push({
-                name: newItems[i]["name"],
-                id: newItems[i]["pk"]
-              });
-              }
-          } else {
-            console.error('There was a problem with the API call.');
+          }
+        }
+      })()
+
+      function sliceItemsArray(selectedItems, items, newItems){
+        for (var i = 0; i < selectedItems.length; i++) {
+          for (var j = 0; j < items.length; j++) {
+            if (items[j]["pk"] === selectedItems[i]) {
+              newItems.push(items[j]);
+            }
           }
         }
       }
-      });
 
-        var allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        var currMonth = allMonths[new Date().getMonth()];
-        var nextMonth = {
-          'January': 'February',
-          'February': 'March',
-          'March': 'April',
-          'April': 'May',
-          'May': 'June',
-          'June': 'July',
-          'July': 'August',
-          'August': 'September',
-          'September': 'October',
-          'October': 'November',
-          'November': 'December',
-          'December': 'January',
-        };
-        var currMonthPlusOne = nextMonth[currMonth];
-        var currMonthPlusTwo = nextMonth[currMonthPlusOne];
-        var currMonthPlusThree = nextMonth[currMonthPlusTwo];
-        var currMonthPlusFour = nextMonth[currMonthPlusThree];
+      function createEventInputDefaultText() {
+        var opt = document.createElement('OPTION');
+        eventInputField.appendChild(opt);
+        var text = document.createTextNode(eventInputFieldTextContent);
+        opt.appendChild(text);
+      }
+
+      function populateEventsInEventField(newItems) {
+        for (var i = 0; i < newItems.length; i++) {
+          var opt = document.createElement('OPTION');
+          eventInputField.appendChild(opt);
+          var text = document.createTextNode(newItems[i]["name"]);
+          opt.appendChild(text);
+          itemsArray.push({
+            name: newItems[i]["name"],
+            id: newItems[i]["pk"]
+          });
+          }
+      }
+
+      (function populateDatesField(){
+        var currMonth;
         var currYear = new Date().getFullYear();
+        var currMonthPlusOne;
+        var currMonthPlusTwo;
+        var currMonthPlusThree;
+        var currMonthPlusFour;
         var yearOne;
         var yearTwo;
         var yearThree;
         var yearFour;
-        if (currMonthPlusOne === 'January') {
-          yearOne = new Date().getFullYear() + 1;
-        } else {
-          yearOne = currYear;
-        }
-        if (currMonthPlusTwo === 'January') {
-          yearTwo = new Date().getFullYear() + 1;
-        } else {
-          yearTwo = yearOne;
-        }
-        if (currMonthPlusThree === 'January') {
-          yearThree = new Date().getFullYear() + 1;
-        } else {
-          yearThree = yearTwo;
-        }
-        if (currMonthPlusFour === 'January') {
-          yearFour = new Date().getFullYear() + 1;
-        } else {
-          yearFour = yearThree;
+
+        findCurrentMonth();
+        computeDates();
+        populateTheActualDatesInTheField();
+
+        function findCurrentMonth() {
+          var allMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+          currMonth = allMonths[new Date().getMonth()];
         }
 
-        var opt0 = document.createElement('OPTION');
-        dateInputField.appendChild(opt0);
-        var text0 = document.createTextNode(dateInputFieldTextContent);
-        opt0.appendChild(text0);
-        var opt1 = document.createElement('OPTION');
-        dateInputField.appendChild(opt1);
-        var text1 = document.createTextNode(currMonth + ' ' + currYear);
-        opt1.appendChild(text1);
-        var opt2 = document.createElement('OPTION');
-        dateInputField.appendChild(opt2);
-        var text2 = document.createTextNode(currMonthPlusOne + ' ' + yearOne);
-        opt2.appendChild(text2);
-        var opt3 = document.createElement('OPTION');
-        dateInputField.appendChild(opt3);
-        var text3 = document.createTextNode(currMonthPlusTwo + ' ' + yearTwo);
-        opt3.appendChild(text3);
-        var opt4 = document.createElement('OPTION');
-        dateInputField.appendChild(opt4);
-        var text4 = document.createTextNode(currMonthPlusThree + ' ' + yearThree);
-        opt4.appendChild(text4);
-        var opt5 = document.createElement('OPTION');
-        dateInputField.appendChild(opt5);
-        var text5 = document.createTextNode(currMonthPlusFour + ' ' + yearFour);
-        opt5.appendChild(text5);
+        function computeDates() {
+          var nextMonth = {
+            'January': 'February',
+            'February': 'March',
+            'March': 'April',
+            'April': 'May',
+            'May': 'June',
+            'June': 'July',
+            'July': 'August',
+            'August': 'September',
+            'September': 'October',
+            'October': 'November',
+            'November': 'December',
+            'December': 'January',
+          };
+
+          currMonthPlusOne = nextMonth[currMonth];
+          currMonthPlusTwo = nextMonth[currMonthPlusOne];
+          currMonthPlusThree = nextMonth[currMonthPlusTwo];
+          currMonthPlusFour = nextMonth[currMonthPlusThree];
+
+          if (currMonthPlusOne === 'January') {
+            yearOne = new Date().getFullYear() + 1;
+          } else {
+            yearOne = currYear;
+          }
+          if (currMonthPlusTwo === 'January') {
+            yearTwo = new Date().getFullYear() + 1;
+          } else {
+            yearTwo = yearOne;
+          }
+          if (currMonthPlusThree === 'January') {
+            yearThree = new Date().getFullYear() + 1;
+          } else {
+            yearThree = yearTwo;
+          }
+          if (currMonthPlusFour === 'January') {
+            yearFour = new Date().getFullYear() + 1;
+          } else {
+            yearFour = yearThree;
+          }
+        }
+
+        function populateTheActualDatesInTheField() {
+          var opt0 = document.createElement('OPTION');
+          dateInputField.appendChild(opt0);
+          var text0 = document.createTextNode(dateInputFieldTextContent);
+          opt0.appendChild(text0);
+          var opt1 = document.createElement('OPTION');
+          dateInputField.appendChild(opt1);
+          var text1 = document.createTextNode(currMonth + ' ' + currYear);
+          opt1.appendChild(text1);
+          var opt2 = document.createElement('OPTION');
+          dateInputField.appendChild(opt2);
+          var text2 = document.createTextNode(currMonthPlusOne + ' ' + yearOne);
+          opt2.appendChild(text2);
+          var opt3 = document.createElement('OPTION');
+          dateInputField.appendChild(opt3);
+          var text3 = document.createTextNode(currMonthPlusTwo + ' ' + yearTwo);
+          opt3.appendChild(text3);
+          var opt4 = document.createElement('OPTION');
+          dateInputField.appendChild(opt4);
+          var text4 = document.createTextNode(currMonthPlusThree + ' ' + yearThree);
+          opt4.appendChild(text4);
+          var opt5 = document.createElement('OPTION');
+          dateInputField.appendChild(opt5);
+          var text5 = document.createTextNode(currMonthPlusFour + ' ' + yearFour);
+          opt5.appendChild(text5);
+        }
+
+      })()
 
     document.addEventListener('change', function () {
       if (event.target.className.toLowerCase() === dateInputClass) {
@@ -367,117 +402,118 @@ var FHSearchInput = function(obj) {
         var currYear = new Date().getFullYear();
         var currMonth = new Date().getMonth() + 1;
 
-        var target = document.querySelector('.' + dateInputClass).value;
-        var Jan = /Jan+/;
-        var Feb = /Feb+/;
-        var Mar = /Mar+/;
-        var Apr = /Apr+/;
-        var May = /May+/;
-        var Jun = /Jun+/;
-        var Jul = /Jul+/;
-        var Aug = /Aug+/;
-        var Sep = /Sep+/;
-        var Oct = /Oct+/;
-        var Nov = /Nov+/;
-        var Dec = /Dec+/;
-        var y16 = /16/;
-        var y17 = /17/;
-        var y18 = /18/;
-        var y19 = /19/;
+        matchSelectedMonthToURL();
 
-        if (Jan.test(target)) {
-          month = '01';
-        } else if (Feb.test(target)) {
-          month = '02';
-        } else if (Mar.test(target)) {
-          month = '03';
-        } else if (Apr.test(target)) {
-          month = '04';
-        } else if (May.test(target)) {
-          month = '05';
-        } else if (Jun.test(target)) {
-          month = '06';
-        } else if (Jul.test(target)) {
-          month = '07';
-        } else if (Aug.test(target)) {
-          month = '08';
-        } else if (Sep.test(target)) {
-          month = '09';
-        } else if (Oct.test(target)) {
-          month = '10';
-        } else if (Nov.test(target)) {
-          month = '11';
-        } else if (Dec.test(target)) {
-          month = '12';
+        function matchSelectedMonthToURL() {
+          var target = document.querySelector('.' + dateInputClass).value;
+
+          if (/Jan+/.test(target)) {
+            month = '01';
+          } else if (/Feb+/.test(target)) {
+            month = '02';
+          } else if (/Mar+/.test(target)) {
+            month = '03';
+          } else if (/Apr+/.test(target)) {
+            month = '04';
+          } else if (/May+/.test(target)) {
+            month = '05';
+          } else if (/Jun+/.test(target)) {
+            month = '06';
+          } else if (/Jul+/.test(target)) {
+            month = '07';
+          } else if (/Aug+/.test(target)) {
+            month = '08';
+          } else if (/Sep+/.test(target)) {
+            month = '09';
+          } else if (/Oct+/.test(target)) {
+            month = '10';
+          } else if (/Nov+/.test(target)) {
+            month = '11';
+          } else if (/Dec+/.test(target)) {
+            month = '12';
+          }
+
+          if (/2016/.test(target)) {
+            year = '2016';
+          } else if (/2017/.test(target)) {
+            year = '2017';
+          } else if (/2018/.test(target)) {
+            year = '2018';
+          } else if (/2019/.test(target)) {
+            year = '2019';
+          } else if (/2020/.test(target)) {
+            year = '2020';
+          } else if (/2021/.test(target)) {
+            year = '2021';
+          } else if (/2022/.test(target)) {
+            year = '2022';
+          } else if (/2023/.test(target)) {
+            year = '2023';
+          } else if (/2024/.test(target)) {
+            year = '2024';
+          } else if (/2025/.test(target)) {
+            year = '2025';
+          } else if (/2026/.test(target)) {
+            year = '2026';
+          } else if (/2027/.test(target)) {
+            year = '2027';
+          } else if (/2028/.test(target)) {
+            year = '2028';
+          } else if (/2029/.test(target)) {
+            year = '2029';
+          } else if (/2030/.test(target)) {
+            year = '2030';
+          }
         }
 
-        if (y16.test(target)) {
-          year = '2016';
-        } else if (y17.test(target)) {
-          year = '2017';
-        } else if (y18.test(target)) {
-          year = '2018';
-        } else if (y19.test(target)) {
-          year = '2019';
+        var conditions = {
+          noMonthIsSelected: document.querySelector('.' + dateInputClass).value === dateInputFieldTextContent,
+          noEventIsSelected: !targetID || document.querySelector('.' + eventInputClass).value === eventInputFieldTextContent,
         }
 
-        if (document.querySelector('.' + dateInputClass).value === dateInputFieldTextContent) {
-          if (!targetID || document.querySelector('.' + eventInputClass).value === eventInputFieldTextContent) {
-          //no month and no event
+        if (conditions.noMonthIsSelected) {
+          if (conditions.noEventIsSelected) {
           buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes';
         } else {
-          //event but no month
-          eventName = eventInputField.value;
-          var target = itemsArray.filter(function(item){
-              return item.name === eventName
-            });
-            targetID = target[0].id;
+          reassignEventForURL();
           url = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/';
           buttonLinkWrapper.href = url;
           }
         } else {
-          if (!targetID) {
-            //month but no event
+          if (conditions.noEventIsSelected) {
             url = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/calendar/' + year + '/' + month + '/';
             buttonLinkWrapper.href = url;
           } else {
-            //event and month
-            eventName = eventInputField.value;
-            var target = itemsArray.filter(function(item){
-                return item.name === eventName
-              });
-              targetID = target[0].id;
+            reassignEventForURL();
             url = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/' + targetID + '/calendar/' + year + '/' + month + '/';
             buttonLinkWrapper.href = url;
           }
         }
 
+      function reassignEventForURL() {
+        eventName = eventInputField.value;
+        var target = itemsArray.filter(function(item){
+            return item.name === eventName
+          });
+          targetID = target[0].id;
+      }
+
     }
       });
 
-    //need to refactor to combine below two functions
     document.addEventListener('mouseout', function(event) {
       if (event.target.className.toLowerCase() === 'details-button') {
         event.target.style.backgroundColor = obj.buttonsBackgroundColor.detailsButtonBackgroundColor || '#3D89DF';
-      }
-    });
-
-    document.addEventListener('mouseout', function(event) {
-      if (event.target.className.toLowerCase() === 'go-button') {
+      } else if (event.target.className.toLowerCase() === 'go-button') {
         event.target.style.backgroundColor = obj.buttonsBackgroundColor.goButtonBackgroundColor || '#3D89DF';
       }
     });
 
-    //need to refactor to combine below two functions
     document.addEventListener('mouseover', function(event) {
       if (event.target.className.toLowerCase() === 'go-button') {
         event.target.style.backgroundColor = obj.buttonsBackgroundColor.goButtonBackgroundColorHover || '#88BCF8';
         event.target.style.cursor = 'pointer';
-      }
-    });
-
-    document.addEventListener('mouseover', function(event) {
-      if (event.target.className.toLowerCase() === 'details-button') {
+      } else if (event.target.className.toLowerCase() === 'details-button') {
         event.target.style.backgroundColor = obj.buttonsBackgroundColor.detailsButtonBackgroundColorHover || '#88BCF8';
         event.target.style.cursor = 'pointer';
       }
@@ -488,29 +524,26 @@ var FHSearchInput = function(obj) {
           var url;
           var currYear = new Date().getFullYear();
           var currMonth = new Date().getMonth() + 1;
-          if (document.querySelector('.' + eventInputClass).value === eventInputFieldTextContent) {
+
+          var conditions = {
+            noEventIsSelected: document.querySelector('.' + eventInputClass).value === eventInputFieldTextContent,
+            noMonthIsSelected: !month || document.querySelector('.' + dateInputClass).value === dateInputFieldTextContent,
+          }
+
+          if (conditions.noEventIsSelected) {
             targetID = null;
-            detailsButtonWrapper.href = '';
-            detailsButton.disabled = true;
-            detailsButton.title = 'Please select an event.';
-            if (!month || document.querySelector('.' + dateInputClass).value === dateInputFieldTextContent) {
-              //no month and no event
+            disableDetailsButton();
+            if (conditions.noMonthIsSelected) {
               buttonLinkWrapper.href = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/?full-items=yes'
             } else {
-              //month but no event
               url = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/calendar/' + year + '/' + month + '/';
               buttonLinkWrapper.href = url;
             }
           } else {
-            detailsButton.disabled = false;
-            detailsButton.title = '';
-            eventName = eventInputField.value;
-            var target = itemsArray.filter(function(item){
-                return item.name === eventName
-              });
-              targetID = target[0].id;
-            var url1 = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/?full-items=yes';
-            detailsButtonWrapper.href = url1;
+            enableDetailsButton();
+            reassignEventForURL();
+            var detailsButtonURL = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/?full-items=yes';
+            detailsButtonWrapper.href = detailsButtonURL;
             if (!month) {
               url = 'https://demo.fareharbor.com/embeds/book/' + obj.shortname + '/items/' + targetID + '/calendar/' + currYear + '/' + currMonth + '/';
               buttonLinkWrapper.href = url;
@@ -519,6 +552,25 @@ var FHSearchInput = function(obj) {
               buttonLinkWrapper.href = url;
             }
           }
+        }
+
+        function disableDetailsButton() {
+          detailsButtonWrapper.href = '';
+          detailsButton.disabled = true;
+          detailsButton.title = 'Please select an event.';
+        }
+
+        function enableDetailsButton() {
+          detailsButton.disabled = false;
+          detailsButton.title = '';
+        }
+
+        function reassignEventForURL() {
+          eventName = eventInputField.value;
+          var target = itemsArray.filter(function(item){
+              return item.name === eventName
+            });
+            targetID = target[0].id;
         }
 
       });
