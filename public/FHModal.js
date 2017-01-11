@@ -174,13 +174,13 @@ var FHModal = (function(props) {
 
     styles.buildAnchorContainerStyles(anchorContainer);
     styles.buildImgContainerStyles(imgContainer);
+    styles.buildImgStyles(img, items, index);
 
     imgContainer.onclick = function() {
       changeBookButtonText()
       showOrHideModal()
-      return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', view: { item: items[index].pk } }))
+      return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', fullItems: 'yes', view: { item: items[index].pk } }))
     }
-    styles.buildImgStyles(img, items, index);
 
     anchorContainer.appendChild(img);
     imgContainer.appendChild(anchorContainer);
@@ -193,18 +193,16 @@ var FHModal = (function(props) {
                         document.createElement('a') :
                         document.createElement('div');
 
+  styles.buildCardContainerStyles(cardContainer);
+  styles.buildWrapperContainerStyles(wrapperContainer, cardHeight, props, cards, index);
+
     if(cards[index].linkTo) {
       cardContainer.onclick = function() {
         changeBookButtonText()
         showOrHideModal()
-        console.log(cards[index].linkTo);
-        return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', view: cards[index].linkTo }))
+        return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', fullItems: 'yes', view: cards[index].linkTo }))
       }
     }
-
-    styles.buildCardContainerStyles(cardContainer);
-
-    styles.buildWrapperContainerStyles(wrapperContainer, cardHeight, props, cards, index);
 
     return [wrapperContainer, cardContainer]
   }

@@ -29,7 +29,7 @@ var FHConfig = (function () {
      },
      toolDetails: {
        modal: {
-         modalType: 'simple',
+         modalType: 'showItems',
          cards: {
            cardDetail: [
              {
@@ -38,6 +38,7 @@ var FHConfig = (function () {
                textType: '',
                extraText: 'Prices start at $100',
                linkTo: 'items',
+               fullItems: true,
                icon: 'images/ticket-icon-blue.png',
              },
              {
@@ -46,6 +47,7 @@ var FHConfig = (function () {
                textType: '',
                extraText: '',
                linkTo: 'all-availability',
+               fullItems: true,
                icon: 'images/calendar-icon-blue.png',
              },
              {
@@ -54,6 +56,7 @@ var FHConfig = (function () {
                textType: 'Quote',
                extraText: 'Julie, customer in 2016',
                linkTo: '',
+               fullItems: true,
                icon: '',
              },
              {
@@ -62,6 +65,7 @@ var FHConfig = (function () {
                textType: '',
                extraText: '',
                linkTo: '',
+               fullItems: true,
                icon: '',
              },
            ],
