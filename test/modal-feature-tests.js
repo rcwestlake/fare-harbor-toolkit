@@ -76,14 +76,6 @@ test.describe('Modal - feature tests', function() {
       })
     });
 
-    test.it('has the correct href for the first card', function() {
-      driver.findElements({className: 'FH-modal-card'}).then(function(res) {
-        return res[0].getAttribute('href');
-      }).then(function(link) {
-        assert.equal(link, config.toolDetails.modal.cards.cardDetail[0].linkTo, 'displays correct href')
-      })
-    });
-
     test.it('has the correct icon path for the first card', function() {
       //this test requires the 'localhost:8080' url
       if(config.toolDetails.modal.cards.cardDetail[0].icon) {
@@ -104,14 +96,6 @@ test.describe('Modal - feature tests', function() {
       })
     });
 
-    test.it('finds the href of the second card', function() {
-      driver.findElements({className: 'FH-modal-card'}).then(function(res) {
-        return res[1].getAttribute('href');
-      }).then(function(text) {
-        assert.equal(text, config.toolDetails.modal.cards.cardDetail[1].linkTo, 'displays correct href for second card')
-      })
-    });
-
     test.it('has the correct icon path for the second card', function() {
       //this test requires the localhost:8080 url
       if(config.toolDetails.modal.cards.cardDetail[1].icon) {
@@ -129,14 +113,6 @@ test.describe('Modal - feature tests', function() {
         return res[2].getAttribute('innerText');
       }).then(function(text) {
         assert.equal(text, config.toolDetails.modal.cards.cardDetail[2].text + config.toolDetails.modal.cards.cardDetail[2].extraText, 'displays correct text for third card')
-      })
-    });
-
-    test.it('finds the href of the third card', function() {
-      driver.findElements({className: 'FH-modal-card'}).then(function(res) {
-        return res[2].getAttribute('href');
-      }).then(function(text) {
-        assert.equal(text, config.toolDetails.modal.cards.cardDetail[2].linkTo, 'displays correct href for third card')
       })
     });
 
