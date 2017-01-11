@@ -145,7 +145,6 @@ var FHModalStyles = {
   },
 
   buildImgStyles: function(element, items, index) {
-    element.classList.add('FH-item-img');
     element.style.backgroundImage = 'url(' + items[index].image_cdn_url + ')';
     element.style.borderRadius = '6px';
     element.style.backgroundRepeat = 'no-repeat';
@@ -156,8 +155,14 @@ var FHModalStyles = {
     element.style.minHeight = '100%';
   },
 
-  buildCardContainerStyles: function(element, height, props, cards, index) {
+  buildCardContainerStyles: function(element) {
     element.classList.add('FH-modal-card');
+    element.style.boxSizing = 'border-box';
+    element.style.display = 'block';
+    element.style.height = '100%';
+  },
+
+  buildWrapperContainerStyles: function(element, height, props, cards, index) {
     element.style.boxSizing = 'border-box';
     element.style.display = 'block';
     element.style.height = '' + height + '%';

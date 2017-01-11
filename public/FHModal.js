@@ -102,13 +102,15 @@ var FHModal = (function(props) {
     switch (props.modalType.toLowerCase()) {
       case 'simple':
         for(var i = 0; i < cards.length; i++) {
-          var card = addCardToContainer(props, cards, i);
+          var wrapper = addCardToContainer(props, cards, i)[0];
+          var anchor = addCardToContainer(props, cards, i)[1];
           addTextToCard(props, cards, i);
           addIcons(props, cards, i);
 
-          card.appendChild(textContainer);
-          cards[i].icon ? card.appendChild(iconContainer): null;
-          cardsContainer.appendChild(card);
+          wrapper.appendChild(anchor);
+          anchor.appendChild(textContainer);
+          cards[i].icon ? anchor.appendChild(iconContainer): null;
+          cardsContainer.appendChild(wrapper);
         }
 
         break;
@@ -145,7 +147,7 @@ var FHModal = (function(props) {
             filteredItems = items.slice(0, numOfCards);
           }
           for(var i = 0; i < filteredItems.length; i++) {
-            var item = addCardToContainer(props, filteredItems, i);
+            var item = addCardToContainer(props, filteredItems, i)[0];
             addItemToCard(props, filteredItems, i);
             addTextToCard(props, filteredItems, i);
 
@@ -181,13 +183,22 @@ var FHModal = (function(props) {
 
   function addCardToContainer(props, cards, index) {
     var cardHeight = Math.floor(100 / cards.length);
+    var wrapperContainer = document.createElement('div');
     var cardContainer = cards[index].linkTo ?
                         document.createElement('a') :
                         document.createElement('div');
 
     cardContainer.href = cards[index].linkTo;
-    styles.buildCardContainerStyles(cardContainer, cardHeight, props, cards, index);
-    return cardContainer
+    styles.buildCardContainerStyles(cardContainer);
+
+    styles.buildWrapperContainerStyles(wrapperContainer, cardHeight, props, cards, index);
+
+    wrapperContainer.onclick = function() {
+      console.log('in the onclick');
+      changeBookButtonText()
+      showOrHideModal()
+    }
+    return [wrapperContainer, cardContainer]
   }
 
   function addTextToCard(props, cards, index) {
