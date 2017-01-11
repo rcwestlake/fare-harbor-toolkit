@@ -200,7 +200,7 @@ var FHSearchInput = function(obj) {
     }
 
     function createDetailsButton(obj) {
-      var detailsButtonContent = obj.buttonsText.detailsButtonTextContent || 'See full event details';
+      var detailsButtonContent = obj.buttonsText.detailsButtonTextContent || 'Full event details';
 
       (function makeHTMLForDetailsButton() {
         detailsButtonWrapper = document.createElement('A');
