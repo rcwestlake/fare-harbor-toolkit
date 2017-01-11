@@ -37,7 +37,7 @@ var FHConfig = (function () {
                text: 'See activities and tickets',
                textType: '',
                extraText: 'Prices start at $100',
-               linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/?full-items=yes',
+               linkTo: 'items',
                icon: 'images/ticket-icon-blue.png',
              },
              {
@@ -45,7 +45,7 @@ var FHConfig = (function () {
                text: 'View online calendar',
                textType: '',
                extraText: '',
-               linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/calendar/' + options.year + '/' + options.month + '/',
+               linkTo: 'all-availability',
                icon: 'images/calendar-icon-blue.png',
              },
              {

@@ -167,7 +167,12 @@ var FHModalStyles = {
     element.style.display = 'block';
     element.style.height = '' + height + '%';
 
+    if(cards[index].linkTo) {
+      element.style.cursor = 'pointer';
+    }
+
     if(props.modalType.toLowerCase() === 'showitems') {
+      element.style.cursor = 'pointer';
       element.style.marginBottom = '2px';
     }
 

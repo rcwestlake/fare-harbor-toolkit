@@ -188,16 +188,19 @@ var FHModal = (function(props) {
                         document.createElement('a') :
                         document.createElement('div');
 
-    cardContainer.href = cards[index].linkTo;
+    if(cards[index].linkTo) {
+      cardContainer.onclick = function() {
+        changeBookButtonText()
+        showOrHideModal()
+        console.log(cards[index].linkTo);
+        return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', view: cards[index].linkTo }))
+      }
+    }
+
     styles.buildCardContainerStyles(cardContainer);
 
     styles.buildWrapperContainerStyles(wrapperContainer, cardHeight, props, cards, index);
 
-    wrapperContainer.onclick = function() {
-      console.log('in the onclick');
-      changeBookButtonText()
-      showOrHideModal()
-    }
     return [wrapperContainer, cardContainer]
   }
 
