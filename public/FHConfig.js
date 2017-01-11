@@ -29,15 +29,17 @@ var FHConfig = (function () {
      },
      toolDetails: {
        modal: {
-         modalType: 'showItems',
+         modalType: 'simple',
          cards: {
+           showFullItems: 'yes',
            cardDetail: [
              {
                doesItExist: true,
                text: 'See activities and tickets',
                textType: '',
                extraText: 'Prices start at $100',
-               linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/?full-items=yes',
+               linkTo: 'items',
+               fullItems: 'yes',
                icon: 'images/ticket-icon-blue.png',
              },
              {
@@ -45,7 +47,8 @@ var FHConfig = (function () {
                text: 'View online calendar',
                textType: '',
                extraText: '',
-               linkTo: 'https://demo.fareharbor.com/embeds/book/' + options.shortname + '/items/calendar/' + options.year + '/' + options.month + '/',
+               linkTo: 'all-availability',
+               fullItems: 'yes',
                icon: 'images/calendar-icon-blue.png',
              },
              {
@@ -54,6 +57,7 @@ var FHConfig = (function () {
                textType: 'Quote',
                extraText: 'Julie, customer in 2016',
                linkTo: '',
+               fullItems: 'yes',
                icon: '',
              },
              {
@@ -62,6 +66,7 @@ var FHConfig = (function () {
                textType: '',
                extraText: '',
                linkTo: '',
+               fullItems: 'yes',
                icon: '',
              },
            ],

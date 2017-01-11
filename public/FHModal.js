@@ -102,13 +102,15 @@ var FHModal = (function(props) {
     switch (props.modalType.toLowerCase()) {
       case 'simple':
         for(var i = 0; i < cards.length; i++) {
-          var card = addCardToContainer(props, cards, i);
+          var wrapper = addCardToContainer(props, cards, i)[0];
+          var anchor = addCardToContainer(props, cards, i)[1];
           addTextToCard(props, cards, i);
           addIcons(props, cards, i);
 
-          card.appendChild(textContainer);
-          cards[i].icon ? card.appendChild(iconContainer): null;
-          cardsContainer.appendChild(card);
+          wrapper.appendChild(anchor);
+          anchor.appendChild(textContainer);
+          cards[i].icon ? anchor.appendChild(iconContainer): null;
+          cardsContainer.appendChild(wrapper);
         }
 
         break;
@@ -145,7 +147,7 @@ var FHModal = (function(props) {
             filteredItems = items.slice(0, numOfCards);
           }
           for(var i = 0; i < filteredItems.length; i++) {
-            var item = addCardToContainer(props, filteredItems, i);
+            var item = addCardToContainer(props, filteredItems, i)[0];
             addItemToCard(props, filteredItems, i);
             addTextToCard(props, filteredItems, i);
 
@@ -172,8 +174,13 @@ var FHModal = (function(props) {
 
     styles.buildAnchorContainerStyles(anchorContainer);
     styles.buildImgContainerStyles(imgContainer);
-    imgContainer.href = 'https://demo.fareharbor.com/embeds/book/' + props.shortname + '/items/' + items[index].pk + '/?full-items=yes'
     styles.buildImgStyles(img, items, index);
+
+    imgContainer.onclick = function() {
+      changeBookButtonText()
+      showOrHideModal()
+      return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', fullItems: props.showFullItems, view: { item: items[index].pk } }))
+    }
 
     anchorContainer.appendChild(img);
     imgContainer.appendChild(anchorContainer);
@@ -181,13 +188,23 @@ var FHModal = (function(props) {
 
   function addCardToContainer(props, cards, index) {
     var cardHeight = Math.floor(100 / cards.length);
+    var wrapperContainer = document.createElement('div');
     var cardContainer = cards[index].linkTo ?
                         document.createElement('a') :
                         document.createElement('div');
 
-    cardContainer.href = cards[index].linkTo;
-    styles.buildCardContainerStyles(cardContainer, cardHeight, props, cards, index);
-    return cardContainer
+  styles.buildCardContainerStyles(cardContainer);
+  styles.buildWrapperContainerStyles(wrapperContainer, cardHeight, props, cards, index);
+
+    if(cards[index].linkTo) {
+      cardContainer.onclick = function() {
+        changeBookButtonText()
+        showOrHideModal()
+        return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', fullItems: cards[index].fullItems, view: cards[index].linkTo }))
+      }
+    }
+
+    return [wrapperContainer, cardContainer]
   }
 
   function addTextToCard(props, cards, index) {
