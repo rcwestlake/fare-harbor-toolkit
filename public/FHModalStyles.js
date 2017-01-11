@@ -145,6 +145,7 @@ var FHModalStyles = {
   },
 
   buildImgStyles: function(element, items, index) {
+    element.classList.add('FH-item-img');
     element.style.backgroundImage = 'url(' + items[index].image_cdn_url + ')';
     element.style.borderRadius = '6px';
     element.style.backgroundRepeat = 'no-repeat';

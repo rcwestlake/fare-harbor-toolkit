@@ -266,7 +266,6 @@ var FHModal = (function(props) {
     }
   })
 
-
   return  {
     create: create
   }
