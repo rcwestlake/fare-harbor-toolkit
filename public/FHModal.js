@@ -174,7 +174,12 @@ var FHModal = (function(props) {
 
     styles.buildAnchorContainerStyles(anchorContainer);
     styles.buildImgContainerStyles(imgContainer);
-    imgContainer.href = 'https://demo.fareharbor.com/embeds/book/' + props.shortname + '/items/' + items[index].pk + '/?full-items=yes'
+
+    imgContainer.onclick = function() {
+      changeBookButtonText()
+      showOrHideModal()
+      return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', view: { item: items[index].pk } }))
+    }
     styles.buildImgStyles(img, items, index);
 
     anchorContainer.appendChild(img);
