@@ -96,8 +96,11 @@ var FHModal = (function(props) {
 
   function addCards(props) {
     var cards = props.cards.cardDetail.filter(function(card) {
+      typeCheck(card.doesItExist, 'boolean', 'doesItExist property in FHConfig > Modal > cardDetail needs to be a boolean')
       return card.doesItExist === true
     });
+
+    typeCheck(props.modalType, 'string', 'modalType property in FHConfig > Modal needs to be a string')
 
     switch (props.modalType.toLowerCase()) {
       case 'simple':
@@ -176,10 +179,18 @@ var FHModal = (function(props) {
     styles.buildImgContainerStyles(imgContainer);
     styles.buildImgStyles(img, items, index);
 
+    typeCheck(props.shortname, 'string', 'shortname in FHConfig needs to be a string')
+    typeCheck(props.showFullItems, 'string', 'showFullItems option in FHConfig > toolDetails > Modal needs to be a string')
+
     imgContainer.onclick = function() {
       changeBookButtonText()
       showOrHideModal()
-      return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', fullItems: props.showFullItems, view: { item: items[index].pk } }))
+      return !(window.FH && FH.open({
+        shortname: props.shortname,
+        fallback: 'simple',
+        fullItems: props.showFullItems,
+        view: { item: items[index].pk }
+      }))
     }
 
     anchorContainer.appendChild(img);
@@ -193,14 +204,30 @@ var FHModal = (function(props) {
                         document.createElement('a') :
                         document.createElement('div');
 
-  styles.buildCardContainerStyles(cardContainer);
-  styles.buildWrapperContainerStyles(wrapperContainer, cardHeight, props, cards, index);
+    if(cards[index].linkTo) {
+      typeCheck(cards[index].linkTo, 'string', 'linkTo property in FHConfig > toolDetails > Modal > Cards needs to be a string')
+    }
+
+    if(cards[index].fullItems) {
+      typeCheck(cards[index].fullItems, 'string', 'showFullItems option in FHConfig > toolDetails > Modal > cardDetail needs to be a string')
+    }
+
+    typeCheck(props.shortname, 'string', 'shortname in FHConfig needs to be a string')
+
+
+    styles.buildCardContainerStyles(cardContainer);
+    styles.buildWrapperContainerStyles(wrapperContainer, cardHeight, props, cards, index);
 
     if(cards[index].linkTo) {
       cardContainer.onclick = function() {
         changeBookButtonText()
         showOrHideModal()
-        return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', fullItems: cards[index].fullItems, view: cards[index].linkTo }))
+        return !(window.FH && FH.open({
+          shortname: props.shortname,
+          fallback: 'simple',
+          fullItems: cards[index].fullItems,
+          view: cards[index].linkTo
+        }))
       }
     }
 
@@ -246,6 +273,7 @@ var FHModal = (function(props) {
     var icon;
 
     if(card[index].icon) {
+      typeCheck(card[index].icon, 'string', 'icon property in FHConfig > Modal > cardDetail needs to be a string')
       iconContainer = document.createElement('div');
       icon = document.createElement('img');
 
@@ -273,6 +301,12 @@ var FHModal = (function(props) {
 
     if (modalContainer.style.display === 'block') {
       return modalContainer.style.display = 'none'
+    }
+  }
+
+  function typeCheck(element, type, errorMessage) {
+    if(typeof element !== type) {
+      throw new Error(errorMessage)
     }
   }
 
