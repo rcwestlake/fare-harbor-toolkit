@@ -4,6 +4,7 @@ var test = require('selenium-webdriver/testing');
 var config = require('../public/FHConfig.js');
 
 //be sure to change toolType to SearchInput in FHConfig.js before running these tests!
+//some tests below also depend on bodyglove as the shortname
 
 test.describe('Search Input',function(){
   this.timeout(15000)
@@ -116,6 +117,7 @@ test.describe('Search Input',function(){
   })
 
   test.it('should change the main action button link appropriately when the event dropdown changes', function () {
+    //this test depends on 'bodyglove' for the shortname
     this.timeout(10000);
     var driver = new webdriver.Builder()
     .forBrowser('chrome')
@@ -156,6 +158,7 @@ test.describe('Search Input',function(){
   })
 
   test.it('should change the main action button link appropriately when both event and date input data change', function () {
+    //this test depends on 'bodyglove' for the shortname
     var driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
@@ -199,6 +202,105 @@ test.describe('Search Input',function(){
     driver.quit()
   })
 
+  test.it('should render the correct url on the main action button when the user enters in date and event data and then clicks back on the default text for the date', function () {
+    //this test depends on 'bodyglove' for the shortname
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+    var detailsButton = driver.findElement({className: 'details-button'});
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+
+    var dateField = driver.findElement({className: 'right-field-input'});
+    dateField.click();
+    dateField.sendKeys('Ma');
+    dateField.click();
+
+    var eventField = driver.findElement({className: 'left-field-input'});
+    eventField.click();
+    eventField.sendKeys('Sno');
+    eventField.sendKeys(webdriver.Key.RETURN);
+    eventField.click();
+
+    dateField.click();
+    dateField.sendKeys('Whe');
+    dateField.click();
+
+    driver.findElement({className: 'go-button-wrapper'}).then(function (wrapper) {
+      return wrapper.getAttribute('href')
+    }).then(function (link) {
+      assert.strictEqual(link, 'https://demo.fareharbor.com/embeds/book/bodyglove/items/183/calendar/2017/1/');
+    })
+
+    driver.quit()
+  })
+
+  test.it('should render the correct url on the main action button when the user enters in date and event data and then clicks back on the default text for the event', function () {
+    //this test depends on 'bodyglove' for the shortname
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+    var detailsButton = driver.findElement({className: 'details-button'});
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+    detailsButton.click();
+
+    var eventField = driver.findElement({className: 'left-field-input'});
+    eventField.click();
+    eventField.sendKeys('Sno');
+    eventField.sendKeys(webdriver.Key.RETURN);
+    eventField.click();
+
+    var dateField = driver.findElement({className: 'right-field-input'});
+    dateField.click();
+    dateField.sendKeys('Ma');
+    dateField.click();
+
+    eventField.click();
+    eventField.sendKeys('Which');
+    eventField.sendKeys(webdriver.Key.RETURN);
+    eventField.click();
+
+    driver.findElement({className: 'go-button-wrapper'}).then(function (wrapper) {
+      return wrapper.getAttribute('href')
+    }).then(function (link) {
+      assert.strictEqual(link, 'https://demo.fareharbor.com/embeds/book/bodyglove/items/calendar/2017/03/');
+    })
+
+    driver.quit()
+  })
+
   test.it('additional details button should be disabled by default', function () {
     var driver = new webdriver.Builder()
     .forBrowser('chrome')
@@ -216,7 +318,27 @@ test.describe('Search Input',function(){
 
   })
 
+  test.it('additional details button should not open lightframe by default', function () {
+    var driver = new webdriver.Builder()
+    .forBrowser('chrome')
+    .build();
+
+    driver.get('http://localhost:8080');
+
+    var detailsButton = driver.findElement({className: 'details-button'});
+    detailsButton.click();
+
+    driver.findElement({className: 'fh-ready'}).then(function (wrapper) {
+      return wrapper.getAttribute('style')
+    }).then(function (style) {
+      assert.notEqual(style, 'overflow: hidden;');
+    })
+
+    driver.quit()
+  })
+
   test.it('additional details button should be enabled when an event is selected', function () {
+    //this test depends on 'bodyglove' for the shortname
     var driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();

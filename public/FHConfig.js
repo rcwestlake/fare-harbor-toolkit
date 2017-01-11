@@ -6,7 +6,7 @@ var FHConfig = (function () {
   };
   return {
     config: {
-     toolType: 'Footer',
+     toolType: 'SearchInput',
      shortname: options.shortname,
      selectedItems: [],
      text: {
@@ -145,6 +145,7 @@ var FHConfig = (function () {
          },
        },
        footer: {
+         isFooterSticky: false,
          footerBackgroundColor: '',
          footerBorders: {
            footerBorderBottomColor: '',

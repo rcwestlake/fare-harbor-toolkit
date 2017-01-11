@@ -113,9 +113,9 @@ function adjustOrientation() {
 
 var FHContainerStyles = {
   border: searchInputObj.searchInputContainer.borderDebug ? '1px dotted red' : '',
-  marginTop: '40vh',
+  marginTop: '20vh',
   marginRight: 'auto',
-  marginBottom: '40vh',
+  marginBottom: '20vh',
   marginLeft: 'auto',
 }
 
