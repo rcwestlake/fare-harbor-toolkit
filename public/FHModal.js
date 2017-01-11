@@ -179,7 +179,7 @@ var FHModal = (function(props) {
     imgContainer.onclick = function() {
       changeBookButtonText()
       showOrHideModal()
-      return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', fullItems: 'yes', view: { item: items[index].pk } }))
+      return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', fullItems: props.showFullItems, view: { item: items[index].pk } }))
     }
 
     anchorContainer.appendChild(img);
@@ -200,7 +200,7 @@ var FHModal = (function(props) {
       cardContainer.onclick = function() {
         changeBookButtonText()
         showOrHideModal()
-        return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', fullItems: 'yes', view: cards[index].linkTo }))
+        return !(window.FH && FH.open({ shortname: props.shortname, fallback: 'simple', fullItems: cards[index].fullItems, view: cards[index].linkTo }))
       }
     }
 

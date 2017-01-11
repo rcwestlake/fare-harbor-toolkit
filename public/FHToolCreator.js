@@ -12,6 +12,7 @@ var toolCreator = (function() {
             text: config.text,
             colors: config.colors,
             cards: config.toolDetails.modal.cards,
+            showFullItems: config.toolDetails.modal.cards.showFullItems,
             cardFontsAndColors: config.toolDetails.modal.cards.fontsAndColors,
             marginsAndPadding: config.toolDetails.modal.cards.marginsAndPadding,
           }
