@@ -7,19 +7,27 @@ var assert = require('chai').assert;
 var config = require('../public/FHConfig.js');
 
 test.describe('Modal - feature tests', function() {
-  this.timeout(10000);
+  this.timeout(15000);
 
   test.beforeEach(function() {
     driver.get('http://localhost:8080');
   });
 
-  test.it('finds the Modal button', function() {
+  test.it('should find the Modal button', function() {
     driver.findElements({className: 'FH-reservation-button'}).then(function(res) {
-      assert.equal(res.length, 1, 'displays only 1 button')
+      assert.equal(res.length, 1);
     });
   });
 
-  test.it('changes the book now text on click', function() {
+  test.it('should find the Modal button text', function() {
+    driver.findElement({className: 'FH-reservation-button'}).then(function(res) {
+      return res.getAttribute("innerText")
+    }).then(function(text) {
+      assert.equal(text, config.text.bookButtonText);
+    })
+  });
+
+  test.it('should change the book button text on click', function() {
     var bookButton = driver.findElement({className: 'FH-reservation-button'})
     bookButton.click();
 
@@ -27,115 +35,220 @@ test.describe('Modal - feature tests', function() {
       return res.getAttribute('innerText')
     })
     .then(function(text) {
-      assert.equal(text, 'X', 'displays changed text after book button is clicked')
+      assert.equal(text, 'X');
     })
   });
 
-  test.it('finds the Modal button text', function() {
+  test.it('should change the book button text after multiple clicks', function() {
+    var bookButton = driver.findElement({className: 'FH-reservation-button'})
+    bookButton.click();
+    bookButton.click();
+    bookButton.click();
+    bookButton.click();
+
     driver.findElement({className: 'FH-reservation-button'}).then(function(res) {
-      return res.getAttribute("innerText")
-    }).then(function(text) {
-      assert.equal(text, config.text.bookButtonText, 'book button has BOOK NOW text')
+      return res.getAttribute('innerText')
+    })
+    .then(function(text) {
+      assert.equal(text, config.text.bookButtonText);
     })
   });
+
+  test.it('should have one header', function() {
+    driver.findElements({className: 'FH-modal-header'}).then(function(element) {
+      assert.equal(element.length, 1);
+    })
+  });
+
+  /*--- Testing for app throwing errors when types are incorrect in FHConfig ---*/
+  // To run these, follow the step above the test description
+
+  //change the text of shortname to something other than a string (e.g. true)
+  if(typeof config.shortname !== 'string') {
+    test.it('should throw an error and not run if shorname type is not a string in FHConfig', function() {
+      driver.findElements({className: 'FH-modal-card'}).then(function(res) {
+        assert.equal(res.length, 0);
+      })
+    });
+  }
+
+  /*--- To run these tests, set the modalType in FHConfig to 'Simple' ---*/
 
   if(config.toolDetails.modal.modalType.toLowerCase() === 'simple') {
-    test.it('finds the <p> tags in Modal', function() {
+    test.it('should find the <p> tags in Modal', function() {
       driver.findElement({className: 'FH-modal-header'}).findElements({tagName: 'p'}).then(function(res) {
-        assert.equal(res.length, 2, 'Modal header has correct number of <p> tags')
+        assert.equal(res.length, 2);
       })
     });
 
-    test.it('finds the Modal title', function() {
+    test.it('should find the Modal title', function() {
       driver.findElement({className: 'FH-header-title'}).then(function(res) {
         return res.getAttribute('innerText')
       }).then(function(text) {
-        assert.equal(text, config.text.headerText, 'displays correct text in header')
+        assert.equal(text, config.text.headerText);
       })
     });
 
-    test.it('finds the Modal header extraText', function() {
+    test.it('should find the Modal header - extraText', function() {
       driver.findElement({className: 'FH-extra-title'}).then(function(res) {
         return res.getAttribute("innerText")
       }).then(function(text) {
-        assert.equal(text, config.text.headerExtraText, 'displays correct extraText in header')
+        assert.equal(text, config.text.headerExtraText);
       })
     });
 
-    test.it('finds the length of cards in Modal', function() {
+    test.it('should find the correct number of cards in Modal', function() {
       driver.findElements({className: 'FH-modal-card'}).then(function(res) {
-        assert.equal(res.length, 3, 'displays correct number of cards')
+        assert.equal(res.length, 3);
       })
     });
 
-    test.it('finds the text of the first card', function() {
+    test.it('should find the text of the first card', function() {
       driver.findElements({className: 'FH-modal-card'}).then(function(res) {
         return res[0].getAttribute('innerText');
       }).then(function(text) {
-        assert.equal(text, config.toolDetails.modal.cards.cardDetail[0].text + config.toolDetails.modal.cards.cardDetail[0].extraText, 'displays correct text for first card')
+        assert.equal(text, config.toolDetails.modal.cards.cardDetail[0].text + config.toolDetails.modal.cards.cardDetail[0].extraText);
       })
     });
 
-    test.it('has the correct icon path for the first card', function() {
+    test.it('should have the correct icon path for the first card', function() {
       //this test requires the 'localhost:8080' url
       if(config.toolDetails.modal.cards.cardDetail[0].icon) {
         var url = 'http://localhost:8080/'
         driver.findElements({className: 'FH-card-icon'}).then(function(res) {
           return res[0].getAttribute('src');
         }).then(function(link) {
-          assert.equal(link, url + config.toolDetails.modal.cards.cardDetail[0].icon, 'displays correct icon path')
+          assert.equal(link, url + config.toolDetails.modal.cards.cardDetail[0].icon);
         })
       }
     });
 
-    test.it('finds the text of the second card', function() {
+    test.it('should find the text of the second card', function() {
       driver.findElements({className: 'FH-modal-card'}).then(function(res) {
         return res[1].getAttribute('innerText');
       }).then(function(text) {
-        assert.equal(text, config.toolDetails.modal.cards.cardDetail[1].text + config.toolDetails.modal.cards.cardDetail[1].extraText, 'displays correct text for second card')
+        assert.equal(text, config.toolDetails.modal.cards.cardDetail[1].text + config.toolDetails.modal.cards.cardDetail[1].extraText);
       })
     });
 
-    test.it('has the correct icon path for the second card', function() {
+    test.it('should have the correct icon path for the second card', function() {
       //this test requires the localhost:8080 url
       if(config.toolDetails.modal.cards.cardDetail[1].icon) {
         var url = 'http://localhost:8080/'
         driver.findElements({className: 'FH-card-icon'}).then(function(res) {
           return res[1].getAttribute('src');
         }).then(function(link) {
-          assert.equal(link, url + config.toolDetails.modal.cards.cardDetail[1].icon, 'displays correct icon path')
+          assert.equal(link, url + config.toolDetails.modal.cards.cardDetail[1].icon);
         })
       }
     });
 
-    test.it('finds the text of the third card', function() {
+    test.it('should find the text of the third card', function() {
       driver.findElements({className: 'FH-modal-card'}).then(function(res) {
         return res[2].getAttribute('innerText');
       }).then(function(text) {
-        assert.equal(text, config.toolDetails.modal.cards.cardDetail[2].text + config.toolDetails.modal.cards.cardDetail[2].extraText, 'displays correct text for third card')
+        assert.equal(text, config.toolDetails.modal.cards.cardDetail[2].text + config.toolDetails.modal.cards.cardDetail[2].extraText);
       })
     });
 
-    test.it('has the correct icon path for the third card', function() {
+    test.it('should have the correct icon path for the third card', function() {
       //this test requires the localhost:8080 url
       if(config.toolDetails.modal.cards.cardDetail[2].icon) {
         var url = 'http://localhost:8080/'
         driver.findElements({className: 'FH-card-icon'}).then(function(res) {
           return res[2].getAttribute('src');
         }).then(function(link) {
-          assert.equal(link, url + config.toolDetails.modal.cards.cardDetail[2].icon, 'displays correct icon path')
+          assert.equal(link, url + config.toolDetails.modal.cards.cardDetail[2].icon);
         })
       }
       driver.quit();
     });
   }
 
+  /*--- To run these tests, set the modalType in FHConfig to 'showItems' ---*/
+
   if(config.toolDetails.modal.modalType.toLowerCase() === 'showitems') {
-    test.ignore('finds the correct number of images', function() {
-      driver.findElements({className: 'FH-item-img'}).then(function(res) {
-        assert.equal(res.length, 3, 'displays correct number of images based on Config input');
-      });
-      driver.quit();
+    test.it('should find the Modal title', function() {
+      driver.findElement({className: 'FH-header-title'}).then(function(res) {
+        return res.getAttribute('innerText')
+      }).then(function(text) {
+        assert.equal(text, config.text.headerText);
+      })
     });
+
+    test.it('should find the Modal header - extraText', function() {
+      driver.findElement({className: 'FH-extra-title'}).then(function(res) {
+        return res.getAttribute("innerText")
+      }).then(function(text) {
+        assert.equal(text, config.text.headerExtraText);
+      })
+    });
+
+    test.it('should find the correct number of cards with images', function() {
+      var cards;
+
+      if(config.selectedItems.length) {
+        cards = config.selectedItems
+      } else {
+        cards = config.toolDetails.modal.cards.cardDetail.filter(function(card) {
+          return card.doesItExist === true
+        })
+      }
+
+      var bookButton = driver.findElement({className: 'FH-reservation-button'})
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+
+      driver.findElements({className: 'FH-item-img'}).then(function(items) {
+        assert.strictEqual(items.length, cards.length);
+      })
+    })
+
+    test.it('should find the correct number of extraText elements', function() {
+      var elements;
+
+      if(config.selectedItems.length) {
+        elements = config.selectedItems
+      } else {
+        elements = config.toolDetails.modal.cards.cardDetail.filter(function(card) {
+          return card.doesItExist === true
+        })
+      }
+
+      var bookButton = driver.findElement({className: 'FH-reservation-button'})
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+
+      driver.findElements({className: 'FH-items-extratext'}).then(function(items) {
+        assert.strictEqual(items.length, elements.length);
+      })
+      driver.quit();
+    })
   }
-})
+});

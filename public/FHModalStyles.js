@@ -145,6 +145,7 @@ var FHModalStyles = {
   },
 
   buildImgStyles: function(element, items, index) {
+    element.classList.add('FH-item-img');
     element.style.backgroundImage = 'url(' + items[index].image_cdn_url + ')';
     element.style.borderRadius = '6px';
     element.style.backgroundRepeat = 'no-repeat';
@@ -222,6 +223,7 @@ var FHModalStyles = {
   },
 
   buildItemsExtraTextStyles: function(element, props, cards, index) {
+    element.classList.add('FH-items-extratext')
     element.style.backgroundColor = props.colors.headerColor || 'rgba(221, 82, 70, 0.78)';
     element.style.borderRadius = '5px 0px 0px 5px';
     element.style.color = '#ffffff';
