@@ -12,10 +12,20 @@ var driver = new webdriver.Builder()
 
 var isBodygloveSelected;
 
-if (config.shortname === 'bodyglove') {
+if (config.shortname === 'bodyglove' && config.toolType === 'SearchInput') {
   isBodygloveSelected = test.it;
 } else {
   isBodygloveSelected = it.skip;
+  console.log('bodyglove needs to be selected as the shortname in FHConfig.hs before running some of these tests.');
+}
+
+var isCorrectToolTypeSelected;
+
+if (config.toolType === 'SearchInput') {
+  isCorrectToolTypeSelected = test.it;
+} else {
+  isCorrectToolTypeSelected = it.skip;
+  console.log('Please select SearchInput as the toolType in FHConfig.js before running the search input tests.');
 }
 
 test.describe('Search Input',function(){
@@ -25,7 +35,7 @@ test.describe('Search Input',function(){
     driver.get('http://localhost:8080');
   });
 
-  test.it('should render two input fields', function(){
+  isCorrectToolTypeSelected('should render two input fields', function(){
 
     var inputFields = driver.findElements({tagName: 'select'}).then(function (select) {
       assert.equal(select.length, 2)
@@ -33,9 +43,9 @@ test.describe('Search Input',function(){
 
   })
 
-  test.it('main action button should render with the correct text', function () {
+  isCorrectToolTypeSelected('main action button should render with the correct text', function () {
 
-    var buttonText = config.toolDetails.searchInput.buttons.buttonsText.goButtonTextContent || 'Go!';
+    var buttonText = config.toolDetails.searchInput.buttons.text.goButtonTextContent || 'Go!';
 
       driver.findElement({name: 'go-button'}).then(function(button) {
         return button.getText()
@@ -45,9 +55,9 @@ test.describe('Search Input',function(){
 
   });
 
-  test.it('additional details button should render with correct text', function () {
+  isCorrectToolTypeSelected('additional details button should render with correct text', function () {
 
-    var buttonText = config.toolDetails.searchInput.buttons.buttonsText.detailsButtonTextContent || 'Full event details';
+    var buttonText = config.toolDetails.searchInput.buttons.text.detailsButtonTextContent || 'Full event details';
 
     driver.findElement({name: 'details-button'}).then(function(button) {
       return button.getText()
@@ -57,7 +67,7 @@ test.describe('Search Input',function(){
 
   })
 
-  test.it('should render default link for main action button', function() {
+  isCorrectToolTypeSelected('should render default link for main action button', function() {
 
     var newLink = 'https://demo.fareharbor.com/embeds/book/' + config.shortname + '/items/?full-items=yes'
 
@@ -69,7 +79,7 @@ test.describe('Search Input',function(){
 
   })
 
-  test.it('should render an empty link by default for the additional details button', function() {
+  isCorrectToolTypeSelected('should render an empty link by default for the additional details button', function() {
 
     driver.findElement({className: 'details-button-wrapper'}).then(function (wrapper) {
       return wrapper.getAttribute('href')
@@ -79,7 +89,7 @@ test.describe('Search Input',function(){
 
   })
 
-  test.it('should change the main action button link appropriately when the date dropdown value changes', function () {
+  isCorrectToolTypeSelected('should change the main action button link appropriately when the date dropdown value changes', function () {
 
     var newLink = 'https://demo.fareharbor.com/embeds/book/' + config.shortname + '/items/calendar/2017/03/';
 
@@ -257,7 +267,7 @@ test.describe('Search Input',function(){
 
   })
 
-  test.it('additional details button should be disabled by default', function () {
+  isCorrectToolTypeSelected('additional details button should be disabled by default', function () {
 
     driver.findElement({className: 'details-button'}).then(function (button) {
       return button.getAttribute('disabled')
@@ -267,7 +277,7 @@ test.describe('Search Input',function(){
 
   })
 
-  test.it('additional details button should not open lightframe by default', function () {
+  isCorrectToolTypeSelected('additional details button should not open lightframe by default', function () {
 
     var detailsButton = driver.findElement({className: 'details-button'});
     detailsButton.click();
@@ -348,7 +358,7 @@ test.describe('Search Input',function(){
 
   })
 
-  test.it('lightframe should activate when user presses the main action button', function () {
+  isCorrectToolTypeSelected('lightframe should activate when user presses the main action button', function () {
 
     var goButton = driver.findElement({className: 'go-button'})
     goButton.click();

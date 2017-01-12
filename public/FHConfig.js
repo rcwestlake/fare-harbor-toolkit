@@ -6,7 +6,7 @@ var FHConfig = (function () {
   };
   return {
     config: {
-     toolType: 'Modal',
+     toolType: 'SearchInput',
      shortname: options.shortname,
      selectedItems: [],
      text: {
@@ -85,7 +85,7 @@ var FHConfig = (function () {
          },
        },
        searchInput: {
-         searchInputContainer: {
+         container: {
            borderDebug: false,
          },
          stackOrientation: '',
@@ -94,11 +94,11 @@ var FHConfig = (function () {
              leftInputFieldFunction: '',
              rightInputFieldFunction: '',
            },
-           inputFieldBackgroundColor: {
+           backgroundColor: {
              leftInputFieldBackgroundColor: '',
              rightInputFieldBackgroundColor: '',
            },
-           inputFieldText: {
+           text: {
              leftInputFieldTextContent: '',
              rightInputFieldTextContent: '',
              leftInputFieldTextColor: '',
@@ -108,7 +108,7 @@ var FHConfig = (function () {
              leftInputFieldTextFontSize: '',
              rightInputFieldTextFontSize: '',
            },
-           inputFieldBorders: {
+           borders: {
              leftInputFieldBorderBottomColor: '',
              leftInputFieldBorderTopColor: '',
              leftInputFieldBorderRightColor: '',
@@ -121,13 +121,13 @@ var FHConfig = (function () {
          },
          buttons: {
            doesDetailsButtonExist: true,
-           buttonsBackgroundColor: {
+           backgroundColor: {
              goButtonBackgroundColor: '',
              detailsButtonBackgroundColor: '',
              goButtonBackgroundColorHover: '',
              detailsButtonBackgroundColorHover: '',
            },
-           buttonsText: {
+           text: {
              goButtonTextContent: '',
              detailsButtonTextContent: '',
              goButtonTextColor: '',
@@ -137,7 +137,7 @@ var FHConfig = (function () {
              goButtonTextFontSize: '',
              detailsButtonTextFontSize: '',
            },
-           buttonsBorders: {
+           borders: {
              goButtonBorderBottomColor: '',
              goButtonBorderTopColor: '',
              goButtonBorderRightColor: '',
@@ -151,12 +151,12 @@ var FHConfig = (function () {
        },
        footer: {
          isFooterSticky: false,
-         footerBackgroundColor: '',
-         footerBorders: {
-           footerBorderBottomColor: '',
-           footerBorderTopColor: '',
-           footerBorderRightColor: '',
-           footerBorderLeftColor: '',
+         backgroundColor: '',
+         borders: {
+           borderBottomColor: '',
+           borderTopColor: '',
+           borderRightColor: '',
+           borderLeftColor: '',
          },
          elementHoverColor: '',
          elements: [
