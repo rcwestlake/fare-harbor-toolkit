@@ -139,7 +139,7 @@ test.describe('Modal - feature tests', function() {
       driver.findElement({className: 'FH-header-title'}).then(function(res) {
         return res.getAttribute('innerText')
       }).then(function(text) {
-        assert.equal(text, config.text.headerText)
+        assert.equal(text, config.text.headerText);
       })
     });
 
@@ -147,11 +147,21 @@ test.describe('Modal - feature tests', function() {
       driver.findElement({className: 'FH-extra-title'}).then(function(res) {
         return res.getAttribute("innerText")
       }).then(function(text) {
-        assert.equal(text, config.text.headerExtraText)
+        assert.equal(text, config.text.headerExtraText);
       })
     });
 
     test.it('should find the correct number of cards with images', function() {
+      var cards;
+
+      if(config.selectedItems.length) {
+        cards = config.selectedItems
+      } else {
+        cards = config.toolDetails.modal.cards.cardDetail.filter(function(card) {
+          return card.doesItExist === true
+        })
+      }
+
       var bookButton = driver.findElement({className: 'FH-reservation-button'})
       bookButton.click();
       bookButton.click();
@@ -169,8 +179,41 @@ test.describe('Modal - feature tests', function() {
       bookButton.click();
       bookButton.click();
 
-      driver.findElements({className: 'FH-item-img'}).then(function(element) {
-        assert.strictEqual(element.length, 3);
+      driver.findElements({className: 'FH-item-img'}).then(function(items) {
+        assert.strictEqual(items.length, cards.length);
+      })
+    })
+
+    test.it('should find the correct number of extraText elements', function() {
+      var elements;
+
+      if(config.selectedItems.length) {
+        elements = config.selectedItems
+      } else {
+        elements = config.toolDetails.modal.cards.cardDetail.filter(function(card) {
+          return card.doesItExist === true
+        })
+      }
+
+      var bookButton = driver.findElement({className: 'FH-reservation-button'})
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+      bookButton.click();
+
+      driver.findElements({className: 'FH-items-extratext'}).then(function(items) {
+        assert.strictEqual(items.length, elements.length);
       })
       driver.quit();
     })
