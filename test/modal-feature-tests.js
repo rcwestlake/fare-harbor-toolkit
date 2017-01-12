@@ -54,9 +54,16 @@ test.describe('Modal - feature tests', function() {
     })
   });
 
+  test.it('should have one header', function() {
+    driver.findElements({className: 'FH-modal-header'}).then(function(element) {
+      assert.equal(element.length, 1);
+    })
+  });
+
   /*--- Testing for app throwing errors when types are incorrect in FHConfig ---*/
   // To run these, follow the step above the test description
 
+  //change the text of shortname to something other than a string (e.g. true)
   if(typeof config.shortname !== 'string') {
     test.it('should throw an error and not run if shorname type is not a string in FHConfig', function() {
       driver.findElements({className: 'FH-modal-card'}).then(function(res) {
