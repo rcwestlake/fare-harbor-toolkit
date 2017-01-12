@@ -15,7 +15,7 @@ test.describe('Modal - feature tests', function() {
 
   test.it('should find the Modal button', function() {
     driver.findElements({className: 'FH-reservation-button'}).then(function(res) {
-      assert.equal(res.length, 1)
+      assert.equal(res.length, 1);
     });
   });
 
@@ -23,11 +23,11 @@ test.describe('Modal - feature tests', function() {
     driver.findElement({className: 'FH-reservation-button'}).then(function(res) {
       return res.getAttribute("innerText")
     }).then(function(text) {
-      assert.equal(text, config.text.bookButtonText)
+      assert.equal(text, config.text.bookButtonText);
     })
   });
 
-  test.it('should change the book now text on click', function() {
+  test.it('should change the book button text on click', function() {
     var bookButton = driver.findElement({className: 'FH-reservation-button'})
     bookButton.click();
 
@@ -35,16 +35,42 @@ test.describe('Modal - feature tests', function() {
       return res.getAttribute('innerText')
     })
     .then(function(text) {
-      assert.equal(text, 'X')
+      assert.equal(text, 'X');
     })
   });
+
+  test.it('should change the book button text after multiple clicks', function() {
+    var bookButton = driver.findElement({className: 'FH-reservation-button'})
+    bookButton.click();
+    bookButton.click();
+    bookButton.click();
+    bookButton.click();
+
+    driver.findElement({className: 'FH-reservation-button'}).then(function(res) {
+      return res.getAttribute('innerText')
+    })
+    .then(function(text) {
+      assert.equal(text, config.text.bookButtonText);
+    })
+  });
+
+  /*--- Testing for app throwing errors when types are incorrect in FHConfig ---*/
+  // To run these, follow the step above the test description
+
+  if(typeof config.shortname !== 'string') {
+    test.it('should throw an error and not run if shorname type is not a string in FHConfig', function() {
+      driver.findElements({className: 'FH-modal-card'}).then(function(res) {
+        assert.equal(res.length, 0);
+      })
+    });
+  }
 
   /*--- To run these tests, set the modalType in FHConfig to 'Simple' ---*/
 
   if(config.toolDetails.modal.modalType.toLowerCase() === 'simple') {
     test.it('should find the <p> tags in Modal', function() {
       driver.findElement({className: 'FH-modal-header'}).findElements({tagName: 'p'}).then(function(res) {
-        assert.equal(res.length, 2)
+        assert.equal(res.length, 2);
       })
     });
 
@@ -52,7 +78,7 @@ test.describe('Modal - feature tests', function() {
       driver.findElement({className: 'FH-header-title'}).then(function(res) {
         return res.getAttribute('innerText')
       }).then(function(text) {
-        assert.equal(text, config.text.headerText)
+        assert.equal(text, config.text.headerText);
       })
     });
 
@@ -60,13 +86,13 @@ test.describe('Modal - feature tests', function() {
       driver.findElement({className: 'FH-extra-title'}).then(function(res) {
         return res.getAttribute("innerText")
       }).then(function(text) {
-        assert.equal(text, config.text.headerExtraText)
+        assert.equal(text, config.text.headerExtraText);
       })
     });
 
     test.it('should find the correct number of cards in Modal', function() {
       driver.findElements({className: 'FH-modal-card'}).then(function(res) {
-        assert.equal(res.length, 3)
+        assert.equal(res.length, 3);
       })
     });
 
@@ -74,7 +100,7 @@ test.describe('Modal - feature tests', function() {
       driver.findElements({className: 'FH-modal-card'}).then(function(res) {
         return res[0].getAttribute('innerText');
       }).then(function(text) {
-        assert.equal(text, config.toolDetails.modal.cards.cardDetail[0].text + config.toolDetails.modal.cards.cardDetail[0].extraText)
+        assert.equal(text, config.toolDetails.modal.cards.cardDetail[0].text + config.toolDetails.modal.cards.cardDetail[0].extraText);
       })
     });
 
@@ -85,7 +111,7 @@ test.describe('Modal - feature tests', function() {
         driver.findElements({className: 'FH-card-icon'}).then(function(res) {
           return res[0].getAttribute('src');
         }).then(function(link) {
-          assert.equal(link, url + config.toolDetails.modal.cards.cardDetail[0].icon)
+          assert.equal(link, url + config.toolDetails.modal.cards.cardDetail[0].icon);
         })
       }
     });
@@ -94,7 +120,7 @@ test.describe('Modal - feature tests', function() {
       driver.findElements({className: 'FH-modal-card'}).then(function(res) {
         return res[1].getAttribute('innerText');
       }).then(function(text) {
-        assert.equal(text, config.toolDetails.modal.cards.cardDetail[1].text + config.toolDetails.modal.cards.cardDetail[1].extraText)
+        assert.equal(text, config.toolDetails.modal.cards.cardDetail[1].text + config.toolDetails.modal.cards.cardDetail[1].extraText);
       })
     });
 
@@ -105,7 +131,7 @@ test.describe('Modal - feature tests', function() {
         driver.findElements({className: 'FH-card-icon'}).then(function(res) {
           return res[1].getAttribute('src');
         }).then(function(link) {
-          assert.equal(link, url + config.toolDetails.modal.cards.cardDetail[1].icon)
+          assert.equal(link, url + config.toolDetails.modal.cards.cardDetail[1].icon);
         })
       }
     });
@@ -114,7 +140,7 @@ test.describe('Modal - feature tests', function() {
       driver.findElements({className: 'FH-modal-card'}).then(function(res) {
         return res[2].getAttribute('innerText');
       }).then(function(text) {
-        assert.equal(text, config.toolDetails.modal.cards.cardDetail[2].text + config.toolDetails.modal.cards.cardDetail[2].extraText)
+        assert.equal(text, config.toolDetails.modal.cards.cardDetail[2].text + config.toolDetails.modal.cards.cardDetail[2].extraText);
       })
     });
 
@@ -125,7 +151,7 @@ test.describe('Modal - feature tests', function() {
         driver.findElements({className: 'FH-card-icon'}).then(function(res) {
           return res[2].getAttribute('src');
         }).then(function(link) {
-          assert.equal(link, url + config.toolDetails.modal.cards.cardDetail[2].icon)
+          assert.equal(link, url + config.toolDetails.modal.cards.cardDetail[2].icon);
         })
       }
       driver.quit();
