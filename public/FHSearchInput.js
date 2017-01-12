@@ -49,6 +49,7 @@ var FHSearchInput = function(obj) {
         leftFieldInput = document.createElement('SELECT');
         container.appendChild(leftFieldInput);
         leftFieldInput.classList.add('left-field-input');
+        leftFieldInput.id = leftFieldFunction === 'eventPicker' ? 'event-dropdown' : 'date-dropdown';
         leftFieldInput.style.display = leftFieldInputStyles.display;
         leftFieldInput.style.backgroundColor = leftFieldInputStyles.backgroundColor;
         leftFieldInput.style.borderBottomWidth = leftFieldInputStyles.borderBottomWidth;
@@ -104,6 +105,7 @@ var FHSearchInput = function(obj) {
         rightFieldInput = document.createElement('SELECT');
         container.appendChild(rightFieldInput);
         rightFieldInput.classList.add('right-field-input');
+        rightFieldInput.id = rightFieldFunction === 'eventPicker' ? 'event-dropdown' : 'date-dropdown';
         rightFieldInput.style.display = rightFieldInputStyles.display;
         rightFieldInput.style.backgroundColor = rightFieldInputStyles.backgroundColor;
         rightFieldInput.style.borderBottomWidth = rightFieldInputStyles.borderBottomWidth;

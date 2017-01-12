@@ -2,18 +2,28 @@ var assert    = require('assert');
 var webdriver = require('selenium-webdriver');
 var test = require('selenium-webdriver/testing');
 var config = require('../public/FHConfig.js');
+var driver = new webdriver.Builder()
+  .forBrowser('chrome')
+  .build();
 
 //be sure to change toolType to Footer in FHConfig.js before running these tests!
+
+var doesThirdNodeExist;
+
+if (config.toolDetails.footer.elements[2].doesItExist) {
+  doesThirdNodeExist = test.it;
+} else {
+  doesThirdNodeExist = it.skip;
+}
 
 test.describe('Footer', function () {
   this.timeout(10000)
 
-  test.it('should render with the number of elements specified in the config object', function () {
-    var driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
-
+  test.beforeEach(function() {
     driver.get('http://localhost:8080');
+  });
+
+  test.it('should render with the number of elements specified in the config object', function () {
 
     var realElements = config.toolDetails.footer.elements.filter(function (elem) {
       return elem.doesItExist === true;
@@ -25,17 +35,11 @@ test.describe('Footer', function () {
       assert.strictEqual(element.length, howManyElements);
     })
 
-    driver.quit();
   })
 
   test.it('the default text for the first element in the footer should display the correct value', function () {
-    var driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
 
     var elemText = config.toolDetails.footer.elements[0].textContent || 'Book Now!';
-
-    driver.get('http://localhost:8080');
 
     driver.findElement({id: 'first'}).then(function (elem) {
       return elem.getText()
@@ -43,18 +47,11 @@ test.describe('Footer', function () {
       assert.strictEqual(text, elemText);
     })
 
-    driver.quit();
-
   })
 
   test.it('the first text node should go to the correct link', function () {
-    var driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
 
     var newLink = config.toolDetails.footer.elements[0].linkTo;
-
-    driver.get('http://localhost:8080');
 
     driver.findElement({id: 'firstlink'}).then(function (wrapper) {
       return wrapper.getAttribute('href')
@@ -62,18 +59,11 @@ test.describe('Footer', function () {
       assert.strictEqual(link, newLink);
     })
 
-    driver.quit();
-
   })
 
-  test.it('the third text node should go to the correct link', function () {
-    var driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
+  doesThirdNodeExist('the third text node should go to the correct link', function () {
 
     var newLink = config.toolDetails.footer.elements[2].linkTo;
-
-    driver.get('http://localhost:8080');
 
       driver.findElement({id: 'thirdlink'}).then(function (wrapper) {
         return wrapper.getAttribute('href')
@@ -81,15 +71,9 @@ test.describe('Footer', function () {
         assert.strictEqual(link, newLink);
       })
 
-    driver.quit();
   })
 
   test.it('lightframe should activate when user clicks on the first element', function () {
-    var driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
-
-    driver.get('http://localhost:8080');
 
     var bookNowLink = driver.findElement({id: 'first'})
     bookNowLink.click();
@@ -100,7 +84,6 @@ test.describe('Footer', function () {
       assert.strictEqual(style, 'overflow: hidden;');
     })
 
-    driver.quit()
   })
 
 

@@ -32,6 +32,14 @@ function makeResponsive() {
     throw new Error('For the rightInputFieldFunction, please enter "datePicker", "eventPicker", or an empty string.')
   }
 
+  if (searchInputObj.inputFields.inputFieldTypes.rightInputFieldFunction === 'datePicker' && searchInputObj.inputFields.inputFieldTypes.leftInputFieldFunction === 'datePicker') {
+    throw new Error('Both input fields cannot be of the same type. One must be "datePicker" and the other "eventPicker". Check rightInputFieldFunction and leftInputFieldFunction.')
+  }
+
+  if (searchInputObj.inputFields.inputFieldTypes.rightInputFieldFunction === 'eventPicker' && searchInputObj.inputFields.inputFieldTypes.leftInputFieldFunction === 'eventPicker') {
+    throw new Error('Both input fields cannot be of the same type. One must be "datePicker" and the other "eventPicker". Check rightInputFieldFunction and leftInputFieldFunction.')
+  }
+
   if (typeof searchInputObj.inputFields.inputFieldText.leftInputFieldTextContent !== 'string') {
     throw new Error('The leftInputFieldTextContent must be a string. (An empty string is fine, but no numbers, booleans, or other non-string types.)')
   }
