@@ -38,6 +38,11 @@ var FHSearchInput = function(obj) {
       container.style.marginBottom = containerStyles.marginBottom;
       container.style.marginLeft = containerStyles.marginLeft;
       container.style.textAlign = 'center';
+      container.style.position = containerStyles.position;
+      container.style.top = containerStyles.top;
+      container.style.left = containerStyles.left;
+      container.style.right = containerStyles.right;
+      container.style.width = containerStyles.width;
     })()
 
     createLeftInputField(obj);
@@ -79,7 +84,7 @@ var FHSearchInput = function(obj) {
         {
         func: leftFieldFunction,
         input: leftFieldInput,
-        text: obj.inputFieldText.leftInputFieldTextContent,
+        text: obj.text.leftInputFieldTextContent,
       });
 
       function assignLeftFieldFunction(options) {
@@ -135,7 +140,7 @@ var FHSearchInput = function(obj) {
         {
         func: rightFieldFunction,
         input: rightFieldInput,
-        text: obj.inputFieldText.rightInputFieldTextContent,
+        text: obj.text.rightInputFieldTextContent,
       });
 
       function assignRightFieldFunction(options) {
@@ -155,7 +160,7 @@ var FHSearchInput = function(obj) {
     createGoButton(obj);
 
     function createGoButton(obj) {
-      var goButtonContent = obj.buttonsText.goButtonTextContent || 'Go!';
+      var goButtonContent = obj.text.goButtonTextContent || 'Go!';
 
       (function makeHTMLForGoButton() {
         buttonLinkWrapper = document.createElement('A');
@@ -202,7 +207,7 @@ var FHSearchInput = function(obj) {
     }
 
     function createDetailsButton(obj) {
-      var detailsButtonContent = obj.buttonsText.detailsButtonTextContent || 'Full event details';
+      var detailsButtonContent = obj.text.detailsButtonTextContent || 'Full event details';
 
       (function makeHTMLForDetailsButton() {
         detailsButtonWrapper = document.createElement('A');
@@ -505,18 +510,18 @@ var FHSearchInput = function(obj) {
 
     document.addEventListener('mouseout', function(event) {
       if (event.target.className.toLowerCase() === 'details-button') {
-        event.target.style.backgroundColor = obj.buttonsBackgroundColor.detailsButtonBackgroundColor || '#3D89DF';
+        event.target.style.backgroundColor = obj.backgroundColor.detailsButtonBackgroundColor || '#3D89DF';
       } else if (event.target.className.toLowerCase() === 'go-button') {
-        event.target.style.backgroundColor = obj.buttonsBackgroundColor.goButtonBackgroundColor || '#3D89DF';
+        event.target.style.backgroundColor = obj.backgroundColor.goButtonBackgroundColor || '#3D89DF';
       }
     });
 
     document.addEventListener('mouseover', function(event) {
       if (event.target.className.toLowerCase() === 'go-button') {
-        event.target.style.backgroundColor = obj.buttonsBackgroundColor.goButtonBackgroundColorHover || '#88BCF8';
+        event.target.style.backgroundColor = obj.backgroundColor.goButtonBackgroundColorHover || '#88BCF8';
         event.target.style.cursor = 'pointer';
       } else if (event.target.className.toLowerCase() === 'details-button') {
-        event.target.style.backgroundColor = obj.buttonsBackgroundColor.detailsButtonBackgroundColorHover || '#88BCF8';
+        event.target.style.backgroundColor = obj.backgroundColor.detailsButtonBackgroundColorHover || '#88BCF8';
         event.target.style.cursor = 'pointer';
       }
     });

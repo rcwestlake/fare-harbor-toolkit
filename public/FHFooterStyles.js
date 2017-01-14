@@ -50,7 +50,7 @@ var StickyDependentPosition;
 })()
 
 var FHFooterStyles = {
-  backgroundColor: footerObj.footerBackgroundColor || '#88BCF8',
+  backgroundColor: footerObj.backgroundColor || '#88BCF8',
   height: 'auto',
   display: 'block',
   borderTopWidth: '1px',
@@ -61,15 +61,15 @@ var FHFooterStyles = {
   borderRightStyle: 'solid',
   borderBottomStyle: 'solid',
   borderLeftStyle: 'solid',
-  borderTopColor: footerObj.footerBorders.footerBorderTopColor || '#88BCF8',
-  borderRightColor: footerObj.footerBorders.footerBorderRightColor || '#88BCF8',
-  borderBottomColor: footerObj.footerBorders.footerBorderBottomColor || '#88BCF8',
-  borderLeftColor: footerObj.footerBorders.footerBorderLeftColor || '#88BCF8',
+  borderTopColor: footerObj.borders.borderTopColor || '#88BCF8',
+  borderRightColor: footerObj.borders.borderRightColor || '#88BCF8',
+  borderBottomColor: footerObj.borders.borderBottomColor || '#88BCF8',
+  borderLeftColor: footerObj.borders.borderLeftColor || '#88BCF8',
   position: footerObj.isFooterSticky ? 'fixed' : 'static',
   bottom: footerObj.isFooterSticky ? '20px' : '',
   width: footerObj.isFooterSticky ? '100vw' : '',
-  marginTop: '15px',
-  marginRight: '10px',
-  marginBottom: '15px',
-  marginLeft: '10px',
+  marginTop: footerObj.isFooterSticky ? '0' : '15px',
+  marginRight: footerObj.isFooterSticky ? '0' : '10px',
+  marginBottom: footerObj.isFooterSticky ? '0' : '15px',
+  marginLeft: footerObj.isFooterSticky ? '0' : '10px',
 }

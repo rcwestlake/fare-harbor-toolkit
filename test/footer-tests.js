@@ -16,6 +16,15 @@ if (config.toolDetails.footer.elements[2].doesItExist) {
   doesThirdNodeExist = it.skip;
 }
 
+var isCorrectToolTypeSelected;
+
+if (config.toolType === 'Footer') {
+  isCorrectToolTypeSelected = test.it;
+} else {
+  isCorrectToolTypeSelected = it.skip;
+  console.log('Please select Footer as the toolType in FHConfig.js before running the footer tests.');
+}
+
 test.describe('Footer', function () {
   this.timeout(10000)
 
@@ -23,7 +32,7 @@ test.describe('Footer', function () {
     driver.get('http://localhost:8080');
   });
 
-  test.it('should render with the number of elements specified in the config object', function () {
+  isCorrectToolTypeSelected('should render with the number of elements specified in the config object', function () {
 
     var realElements = config.toolDetails.footer.elements.filter(function (elem) {
       return elem.doesItExist === true;
@@ -37,7 +46,7 @@ test.describe('Footer', function () {
 
   })
 
-  test.it('the default text for the first element in the footer should display the correct value', function () {
+  isCorrectToolTypeSelected('the default text for the first element in the footer should display the correct value', function () {
 
     var elemText = config.toolDetails.footer.elements[0].textContent || 'Book Now!';
 
@@ -49,7 +58,7 @@ test.describe('Footer', function () {
 
   })
 
-  test.it('the first text node should go to the correct link', function () {
+  isCorrectToolTypeSelected('the first text node should go to the correct link', function () {
 
     var newLink = config.toolDetails.footer.elements[0].linkTo;
 
@@ -73,7 +82,7 @@ test.describe('Footer', function () {
 
   })
 
-  test.it('lightframe should activate when user clicks on the first element', function () {
+  isCorrectToolTypeSelected('lightframe should activate when user clicks on the first element', function () {
 
     var bookNowLink = driver.findElement({id: 'first'})
     bookNowLink.click();
