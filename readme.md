@@ -14,11 +14,13 @@ Core tools used: JavaScript, Selenium Webdriver, ExpressJS.
 
 ## See Our Project
 
-![Search Input Screenshot](/public/images/search-input-main-rev.png)
+![Search Input Screenshot](public/images/search-input-screenshot.png)
 
-![Footer Screenshot](public/images/footer-main-view.png)
+![Footer Screenshot](public/images/footer-screenshot.png)
 
-![Modal Screenshot](public/images/modal-screenshot.png)
+![Modal Simple Screenshot]()
+
+![Modal Show All Screenshot]()
 
 ## Installation and Setup Instructions
 
