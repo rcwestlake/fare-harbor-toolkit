@@ -20,7 +20,7 @@ Core tools used: JavaScript, Selenium Webdriver, ExpressJS.
 
 ![Modal Simple Screenshot](public/images/modal-simple-screenshot.png)
 
-![Modal Show All Screenshot]()
+![Modal Show Items Screenshot](public/images/modal-showitems-screenshot.png)
 
 ## Installation and Setup Instructions
 

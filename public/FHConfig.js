@@ -29,7 +29,7 @@ var FHConfig = (function () {
      },
      toolDetails: {
        modal: {
-         modalType: 'simple',
+         modalType: 'showItems',
          cards: {
            showFullItems: 'yes',
            cardDetail: [
