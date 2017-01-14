@@ -18,7 +18,7 @@ Core tools used: JavaScript, Selenium Webdriver, ExpressJS.
 
 ![Footer Screenshot](public/images/footer-screenshot.png)
 
-![Modal Simple Screenshot]()
+![Modal Simple Screenshot](public/images/modal-simple-screenshot.png)
 
 ![Modal Show All Screenshot]()
 
