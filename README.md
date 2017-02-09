@@ -6,25 +6,16 @@ See our more extensive [Gitbook documentation](https://www.gitbook.com/book/rcwe
 
 This is a project built for FareHarbor, an online travel services company. It consists of a series of files that allow FareHarbor to easily create and customize booking tools for client sites. We also created three customizable tools: a bottom modal tool, a search input tool, and a footer tool.
 
-This project drew deeply on object-oriented programming practices. Essentially, our config tools are a series of objects that pass properties (such as background color and text) to different tools, allowing for easy customization.
+This project drew deeply on modular programming practices. Essentially, our config tools are a series of objects that pass properties (such as background color and text) to different tools, allowing for easy customization.
 
-The project is also extensively tested with over twenty passing feature tests.
-
-Core tools used: JavaScript, Selenium Webdriver, ExpressJS.
+Core tools used: JavaScript, ExpressJS, Selenium Webdriver.
 
 ## See Our Project
-
-![Search Input Screenshot](public/images/search-input-screenshot.png)
-
-![Footer Screenshot](public/images/footer-screenshot.png)
+ > These tools were my focus. My partner built two others. 
 
 ![Modal Simple Screenshot](public/images/modal-simple-screenshot.png)
 
 ![Modal Show Items Screenshot](public/images/modal-showitems-screenshot.png)
-
-## Installation and Setup Instructions
-
-To use these tools, please visit our [FareHarbor Documentation](https://www.gitbook.com/book/rcwestlake/fareharbor-toolkit/details) for the Toolkit.
 
 ## Reflection
 
